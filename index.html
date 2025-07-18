@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     
     <!-- Favicon using emoji -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
     
     <style>
         /* CSS Reset & Variables */
@@ -520,7 +520,7 @@
 
     <!-- Header -->
     <header class="header">
-        <nav class="nav-container" role="navigation" aria-label="Main navigation">
+        <nav class="nav-container" aria-label="Main navigation">
             <a href="#home" class="logo" aria-label="Homepage">MA</a>
             
             <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -575,7 +575,7 @@
             <div class="container">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
-                    <a href="projects/project-a.html" class="project-card" aria-label="View Project A details">
+                    <a href="projects/Project-a.html" class="project-card" aria-label="View Project A details">
                         IMAGE A
                     </a>
                     <a href="projects/project-b.html" class="project-card" aria-label="View Project B details">
@@ -607,12 +607,12 @@
                 <form class="contact-form" action="#" method="POST">
                     <div class="form-group">
                         <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required aria-describedby="name-error">
+                        <input type="text" id="name" name="name" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required aria-describedby="email-error">
+                        <input type="email" id="email" name="email" required>
                     </div>
                     
                     <div class="form-group">
@@ -622,7 +622,7 @@
                     
                     <div class="form-group">
                         <label for="message">Message</label>
-                        <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
+                        <textarea id="message" name="message" required></textarea>
                     </div>
                     
                     <button type="submit" class="submit-button">Send Message</button>
