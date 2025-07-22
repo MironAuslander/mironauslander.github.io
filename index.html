@@ -85,6 +85,21 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        /* Mobile navigation fixes */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 1rem;
+                position: relative;
+            }
+            
+            .menu-toggle {
+                position: relative;
+                right: 0;
+            }
         }
 
         .logo {
@@ -165,8 +180,7 @@
 
         /* Main Content */
         .main {
-            margin-top: 80px;
-            min-height: calc(100vh - 80px);
+            margin-top: 0;
         }
 
         .container {
@@ -178,10 +192,16 @@
         /* Hero Section */
         .hero {
             background: var(--primary-gradient);
-            padding: 4rem 1rem;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             position: relative;
             overflow: hidden;
+            padding-top: 80px;
+            box-sizing: border-box;
+            scroll-snap-align: start;
         }
 
         .hero::before {
@@ -238,8 +258,15 @@
 
         /* Sections */
         .section {
-            padding: 4rem 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background-color: var(--dark-bg);
+            padding: 80px 1rem 40px;
+            box-sizing: border-box;
+            scroll-snap-align: start;
         }
 
         .section-title {
@@ -249,6 +276,9 @@
             font-weight: 300;
             letter-spacing: 2px;
             text-transform: uppercase;
+            position: relative;
+            width: 100%;
+            flex-shrink: 0;
         }
 
         /* About Section */
@@ -257,11 +287,16 @@
             flex-direction: column;
             align-items: center;
             gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
         }
 
         .profile-image {
             width: 200px;
             height: 200px;
+            min-width: 200px;
+            min-height: 200px;
             border-radius: 50%;
             background-color: var(--text-gray);
             display: flex;
@@ -270,10 +305,11 @@
             font-size: 1.2rem;
             color: var(--accent-blue);
             font-weight: bold;
+            flex-shrink: 0;
+            aspect-ratio: 1/1;
         }
 
         .about-text {
-            max-width: 600px;
             text-align: center;
             font-size: 1.1rem;
             line-height: 1.8;
@@ -284,7 +320,19 @@
         .projects-grid {
             display: grid;
             gap: 1.5rem;
-            margin-top: 2rem;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        /* Mobile projects grid - single column */
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                padding: 0 1rem;
+            }
         }
 
         .project-card {
@@ -295,12 +343,13 @@
             align-items: center;
             justify-content: center;
             color: var(--text-white);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
             text-decoration: none;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
+            min-height: 150px;
         }
 
         .project-card::before {
@@ -325,28 +374,18 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            gap: 1rem;
-            margin-top: 2rem;
+        /* Skills & Links Section */
+        .skills-links-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
-        .skill-card {
-            background-color: var(--text-gray);
-            color: var(--accent-blue);
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
+        .skills-links-buttons .cta-button {
+            min-width: 200px;
             text-align: center;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .skill-card:hover {
-            background-color: var(--accent-blue);
-            color: var(--text-white);
-            transform: translateY(-3px);
         }
 
         /* Contact Form */
@@ -356,6 +395,7 @@
             background-color: var(--text-gray);
             padding: 2rem;
             border-radius: var(--border-radius);
+            width: 100%;
         }
 
         .form-group {
@@ -446,6 +486,18 @@
             text-align: center;
             color: var(--text-gray);
         }
+        
+        /* Footer layout for social links */
+        .footer .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .footer .social-links {
+            margin: 0;
+        }
 
         /* Responsive Design */
         @media (min-width: 768px) {
@@ -473,14 +525,24 @@
             .about-content {
                 flex-direction: row;
                 text-align: left;
+                gap: 3rem;
+            }
+
+            .about-text {
+                text-align: left;
             }
 
             .projects-grid {
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
             }
 
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            .skills-links-buttons {
+                gap: 3rem;
+            }
+
+            .skills-links-buttons .cta-button {
+                min-width: 250px;
             }
 
             .social-links {
@@ -489,12 +551,48 @@
         }
 
         @media (min-width: 1024px) {
-            .hero {
-                padding: 6rem 1rem;
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+                max-width: 1000px;
+            }
+        }
+        
+        /* iPad landscape specific fixes */
+        @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+            .footer .container {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                max-width: var(--max-width);
+                padding: 0 2rem;
+            }
+            
+            .footer .social-links {
+                gap: 1rem;
+                margin: 0;
+                flex-shrink: 0;
+            }
+            
+            .footer p {
+                margin: 0;
+                flex: 1;
+                text-align: left;
+            }
+        }
+
+        /* Mobile viewport height handling */
+        @media (max-height: 600px) {
+            .section {
+                min-height: 100vh;
+                height: auto;
+                padding: 100px 1rem 60px;
             }
 
-            .section {
-                padding: 6rem 0;
+            .hero {
+                min-height: 100vh;
+                height: auto;
+                padding: 100px 1rem 60px;
             }
         }
 
@@ -504,8 +602,67 @@
             outline-offset: 2px;
         }
 
+        /* Smooth Scrolling Enhancements */
+        @supports (scroll-behavior: smooth) {
+            html {
+                scroll-behavior: smooth;
+            }
+        }
+        
+        /* Mobile scroll behavior - disable aggressive snap */
+        @media (max-width: 768px) {
+            html {
+                scroll-snap-type: none;
+                scroll-behavior: smooth;
+            }
+            
+            .hero,
+            .section {
+                scroll-snap-align: none;
+                scroll-snap-stop: normal;
+                min-height: 100vh;
+                height: auto;
+                padding-bottom: 2rem;
+            }
+            
+            /* Allow natural scrolling on mobile */
+            body {
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+            
+            /* Ensure footer is accessible */
+            .footer {
+                position: relative;
+                z-index: 1;
+                margin-top: 2rem;
+            }
+        }
+        
+        /* Desktop scroll snap - more controlled */
+        @media (min-width: 769px) {
+            html {
+                scroll-snap-type: y proximity;
+            }
+            
+            .hero,
+            .section {
+                scroll-snap-align: start;
+            }
+        }
+        
         /* Reduced Motion */
         @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto !important;
+                scroll-snap-type: none !important;
+            }
+            
+            .hero,
+            .section {
+                scroll-snap-align: none !important;
+            }
+            
             * {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
@@ -532,8 +689,8 @@
             <ul class="nav-menu">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="#skills">Skills & Links</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -576,13 +733,22 @@
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
                     <a href="projects/Project-a.html" class="project-card" aria-label="View Project A details">
-                        IMAGE A
+                        PROJECT A
                     </a>
                     <a href="projects/project-b.html" class="project-card" aria-label="View Project B details">
-                        IMAGE B
+                        PROJECT B
                     </a>
                     <a href="projects/project-c.html" class="project-card" aria-label="View Project C details">
-                        IMAGE C
+                        PROJECT C
+                    </a>
+                    <a href="projects/project-d.html" class="project-card" aria-label="View Project D details">
+                        PROJECT D
+                    </a>
+                    <a href="projects/project-e.html" class="project-card" aria-label="View Project E details">
+                        PROJECT E
+                    </a>
+                    <a href="projects/project-f.html" class="project-card" aria-label="View Project F details">
+                        PROJECT F
                     </a>
                 </div>
             </div>
@@ -592,10 +758,9 @@
         <section id="skills" class="section">
             <div class="container">
                 <h2 class="section-title">Skills & Links</h2>
-                <div class="skills-grid">
-                    <div class="skill-card">COMPOSTING</div>
-                    <div class="skill-card">MOTION GRAPHICS</div>
-                    <div class="skill-card">LINKS</div>
+                <div class="skills-links-buttons">
+                    <a href="skills.html" class="cta-button">SKILLS</a>
+                    <a href="links.html" class="cta-button">LINKS</a>
                 </div>
             </div>
         </section>

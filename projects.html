@@ -1,27 +1,164 @@
-<!-- Projects grid with filtering -->
-<section class="projects-section">
-    <div class="container">
-        <h1>Featured Projects</h1>
-        
-        <!-- Filter buttons -->
-        <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="motion">Motion Graphics</button>
-            <button class="filter-btn" data-filter="vfx">Visual Effects</button>
-            <button class="filter-btn" data-filter="commercial">Commercial</button>
-        </div>
-        
-        <!-- Projects grid -->
-        <div class="projects-grid">
-            <article class="project-card" data-category="motion">
-                <img src="assets/images/projects/project-a.webp" alt="Project A">
-                <div class="project-overlay">
-                    <h3>Project Title</h3>
-                    <p>Brief description</p>
-                    <a href="projects/Project-a.html">View Details</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects - Miron Auslander Portfolio</title>
+    <meta name="description" content="Complete portfolio of Visual Effects and Motion Graphics projects">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Homepage">MA</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#skills">Skills & Links</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="main">
+        <!-- Projects Hero Section -->
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">All Projects</h1>
+                <div class="projects-intro">
+                    <p>A comprehensive showcase of my work in Visual Effects, Motion Graphics, and Commercial productions.</p>
                 </div>
-            </article>
-            <!-- More project cards -->
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Project Categories</h2>
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="motion">Motion Graphics</button>
+                    <button class="filter-btn" data-filter="vfx">Visual Effects</button>
+                    <button class="filter-btn" data-filter="commercial">Commercial</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Projects Grid Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Portfolio</h2>
+                <div class="all-projects-grid">
+                    <article class="project-card-large" data-category="motion">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-a.webp" alt="Project A - Motion Graphics">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project A Title</h3>
+                            <p class="project-category">Motion Graphics</p>
+                            <p class="project-description">Motion graphics project showcasing dynamic animations and visual storytelling.</p>
+                            <a href="projects/Project-a.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card-large" data-category="vfx">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-b.webp" alt="Project B - Visual Effects">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project B Title</h3>
+                            <p class="project-category">Visual Effects</p>
+                            <p class="project-description">Advanced VFX compositing and digital effects work for film and television.</p>
+                            <a href="projects/project-b.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card-large" data-category="motion">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-c.webp" alt="Project C - Motion Graphics">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project C Title</h3>
+                            <p class="project-category">Motion Graphics</p>
+                            <p class="project-description">Brand animation and motion design for commercial applications.</p>
+                            <a href="projects/project-c.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card-large" data-category="vfx">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-d.webp" alt="Project D - Visual Effects">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project D Title</h3>
+                            <p class="project-category">Visual Effects</p>
+                            <p class="project-description">Complex VFX sequences with digital matte painting and compositing.</p>
+                            <a href="projects/project-d.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card-large" data-category="commercial">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-e.webp" alt="Project E - Commercial">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project E Title</h3>
+                            <p class="project-category">Commercial</p>
+                            <p class="project-description">Creative direction and post-production for commercial advertising.</p>
+                            <a href="projects/project-e.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card-large" data-category="motion">
+                        <div class="project-image">
+                            <img src="assets/images/projects/project-f.webp" alt="Project F - Motion Graphics">
+                        </div>
+                        <div class="project-info">
+                            <h3>Project F Title</h3>
+                            <p class="project-category">Motion Graphics</p>
+                            <p class="project-description">Animation direction and visual development for motion graphics.</p>
+                            <a href="projects/project-f.html" class="project-link">View Project</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Home Section -->
+        <section class="section">
+            <div class="container">
+                <div class="back-to-home">
+                    <h2>Ready to Work Together?</h2>
+                    <p>Let's discuss your next project and bring your vision to life.</p>
+                    <a href="index.html#contact" class="cta-button">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Miron Auslander. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                <a href="#" class="social-link" aria-label="Behance">BE</a>
+                <a href="#" class="social-link" aria-label="Vimeo">VI</a>
+            </div>
         </div>
-    </div>
-</section>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
