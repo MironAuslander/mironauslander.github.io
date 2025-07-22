@@ -1,7 +1,7 @@
 # Portfolio Website Project - Claude Context
 
 ## Project Overview
-This is a professional portfolio website for **Miron Auslander**, a Visual Effects & Motion Graphics Creative. The site is hosted on GitHub Pages with automatic deployment and focuses on showcasing high-quality visual work for TV, Films, and Digital Media.
+This is a professional portfolio website for **Miron Oslander**, a Visual Effects & Motion Graphics Creative. The site is hosted on GitHub Pages with automatic deployment and focuses on showcasing high-quality visual work for TV, Films, and Digital Media.
 
 ## Current Tech Stack
 - **Hosting**: GitHub Pages with automatic deployment
@@ -25,7 +25,7 @@ This is a professional portfolio website for **Miron Auslander**, a Visual Effec
 - **Browser Support**: Modern browsers (ES6+ is acceptable)
 
 ### Visual Design Guidelines
-- **Color Scheme**: Dark theme with purple gradient (`#667eea` to `#764ba2`)
+- **Color Scheme**: Dark theme
 - **Typography**: Modern fonts (sans-serif) 
 - **Animations**: Subtle, performant CSS transitions and transforms
 - **Layout**: CSS Grid and Flexbox for responsive layouts
@@ -47,7 +47,7 @@ This is a professional portfolio website for **Miron Auslander**, a Visual Effec
 ## Development Workflow
 
 ### File Management
-- All changes should maintain the existing file structure
+- All changes should maintain the existing file structure when possible
 - Inline CSS in `<style>` tags for critical path optimization
 - Keep external files minimal
 - Use relative paths for all internal links
