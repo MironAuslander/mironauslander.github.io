@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Visual Effects & Motion Graphics</title>
+    <title>Miron Oslander - Visual Effects & Motion Graphics</title>
     
     <!-- SEO & Social Meta -->
     <meta name="description" content="Visual Effects & Motion Graphics Creative freelancer specializing in Post-Production for TV, Films, & Digital Media">
     <meta name="keywords" content="visual effects, motion graphics, post-production, freelancer, creative">
-    <meta name="author" content="Your Name">
+    <meta name="author" content="Miron Oslander">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Your Name - Portfolio">
+    <meta property="og:title" content="Miron Oslander - Portfolio">
     <meta property="og:description" content="Visual Effects & Motion Graphics Creative">
     <meta property="og:image" content="https://yourdomain.com/assets/images/og-image.jpg">
     <meta property="og:url" content="https://yourdomain.com">
@@ -26,11 +26,15 @@
         /* CSS Reset & Variables */
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --dark-bg: #2d2d2d;
-            --darker-bg: #1a1a1a;
+            --warm-gradient: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            --cyan-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #08090a;
+            --darker-bg: #0f1115;
             --text-white: #ffffff;
             --text-gray: #b0b0b0;
             --accent-blue: #667eea;
+            --accent-warm: #ff6b6b;
+            --accent-cyan: #4facfe;
             --max-width: 1200px;
             --border-radius: 12px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -236,7 +240,11 @@
 
         .cta-button {
             display: inline-block;
-            background-color: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(145deg, 
+                rgba(255, 255, 255, 0.1) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.9) 70%, 
+                rgba(0, 0, 0, 0.95) 100%);
             color: var(--text-white);
             padding: 1rem 2.5rem;
             border-radius: 50px;
@@ -247,13 +255,35 @@
             transition: var(--transition);
             backdrop-filter: blur(10px);
             border: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(255, 255, 255, 0.2) 0%, 
+                transparent 50%, 
+                rgba(255, 255, 255, 0.1) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50px;
+        }
+
+        .cta-button:hover::before {
+            opacity: 1;
         }
 
         .cta-button:hover,
         .cta-button:focus {
-            background-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* Sections */
@@ -336,7 +366,6 @@
         }
 
         .project-card {
-            background: var(--primary-gradient);
             border-radius: var(--border-radius);
             aspect-ratio: 16/9;
             display: flex;
@@ -350,8 +379,29 @@
             position: relative;
             overflow: hidden;
             min-height: 150px;
+            background-color: var(--dark-bg);
         }
 
+        /* Future image container */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg, 
+                rgba(255, 107, 107, 0.15) 0%, 
+                rgba(0, 0, 0, 0.3) 30%, 
+                rgba(0, 0, 0, 0.6) 70%, 
+                rgba(0, 0, 0, 0.8) 100%);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            z-index: 1;
+        }
+
+        /* Flash animation overlay */
         .project-card::before {
             content: '';
             position: absolute;
@@ -359,13 +409,24 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
             transform: translateX(-100%);
             transition: var(--transition);
+            z-index: 2;
         }
 
         .project-card:hover::before {
             transform: translateX(100%);
+        }
+
+        .project-card:hover::after {
+            border-color: rgba(255, 107, 107, 0.5);
+        }
+
+        /* Text content over glassmorphism */
+        .project-card span {
+            position: relative;
+            z-index: 3;
         }
 
         .project-card:hover,
@@ -386,6 +447,25 @@
         .skills-links-buttons .cta-button {
             min-width: 200px;
             text-align: center;
+            background: linear-gradient(145deg, 
+                rgba(79, 172, 254, 0.15) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.9) 70%, 
+                rgba(0, 0, 0, 0.95) 100%);
+            border: 2px solid rgba(79, 172, 254, 0.4);
+        }
+
+        .skills-links-buttons .cta-button::before {
+            background: linear-gradient(45deg, 
+                rgba(79, 172, 254, 0.25) 0%, 
+                transparent 50%, 
+                rgba(0, 242, 254, 0.15) 100%);
+        }
+
+        .skills-links-buttons .cta-button:hover,
+        .skills-links-buttons .cta-button:focus {
+            border-color: rgba(79, 172, 254, 0.6);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.2);
         }
 
         /* Contact Form */
@@ -434,22 +514,50 @@
         }
 
         .submit-button {
-            background: var(--primary-gradient);
+            background: linear-gradient(145deg, 
+                rgba(102, 126, 234, 0.15) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.9) 70%, 
+                rgba(0, 0, 0, 0.95) 100%);
             color: var(--text-white);
             padding: 1rem 2rem;
-            border: none;
+            border: 2px solid rgba(102, 126, 234, 0.4);
             border-radius: 6px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
             width: 100%;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.25) 0%, 
+                transparent 50%, 
+                rgba(118, 75, 162, 0.15) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 6px;
+        }
+
+        .submit-button:hover::before {
+            opacity: 1;
         }
 
         .submit-button:hover,
         .submit-button:focus {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+            border-color: rgba(102, 126, 234, 0.6);
         }
 
         /* Social Links */
@@ -463,7 +571,12 @@
         .social-link {
             width: 60px;
             height: 60px;
-            background: var(--primary-gradient);
+            background: linear-gradient(145deg, 
+                rgba(102, 126, 234, 0.15) 0%, 
+                rgba(0, 0, 0, 0.7) 30%, 
+                rgba(0, 0, 0, 0.9) 70%, 
+                rgba(0, 0, 0, 0.95) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.4);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -472,11 +585,36 @@
             text-decoration: none;
             font-size: 1.5rem;
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, 
+                rgba(102, 126, 234, 0.25) 0%, 
+                transparent 50%, 
+                rgba(118, 75, 162, 0.15) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            border-radius: 50%;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
         }
 
         .social-link:hover,
         .social-link:focus {
             transform: translateY(-3px) scale(1.1);
+            border-color: rgba(102, 126, 234, 0.6);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
         }
 
         /* Footer */
@@ -701,7 +839,7 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Hi, I'm Miron Auslander</h1>
+                <h1>Hi, I'm Miron Oslander</h1>
                 <p class="hero-subtitle">
                     A Visual Effects & Motion Graphics Creative freelancer<br>
                     specializing in Post-Production<br>
@@ -733,22 +871,33 @@
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
                     <a href="projects/Project-a.html" class="project-card" aria-label="View Project A details">
-                        PROJECT A
+                        <!-- 
+                        FUTURE: Replace this structure with:
+                        <img src="assets/images/projects/project-a-thumb.jpg" alt="Project A Preview" />
+                        <span>PROJECT A</span>
+                        The image will sit behind the glassmorphism overlay (z-index: 0)
+                        -->
+                        <span>PROJECT A</span>
                     </a>
                     <a href="projects/project-b.html" class="project-card" aria-label="View Project B details">
-                        PROJECT B
+                        <!-- Future image will go here with object-fit: cover -->
+                        <span>PROJECT B</span>
                     </a>
                     <a href="projects/project-c.html" class="project-card" aria-label="View Project C details">
-                        PROJECT C
+                        <!-- Future image will go here with object-fit: cover -->
+                        <span>PROJECT C</span>
                     </a>
                     <a href="projects/project-d.html" class="project-card" aria-label="View Project D details">
-                        PROJECT D
+                        <!-- Future image will go here with object-fit: cover -->
+                        <span>PROJECT D</span>
                     </a>
                     <a href="projects/project-e.html" class="project-card" aria-label="View Project E details">
-                        PROJECT E
+                        <!-- Future image will go here with object-fit: cover -->
+                        <span>PROJECT E</span>
                     </a>
                     <a href="projects/project-f.html" class="project-card" aria-label="View Project F details">
-                        PROJECT F
+                        <!-- Future image will go here with object-fit: cover -->
+                        <span>PROJECT F</span>
                     </a>
                 </div>
             </div>
