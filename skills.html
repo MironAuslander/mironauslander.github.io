@@ -3,58 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skills & Links - Your Name</title>
+    <title>Skills - Miron Oslander Portfolio</title>
+    <meta name="description" content="Technical skills and expertise - Miron Oslander Portfolio">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
     <header class="header">
-        <!-- Same navigation -->
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Homepage">MA</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#skills">Skills & Links</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main class="main">
-        <!-- Skills Section -->
-        <section class="skills-hero">
+    <main id="main" class="main">
+        <!-- Skills Hero Section -->
+        <section class="section">
             <div class="container">
-                <h1>Skills & Expertise</h1>
-                <p>Tools and technologies I use to bring creative visions to life</p>
+                <h1 class="section-title">Skills & Expertise</h1>
+                <div class="skills-intro">
+                    <p>Tools and technologies I use to bring creative visions to life with over a decade of professional experience.</p>
+                </div>
             </div>
         </section>
 
-        <!-- Technical Skills -->
-        <section class="technical-skills">
+        <!-- Technical Skills Section -->
+        <section class="section">
             <div class="container">
-                <h2>Technical Skills</h2>
+                <h2 class="section-title">Technical Skills</h2>
                 <div class="skills-categories">
                     
                     <div class="skill-category">
-                        <h3>Motion Graphics</h3>
+                        <h3>Motion Graphics & Animation</h3>
                         <div class="skill-items">
                             <div class="skill-item">
-                                <span class="skill-name">After Effects</span>
+                                <div class="skill-info">
+                                    <span class="skill-name">After Effects</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 95%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <span class="skill-name">Cinema 4D</span>
+                                <div class="skill-info">
+                                    <span class="skill-name">Cinema 4D</span>
+                                    <span class="skill-level">Advanced - 8+ years</span>
+                                </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Premiere Pro</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 93%"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="skill-category">
-                        <h3>Compositing</h3>
+                        <h3>Compositing & VFX</h3>
                         <div class="skill-items">
                             <div class="skill-item">
-                                <span class="skill-name">Nuke</span>
+                                <div class="skill-info">
+                                    <span class="skill-name">Nuke</span>
+                                    <span class="skill-level">Advanced - 7+ years</span>
+                                </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 88%"></div>
                                 </div>
                             </div>
                             <div class="skill-item">
-                                <span class="skill-name">Fusion</span>
+                                <div class="skill-info">
+                                    <span class="skill-name">Fusion</span>
+                                    <span class="skill-level">Intermediate - 5+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Mocha Pro</span>
+                                    <span class="skill-level">Advanced - 6+ years</span>
+                                </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 85%"></div>
                                 </div>
@@ -66,9 +119,45 @@
                         <h3>Color & Finishing</h3>
                         <div class="skill-items">
                             <div class="skill-item">
-                                <span class="skill-name">DaVinci Resolve</span>
+                                <div class="skill-info">
+                                    <span class="skill-name">DaVinci Resolve</span>
+                                    <span class="skill-level">Advanced - 6+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Photoshop</span>
+                                    <span class="skill-level">Expert - 12+ years</span>
+                                </div>
                                 <div class="skill-bar">
                                     <div class="skill-progress" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Creative & Design</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Illustrator</span>
+                                    <span class="skill-level">Advanced - 8+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">InDesign</span>
+                                    <span class="skill-level">Intermediate - 5+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
                                 </div>
                             </div>
                         </div>
@@ -77,53 +166,61 @@
             </div>
         </section>
 
-        <!-- Professional Links -->
-        <section class="professional-links">
+        <!-- Professional Services Section -->
+        <section class="section">
             <div class="container">
-                <h2>Professional Links</h2>
-                <div class="links-grid">
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">🎬</div>
-                        <h3>Showreel</h3>
-                        <p>Watch my latest work compilation</p>
-                    </a>
+                <h2 class="section-title">Professional Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+                        <h3>Motion Graphics</h3>
+                        <p>Dynamic animations, title sequences, and brand motion design for TV, film, and digital media.</p>
+                    </div>
                     
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">📋</div>
-                        <h3>Resume/CV</h3>
-                        <p>Download my complete resume</p>
-                    </a>
+                    <div class="service-card">
+                        <div class="service-icon">⚡</div>
+                        <h3>Visual Effects</h3>
+                        <p>Compositing, digital matte painting, and seamless integration of CGI with live-action footage.</p>
+                    </div>
                     
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">🎨</div>
-                        <h3>Behance</h3>
-                        <p>Creative portfolio showcase</p>
-                    </a>
+                    <div class="service-card">
+                        <div class="service-icon">🎨</div>
+                        <h3>Color Grading</h3>
+                        <p>Professional color correction and grading to enhance the visual storytelling and mood.</p>
+                    </div>
                     
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">💼</div>
-                        <h3>LinkedIn</h3>
-                        <p>Professional network profile</p>
-                    </a>
-                    
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">📺</div>
-                        <h3>Vimeo</h3>
-                        <p>Video portfolio collection</p>
-                    </a>
-                    
-                    <a href="#" class="link-card" target="_blank">
-                        <div class="link-icon">📱</div>
-                        <h3>Instagram</h3>
-                        <p>Behind-the-scenes content</p>
-                    </a>
+                    <div class="service-card">
+                        <div class="service-icon">✂️</div>
+                        <h3>Post-Production</h3>
+                        <p>Complete post-production workflows from editing to final delivery for various platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Home Section -->
+        <section class="section">
+            <div class="container">
+                <div class="back-to-home">
+                    <h2>Ready to Work Together?</h2>
+                    <p>Let's discuss your next project and bring your vision to life with professional expertise.</p>
+                    <a href="index.html#contact" class="cta-button">Get in Touch</a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <!-- Same footer -->
+        <div class="container">
+            <p>&copy; 2024 Miron Oslander. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
+                <a href="#" class="social-link" aria-label="Behance">BE</a>
+                <a href="#" class="social-link" aria-label="Vimeo">VI</a>
+            </div>
+        </div>
     </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
