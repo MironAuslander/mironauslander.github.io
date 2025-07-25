@@ -77,6 +77,13 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
         /* Custom Font Properties */
         :root {
             /* Font Variables with Fallback Stacks */
@@ -92,7 +99,12 @@
 
         /* Navigation and Logo Elements */
         .logo {
-            font-family: var(--font-primary);
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
         }
 
         .nav-menu a {
@@ -151,7 +163,7 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav-container" aria-label="Main navigation">
-            <a href="index.html" class="logo" aria-label="Homepage">MA</a>
+            <a href="index.html" class="logo" aria-label="Homepage">Ma</a>
             
             <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>

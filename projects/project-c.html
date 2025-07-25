@@ -78,6 +78,13 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('../assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
         /* CSS Variables */
         :root {
             /* Font Variables with Fallback Stacks */
@@ -91,7 +98,16 @@
         }
         
         /* Navigation and logo elements */
-        .logo, .nav-container a {
+        .logo {
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+        
+        .nav-container a {
             font-family: var(--font-primary);
         }
         
@@ -115,7 +131,7 @@
     <!-- Navigation -->
     <header class="header">
         <nav class="nav-container">
-            <a href="../index.html" class="logo">MA</a>
+            <a href="../index.html" class="logo">Ma</a>
             <!-- Same navigation as main site -->
         </nav>
     </header>

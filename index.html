@@ -102,6 +102,13 @@
             font-display: swap;
         }
 
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
         /* CSS Reset & Variables */
         :root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -191,9 +198,9 @@
         }
 
         .logo {
-            font-family: var(--font-primary);
+            font-family: 'Devil Breeze', var(--font-primary);
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 600;
             color: var(--text-white);
             text-decoration: none;
             letter-spacing: 2px;
@@ -434,6 +441,22 @@
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--text-gray);
+        }
+
+        /* Hide some line breaks on smaller screens for better flow */
+        @media (max-width: 480px) {
+            .about-text br {
+                display: none;
+            }
+        }
+
+        /* Show selective line breaks on medium screens */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .about-text p:first-child br:nth-of-type(2),
+            .about-text p:last-child br:nth-of-type(3),
+            .about-text p:last-child br:nth-of-type(4) {
+                display: none;
+            }
         }
 
         /* Projects Grid */
@@ -760,7 +783,7 @@
             }
 
             .about-text {
-                text-align: left;
+                text-align: center;
             }
 
             .projects-grid {
@@ -909,7 +932,7 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav-container" aria-label="Main navigation">
-            <a href="#home" class="logo" aria-label="Homepage">MA</a>
+            <a href="#home" class="logo" aria-label="Homepage">Ma</a>
             
             <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
@@ -951,8 +974,9 @@
                         PROFILE<br>PHOTO
                     </div>
                     <div class="about-text">
-                        <p>With more than a decade of experience in the industry, I've had the privilege of working with top productions and brand companies on projects that inspire me every day. Creativity is my escape and medicine. My strong passion for visual storytelling and my self thought journey are at the core of my unique perspective helping me in delivering captivating visuals that trigger audiences on an emotional level, for such high-quality projects.</p>
-                        <p>I love turning complex problems into simple, elegant solutions. No matter what's the screen size, whether it's for a TV show or a social media platform, I strive to create experiences that leave a lasting impact, that exceed client expectations.</p>
+                        <p>My deep passion for visual storytelling and my self-taught journey<br>define my unique perspective.<br>This allows me to create captivating, high-quality visuals that<br>emotionally resonate with audiences.</p>
+                        <p>~</p>
+                        <p>Creativity is my escape and medicine. I love turning complex problems<br>into simple, elegant solutions. <br>No matter what's the screen size, whether it's for a TV show or a social<br>media platform, I strive to create experiences that leave a lasting<br>impact that exceeds client expectations.</p>
                     </div>
                 </div>
             </div>
