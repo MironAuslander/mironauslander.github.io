@@ -6,7 +6,8 @@
       "Bash(git merge:*)",
       "Bash(git push:*)",
       "Bash(git stash:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": []
   }
