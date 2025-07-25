@@ -5,7 +5,129 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Projects - Miron Auslander Portfolio</title>
     <meta name="description" content="Complete portfolio of Visual Effects and Motion Graphics projects">
+    
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* CSS Custom Properties for Fonts */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Body Font Family Override */
+        body {
+            font-family: var(--font-body);
+        }
+
+        /* Navigation and Logo Elements */
+        .logo {
+            font-family: var(--font-primary);
+        }
+
+        .nav-menu a {
+            font-family: var(--font-primary);
+        }
+
+        /* Section Titles and Headings */
+        .section-title,
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+        }
+
+        /* Project Titles */
+        .project-info h3 {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .cta-button,
+        .filter-btn,
+        .project-link {
+            font-family: var(--font-primary);
+        }
+
+        /* Form Elements - if any are added later */
+        label {
+            font-family: var(--font-primary);
+        }
+
+        input, textarea, select {
+            font-family: var(--font-body);
+        }
+    </style>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
@@ -150,7 +272,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 Miron Auslander. All rights reserved.</p>
+            <p>&copy; 2025 Miron Auslander. All rights reserved.</p>
             <div class="social-links">
                 <a href="#" class="social-link" aria-label="LinkedIn">LI</a>
                 <a href="#" class="social-link" aria-label="Behance">BE</a>

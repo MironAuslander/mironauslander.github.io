@@ -5,7 +5,145 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Links - Miron Auslander Portfolio</title>
     <meta name="description" content="Professional and inspirational links - Miron Auslander Portfolio">
+    
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* CSS Custom Properties with Font Variables */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Body font-family update */
+        body {
+            font-family: var(--font-body);
+        }
+
+        /* Navigation and logo elements */
+        .logo {
+            font-family: var(--font-primary);
+        }
+
+        .nav-menu a {
+            font-family: var(--font-primary);
+        }
+
+        /* Section titles and headings */
+        .section-title,
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .cta-button,
+        .menu-toggle {
+            font-family: var(--font-primary);
+        }
+
+        /* Link cards and items */
+        .link-category h3 {
+            font-family: var(--font-primary);
+        }
+
+        .link-list a {
+            font-family: var(--font-body);
+        }
+
+        .links-intro {
+            font-family: var(--font-body);
+        }
+
+        .download-item h3 {
+            font-family: var(--font-primary);
+        }
+
+        .download-item p {
+            font-family: var(--font-body);
+        }
+
+        /* Social links */
+        .social-link {
+            font-family: var(--font-primary);
+        }
+
+        /* Footer */
+        .footer {
+            font-family: var(--font-body);
+        }
+    </style>
 </head>
 <body>
     <!-- Skip Link for Accessibility -->
