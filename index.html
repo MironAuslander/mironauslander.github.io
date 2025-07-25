@@ -425,15 +425,20 @@
             min-width: 200px;
             min-height: 200px;
             border-radius: 50%;
-            background-color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            color: var(--accent-blue);
-            font-weight: bold;
             flex-shrink: 0;
             aspect-ratio: 1/1;
+            background: var(--primary-gradient);
+            position: relative;
+        }
+
+        .profile-image img {
+            position: absolute;
+            inset: 3px;
+            width: calc(100% - 6px);
+            height: calc(100% - 6px);
+            object-fit: cover;
+            object-position: center;
+            border-radius: 50%;
         }
 
         .about-text {
@@ -970,8 +975,11 @@
             <div class="container">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
-                    <div class="profile-image" role="img" aria-label="Profile photo placeholder">
-                        PROFILE<br>PHOTO
+                    <div class="profile-image">
+                        <picture>
+                            <source srcset="assets/images/profile-photo.webp" type="image/webp">
+                            <img src="assets/images/profile-photo.jpg" alt="Professional headshot of Miron Auslander, Visual Effects and Motion Graphics Creative" loading="lazy">
+                        </picture>
                     </div>
                     <div class="about-text">
                         <p>My deep passion for visual storytelling and my self-taught journey<br>define my unique perspective.<br>This allows me to create captivating, high-quality visuals that<br>emotionally resonate with audiences.</p>
