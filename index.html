@@ -498,9 +498,22 @@
             overflow: hidden;
             min-height: 150px;
             background-color: var(--dark-bg);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        /* Project card images */
+        .project-card img {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
         }
 
-        /* Future image container */
+        /* Glassmorphism overlay - minimal blur for image clarity */
         .project-card::after {
             content: '';
             position: absolute;
@@ -509,14 +522,14 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(145deg, 
-                rgba(255, 107, 107, 0.15) 0%, 
-                rgba(0, 0, 0, 0.3) 30%, 
-                rgba(0, 0, 0, 0.6) 70%, 
-                rgba(0, 0, 0, 0.8) 100%);
-            border: 2px solid rgba(255, 107, 107, 0.3);
+                rgba(255, 107, 107, 0.08) 0%, 
+                rgba(0, 0, 0, 0.1) 30%, 
+                rgba(0, 0, 0, 0.15) 70%, 
+                rgba(0, 0, 0, 0.2) 100%);
             border-radius: var(--border-radius);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(0.5px);
             z-index: 1;
+            pointer-events: none;
         }
 
         /* Flash animation overlay */
@@ -537,14 +550,30 @@
             transform: translateX(100%);
         }
 
-        .project-card:hover::after {
+        .project-card:hover {
             border-color: rgba(255, 107, 107, 0.5);
         }
 
-        /* Text content over glassmorphism */
+        /* Text content with hover reveal */
         .project-card span {
             position: relative;
             z-index: 3;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-white);
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.9),
+                -1px -1px 3px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        /* Show text on hover */
+        .project-card:hover span {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .project-card:hover,

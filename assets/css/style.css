@@ -309,9 +309,10 @@ body {
     position: relative;
     overflow: hidden;
     background-color: var(--dark-bg);
+    border: 2px solid rgba(255, 107, 107, 0.3);
 }
 
-/* Future image placeholder - replace with actual img tag later */
+/* Glassmorphism overlay - minimal blur for image clarity */
 .project-card::after {
     content: '';
     position: absolute;
@@ -320,14 +321,14 @@ body {
     right: 0;
     bottom: 0;
     background: linear-gradient(145deg, 
-        rgba(255, 107, 107, 0.15) 0%, 
-        rgba(0, 0, 0, 0.3) 30%, 
-        rgba(0, 0, 0, 0.6) 70%, 
-        rgba(0, 0, 0, 0.8) 100%);
-    border: 2px solid rgba(255, 107, 107, 0.3);
+        rgba(255, 107, 107, 0.08) 0%, 
+        rgba(0, 0, 0, 0.1) 30%, 
+        rgba(0, 0, 0, 0.15) 70%, 
+        rgba(0, 0, 0, 0.2) 100%);
     border-radius: var(--border-radius);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(0.5px);
     z-index: 1;
+    pointer-events: none;
 }
 
 /* Flash animation overlay */
@@ -348,14 +349,30 @@ body {
     transform: translateX(100%);
 }
 
-.project-card:hover::after {
+.project-card:hover {
     border-color: rgba(255, 107, 107, 0.5);
 }
 
-/* Text content over glassmorphism */
+/* Text content with hover reveal */
 .project-card span {
     position: relative;
     z-index: 3;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-white);
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.9),
+        -1px -1px 3px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+/* Show text on hover */
+.project-card:hover span {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover,
@@ -367,15 +384,14 @@ body {
 /* Images for project cards */
 .project-card img {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: fill;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    object-fit: cover;
     object-position: center;
     z-index: 0;
 }
-*/
 
 /* Skills Section */
 .skills-grid {
@@ -715,26 +731,70 @@ body {
 }
 
 .related-projects .project-card {
-    background: var(--warm-gradient);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: var(--border-radius);
-    padding: 2rem;
+    padding: 0;
     text-align: center;
     text-decoration: none;
     transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
 }
 
 .related-projects .project-card img {
-    width: 100%;
-    height: 200px;
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
     object-fit: cover;
-    border-radius: var(--border-radius);
-    margin-bottom: 1rem;
+    z-index: 0;
 }
 
 .related-projects .project-card h3 {
     color: var(--text-white);
     font-size: 1.2rem;
     margin: 0;
+    position: relative;
+    z-index: 2;
+    padding: 0.8rem 1.5rem;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.9),
+        -1px -1px 3px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+/* Show related project text on hover */
+.related-projects .project-card:hover h3 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glassmorphism overlay for related projects */
+.related-projects .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, 
+        rgba(255, 107, 107, 0.05) 0%, 
+        rgba(0, 0, 0, 0.1) 30%, 
+        rgba(0, 0, 0, 0.15) 70%, 
+        rgba(0, 0, 0, 0.2) 100%);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(0.5px);
+    z-index: 1;
+    pointer-events: none;
 }
 
 .related-projects .project-card:hover {
