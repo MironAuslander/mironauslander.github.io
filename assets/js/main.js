@@ -85,8 +85,8 @@ class SmoothScroll {
   }
   
   bindEvents() {
-    // Handle smooth scrolling for anchor links
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+    // Handle smooth scrolling for anchor links (exclude elements with data-action)
+    const anchorLinks = document.querySelectorAll('a[href^="#"]:not([data-action])');
     anchorLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');

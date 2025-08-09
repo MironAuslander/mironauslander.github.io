@@ -619,7 +619,7 @@
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background-color: var(--text-gray);
+            background-color: #4e4e4e;
             padding: 2rem;
             border-radius: var(--border-radius);
             width: 100%;
@@ -633,7 +633,7 @@
             font-family: var(--font-primary);
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--darker-bg);
+            color: var(--text-white);
             font-weight: 500;
         }
 
@@ -1135,11 +1135,14 @@
             }
         });
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        // Smooth scrolling for anchor links (exclude elements with data-action)
+        document.querySelectorAll('a[href^="#"]:not([data-action])').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return; // Skip empty anchors
+                
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
                     target.scrollIntoView({
                         behavior: 'smooth',
@@ -1185,5 +1188,11 @@
             });
         }
     </script>
+
+    <!-- Load main JavaScript -->
+    <script src="assets/js/main.js"></script>
+
+
+
 </body>
 </html>
