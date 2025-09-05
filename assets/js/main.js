@@ -194,10 +194,94 @@ class SkipLink {
   }
 }
 
+// Showreel Video Player
+class ShowreelPlayer {
+  constructor() {
+    this.init();
+  }
+  
+  init() {
+    this.modal = document.querySelector('#showreel-modal');
+    this.video = document.querySelector('#showreel-video');
+    this.openBtn = document.querySelector('#showreel-btn');
+    this.closeBtn = document.querySelector('.modal-close');
+    this.overlay = document.querySelector('.modal-overlay');
+    
+    if (this.modal && this.video && this.openBtn) {
+      this.bindEvents();
+    }
+  }
+  
+  bindEvents() {
+    // Open modal
+    this.openBtn.addEventListener('click', () => {
+      this.openModal();
+    });
+    
+    // Close modal via close button
+    if (this.closeBtn) {
+      this.closeBtn.addEventListener('click', () => {
+        this.closeModal();
+      });
+    }
+    
+    // Close modal via overlay click
+    if (this.overlay) {
+      this.overlay.addEventListener('click', () => {
+        this.closeModal();
+      });
+    }
+    
+    // Close modal with ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+        this.closeModal();
+      }
+    });
+    
+    // Handle video end
+    this.video.addEventListener('ended', () => {
+      // Optional: close modal when video ends
+      // this.closeModal();
+    });
+  }
+  
+  openModal() {
+    this.modal.classList.add('active');
+    this.modal.setAttribute('aria-hidden', 'false');
+    
+    // Prevent body scroll when modal is open
+    document.body.style.overflow = 'hidden';
+    
+    // Focus on close button for accessibility
+    setTimeout(() => {
+      this.closeBtn.focus();
+    }, 100);
+    
+    // Auto play video (optional - remove if you want user to control playback)
+    // this.video.play();
+  }
+  
+  closeModal() {
+    this.modal.classList.remove('active');
+    this.modal.setAttribute('aria-hidden', 'true');
+    
+    // Restore body scroll
+    document.body.style.overflow = '';
+    
+    // Pause video when closing
+    this.video.pause();
+    
+    // Return focus to the button that opened the modal
+    this.openBtn.focus();
+  }
+}
+
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
   new MobileNav();
   new ContactForm();
   new SmoothScroll();
   new SkipLink();
+  new ShowreelPlayer();
 });
