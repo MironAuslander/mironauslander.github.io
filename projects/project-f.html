@@ -128,24 +128,34 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
     <header class="header">
-        <nav class="nav-container">
-            <a href="../index.html" class="logo">Ma</a>
-            <!-- Same navigation as main site -->
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="../index.html" class="logo" aria-label="Homepage">Ma</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../index.html#skills">Skills & Links</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
-    <main class="main">
+    <main id="main" class="main">
         <!-- Project Hero -->
-        <section class="project-hero">
+        <section class="project-hero" style="padding: 4rem 0;">
             <div class="container">
-                <nav class="breadcrumb">
-                    <a href="../index.html">Home</a> > 
-                    <a href="../projects.html">Projects</a> > 
-                    <span>Project F</span>
-                </nav>
-                
                 <h1>Project F Title</h1>
                 <p class="project-subtitle">Motion Graphics | 2024 | Client Name</p>
                 
@@ -174,7 +184,7 @@
                             <li>Visual Development</li>
                         </ul>
                         
-                        <h3>Technologies Used</h3>
+                        <h3>Tools Used</h3>
                         <div class="tech-tags">
                             <span class="tech-tag">After Effects</span>
                             <span class="tech-tag">Illustrator</span>
@@ -214,12 +224,12 @@
         <section class="related-projects">
             <div class="container">
                 <h2>Related Projects</h2>
-                <div class="projects-grid">
-                    <a href="project-a.html" class="project-card">
+                <div class="projects-grid" style="max-width: 600px; margin: 0 auto;">
+                    <a href="Project-a.html" class="project-card" style="max-width: 250px;">
                         <img src="../assets/images/projects/project-a.webp" alt="Project A">
                         <h3>Project A</h3>
                     </a>
-                    <a href="project-b.html" class="project-card">
+                    <a href="project-b.html" class="project-card" style="max-width: 250px;">
                         <img src="../assets/images/projects/project-b.webp" alt="Project B">
                         <h3>Project B</h3>
                     </a>
@@ -229,7 +239,12 @@
     </main>
 
     <footer class="footer">
-        <!-- Same footer as main site -->
+        <div class="container">
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of AI and Coffee ☕</p>
+            <div class="social-links" style="display: none;">
+                <!-- Hidden div to maintain structure for iPad landscape fix -->
+            </div>
+        </div>
     </footer>
 
     <script src="../assets/js/main.js"></script>
