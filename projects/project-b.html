@@ -156,8 +156,7 @@
         <!-- Project Hero -->
         <section class="project-hero" style="padding: 4rem 0;">
             <div class="container">
-                <h1>Project B Title</h1>
-                <p class="project-subtitle">Visual Effects | 2024 | Client Name</p>
+                <h1 style="margin-bottom: 3rem;">Project B Title</h1>
                 
                 <!-- Project video/image -->
                 <div class="project-media">
@@ -185,14 +184,14 @@
                         </ul>
                         
                         <h3>Tools Used</h3>
-                        <div class="tech-tags">
-                            <span class="tech-tag">After Effects</span>
-                            <span class="tech-tag">Nuke</span>
-                            <span class="tech-tag">Maya</span>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">After Effects</span>
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Nuke</span>
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Maya</span>
                         </div>
                     </div>
                     
-                    <div class="project-meta">
+                    <div class="project-meta" style="background-color: #dddddd;">
                         <div class="meta-item">
                             <strong>Client:</strong> Company Name
                         </div>
@@ -211,10 +210,19 @@
                 <!-- Additional project images -->
                 <div class="project-gallery">
                     <h3>Process & Results</h3>
-                    <div class="gallery-grid">
-                        <img src="../assets/images/projects/project-b-1.webp" alt="Project B process step 1">
-                        <img src="../assets/images/projects/project-b-2.webp" alt="Project B process step 2">
-                        <img src="../assets/images/projects/project-b-3.webp" alt="Project B final result">
+                    <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <picture>
+                            <source srcset="../assets/images/projects/project-b-1.webp" type="image/webp">
+                            <img src="../assets/images/projects/project-b-1.webp" alt="Project B process step 1" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                        </picture>
+                        <picture>
+                            <source srcset="../assets/images/projects/project-b-2.webp" type="image/webp">
+                            <img src="../assets/images/projects/project-b-2.webp" alt="Project B process step 2" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                        </picture>
+                        <picture>
+                            <source srcset="../assets/images/projects/project-b-3.webp" type="image/webp">
+                            <img src="../assets/images/projects/project-b-3.webp" alt="Project B final result" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -240,7 +248,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of AI and Coffee ☕</p>
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of Ai and Coffee ☕</p>
             <div class="social-links" style="display: none;">
                 <!-- Hidden div to maintain structure for iPad landscape fix -->
             </div>

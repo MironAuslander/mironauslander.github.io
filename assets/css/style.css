@@ -660,7 +660,7 @@ body {
 }
 
 .project-meta {
-    background-color: var(--text-gray);
+    background-color: #dddddd;
     padding: 2rem;
     border-radius: var(--border-radius);
     color: var(--darker-bg);

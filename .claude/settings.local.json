@@ -10,7 +10,8 @@
       "Bash(git commit:*)",
       "WebFetch(domain:docs.anthropic.com)",
       "Bash(ls:*)",
-      "Bash(start index.html)"
+      "Bash(start index.html)",
+      "Bash(dir:*)"
     ],
     "deny": []
   }
