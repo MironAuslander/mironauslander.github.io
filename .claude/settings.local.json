@@ -11,7 +11,8 @@
       "WebFetch(domain:docs.anthropic.com)",
       "Bash(ls:*)",
       "Bash(start index.html)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Bash(git mv:*)"
     ],
     "deny": []
   }
