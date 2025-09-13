@@ -126,6 +126,21 @@
         p, ul, li {
             font-family: var(--font-body);
         }
+
+        /* Center Related Projects grid on mobile */
+        @media (max-width: 768px) {
+            .related-projects .projects-grid {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .related-projects .project-card {
+                width: 100%;
+                max-width: 250px !important;
+                margin: 0 auto;
+            }
+        }
     </style>
 </head>
 <body>

@@ -223,10 +223,10 @@ class BeforeAfterSlider {
 
     // Update label visibility based on slider position
     if (this.beforeLabel) {
-      this.beforeLabel.style.opacity = position >= 95 ? '0' : '1';
+      this.beforeLabel.style.opacity = position >= 60 ? '0' : '1';
     }
     if (this.afterLabel) {
-      this.afterLabel.style.opacity = position <= 5 ? '0' : '1';
+      this.afterLabel.style.opacity = position <= 40 ? '0' : '1';
     }
   }
   
