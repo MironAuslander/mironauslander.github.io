@@ -1400,10 +1400,286 @@ body {
     .skill-progress::after {
         animation: none;
     }
-    
+
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* ===============================================
+   BEFORE/AFTER SLIDER COMPONENT
+   =============================================== */
+
+.before-after-container {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.before-after-slider {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  user-select: none;
+}
+
+.ba-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Video aspect ratio */
+.ba-wrapper:has(video) {
+  padding-bottom: 56.25%; /* 16:9 aspect ratio for videos */
+}
+
+/* Image handling - let images define their own height */
+.ba-wrapper:has(img) {
+  position: relative;
+  line-height: 0; /* Remove any line-height gaps */
+}
+
+.ba-before,
+.ba-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* For images, make before relative to provide height */
+.ba-wrapper:has(img) .ba-before {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.ba-wrapper:has(img) .ba-after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ba-before video,
+.ba-after video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ba-before img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative;
+}
+
+.ba-after img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.ba-after {
+  clip-path: inset(0 50% 0 0); /* Initial 50% position - clip from right */
+}
+
+/* Slider Controls */
+.ba-slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transform: translateX(-50%);
+  cursor: ew-resize;
+  z-index: 3;
+  transition: opacity 0.3s ease;
+}
+
+.ba-slider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.ba-slider-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  cursor: ew-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ba-slider-handle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.ba-slider-handle:active,
+.ba-slider.dragging .ba-slider-handle {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%) scale(0.95);
+}
+
+.ba-slider-handle svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+  pointer-events: none;
+}
+
+/* Labels */
+.ba-label {
+  position: absolute;
+  top: 20px;
+  padding: 10px 20px;
+  background: linear-gradient(145deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(0, 0, 0, 0.7) 30%,
+    rgba(0, 0, 0, 0.9) 70%,
+    rgba(0, 0, 0, 0.95) 100%);
+  backdrop-filter: blur(15px);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 50px;
+  pointer-events: none;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-family: var(--font-primary);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  transition: opacity 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.ba-label-before {
+  left: 20px;
+}
+
+.ba-label-after {
+  right: 20px;
+}
+
+/* Hover Effects */
+.before-after-slider:hover .ba-slider {
+  opacity: 1;
+}
+
+.before-after-slider:not(:hover) .ba-slider {
+  opacity: 0.8;
+}
+
+/* Dragging State */
+.before-after-slider.is-dragging {
+  cursor: ew-resize;
+}
+
+.before-after-slider.is-dragging .ba-slider-handle {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .ba-slider {
+    opacity: 1 !important;
+  }
+
+  .ba-slider-handle {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .ba-label {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .ba-label-before {
+    left: 10px;
+  }
+
+  .ba-label-after {
+    right: 10px;
+  }
+
+  .ba-slider-handle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .ba-slider-handle svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Slider Tip */
+.slider-tip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-body);
+}
+
+.tip-icon {
+  font-size: 16px;
+}
+
+.tip-text {
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .slider-tip {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .tip-icon {
+    font-size: 14px;
+  }
 }

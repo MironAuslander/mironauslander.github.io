@@ -11,6 +11,7 @@
     <link rel="preload" href="../assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/before-after.js" defer></script>
     
     <style>
         /* Font Face Declarations */
@@ -161,7 +162,7 @@
                 <!-- Project video/image -->
                 <div class="project-media">
                     <video controls loop disablePictureInPicture controlsList="nodownload" poster="../assets/images/projects/1798/1798-poster.jpg">
-                        <source src="../assets/videos/project-1798.mp4" type="video/mp4">
+                        <source src="../assets/videos/1798/project-1798.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -212,18 +213,39 @@
                 <div class="project-gallery">
                     <h3>Process & Variations</h3>
                     <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <picture>
-                            <source srcset="../assets/images/projects/1798/1798-gallery-1.webp" type="image/webp">
-                            <img src="../assets/images/projects/1798/1798-gallery-1.jpg" alt="Big Brother Israel 2025 logo concept development" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
-                        <picture>
-                            <source srcset="../assets/images/projects/1798/1798-gallery-2.webp" type="image/webp">
-                            <img src="../assets/images/projects/1798/1798-gallery-2.jpg" alt="Logo variations and color schemes" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
-                        <picture>
-                            <source srcset="../assets/images/projects/1798/1798-gallery-3.webp" type="image/webp">
-                            <img src="../assets/images/projects/1798/1798-gallery-3.jpg" alt="Final Big Brother Israel 2025 logo" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1798/1798-before-1.mp4"
+                             data-after="../assets/videos/1798/1798-after-1.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1798/1798-before-2.mp4"
+                             data-after="../assets/videos/1798/1798-after-2.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1798/1798-before-3.mp4"
+                             data-after="../assets/videos/1798/1798-after-3.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@
     <link rel="preload" href="../assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/before-after.js" defer></script>
     
     <style>
         /* Font Face Declarations */
@@ -161,7 +162,7 @@
                 <!-- Project video/image -->
                 <div class="project-media">
                     <video controls loop disablePictureInPicture controlsList="nodownload" poster="../assets/images/projects/1654/1654-poster.jpg">
-                        <source src="../assets/videos/project-1654.mp4" type="video/mp4">
+                        <source src="../assets/videos/1654/project-1654.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -211,18 +212,39 @@
                 <div class="project-gallery">
                     <h3>Process & Results</h3>
                     <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
-                        <picture>
-                            <source srcset="../assets/images/projects/1654/1654-gallery-1.webp" type="image/webp">
-                            <img src="../assets/images/projects/1654/1654-gallery-1.webp" alt="Project D process step 1" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
-                        <picture>
-                            <source srcset="../assets/images/projects/1654/1654-gallery-2.webp" type="image/webp">
-                            <img src="../assets/images/projects/1654/1654-gallery-2.webp" alt="Project D process step 2" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
-                        <picture>
-                            <source srcset="../assets/images/projects/1654/1654-gallery-3.webp" type="image/webp">
-                            <img src="../assets/images/projects/1654/1654-gallery-3.webp" alt="Project D final result" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);">
-                        </picture>
+                        <div class="before-after-container"
+                             data-before="../assets/images/projects/1654/1654-before-1.webp"
+                             data-after="../assets/images/projects/1654/1654-after-1.webp"
+                             data-type="image"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/images/projects/1654/1654-before-2.webp"
+                             data-after="../assets/images/projects/1654/1654-after-2.webp"
+                             data-type="image"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/images/projects/1654/1654-before-3.webp"
+                             data-after="../assets/images/projects/1654/1654-after-3.webp"
+                             data-type="image"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
                     </div>
                 </div>
             </div>

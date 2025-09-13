@@ -12,7 +12,10 @@
       "Bash(ls:*)",
       "Bash(start index.html)",
       "Bash(dir:*)",
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Read(//e/WebSite/Claude_Coder/**)",
+      "Bash(move:*)",
+      "Read(//c/Users/admin/Pictures/Screenshots/**)"
     ],
     "deny": []
   }
