@@ -1,175 +1,97 @@
-# Portfolio Website Project - Claude Context
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
 Professional portfolio website for **Miron Auslander**, a Visual Effects & Motion Graphics Creative. Built as a high-performance static site hosted on GitHub Pages with automatic deployment, focusing on showcasing visual work for TV, Films, and Digital Media.
 
+## Commands
+
+### Local Development
+```bash
+# Python 3 (recommended - available on system)
+python -m http.server 8000
+
+# Python 2 fallback
+python -m SimpleHTTPServer 8000
+
+# Node.js alternative (if http-server installed globally)
+npx http-server -p 8000
+
+# Then open: http://localhost:8000
+```
+
+### Testing & Validation
+```bash
+# Lighthouse audit (via Chrome DevTools or CLI)
+lighthouse http://localhost:8000 --view
+
+# HTML validation
+# Visit: https://validator.w3.org/#validate_by_input
+
+# CSS validation
+# Visit: https://jigsaw.w3.org/css-validator/#validate_by_input
+
+# Accessibility check (via Chrome DevTools)
+# DevTools > Lighthouse > Accessibility
+```
+
+### Deployment
+```bash
+# GitHub Pages deploys automatically on push to main branch
+git add .
+git commit -m "commit message"
+git push origin main
+
+# Site available at: https://mironauslander.github.io
+```
+
 ## Quick Reference
-- **Live Site**: [GitHub Pages URL]
-- **Tech Stack**: Vanilla HTML/CSS/JS (no frameworks)
-- **Deployment**: Automatic via GitHub Pages (`.nojekyll`)
-- **Performance Target**: High-performance, accessible, mobile-first design
+- **Live Site**: https://mironauslander.github.io
+- **Tech Stack**: Vanilla HTML/CSS/JS (no frameworks, no build process)
+- **Deployment**: Automatic via GitHub Pages (`.nojekyll` disables Jekyll)
+- **Performance Target**: Lighthouse scores >90 all categories
 
-## Navigation Architecture
+## Architecture
 
-### User Journey Flow
-```
-ENTRY POINT: index.html
-├── Menu "Projects" → projects.html (ALL projects grid)
-├── Homepage "Featured Projects" → individual projects/project-x.html
-├── Menu "Skills & Links" → index.html#skills  
-├── Homepage "Skills & Links" → skills.html or links.html
-└── All menu items → respective sections or pages
-```
+### Navigation Flow
+- **Homepage (index.html)**: Single-page with hero, about, featured projects, skills/links, contact sections
+- **Projects Page (projects.html)**: Full portfolio grid with all projects
+- **Individual Projects (projects/Project-XXXX.html)**: Detailed project showcases
+- **Skills Page (skills.html)**: Technical skills breakdown
+- **Links Page (links.html)**: Professional resources and inspirations
+- **404 Page (404.html)**: Custom error page
 
-### Navigation Menu Structure
-```
-MENU:
-├── Home → index.html#home (Hero section)
-├── About → index.html#about (About Me section)  
-├── Projects → projects.html (Separate page - ALL projects)
-├── Skills & Links → index.html#skills (Skills & Links section)
-└── Contact → index.html#contact (Contact section)
-```
+### Project Files (projects/)
+- Project-1238.html - Individual project showcase
+- Project-1270.html - Individual project showcase
+- Project-1537.html - Individual project showcase
+- Project-1654.html - Individual project showcase
+- Project-1711.html - Individual project showcase
+- Project-1798.html - Individual project showcase
 
-### Homepage Sections (Full Viewport Layout)
-1. **HERO SECTION** - Main introduction with CTA
-2. **ABOUT ME SECTION** - Personal story and expertise
-3. **FEATURED PROJECTS SECTION** - project thumbnails → projects/project-x.html
-4. **SKILLS & LINKS SECTION** - Two buttons to skills.html and links.html
-5. **CONTACT SECTION** - Contact form and social links
-6. **FOOTER** - Copyright
+### JavaScript Architecture (assets/js/main.js)
+- **MobileNav**: Hamburger menu functionality for mobile devices
+- **ContactForm**: Form validation and submission handling
+- **SmoothScroll**: Smooth scrolling to page sections
+- **ProjectFilter**: Category filtering on projects page (if applicable)
+- **LazyLoading**: Image and video lazy loading
 
-## File Structure
-```
-/                           # GitHub Pages root
-├── index.html              # Main homepage (self-contained, ~1040 lines)
-├── projects.html           # All projects listing with filters
-├── skills.html             # Technical skills showcase  
-├── links.html              # Professional/inspirational links
-├── 404.html               # Custom error page
-├── projects/              # Individual project detail pages
-│   ├── Project-a.html     # Motion Graphics project
-│   ├── project-b.html     # VFX project  
-│   ├── project-c.html     # Motion Graphics project
-│   ├── project-d.html     # VFX project
-│   ├── project-e.html     # Commercial project
-│   └── project-f.html     # Motion Graphics project
-├── assets/
-│   ├── css/
-│   │   ├── critical.css   # Critical path styles (placeholder)
-│   │   └── style.css      # Shared stylesheet (~1200 lines)
-│   ├── js/
-│   │   └── main.js        # Modular JavaScript classes (~200 lines)
-│   ├── fonts/             # Custom fonts (WOFF2 + fallbacks)
-│   │   ├── Primary/       # Poppins family
-│   │   ├── Secondary/     # Inter family  
-│   │   ├── Accent/        # Inter accent weights
-│   │   └── Logo/          # Devil Breeze font
-│   ├── images/            # Optimized images (WebP + JPG fallbacks)
-│   │   ├── profile-photo.webp/jpg
-│   │   └── projects/      # Project thumbnails and gallery images
-│   └── videos/            # Project showcase videos (MP4)
-├── .nojekyll              # Disables Jekyll processing
-├── sitemap.xml            # SEO sitemap
-└── claude.md              # This documentation file
-```
+### CSS Architecture (assets/css/style.css)
+- **CSS Custom Properties**: Design tokens for colors, spacing, typography
+- **Mobile-First**: Breakpoints at 768px, 1024px, 1200px
+- **Glassmorphism**: backdrop-filter: blur() with fallbacks
+- **Dark Theme**: Primary dark theme with gradient accents
+- **Font Loading**: Self-hosted fonts with preload and font-display: swap
 
-## Technical Approach
+### Image Optimization
+- **Format**: WebP with JPG fallbacks
+- **Sizes**: Multiple responsive sizes using srcset
+- **Loading**: Lazy loading for below-fold content
+- **Compression**: Optimized file sizes while maintaining quality
 
-### Core Principles
-- **Performance First** - Inline critical CSS, optimized assets
-- **Mobile-First** - Responsive design that works everywhere
-- **Accessibility** - WCAG compliance, semantic HTML
-- **Zero Dependencies** - No frameworks, self-hosted assets
-- **Progressive Enhancement** - Works without JavaScript
-
-### Current Architecture
-- **CSS**: Custom properties for design tokens, glassmorphism effects
-- **JavaScript**: Class-based modules (MobileNav, ContactForm, SmoothScroll)
-- **Fonts**: Self-hosted with preloading and fallback stacks
-- **Images**: WebP with fallbacks, lazy loading where appropriate
-
-### Design Direction
-- **Dark theme** with gradient accents
-- **Modern typography** with custom fonts
-- **Glassmorphism effects** using backdrop-filter
-- **Smooth animations** and micro-interactions
-- **Professional but approachable** aesthetics
-
-### Font Loading Strategy
-**Performance-optimized typography:**
-- **Font Preloading**: Critical fonts in `<head>` with `crossorigin`
-- **Font Display**: `font-display: swap` for better perceived performance
-- **Fallback Stacks**: System fonts as fallbacks for each custom font
-- **CSS Variables**: Centralized font family management
-
-## Performance Requirements
-
-### Lighthouse Targets (>90 all categories)
-- **Performance**: Optimized images, inline CSS, minimal JS
-- **Accessibility**: WCAG 2.1 AA compliance, semantic HTML, ARIA labels
-- **Best Practices**: HTTPS, modern standards, security headers
-- **SEO**: Complete meta tags, structured data, sitemap
-
-## Development Context
-
-### Current Status
-The site structure is complete with working navigation, responsive design, and core functionality. Main areas still being refined:
-- Asset integration (images, videos)
-- Performance optimization
-- Design polish and effects
-- Content updates
-
-### Flexibility Notes
-- Design elements (colors, fonts, spacing) are actively being adjusted
-- Layout and component structure may evolve
-- Performance optimizations are ongoing
-- Content and messaging may change
-
-### Key Constraints
-- **GitHub Pages deployment** - static files only
-- **No build process** - direct HTML/CSS/JS
-- **Self-hosted assets** - no external CDNs
-- **HTTPS required** - all resources over secure connections
-- **Modern browser support** - ES6+ is fine
-
-## Common Tasks
-- Component development and refinement
-- Performance and accessibility improvements
-- Mobile optimization and responsive fixes
-- SEO and meta tag updates
-- Asset optimization and integration
-- Code organization and cleanup
-- Feature implementation and enhancements
-
-## Development Workflow
-
-### Testing Checklist
-- [ ] **Mobile Responsiveness**: 320px to 2560px viewport testing
-- [ ] **Accessibility Audit**: Screen readers, keyboard navigation, color contrast
-- [ ] **Performance Audit**: Lighthouse scores, Core Web Vitals
-- [ ] **Cross-Browser Testing**: Chrome, Firefox, Safari, Edge compatibility
-- [ ] **SEO Validation**: Meta tags, structured data, sitemap accuracy
-
-### Common Development Tasks
-1. **Asset Integration**: Replace placeholder images/videos with actual content
-2. **Performance Optimization**: Reduce bundle size, optimize loading
-3. **Accessibility Improvements**: ARIA labels, focus management
-4. **Mobile Optimization**: Touch interactions, responsive design fixes
-5. **Content Management**: Project updates, skill additions, link maintenance
-6. **Feature Implementation**: Advanced interactions, animations
-7. **Browser Compatibility**: Progressive enhancement, fallback handling
-
-## Environment Context
-- **OS**: Windows 11
-- **Primary Browser**: Chrome DevTools
-- **Testing**: Cross-browser validation required
-- **Editor**: Any HTML/CSS/JS compatible editor
-
-## Content Guidelines
-
-### Brand Identity
-- **Professional but approachable** tone
-- **Visual storytelling focus** with emphasis on emotional impact
-- **Focus on creativity**: with emphasis on technical expertise
-- **Dark theme aesthetic** with glassmorphism effects
+## Key Constraints
+- **GitHub Pages**: Static files only, no server-side processing
+- **No Build Process**: Direct HTML/CSS/JS editing
+- **Self-Hosted Assets**: All fonts, images, videos stored locally
+- **Modern Browser Support**: ES6+, CSS Grid, Flexbox, Custom Properties

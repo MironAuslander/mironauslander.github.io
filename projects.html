@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Projects - Miron Auslander Portfolio</title>
     <meta name="description" content="Complete portfolio of Visual Effects and Motion Graphics projects">
-    
+
     <!-- Font Preloading for Critical Fonts -->
     <link rel="preload" href="assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    
+
     <link rel="stylesheet" href="assets/css/style.css">
-    
+
     <style>
         /* Font Face Declarations */
         @font-face {
@@ -22,7 +22,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Poppins';
             src: url('assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
@@ -30,7 +30,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Poppins';
             src: url('assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
@@ -38,7 +38,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Inter';
             src: url('assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
@@ -46,7 +46,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Inter';
             src: url('assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
@@ -54,7 +54,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Inter';
             src: url('assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
@@ -62,7 +62,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Inter';
             src: url('assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
@@ -70,7 +70,7 @@
             font-style: normal;
             font-display: swap;
         }
-        
+
         @font-face {
             font-family: 'Inter';
             src: url('assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
@@ -119,25 +119,225 @@
             font-family: var(--font-primary);
         }
 
-        /* Project Titles */
-        .project-info h3 {
-            font-family: var(--font-primary);
+        /* Fixed layout structure */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* Buttons */
-        .cta-button,
-        .filter-btn,
-        .project-link {
-            font-family: var(--font-primary);
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
-        /* Form Elements - if any are added later */
-        label {
-            font-family: var(--font-primary);
+        .projects-page {
+            padding-top: 80px; /* Space for fixed header */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        input, textarea, select {
-            font-family: var(--font-body);
+        /* Filter buttons integrated into grid section */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 107, 107, 0.1);
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 50px;
+            color: var(--text-white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 107, 107, 0.1);
+            border-color: rgba(255, 107, 107, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(145deg, rgba(255, 107, 107, 0.3), rgba(255, 107, 107, 0.1));
+            border-color: rgba(255, 107, 107, 0.6);
+        }
+
+        /* Scrollable grid section with integrated filters */
+        .projects-grid-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 2rem 1rem 120px; /* Increased bottom padding to prevent footer overlap */
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        /* High-density grid matching Featured Projects style */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1600px;
+            margin: 0 auto 2rem; /* Added bottom margin for extra clearance */
+        }
+
+        /* Compact project cards - exact style from Featured Projects */
+        .project-card {
+            border-radius: 15px;
+            aspect-ratio: 16/9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-white);
+            font-size: 1.2rem;
+            font-weight: 400;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 107, 107, 0.2);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        /* Project card images */
+        .project-card img {
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% + 4px);
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
+
+        /* Glassmorphism overlay */
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(145deg,
+                rgba(255, 107, 107, 0.08) 0%,
+                rgba(0, 0, 0, 0.1) 30%,
+                rgba(0, 0, 0, 0.15) 70%,
+                rgba(0, 0, 0, 0.2) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Flash animation overlay */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+            z-index: 2;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card:hover {
+            border-color: rgba(255, 107, 107, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Text content with hover reveal */
+        .project-card span {
+            position: relative;
+            z-index: 3;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-shadow:
+                2px 2px 4px rgba(0, 0, 0, 0.9),
+                -1px -1px 3px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            transform: translateY(10px);
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* Show text on hover */
+        .project-card:hover span {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive breakpoints */
+        @media (max-width: 1400px) {
+            .projects-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.25rem;
+            }
+            .projects-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            .projects-header h1 {
+                font-size: 2rem;
+            }
+            .projects-page {
+                padding-top: 60px;
+            }
+            .projects-grid-section {
+                padding: 2rem 1rem 100px; /* Adjusted padding for mobile */
+            }
+            .project-filters {
+                margin-bottom: 1.5rem;
+            }
+            .project-card span {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
         }
     </style>
 </head>
@@ -149,7 +349,7 @@
     <header class="header">
         <nav class="nav-container" aria-label="Main navigation">
             <a href="index.html" class="logo" aria-label="Homepage">Ma</a>
-            
+
             <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
@@ -166,117 +366,147 @@
         </nav>
     </header>
 
-    <main id="main" class="main">
-        <!-- Projects Hero Section -->
-        <section class="section">
+    <main id="main" class="projects-page">
+        <!-- Projects Grid Section with Integrated Filters -->
+        <section class="projects-grid-section">
             <div class="container">
-                <h1 class="section-title">All Projects</h1>
-                <div class="projects-intro">
-                    <p>A comprehensive showcase of my work in Visual Effects, Motion Graphics, and Commercial productions.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Filter Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Project Categories</h2>
+                <!-- Filter Buttons at top of grid section -->
                 <div class="project-filters">
-                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn active" data-filter="all">All Projects</button>
+                    <button class="filter-btn" data-filter="vfx">VFX</button>
                     <button class="filter-btn" data-filter="motion">Motion Graphics</button>
-                    <button class="filter-btn" data-filter="vfx">Visual Effects</button>
-                    <button class="filter-btn" data-filter="commercial">Commercial</button>
+                    <button class="filter-btn" data-filter="editing">Editing</button>
+                    <button class="filter-btn" data-filter="personal">Personal Projects</button>
                 </div>
-            </div>
-        </section>
 
-        <!-- All Projects Grid Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Portfolio</h2>
-                <div class="all-projects-grid">
-                    <article class="project-card-large" data-category="branding">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1798/1798.webp" alt="Big Brother Israel 2025 - Logo Design">
-                        </div>
-                        <div class="project-info">
-                            <h3>Big Brother Israel 2025</h3>
-                            <p class="project-category">Logo Design & Branding</p>
-                            <p class="project-description">Official logo and branding identity for Big Brother Israel 2025, featuring modern Hebrew typography and contemporary visual design.</p>
-                            <a href="projects/Project-1798.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
+                <!-- Projects Grid -->
+                <div class="projects-grid">
+                    <!-- Existing Projects -->
+                    <a href="projects/Project-1798.html" class="project-card" data-category="personal" aria-label="View Big Brother Israel 2025 project">
+                        <img src="assets/images/projects/1798/1798-thumb.webp" alt="Big Brother Israel 2025" loading="lazy">
+                        <span>Big Brother Israel 2025</span>
+                    </a>
 
-                    <article class="project-card-large" data-category="vfx">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1238/1238.webp" alt="Project B - Visual Effects">
-                        </div>
-                        <div class="project-info">
-                            <h3>Project B Title</h3>
-                            <p class="project-category">Visual Effects</p>
-                            <p class="project-description">Advanced VFX compositing and digital effects work for film and television.</p>
-                            <a href="projects/Project-1238.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
+                    <a href="projects/Project-1238.html" class="project-card" data-category="vfx" aria-label="View Project B">
+                        <img src="assets/images/projects/1238/1238-thumb.webp" alt="Project B" loading="lazy">
+                        <span>Project B</span>
+                    </a>
 
-                    <article class="project-card-large" data-category="motion">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1537/1537.webp" alt="Project C - Motion Graphics">
-                        </div>
-                        <div class="project-info">
-                            <h3>Project C Title</h3>
-                            <p class="project-category">Motion Graphics</p>
-                            <p class="project-description">Brand animation and motion design for commercial applications.</p>
-                            <a href="projects/Project-1537.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
+                    <a href="projects/Project-1537.html" class="project-card" data-category="motion" aria-label="View Project C">
+                        <img src="assets/images/projects/1537/1537-thumb.webp" alt="Project C" loading="lazy">
+                        <span>Project C</span>
+                    </a>
 
-                    <article class="project-card-large" data-category="vfx">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1654/1654.webp" alt="Project D - Visual Effects">
-                        </div>
-                        <div class="project-info">
-                            <h3>Project D Title</h3>
-                            <p class="project-category">Visual Effects</p>
-                            <p class="project-description">Complex VFX sequences with digital matte painting and compositing.</p>
-                            <a href="projects/Project-1654.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
+                    <a href="projects/Project-1654.html" class="project-card" data-category="vfx" aria-label="View Project D">
+                        <img src="assets/images/projects/1654/1654-thumb.webp" alt="Project D" loading="lazy">
+                        <span>Project D</span>
+                    </a>
 
-                    <article class="project-card-large" data-category="commercial">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1270/1270.webp" alt="Project E - Commercial">
-                        </div>
-                        <div class="project-info">
-                            <h3>Project E Title</h3>
-                            <p class="project-category">Commercial</p>
-                            <p class="project-description">Creative direction and post-production for commercial advertising.</p>
-                            <a href="projects/Project-1270.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
+                    <a href="projects/Project-1270.html" class="project-card" data-category="editing" aria-label="View Project E">
+                        <img src="assets/images/projects/1270/1270-thumb.webp" alt="Project E" loading="lazy">
+                        <span>Project E</span>
+                    </a>
 
-                    <article class="project-card-large" data-category="motion">
-                        <div class="project-image">
-                            <img src="assets/images/projects/1711/1711.webp" alt="Project F - Motion Graphics">
-                        </div>
-                        <div class="project-info">
-                            <h3>Project F Title</h3>
-                            <p class="project-category">Motion Graphics</p>
-                            <p class="project-description">Animation direction and visual development for motion graphics.</p>
-                            <a href="projects/Project-1711.html" class="project-link">View Project</a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
+                    <a href="projects/Project-1711.html" class="project-card" data-category="motion" aria-label="View Project F">
+                        <img src="assets/images/projects/1711/1711-thumb.webp" alt="Project F" loading="lazy">
+                        <span>Project F</span>
+                    </a>
 
-        <!-- Back to Home Section -->
-        <section class="section">
-            <div class="container">
-                <div class="back-to-home">
-                    <h2>Ready to Work Together?</h2>
-                    <p>Let's discuss your next project and bring your vision to life.</p>
-                    <a href="index.html#contact" class="cta-button">Get in Touch</a>
+                    <!-- New Projects -->
+                    <a href="projects/Project-1353.html" class="project-card" data-category="motion" aria-label="View Digital Brand Campaign">
+                        <img src="assets/images/projects/1353/1353-thumb.webp" alt="Digital Brand Campaign" loading="lazy">
+                        <span>Digital Brand Campaign</span>
+                    </a>
+
+                    <a href="projects/Project-1003.html" class="project-card" data-category="vfx" aria-label="View Music Video Production">
+                        <img src="assets/images/projects/1003/1003-thumb.webp" alt="Music Video Production" loading="lazy">
+                        <span>Music Video Production</span>
+                    </a>
+
+                    <a href="projects/Project-1004.html" class="project-card" data-category="editing" aria-label="View Sports Broadcast Package">
+                        <img src="assets/images/projects/1004/1004-thumb.webp" alt="Sports Broadcast Package" loading="lazy">
+                        <span>Sports Broadcast Package</span>
+                    </a>
+
+                    <a href="projects/Project-1699.html" class="project-card" data-category="vfx" aria-label="View Documentary Series">
+                        <img src="assets/images/projects/1699/1699-thumb.webp" alt="Documentary Series" loading="lazy">
+                        <span>Documentary Series</span>
+                    </a>
+
+                    <a href="projects/Project-1661.html" class="project-card" data-category="personal" aria-label="View Corporate Identity System">
+                        <img src="assets/images/projects/1661/1661-thumb.webp" alt="Corporate Identity System" loading="lazy">
+                        <span>Corporate Identity System</span>
+                    </a>
+
+                    <a href="projects/Project-1528.html" class="project-card" data-category="motion" aria-label="View Film Title Sequence">
+                        <img src="assets/images/projects/1528/1528-thumb.webp" alt="Film Title Sequence" loading="lazy">
+                        <span>Film Title Sequence</span>
+                    </a>
+
+                    <a href="projects/Project-1470.html" class="project-card" data-category="motion" aria-label="View Interactive Installation">
+                        <img src="assets/images/projects/1470/1470-thumb.webp" alt="Interactive Installation" loading="lazy">
+                        <span>Interactive Installation</span>
+                    </a>
+
+                    <a href="projects/Project-1828.html" class="project-card" data-category="vfx" aria-label="View Product Launch Campaign">
+                        <img src="assets/images/projects/1828/1828-thumb.webp" alt="Product Launch Campaign" loading="lazy">
+                        <span>Product Launch Campaign</span>
+                    </a>
+
+                    <a href="projects/Project-1160.html" class="project-card" data-category="editing" aria-label="View News Graphics Package">
+                        <img src="assets/images/projects/1160/1160-thumb.webp" alt="News Graphics Package" loading="lazy">
+                        <span>News Graphics Package</span>
+                    </a>
+
+                    <a href="projects/Project-1336.html" class="project-card" data-category="motion" aria-label="View Virtual Event Platform">
+                        <img src="assets/images/projects/1336/1336-thumb.webp" alt="Virtual Event Platform" loading="lazy">
+                        <span>Virtual Event Platform</span>
+                    </a>
+
+                    <a href="projects/Project-1092.html" class="project-card" data-category="personal" aria-label="View Fashion Film">
+                        <img src="assets/images/projects/1092/1092-thumb.webp" alt="Fashion Film" loading="lazy">
+                        <span>Fashion Film</span>
+                    </a>
+
+                    <a href="projects/Project-1509.html" class="project-card" data-category="vfx" aria-label="View Gaming Cinematics">
+                        <img src="assets/images/projects/1509/1509-thumb.webp" alt="Gaming Cinematics" loading="lazy">
+                        <span>Gaming Cinematics</span>
+                    </a>
+
+                    <a href="projects/Project-1029.html" class="project-card" data-category="motion" aria-label="View Architectural Visualization">
+                        <img src="assets/images/projects/1029/1029-thumb.webp" alt="Architectural Visualization" loading="lazy">
+                        <span>Architectural Visualization</span>
+                    </a>
+
+                    <a href="projects/Project-1459.html" class="project-card" data-category="personal" aria-label="View Social Media Campaign">
+                        <img src="assets/images/projects/1459/1459-thumb.webp" alt="Social Media Campaign" loading="lazy">
+                        <span>Social Media Campaign</span>
+                    </a>
+
+                    <a href="projects/Project-1584.html" class="project-card" data-category="motion" aria-label="View Educational Series">
+                        <img src="assets/images/projects/1584/1584-thumb.webp" alt="Educational Series" loading="lazy">
+                        <span>Educational Series</span>
+                    </a>
+
+                    <a href="projects/Project-1292.html" class="project-card" data-category="vfx" aria-label="View Concert Visuals">
+                        <img src="assets/images/projects/1292/1292-thumb.webp" alt="Concert Visuals" loading="lazy">
+                        <span>Concert Visuals</span>
+                    </a>
+
+                    <a href="projects/Project-1626.html" class="project-card" data-category="motion" aria-label="View Healthcare Innovation">
+                        <img src="assets/images/projects/1626/1626-thumb.webp" alt="Healthcare Innovation" loading="lazy">
+                        <span>Healthcare Innovation</span>
+                    </a>
+
+                    <a href="projects/Project-1582.html" class="project-card" data-category="vfx" aria-label="View Automotive Commercial">
+                        <img src="assets/images/projects/1582/1582-thumb.webp" alt="Automotive Commercial" loading="lazy">
+                        <span>Automotive Commercial</span>
+                    </a>
+
+                    <a href="projects/Project-1453.html" class="project-card" data-category="motion" aria-label="View Museum Exhibition">
+                        <img src="assets/images/projects/1453/1453-thumb.webp" alt="Museum Exhibition" loading="lazy">
+                        <span>Museum Exhibition</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -292,5 +522,44 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        // Enhanced filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+
+                    // Filter projects with animation
+                    projectCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'flex';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Initial animation
+            projectCards.forEach(card => {
+                card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            });
+        });
+    </script>
 </body>
 </html>

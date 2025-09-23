@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotive Commercial - Miron Auslander Portfolio</title>
+    <meta name="description" content="Automotive Commercial - Advertising project by Miron Auslander">
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="../assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/before-after.js" defer></script>
+
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('../assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        /* CSS Variables */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body class="project-page">
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="../index.html" class="logo" aria-label="Homepage">Ma</a>
+
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../index.html#skills">Skills & Links</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="main">
+        <!-- Project Hero -->
+        <section class="project-hero" style="padding: 4rem 0;">
+            <div class="container">
+                <h1 style="margin-bottom: 3rem;">Automotive Commercial</h1>
+
+                <!-- Project video/image -->
+                <div class="project-media">
+                    <video controls loop disablePictureInPicture controlsList="nodownload" poster="../assets/images/projects/1582/1582-poster.jpg">
+                        <source src="../assets/videos/1582/project-1582.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details -->
+        <section class="project-details">
+            <div class="container">
+                <div class="project-info-grid">
+                    <div class="project-description">
+                        <h2>Project Overview</h2>
+                        <p>Produced cutting-edge visual effects for an automotive commercial. Created dynamic car animations, futuristic environments, and innovative transitions that showcased vehicle technology.</p>
+
+                        <h3>My Role</h3>
+                        <ul>
+                            <li>Creative Direction</li>
+                            <li>Visual Effects Supervision</li>
+                            <li>Motion Design</li>
+                            <li>Post-Production</li>
+                        </ul>
+
+                        <h3>Tools Used</h3>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Houdini</span>
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Octane Render</span>
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Nuke</span>
+                        </div>
+                    </div>
+
+                    <div class="project-meta" style="background-color: #dddddd;">
+                        <div class="meta-item">
+                            <strong>Client:</strong> Tesla Motors
+                        </div>
+                        <div class="meta-item">
+                            <strong>Duration:</strong> 3 weeks
+                        </div>
+                        <div class="meta-item">
+                            <strong>Year:</strong> 2024
+                        </div>
+                        <div class="meta-item">
+                            <strong>Category:</strong> Advertising
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional project images -->
+                <div class="project-gallery">
+                    <h3>Process & Variations</h3>
+                    <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1582/1582-before-1.mp4"
+                             data-after="../assets/videos/1582/1582-after-1.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1582/1582-before-2.mp4"
+                             data-after="../assets/videos/1582/1582-after-2.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        <div class="before-after-container"
+                             data-before="../assets/videos/1582/1582-before-3.mp4"
+                             data-after="../assets/videos/1582/1582-after-3.mp4"
+                             data-type="video"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Projects -->
+        <section class="related-projects">
+            <div class="container">
+                <h2>Related Projects</h2>
+                <div class="projects-grid" style="max-width: 600px; margin: 0 auto;">
+                    <a href="Project-1626.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1626/1626.webp" alt="Healthcare Innovation">
+                        <h3>Healthcare Innovation</h3>
+                    </a>
+                    <a href="Project-1582.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1582/1582.webp" alt="Automotive Commercial">
+                        <h3>Automotive Commercial</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of Ai and Coffee ☕</p>
+            <div class="social-links" style="display: none;">
+                <!-- Hidden div to maintain structure for iPad landscape fix -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
