@@ -739,6 +739,21 @@ body {
     gap: 2rem;
 }
 
+/* Center Related Projects grid on mobile devices */
+@media (max-width: 768px) {
+    .related-projects .projects-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .related-projects .project-card {
+        width: 100%;
+        max-width: 250px !important;
+        margin: 0 auto;
+    }
+}
+
 .related-projects .project-card {
     background: rgba(0, 0, 0, 0.3);
     border-radius: var(--border-radius);

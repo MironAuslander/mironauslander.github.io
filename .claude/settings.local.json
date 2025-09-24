@@ -2,31 +2,11 @@
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
     "allow": [
-      "Bash(git rev-list:*)",
-      "Bash(git checkout:*)",
-      "Bash(git merge:*)",
-      "Bash(git push:*)",
-      "Bash(git stash:*)",
-      "Bash(git commit:*)",
-      "WebFetch(domain:docs.anthropic.com)",
-      "Bash(ls:*)",
-      "Bash(start index.html)",
-      "Bash(dir:*)",
-      "Bash(git mv:*)",
-      "Read(//e/WebSite/Claude_Coder/**)",
-      "Bash(move:*)",
-      "Read(//c/Users/admin/Pictures/Screenshots/**)",
-      "Bash(for id in 1353 1003 1004 1699 1661 1528 1470 1828 1160 1336 1092 1509 1029 1459 1584 1292 1626 1582 1453)",
-      "Bash(do mkdir -p \"$id\")",
-      "Bash(done)",
-      "Bash(for id in 1238 1270 1537 1711)",
-      "Bash(do cp 1798/1798.jpg \"$id/$id.jpg\")",
-      "Bash(python:*)",
-      "Bash(do if [ -f \"Project-$id.html\" ])",
-      "Bash(then echo \"✓ Project-$id.html\")",
-      "Bash(else echo \"✗ Project-$id.html missing\")",
-      "Bash(fi)"
+      "Bash(for:*)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(grep:*)"
     ],
-    "deny": []
+    "deny": [],
+    "ask": []
   }
 }
