@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manager - Visual Layout Tool</title>
+    <link rel="stylesheet" href="css/tools.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>🎨 Visual Project Manager</h1>
+                <div class="header-actions">
+                    <button id="saveBtn" class="btn btn-primary">💾 Save Changes</button>
+                    <button id="applyBtn" class="btn btn-success">🚀 Apply to Site</button>
+                    <button id="reloadBtn" class="btn btn-secondary">🔄 Reload</button>
+                    <a href="index.html" class="btn btn-link">← Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="layout-grid">
+                <!-- Featured Projects Section -->
+                <div class="layout-section featured-section">
+                    <div class="section-header">
+                        <h2>✨ Featured Projects (Homepage)</h2>
+                        <span class="count-badge"><span id="featuredCount">0</span> / 6</span>
+                    </div>
+                    <div id="featuredProjects" class="projects-container featured-container">
+                        <!-- Featured project cards will be inserted here -->
+                    </div>
+                    <div class="section-footer">
+                        Drag up to 6 projects here to feature on homepage
+                    </div>
+                </div>
+
+                <!-- All Projects Section -->
+                <div class="layout-section all-section">
+                    <div class="section-header">
+                        <h2>📁 All Projects</h2>
+                        <span class="count-badge"><span id="allCount">0</span> projects</span>
+                    </div>
+                    <div id="allProjects" class="projects-container all-container">
+                        <!-- All project cards will be inserted here -->
+                    </div>
+                    <div class="section-footer">
+                        Drag to reorder. These appear on the projects page.
+                    </div>
+                </div>
+
+                <!-- Hidden Projects Section -->
+                <div class="layout-section hidden-section">
+                    <div class="section-header">
+                        <h2>👁️ Hidden Projects</h2>
+                        <span class="count-badge"><span id="hiddenCount">0</span> hidden</span>
+                    </div>
+                    <div id="hiddenProjects" class="projects-container hidden-container">
+                        <!-- Hidden project cards will be inserted here -->
+                    </div>
+                    <div class="section-footer">
+                        Drag here to hide from public view
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <!-- Project Card Template -->
+    <template id="projectCardTemplate">
+        <div class="project-card" data-id="">
+            <div class="card-handle">⋮⋮</div>
+            <div class="card-thumbnail">
+                <img src="" alt="">
+                <div class="card-id"></div>
+            </div>
+            <div class="card-content">
+                <h3 class="card-title"></h3>
+                <div class="card-meta">
+                    <span class="card-category"></span>
+                    <span class="card-year"></span>
+                </div>
+            </div>
+            <div class="card-badges">
+                <span class="badge-featured" style="display:none">⭐ Featured</span>
+                <span class="badge-order"></span>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/utils.js"></script>
+    <script src="js/manager.js"></script>
+</body>
+</html>

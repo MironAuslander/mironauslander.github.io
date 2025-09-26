@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Editor - Visual Content Editor</title>
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>✏️ Visual Project Editor</h1>
+                <div class="header-actions">
+                    <button id="saveProjectBtn" class="btn btn-primary">💾 Save Project</button>
+                    <button id="saveAllBtn" class="btn btn-success">💾 Save All & Apply</button>
+                    <button id="previewBtn" class="btn btn-secondary">👁️ Preview</button>
+                    <a href="index.html" class="btn btn-link">← Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="editor-main">
+            <div class="editor-layout">
+                <!-- Project Selector -->
+                <aside class="project-selector">
+                    <div class="selector-header">
+                        <h2>Select Project</h2>
+                        <input type="text" id="searchProject" placeholder="🔍 Search..." class="search-input">
+                    </div>
+                    <div id="projectGrid" class="project-grid">
+                        <!-- Project cards will be inserted here -->
+                    </div>
+                </aside>
+
+                <!-- Editor Form -->
+                <section class="editor-form">
+                    <div class="form-header">
+                        <h2>Edit Project: <span id="currentProject">None Selected</span></h2>
+                    </div>
+
+                    <form id="projectForm" class="project-form">
+                        <!-- Basic Info -->
+                        <fieldset>
+                            <legend>Basic Information</legend>
+
+                            <div class="form-group">
+                                <label for="projectId">Project ID</label>
+                                <input type="text" id="projectId" readonly class="readonly-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="displayTitle">Display Title <span class="char-count">0/50</span></label>
+                                <input type="text" id="displayTitle" maxlength="50" required>
+                                <small>Short title for cards and lists</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullTitle">Full Title <span class="char-count">0/100</span></label>
+                                <input type="text" id="fullTitle" maxlength="100" required>
+                                <small>Complete title for project page</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description <span class="char-count">0/500</span></label>
+                                <textarea id="description" rows="4" maxlength="500" required></textarea>
+                                <small>Project overview and main achievements</small>
+                            </div>
+                        </fieldset>
+
+                        <!-- Project Details -->
+                        <fieldset>
+                            <legend>Project Details</legend>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <select id="category" required>
+                                        <option value="">Select Category</option>
+                                        <option value="vfx">Visual Effects</option>
+                                        <option value="motion">Motion Graphics</option>
+                                        <option value="editing">Video Editing</option>
+                                        <option value="personal">Personal Project</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="year">Year</label>
+                                    <input type="number" id="year" min="2020" max="2030" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="client">Client</label>
+                                    <input type="text" id="client" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="duration">Duration</label>
+                                    <input type="text" id="duration" placeholder="e.g., 2 weeks, 3 months">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Role & Tools -->
+                        <fieldset>
+                            <legend>Role & Tools</legend>
+
+                            <div class="form-group">
+                                <label>My Role</label>
+                                <div id="roleList" class="tag-selector">
+                                    <!-- Role tags will be generated -->
+                                </div>
+                                <input type="text" id="roleInput" placeholder="+ Add custom role" class="tag-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tools Used</label>
+                                <div id="toolsList" class="tag-selector">
+                                    <!-- Tool tags will be generated -->
+                                </div>
+                                <input type="text" id="toolsInput" placeholder="+ Add custom tool" class="tag-input">
+                            </div>
+                        </fieldset>
+
+                        <!-- Media Files -->
+                        <fieldset>
+                            <legend>Media Files</legend>
+
+                            <div class="form-group">
+                                <label for="mainVideo">Main Video Path</label>
+                                <input type="text" id="mainVideo" placeholder="assets/videos/1798/project-1798.mp4">
+                                <small>Path to main project video</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="videoPoster">Video Poster Path</label>
+                                <input type="text" id="videoPoster" placeholder="assets/images/projects/1798/1798-poster.jpg">
+                                <small>Poster image for video player</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Before/After Media</label>
+                                <div id="mediaList" class="media-list">
+                                    <!-- Media items will be generated -->
+                                </div>
+                                <button type="button" id="addMediaBtn" class="btn btn-secondary">+ Add Before/After</button>
+                            </div>
+                        </fieldset>
+
+                        <!-- Status -->
+                        <fieldset>
+                            <legend>Display Settings</legend>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="featured">
+                                    <span>⭐ Featured on Homepage</span>
+                                </label>
+                            </div>
+
+                            <div class="form-group" id="featuredOrderGroup" style="display: none;">
+                                <label for="featuredOrder">Featured Order</label>
+                                <input type="number" id="featuredOrder" min="1" max="6">
+                                <small>Position in featured section (1-6)</small>
+                            </div>
+
+                            <div class="form-group checkbox-group">
+                                <label>
+                                    <input type="checkbox" id="visible" checked>
+                                    <span>👁️ Visible on Site</span>
+                                </label>
+                            </div>
+                        </fieldset>
+                    </form>
+                </section>
+
+                <!-- Live Preview -->
+                <section class="live-preview">
+                    <div class="preview-header">
+                        <h2>Live Preview</h2>
+                        <div class="preview-controls">
+                            <button class="preview-btn active" data-device="desktop">💻 Desktop</button>
+                            <button class="preview-btn" data-device="mobile">📱 Mobile</button>
+                        </div>
+                    </div>
+                    <div id="previewContainer" class="preview-container desktop">
+                        <iframe id="previewFrame" src="about:blank"></iframe>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <!-- Media Item Template -->
+    <template id="mediaItemTemplate">
+        <div class="media-item" data-index="">
+            <div class="media-header">
+                <span class="media-label">Before/After Set #<span class="media-number"></span></span>
+                <button type="button" class="remove-media">✕</button>
+            </div>
+            <div class="media-inputs">
+                <div class="form-group">
+                    <label>Type</label>
+                    <select class="media-type">
+                        <option value="video">Video</option>
+                        <option value="image">Image</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Before Path</label>
+                    <input type="text" class="media-before" placeholder="assets/videos/1798/1798-before-1.mp4">
+                </div>
+                <div class="form-group">
+                    <label>After Path</label>
+                    <input type="text" class="media-after" placeholder="assets/videos/1798/1798-after-1.mp4">
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/utils.js"></script>
+    <script src="js/editor.js"></script>
+</body>
+</html>

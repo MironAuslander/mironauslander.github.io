@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Dashboard</title>
+    <link rel="stylesheet" href="css/tools.css">
+    <style>
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .dashboard-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .dashboard-header p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .tool-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), var(--warning-color));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--accent-color);
+        }
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .tool-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .tool-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tool-features li {
+            padding: 0.5rem 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tool-features li::before {
+            content: '✓';
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        .quick-actions {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .quick-actions h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .instructions {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .instructions h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .instructions ol {
+            padding-left: 2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .instructions code {
+            background: var(--bg-primary);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: var(--accent-color);
+            font-family: 'Courier New', monospace;
+        }
+
+        .status-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .status-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .status-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>🎨 Project Management System</h1>
+                <div class="header-actions">
+                    <a href="../index.html" class="btn btn-primary">🏠 View Site</a>
+                    <a href="../projects.html" class="btn btn-secondary">📁 Projects Page</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-container">
+            <!-- Welcome Section -->
+            <div class="dashboard-header">
+                <h1>Visual Project Management</h1>
+                <p>Manage your portfolio projects with intuitive visual tools</p>
+            </div>
+
+            <!-- Status Section -->
+            <div class="status-section">
+                <h2>📊 System Status</h2>
+                <div class="status-grid" id="statusGrid">
+                    <div class="status-item">
+                        <div class="status-value" id="totalProjects">-</div>
+                        <div class="status-label">Total Projects</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-value" id="featuredProjects">-</div>
+                        <div class="status-label">Featured</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-value" id="visibleProjects">-</div>
+                        <div class="status-label">Visible</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-value" id="hiddenProjects">-</div>
+                        <div class="status-label">Hidden</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools Grid -->
+            <div class="tools-grid">
+                <a href="project-manager.html" class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <h2 class="tool-title">Layout Manager</h2>
+                    <p class="tool-description">
+                        Drag and drop projects to control where they appear on your site.
+                        Manage featured projects, ordering, and visibility.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Visual drag-and-drop interface</li>
+                        <li>Manage featured projects</li>
+                        <li>Control project ordering</li>
+                        <li>Hide/show projects</li>
+                    </ul>
+                </a>
+
+                <a href="project-editor.html" class="tool-card">
+                    <div class="tool-icon">✏️</div>
+                    <h2 class="tool-title">Content Editor</h2>
+                    <p class="tool-description">
+                        Edit project details with a visual form interface.
+                        Update titles, descriptions, tools, and media files.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Visual form editor</li>
+                        <li>Live preview</li>
+                        <li>Media management</li>
+                        <li>Tag-based tools selection</li>
+                    </ul>
+                </a>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>⚡ Quick Actions</h2>
+                <div class="action-buttons">
+                    <button id="downloadBackup" class="btn btn-primary">💾 Download Backup</button>
+                    <button id="runUpdates" class="btn btn-success">🚀 Run Update Scripts</button>
+                    <button id="viewDocs" class="btn btn-secondary">📖 View Documentation</button>
+                </div>
+            </div>
+
+            <!-- Instructions -->
+            <div class="instructions">
+                <h2>📋 How to Use</h2>
+                <ol>
+                    <li><strong>Layout Manager:</strong> Drag projects between sections to control where they appear</li>
+                    <li><strong>Content Editor:</strong> Click any project to edit its details and media</li>
+                    <li><strong>Save Changes:</strong> Tools will download a backup JSON file</li>
+                    <li><strong>Apply to Site:</strong> Replace <code>projects-data.json</code> with your backup</li>
+                    <li><strong>Run Updates:</strong> Execute <code>node scripts/run-all-updates.js</code> from project root</li>
+                </ol>
+            </div>
+        </main>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script>
+        // Load and display statistics
+        async function loadStatistics() {
+            const data = await Utils.loadProjectsData();
+            const projects = data.projects || [];
+
+            document.getElementById('totalProjects').textContent = projects.length;
+            document.getElementById('featuredProjects').textContent =
+                projects.filter(p => p.featured).length;
+            document.getElementById('visibleProjects').textContent =
+                projects.filter(p => !p.hidden).length;
+            document.getElementById('hiddenProjects').textContent =
+                projects.filter(p => p.hidden).length;
+        }
+
+        // Quick action handlers
+        document.getElementById('downloadBackup')?.addEventListener('click', async () => {
+            const data = await Utils.loadProjectsData();
+            await Utils.saveProjectsData(data);
+        });
+
+        document.getElementById('runUpdates')?.addEventListener('click', () => {
+            Utils.runUpdateScripts();
+        });
+
+        document.getElementById('viewDocs')?.addEventListener('click', () => {
+            alert('Documentation coming soon! For now, follow the instructions on this page.');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadStatistics();
+        });
+    </script>
+</body>
+</html>
