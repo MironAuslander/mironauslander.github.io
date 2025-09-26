@@ -4,7 +4,10 @@
     "allow": [
       "Bash(for:*)",
       "Bash(do echo \"=== $file ===\")",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(do echo -n \"Project-$project: \")",
+      "Bash(ls:*)",
+      "Bash(done)"
     ],
     "deny": [],
     "ask": []
