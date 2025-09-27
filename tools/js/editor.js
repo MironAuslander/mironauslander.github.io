@@ -5,6 +5,12 @@ class ProjectEditor {
         this.projectsData = { projects: [] };
         this.currentProject = null;
         this.hasChanges = false;
+        this.availableCategories = [
+            { value: 'vfx', label: 'Visual Effects' },
+            { value: 'motion', label: 'Motion Graphics' },
+            { value: 'editing', label: 'Video Editing' },
+            { value: 'personal', label: 'Personal Project' }
+        ];
         this.availableRoles = [
             'Concept Development', 'Art Direction', 'Animation', '3D Modeling',
             'Compositing', 'Motion Graphics', 'VFX Supervision', 'Color Grading',
@@ -23,34 +29,66 @@ class ProjectEditor {
     async init() {
         document.body.classList.add('loading');
 
-        // Load projects data
-        this.projectsData = await Utils.loadProjectsData();
+        try {
+            console.log('Starting editor initialization...');
 
-        // Setup UI
-        this.setupProjectGrid();
-        this.setupForm();
-        this.setupEventListeners();
-        this.setupTagSelectors();
+            // Load projects data
+            this.projectsData = await Utils.loadProjectsData();
+            console.log('Projects data loaded:', this.projectsData.projects?.length, 'projects');
 
-        document.body.classList.remove('loading');
+            // Setup UI
+            this.setupProjectGrid();
+            console.log('Project grid setup complete');
+
+            this.setupForm();
+            console.log('Form setup complete');
+
+            this.setupEventListeners();
+            console.log('Event listeners setup complete');
+
+            this.setupTagSelectors();
+            console.log('Tag selectors setup complete');
+
+            console.log('Editor initialization complete');
+        } catch (error) {
+            console.error('Error during editor initialization:', error);
+            Utils.showStatus('Failed to initialize editor: ' + error.message, 'error');
+        } finally {
+            // Always remove loading class
+            document.body.classList.remove('loading');
+        }
     }
 
     setupProjectGrid() {
         const grid = document.getElementById('projectGrid');
+        if (!grid) {
+            console.error('Project grid element not found');
+            return;
+        }
+
         grid.innerHTML = '';
+
+        if (!this.projectsData?.projects) {
+            console.error('Projects data not available');
+            return;
+        }
 
         this.projectsData.projects.forEach(project => {
             const item = document.createElement('div');
             item.className = 'project-grid-item';
             item.dataset.id = project.id;
 
+            const thumbnail = Utils.getProjectThumbnail(project);
+            const displayTitle = project.displayTitle || 'Untitled';
+            const id = project.id || 'unknown';
+
             item.innerHTML = `
                 <div class="thumbnail">
-                    <img src="${Utils.getProjectThumbnail(project)}" alt="${project.displayTitle}">
+                    <img src="${thumbnail}" alt="${displayTitle}" onerror="this.style.display='none'">
                 </div>
                 <div class="info">
-                    <div class="title">${project.displayTitle}</div>
-                    <div class="id">ID: ${project.id}</div>
+                    <div class="title">${displayTitle}</div>
+                    <div class="id">ID: ${id}</div>
                 </div>
             `;
 
@@ -64,19 +102,16 @@ class ProjectEditor {
         this.setupCharCounter('displayTitle');
         this.setupCharCounter('fullTitle');
         this.setupCharCounter('description');
-
-        // Featured checkbox toggle
-        const featuredCheckbox = document.getElementById('featured');
-        featuredCheckbox.addEventListener('change', (e) => {
-            document.getElementById('featuredOrderGroup').style.display =
-                e.target.checked ? 'block' : 'none';
-        });
     }
 
     setupCharCounter(fieldId) {
         const field = document.getElementById(fieldId);
-        const label = field.parentElement.querySelector('.char-count');
+        if (!field) {
+            console.warn(`Field ${fieldId} not found for char counter`);
+            return;
+        }
 
+        const label = field.parentElement?.querySelector('.char-count');
         if (!label) return;
 
         const updateCounter = () => {
@@ -121,10 +156,7 @@ class ProjectEditor {
             });
         });
 
-        // Add media button
-        document.getElementById('addMediaBtn')?.addEventListener('click', () => {
-            this.addMediaItem();
-        });
+        // Removed media button handler - now handled by Media Configurator
 
         // Form change detection
         document.getElementById('projectForm')?.addEventListener('input', () => {
@@ -151,27 +183,50 @@ class ProjectEditor {
     }
 
     setupTagSelectors() {
+        // Categories
+        const categoryList = document.getElementById('categoryList');
+        if (categoryList) {
+            this.availableCategories.forEach(cat => {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.textContent = cat.label;
+                tag.dataset.value = cat.value;
+                tag.addEventListener('click', () => this.toggleTag(tag, 'category'));
+                categoryList.appendChild(tag);
+            });
+        } else {
+            console.warn('categoryList element not found');
+        }
+
         // Roles
         const roleList = document.getElementById('roleList');
-        this.availableRoles.forEach(role => {
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = role;
-            tag.dataset.value = role;
-            tag.addEventListener('click', () => this.toggleTag(tag, 'role'));
-            roleList.appendChild(tag);
-        });
+        if (roleList) {
+            this.availableRoles.forEach(role => {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.textContent = role;
+                tag.dataset.value = role;
+                tag.addEventListener('click', () => this.toggleTag(tag, 'role'));
+                roleList.appendChild(tag);
+            });
+        } else {
+            console.warn('roleList element not found');
+        }
 
         // Tools
         const toolsList = document.getElementById('toolsList');
-        this.availableTools.forEach(tool => {
-            const tag = document.createElement('span');
-            tag.className = 'tag';
-            tag.textContent = tool;
-            tag.dataset.value = tool;
-            tag.addEventListener('click', () => this.toggleTag(tag, 'tool'));
-            toolsList.appendChild(tag);
-        });
+        if (toolsList) {
+            this.availableTools.forEach(tool => {
+                const tag = document.createElement('span');
+                tag.className = 'tag';
+                tag.textContent = tool;
+                tag.dataset.value = tool;
+                tag.addEventListener('click', () => this.toggleTag(tag, 'tool'));
+                toolsList.appendChild(tag);
+            });
+        } else {
+            console.warn('toolsList element not found');
+        }
     }
 
     filterProjects(query) {
@@ -224,23 +279,22 @@ class ProjectEditor {
         document.getElementById('displayTitle').value = project.displayTitle || '';
         document.getElementById('fullTitle').value = project.fullTitle || '';
         document.getElementById('description').value = project.description || '';
-        document.getElementById('category').value = project.category || '';
         document.getElementById('year').value = project.year || new Date().getFullYear();
         document.getElementById('client').value = project.client || '';
         document.getElementById('duration').value = project.duration || '';
 
-        // Media fields
-        document.getElementById('mainVideo').value = project.mainVideo || '';
-        document.getElementById('videoPoster').value = project.videoPoster || '';
-
         // Status
-        document.getElementById('featured').checked = project.featured || false;
-        document.getElementById('featuredOrder').value = project.featuredOrder || 1;
         document.getElementById('visible').checked = project.visible !== false;
 
-        // Show/hide featured order
-        document.getElementById('featuredOrderGroup').style.display =
-            project.featured ? 'block' : 'none';
+        // Load categories - handle both string and array formats
+        let categories = [];
+        if (project.category) {
+            categories = Array.isArray(project.category) ? project.category : [project.category];
+        }
+        document.querySelectorAll('#categoryList .tag').forEach(tag => {
+            const selected = categories.includes(tag.dataset.value);
+            tag.classList.toggle('selected', selected);
+        });
 
         // Load roles
         document.querySelectorAll('#roleList .tag').forEach(tag => {
@@ -254,8 +308,7 @@ class ProjectEditor {
             tag.classList.toggle('selected', selected);
         });
 
-        // Load media items
-        this.loadMediaItems(project.beforeAfterMedia || []);
+        // Media items now handled by Media Configurator
 
         // Update character counters
         this.setupCharCounter('displayTitle');
@@ -263,47 +316,7 @@ class ProjectEditor {
         this.setupCharCounter('description');
     }
 
-    loadMediaItems(mediaArray) {
-        const mediaList = document.getElementById('mediaList');
-        mediaList.innerHTML = '';
-
-        mediaArray.forEach((media, index) => {
-            this.addMediaItem(media, index);
-        });
-    }
-
-    addMediaItem(mediaData = null, index = null) {
-        const template = document.getElementById('mediaItemTemplate');
-        const item = template.content.cloneNode(true);
-
-        const itemIndex = index !== null ? index :
-            document.querySelectorAll('.media-item').length;
-
-        const itemEl = item.querySelector('.media-item');
-        itemEl.dataset.index = itemIndex;
-
-        item.querySelector('.media-number').textContent = itemIndex + 1;
-
-        if (mediaData) {
-            item.querySelector('.media-type').value = mediaData.type || 'video';
-            item.querySelector('.media-before').value = mediaData.before || '';
-            item.querySelector('.media-after').value = mediaData.after || '';
-        }
-
-        item.querySelector('.remove-media').addEventListener('click', () => {
-            itemEl.remove();
-            this.renumberMediaItems();
-        });
-
-        document.getElementById('mediaList').appendChild(item);
-    }
-
-    renumberMediaItems() {
-        document.querySelectorAll('.media-item').forEach((item, index) => {
-            item.dataset.index = index;
-            item.querySelector('.media-number').textContent = index + 1;
-        });
-    }
+    // Media handling functions removed - now handled by Media Configurator
 
     toggleTag(tag, type) {
         tag.classList.toggle('selected');
@@ -379,6 +392,10 @@ class ProjectEditor {
     }
 
     getFormData() {
+        // Get selected categories
+        const categories = Array.from(document.querySelectorAll('#categoryList .tag.selected'))
+            .map(tag => tag.dataset.value);
+
         // Get selected roles
         const roles = Array.from(document.querySelectorAll('#roleList .tag.selected'))
             .map(tag => tag.dataset.value);
@@ -387,30 +404,19 @@ class ProjectEditor {
         const tools = Array.from(document.querySelectorAll('#toolsList .tag.selected'))
             .map(tag => tag.dataset.value);
 
-        // Get media items
-        const mediaItems = Array.from(document.querySelectorAll('.media-item')).map(item => ({
-            type: item.querySelector('.media-type').value,
-            before: item.querySelector('.media-before').value,
-            after: item.querySelector('.media-after').value
-        })).filter(m => m.before && m.after);
-
         return {
             displayTitle: document.getElementById('displayTitle').value,
             fullTitle: document.getElementById('fullTitle').value,
             description: document.getElementById('description').value,
-            category: document.getElementById('category').value,
+            category: categories, // Now an array
             year: parseInt(document.getElementById('year').value),
             client: document.getElementById('client').value,
             duration: document.getElementById('duration').value,
             role: roles,
             tools: tools,
-            mainVideo: document.getElementById('mainVideo').value,
-            videoPoster: document.getElementById('videoPoster').value,
-            beforeAfterMedia: mediaItems,
-            featured: document.getElementById('featured').checked,
-            featuredOrder: document.getElementById('featured').checked ?
-                parseInt(document.getElementById('featuredOrder').value) : null,
             visible: document.getElementById('visible').checked
+            // Media configuration now handled by Media Configurator
+            // Featured status now handled by Layout Manager
         };
     }
 

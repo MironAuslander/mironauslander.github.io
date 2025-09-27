@@ -238,30 +238,48 @@
                     <div class="tool-icon">🎯</div>
                     <h2 class="tool-title">Layout Manager</h2>
                     <p class="tool-description">
-                        Drag and drop projects to control where they appear on your site.
-                        Manage featured projects, ordering, and visibility.
+                        Visual control center for project placement. Drag projects to featured section,
+                        reorder them, or hide from public view.
                     </p>
                     <ul class="tool-features">
-                        <li>Visual drag-and-drop interface</li>
-                        <li>Manage featured projects</li>
-                        <li>Control project ordering</li>
-                        <li>Hide/show projects</li>
+                        <li>Drag-and-drop interface</li>
+                        <li>Homepage featuring control</li>
+                        <li>Project ordering</li>
+                        <li>Visibility management</li>
                     </ul>
+                    <span class="tool-tag tag-primary" style="position: absolute; top: 1rem; right: 1rem; background: var(--accent-color); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Controls Homepage</span>
                 </a>
 
                 <a href="project-editor.html" class="tool-card">
                     <div class="tool-icon">✏️</div>
                     <h2 class="tool-title">Content Editor</h2>
                     <p class="tool-description">
-                        Edit project details with a visual form interface.
-                        Update titles, descriptions, tools, and media files.
+                        Edit project text content and metadata. Update titles, descriptions,
+                        categories, roles, and tools used.
                     </p>
                     <ul class="tool-features">
-                        <li>Visual form editor</li>
+                        <li>Text content editing</li>
+                        <li>Category & metadata</li>
+                        <li>Roles & tools tags</li>
                         <li>Live preview</li>
-                        <li>Media management</li>
-                        <li>Tag-based tools selection</li>
                     </ul>
+                    <span class="tool-tag tag-updated" style="position: absolute; top: 1rem; right: 1rem; background: var(--warning-color); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Simplified</span>
+                </a>
+
+                <a href="media-configurator.html" class="tool-card">
+                    <div class="tool-icon">🎬</div>
+                    <h2 class="tool-title">Media Configurator</h2>
+                    <p class="tool-description">
+                        Visual layout designer for project media. Configure hero sections
+                        and process variations with drag-and-drop simplicity.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Hero section customization</li>
+                        <li>1-6 media blocks per project</li>
+                        <li>Before/after comparisons</li>
+                        <li>Visual grid preview</li>
+                    </ul>
+                    <span class="tool-tag tag-new" style="position: absolute; top: 1rem; right: 1rem; background: var(--success-bg); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">All Media Control</span>
                 </a>
             </div>
 
@@ -279,8 +297,9 @@
             <div class="instructions">
                 <h2>📋 How to Use</h2>
                 <ol>
-                    <li><strong>Layout Manager:</strong> Drag projects between sections to control where they appear</li>
-                    <li><strong>Content Editor:</strong> Click any project to edit its details and media</li>
+                    <li><strong>Layout Manager:</strong> Control homepage featuring and project visibility</li>
+                    <li><strong>Content Editor:</strong> Edit project text, categories, and metadata</li>
+                    <li><strong>Media Configurator:</strong> Design hero sections and process media layouts</li>
                     <li><strong>Save Changes:</strong> Tools will download a backup JSON file</li>
                     <li><strong>Apply to Site:</strong> Replace <code>projects-data.json</code> with your backup</li>
                     <li><strong>Run Updates:</strong> Execute <code>node scripts/run-all-updates.js</code> from project root</li>

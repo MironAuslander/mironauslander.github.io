@@ -41,31 +41,6 @@
           "before": "assets/videos/1798/1798-before-3.mp4",
           "after": "assets/videos/1798/1798-after-3.mp4"
         }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1798/project-1798.mp4",
-        "poster": "assets/images/projects/1798/1798-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1798/1798-before-1.mp4",
-          "after": "assets/videos/1798/1798-after-1.mp4",
-          "label": "Screen Replacement"
-        },
-        {
-          "type": "video",
-          "src": "assets/videos/1798/1798-breakdown.mp4",
-          "poster": "assets/images/projects/1798/1798-breakdown-poster.jpg",
-          "caption": "VFX Breakdown"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1798/1798-before-2.mp4",
-          "after": "assets/videos/1798/1798-after-2.mp4",
-          "label": "Color Grading"
-        }
       ]
     },
     {
@@ -101,21 +76,6 @@
           "type": "video",
           "before": "assets/videos/1238/1238-before-1.mp4",
           "after": "assets/videos/1238/1238-after-1.mp4"
-        }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1238/project-1238.mp4",
-        "poster": "assets/images/projects/1238/1238-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1238/1238-before-1.mp4",
-          "after": "assets/videos/1238/1238-after-1.mp4",
-          "label": "UI Animation Compositing",
-          "labelBefore": "Before",
-          "labelAfter": "After"
         }
       ]
     },
@@ -163,37 +123,6 @@
           "before": "assets/videos/1537/1537-before-3.mp4",
           "after": "assets/videos/1537/1537-after-3.mp4"
         }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1537/project-1537.mp4",
-        "poster": "assets/images/projects/1537/1537-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1537/1537-before-1.mp4",
-          "after": "assets/videos/1537/1537-after-1.mp4",
-          "label": "Comparison 1",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1537/1537-before-2.mp4",
-          "after": "assets/videos/1537/1537-after-2.mp4",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1537/1537-before-3.mp4",
-          "after": "assets/videos/1537/1537-after-3.mp4",
-          "label": "Comparison 3",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        }
       ]
     },
     {
@@ -237,37 +166,6 @@
           "type": "image",
           "before": "assets/images/projects/1654/1654-before-3.webp",
           "after": "assets/images/projects/1654/1654-after-3.webp"
-        }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1654/project-1654.mp4",
-        "poster": "assets/images/projects/1654/1654-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-image",
-          "before": "assets/images/projects/1654/1654-before-1.webp",
-          "after": "assets/images/projects/1654/1654-after-1.webp",
-          "label": "Comparison 1",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-image",
-          "before": "assets/images/projects/1654/1654-before-2.webp",
-          "after": "assets/images/projects/1654/1654-after-2.webp",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-image",
-          "before": "assets/images/projects/1654/1654-before-3.webp",
-          "after": "assets/images/projects/1654/1654-after-3.webp",
-          "label": "Comparison 3",
-          "labelBefore": "Before",
-          "labelAfter": "After"
         }
       ]
     },
@@ -314,37 +212,6 @@
           "type": "video",
           "before": "assets/videos/1270/1270-before-3.mp4",
           "after": "assets/videos/1270/1270-after-3.mp4"
-        }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1270/project-1270.mp4",
-        "poster": "assets/images/projects/1270/1270-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1270/1270-before-1.mp4",
-          "after": "assets/videos/1270/1270-after-1.mp4",
-          "label": "Comparison 1",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1270/1270-before-2.mp4",
-          "after": "assets/videos/1270/1270-after-2.mp4",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1270/1270-before-3.mp4",
-          "after": "assets/videos/1270/1270-after-3.mp4",
-          "label": "Comparison 3",
-          "labelBefore": "Before",
-          "labelAfter": "After"
         }
       ]
     },
@@ -393,37 +260,6 @@
           "before": "assets/videos/1711/1711-before-3.mp4",
           "after": "assets/videos/1711/1711-after-3.mp4"
         }
-      ],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1711/project-1711.mp4",
-        "poster": "assets/images/projects/1711/1711-poster.jpg"
-      },
-      "processMedia": [
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-1.mp4",
-          "after": "assets/videos/1711/1711-after-1.mp4",
-          "label": "Comparison 1",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-2.mp4",
-          "after": "assets/videos/1711/1711-after-2.mp4",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-3.mp4",
-          "after": "assets/videos/1711/1711-after-3.mp4",
-          "label": "Comparison 3",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        }
       ]
     },
     {
@@ -454,13 +290,7 @@
       "heroImage": "assets/images/projects/1353/1353.webp",
       "mainVideo": "assets/videos/1353/project-1353.mp4",
       "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1353/project-1353.mp4",
-        "poster": "assets/images/projects/1353/1353-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1003",
@@ -490,13 +320,7 @@
       "heroImage": "assets/images/projects/1003/1003.webp",
       "mainVideo": "assets/videos/1003/project-1003.mp4",
       "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1003/project-1003.mp4",
-        "poster": "assets/images/projects/1003/1003-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1004",
@@ -526,13 +350,7 @@
       "heroImage": "assets/images/projects/1004/1004.webp",
       "mainVideo": "assets/videos/1004/project-1004.mp4",
       "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1004/project-1004.mp4",
-        "poster": "assets/images/projects/1004/1004-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1699",
@@ -562,13 +380,7 @@
       "heroImage": "assets/images/projects/1699/1699.webp",
       "mainVideo": "assets/videos/1699/project-1699.mp4",
       "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1699/project-1699.mp4",
-        "poster": "assets/images/projects/1699/1699-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1661",
@@ -599,13 +411,7 @@
       "heroImage": "assets/images/projects/1661/1661.webp",
       "mainVideo": "assets/videos/1661/project-1661.mp4",
       "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1661/project-1661.mp4",
-        "poster": "assets/images/projects/1661/1661-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1528",
@@ -635,13 +441,7 @@
       "heroImage": "assets/images/projects/1528/1528.webp",
       "mainVideo": "assets/videos/1528/project-1528.mp4",
       "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1528/project-1528.mp4",
-        "poster": "assets/images/projects/1528/1528-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1470",
@@ -672,13 +472,7 @@
       "heroImage": "assets/images/projects/1470/1470.webp",
       "mainVideo": "assets/videos/1470/project-1470.mp4",
       "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1470/project-1470.mp4",
-        "poster": "assets/images/projects/1470/1470-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1828",
@@ -709,13 +503,7 @@
       "heroImage": "assets/images/projects/1828/1828.webp",
       "mainVideo": "assets/videos/1828/project-1828.mp4",
       "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1828/project-1828.mp4",
-        "poster": "assets/images/projects/1828/1828-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1160",
@@ -746,13 +534,7 @@
       "heroImage": "assets/images/projects/1160/1160.webp",
       "mainVideo": "assets/videos/1160/project-1160.mp4",
       "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1160/project-1160.mp4",
-        "poster": "assets/images/projects/1160/1160-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1336",
@@ -783,13 +565,7 @@
       "heroImage": "assets/images/projects/1336/1336.webp",
       "mainVideo": "assets/videos/1336/project-1336.mp4",
       "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1336/project-1336.mp4",
-        "poster": "assets/images/projects/1336/1336-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1092",
@@ -819,13 +595,7 @@
       "heroImage": "assets/images/projects/1092/1092.webp",
       "mainVideo": "assets/videos/1092/project-1092.mp4",
       "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1092/project-1092.mp4",
-        "poster": "assets/images/projects/1092/1092-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1509",
@@ -856,13 +626,7 @@
       "heroImage": "assets/images/projects/1509/1509.webp",
       "mainVideo": "assets/videos/1509/project-1509.mp4",
       "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1509/project-1509.mp4",
-        "poster": "assets/images/projects/1509/1509-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1029",
@@ -893,13 +657,7 @@
       "heroImage": "assets/images/projects/1029/1029.webp",
       "mainVideo": "assets/videos/1029/project-1029.mp4",
       "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1029/project-1029.mp4",
-        "poster": "assets/images/projects/1029/1029-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1459",
@@ -930,13 +688,7 @@
       "heroImage": "assets/images/projects/1459/1459.webp",
       "mainVideo": "assets/videos/1459/project-1459.mp4",
       "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1459/project-1459.mp4",
-        "poster": "assets/images/projects/1459/1459-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1584",
@@ -967,13 +719,7 @@
       "heroImage": "assets/images/projects/1584/1584.webp",
       "mainVideo": "assets/videos/1584/project-1584.mp4",
       "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1584/project-1584.mp4",
-        "poster": "assets/images/projects/1584/1584-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1292",
@@ -1004,13 +750,7 @@
       "heroImage": "assets/images/projects/1292/1292.webp",
       "mainVideo": "assets/videos/1292/project-1292.mp4",
       "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1292/project-1292.mp4",
-        "poster": "assets/images/projects/1292/1292-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1626",
@@ -1041,13 +781,7 @@
       "heroImage": "assets/images/projects/1626/1626.webp",
       "mainVideo": "assets/videos/1626/project-1626.mp4",
       "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1626/project-1626.mp4",
-        "poster": "assets/images/projects/1626/1626-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1582",
@@ -1078,13 +812,7 @@
       "heroImage": "assets/images/projects/1582/1582.webp",
       "mainVideo": "assets/videos/1582/project-1582.mp4",
       "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1582/project-1582.mp4",
-        "poster": "assets/images/projects/1582/1582-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     },
     {
       "id": "1453",
@@ -1115,17 +843,11 @@
       "heroImage": "assets/images/projects/1453/1453.webp",
       "mainVideo": "assets/videos/1453/project-1453.mp4",
       "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
-      "beforeAfterMedia": [],
-      "heroMedia": {
-        "type": "video",
-        "src": "assets/videos/1453/project-1453.mp4",
-        "poster": "assets/images/projects/1453/1453-poster.jpg"
-      },
-      "processMedia": []
+      "beforeAfterMedia": []
     }
   ],
   "metadata": {
-    "version": "3.0",
+    "version": "2.0",
     "lastUpdated": "2024-09-26",
     "totalProjects": 25,
     "featuredCount": 6,
@@ -1136,8 +858,6 @@
       ],
       "beforeAfterSupport": true,
       "dynamicContent": true
-    },
-    "lastMigration": "2025-09-27T17:48:45.568Z",
-    "format": "advanced"
+    }
   }
 }

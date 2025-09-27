@@ -538,9 +538,17 @@
 
                     const filter = this.dataset.filter;
 
-                    // Filter projects with animation
+                    // Filter projects with animation (supports multi-category)
                     projectCards.forEach(card => {
-                        if (filter === 'all' || card.dataset.category === filter) {
+                        // Support both single category (legacy) and multi-category (new)
+                        const categoryAttr = card.dataset.category || '';
+                        const categories = categoryAttr.includes(',')
+                            ? categoryAttr.split(',').map(c => c.trim())
+                            : [categoryAttr];
+
+                        const shouldShow = filter === 'all' || categories.includes(filter);
+
+                        if (shouldShow) {
                             card.style.display = 'flex';
                             setTimeout(() => {
                                 card.style.opacity = '1';
