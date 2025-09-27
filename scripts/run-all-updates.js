@@ -38,9 +38,21 @@ if (allSuccess && !runScript('update-projects-page.js', 'Updating projects page'
     allSuccess = false;
 }
 
-// Update individual project pages
-if (allSuccess && !runScript('update-project-pages.js', 'Updating individual project pages')) {
+// Generate project pages from template (new system)
+if (allSuccess && !runScript('generate-project-pages.js', 'Generating project pages from template')) {
     allSuccess = false;
+}
+
+// Validate all projects and media
+if (allSuccess) {
+    console.log('\nRunning validation check...');
+    try {
+        const scriptPath = path.join(__dirname, 'validate-projects.js');
+        execSync(`node "${scriptPath}"`, { encoding: 'utf-8', stdio: 'inherit' });
+    } catch (error) {
+        console.log('⚠️  Some validation warnings found - check above for details');
+        // Don't fail on validation warnings
+    }
 }
 
 // Final status

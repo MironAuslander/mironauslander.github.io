@@ -1,0 +1,242 @@
+{
+  "mediaConfigurationExamples": {
+    "description": "Example configurations for different project media layouts",
+
+    "example1_vfxHeavy": {
+      "name": "VFX Heavy Project",
+      "description": "Multiple before/after comparisons for visual effects work",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/[id]/project-[id].mp4",
+        "poster": "assets/images/projects/[id]/[id]-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/[id]/[id]-before-1.mp4",
+          "after": "assets/videos/[id]/[id]-after-1.mp4",
+          "label": "Green Screen Removal",
+          "labelBefore": "Raw Footage",
+          "labelAfter": "Composited"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/[id]/[id]-before-2.mp4",
+          "after": "assets/videos/[id]/[id]-after-2.mp4",
+          "label": "Digital Environment",
+          "labelBefore": "Original",
+          "labelAfter": "Enhanced"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/[id]/[id]-before-3.mp4",
+          "after": "assets/videos/[id]/[id]-after-3.mp4",
+          "label": "Color Grading",
+          "labelBefore": "Raw",
+          "labelAfter": "Graded"
+        }
+      ]
+    },
+
+    "example2_motionGraphics": {
+      "name": "Motion Graphics Showcase",
+      "description": "Mix of videos showing different animation styles",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/[id]/main-reel.mp4",
+        "poster": "assets/images/projects/[id]/reel-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/animation-1.mp4",
+          "poster": "assets/images/projects/[id]/animation-1-poster.jpg",
+          "caption": "Logo Animation"
+        },
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/animation-2.mp4",
+          "poster": "assets/images/projects/[id]/animation-2-poster.jpg",
+          "caption": "Title Sequence"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/styleframes.jpg",
+          "caption": "Style Frames"
+        },
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/breakdown.mp4",
+          "caption": "Animation Breakdown"
+        }
+      ]
+    },
+
+    "example3_photography": {
+      "name": "Photography Retouching",
+      "description": "Before/after image comparisons for photo retouching",
+      "heroMedia": {
+        "type": "image",
+        "src": "assets/images/projects/[id]/hero.jpg",
+        "alt": "Hero Image"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/[id]/raw-1.jpg",
+          "after": "assets/images/projects/[id]/final-1.jpg",
+          "label": "Portrait Retouching"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/[id]/raw-2.jpg",
+          "after": "assets/images/projects/[id]/final-2.jpg",
+          "label": "Color Correction"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/[id]/raw-3.jpg",
+          "after": "assets/images/projects/[id]/final-3.jpg",
+          "label": "Background Replacement"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/[id]/raw-4.jpg",
+          "after": "assets/images/projects/[id]/final-4.jpg",
+          "label": "Composite Work"
+        }
+      ]
+    },
+
+    "example4_mixedMedia": {
+      "name": "Mixed Media Project",
+      "description": "Combination of all media types",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/[id]/hero.mp4",
+        "poster": "assets/images/projects/[id]/poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/[id]/before.mp4",
+          "after": "assets/videos/[id]/after.mp4",
+          "label": "VFX Comparison"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/concept-art.jpg",
+          "caption": "Concept Art"
+        },
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/process.mp4",
+          "caption": "Work Process"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/[id]/sketch.jpg",
+          "after": "assets/images/projects/[id]/final.jpg",
+          "label": "From Sketch to Final"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/behind-scenes.jpg",
+          "caption": "Behind the Scenes"
+        },
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/testimonial.mp4",
+          "caption": "Client Testimonial"
+        }
+      ]
+    },
+
+    "example5_minimal": {
+      "name": "Minimal Layout",
+      "description": "Single hero video with one process video",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/[id]/main.mp4",
+        "poster": "assets/images/projects/[id]/poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "video",
+          "src": "assets/videos/[id]/breakdown.mp4",
+          "poster": "assets/images/projects/[id]/breakdown-poster.jpg",
+          "caption": "Complete Breakdown"
+        }
+      ]
+    },
+
+    "example6_imageOnly": {
+      "name": "Image Gallery",
+      "description": "Pure image showcase without videos",
+      "heroMedia": {
+        "type": "image",
+        "src": "assets/images/projects/[id]/hero.jpg",
+        "alt": "Project Hero"
+      },
+      "processMedia": [
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/image-1.jpg",
+          "caption": "View 1"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/image-2.jpg",
+          "caption": "View 2"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/image-3.jpg",
+          "caption": "View 3"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/image-4.jpg",
+          "caption": "View 4"
+        },
+        {
+          "type": "image",
+          "src": "assets/images/projects/[id]/image-5.jpg",
+          "caption": "View 5"
+        }
+      ]
+    }
+  },
+
+  "mediaTypes": {
+    "video": {
+      "description": "Standard video player",
+      "requiredFields": ["src"],
+      "optionalFields": ["poster", "caption", "label"]
+    },
+    "image": {
+      "description": "Standard image display",
+      "requiredFields": ["src"],
+      "optionalFields": ["alt", "caption", "label"]
+    },
+    "before-after-video": {
+      "description": "Interactive before/after video comparison",
+      "requiredFields": ["before", "after"],
+      "optionalFields": ["label", "labelBefore", "labelAfter", "caption"]
+    },
+    "before-after-image": {
+      "description": "Interactive before/after image comparison",
+      "requiredFields": ["before", "after"],
+      "optionalFields": ["label", "labelBefore", "labelAfter", "caption"]
+    }
+  },
+
+  "layoutGuidelines": {
+    "1_item": "Full width, maximum impact",
+    "2_items": "Side by side on desktop, stacked on mobile",
+    "3_items": "Three columns on desktop, single column mobile",
+    "4_items": "2x2 grid on desktop, single column mobile",
+    "5_items": "2-2-1 layout on desktop",
+    "6_items": "3x2 or 2x3 grid depending on aspect ratio"
+  }
+}

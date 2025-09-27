@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{fullTitle}} - Miron Auslander Portfolio</title>
+    <meta name="description" content="{{metaDescription}}">
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="../assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="../assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/before-after.js" defer></script>
+
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Poppins';
+            src: url('../assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url('../assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('../assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        /* CSS Variables */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+        }
+
+        /* Navigation and logo elements */
+        .logo {
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu a {
+            font-family: var(--font-primary);
+        }
+
+        /* Project titles and headings */
+        h1, h2, h3, .project-subtitle {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .btn, button {
+            font-family: var(--font-primary);
+        }
+
+        /* Content descriptions use body font by default */
+        p, ul, li {
+            font-family: var(--font-body);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="../index.html" class="logo" aria-label="Homepage">Ma</a>
+
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="../index.html#home">Home</a></li>
+                <li><a href="../index.html#about">About</a></li>
+                <li><a href="../projects.html">Projects</a></li>
+                <li><a href="../index.html#skills">Skills & Links</a></li>
+                <li><a href="../index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="main">
+        <!-- Project Hero -->
+        <section class="project-hero" style="padding: 4rem 0;">
+            <div class="container">
+                <h1 style="margin-bottom: 3rem;">{{fullTitle}}</h1>
+
+                <!-- Project video/image -->
+                <div class="project-media">
+                    {{#if hasVideo}}
+                    <video controls loop disablePictureInPicture controlsList="nodownload" poster="../{{videoPoster}}">
+                        <source src="../{{mainVideo}}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {{else}}
+                    <img src="../{{heroImage}}" alt="{{fullTitle}}" loading="lazy">
+                    {{/if}}
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Details -->
+        <section class="project-details">
+            <div class="container">
+                <!-- PROJECT_INFO_START -->
+                <div class="project-info-grid">
+                    <div class="project-description">
+                        <h2>Project Overview</h2>
+                        <p>{{description}}</p>
+
+                        <h3>My Role</h3>
+                        <ul>
+                            {{#each role}}
+                            <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+
+                        <h3>Tools Used</h3>
+                        <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+                            {{#each tools}}
+                            <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">{{this}}</span>
+                            {{/each}}
+                        </div>
+                    </div>
+
+                    <div class="project-meta" style="background-color: #dddddd;">
+                        <div class="meta-item">
+                            <strong>Client:</strong> {{client}}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Duration:</strong> {{duration}}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Year:</strong> {{year}}
+                        </div>
+                        <div class="meta-item">
+                            <strong>Category:</strong> {{categoryDisplay}}
+                        </div>
+                    </div>
+                </div>
+                <!-- PROJECT_INFO_END -->
+
+                {{#if hasBeforeAfter}}
+                <!-- BEFORE_AFTER_SECTION_START -->
+                <!-- Additional project images -->
+                <div class="project-gallery">
+                    <h3>Process & Variations</h3>
+                    <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        {{#each beforeAfterMedia}}
+                        <div class="before-after-container"
+                             data-before="../{{this.before}}"
+                             data-after="../{{this.after}}"
+                             data-type="{{this.type}}"
+                             data-label-before="Before"
+                             data-label-after="After">
+                        </div>
+                        <div class="slider-tip">
+                            <span class="tip-icon">💡</span>
+                            <span class="tip-text">Hover or drag the slider to compare before and after</span>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+                <!-- BEFORE_AFTER_SECTION_END -->
+                {{/if}}
+            </div>
+        </section>
+
+        <!-- Related Projects -->
+        <section class="related-projects">
+            <div class="container">
+                <h2>Related Projects</h2>
+                <div class="projects-grid" style="max-width: 600px; margin: 0 auto;">
+                    {{#each relatedProjects}}
+                    <a href="Project-{{this.id}}.html" class="project-card" style="max-width: 250px;">
+                        <img src="../{{this.thumbnail}}" alt="{{this.displayTitle}}">
+                        <h3>{{this.displayTitle}}</h3>
+                    </a>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of Ai and Coffee ☕</p>
+            <div class="social-links" style="display: none;">
+                <!-- Hidden div to maintain structure for iPad landscape fix -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

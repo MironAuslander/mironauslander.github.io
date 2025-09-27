@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Project Editor - Visual Content Editor</title>
-    <link rel="stylesheet" href="css/tools.css">
-    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="css/tools.css?v=3">
+    <link rel="stylesheet" href="css/editor.css?v=3">
 </head>
 <body>
     <div class="app-container">
@@ -75,34 +78,29 @@
                         <fieldset>
                             <legend>Project Details</legend>
 
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="category">Category</label>
-                                    <select id="category" required>
-                                        <option value="">Select Category</option>
-                                        <option value="vfx">Visual Effects</option>
-                                        <option value="motion">Motion Graphics</option>
-                                        <option value="editing">Video Editing</option>
-                                        <option value="personal">Personal Project</option>
-                                    </select>
+                            <div class="form-group">
+                                <label>Categories <small>(Select all that apply)</small></label>
+                                <div id="categoryList" class="tag-selector">
+                                    <!-- Category tags will be generated -->
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="year">Year</label>
-                                    <input type="number" id="year" min="2020" max="2030" required>
-                                </div>
+                                <small style="color: var(--text-secondary); display: block; margin-top: 0.5rem;">Projects can belong to multiple categories for better discoverability</small>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="client">Client</label>
-                                    <input type="text" id="client" required>
+                                    <label for="year">Year</label>
+                                    <input type="number" id="year" min="2020" max="2030" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="duration">Duration</label>
-                                    <input type="text" id="duration" placeholder="e.g., 2 weeks, 3 months">
+                                    <label for="client">Client</label>
+                                    <input type="text" id="client" required>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <input type="text" id="duration" placeholder="e.g., 2 weeks, 3 months">
                             </div>
                         </fieldset>
 
@@ -127,53 +125,32 @@
                             </div>
                         </fieldset>
 
-                        <!-- Media Files -->
+                        <!-- Media Configuration Notice -->
                         <fieldset>
-                            <legend>Media Files</legend>
-
-                            <div class="form-group">
-                                <label for="mainVideo">Main Video Path</label>
-                                <input type="text" id="mainVideo" placeholder="assets/videos/1798/project-1798.mp4">
-                                <small>Path to main project video</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="videoPoster">Video Poster Path</label>
-                                <input type="text" id="videoPoster" placeholder="assets/images/projects/1798/1798-poster.jpg">
-                                <small>Poster image for video player</small>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Before/After Media</label>
-                                <div id="mediaList" class="media-list">
-                                    <!-- Media items will be generated -->
-                                </div>
-                                <button type="button" id="addMediaBtn" class="btn btn-secondary">+ Add Before/After</button>
+                            <legend>Media Configuration</legend>
+                            <div style="padding: 1rem; background: rgba(78, 205, 196, 0.1); border-radius: 8px; border: 1px solid rgba(78, 205, 196, 0.3);">
+                                <p style="margin: 0 0 0.5rem 0;">📸 Media layouts are now configured visually!</p>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">Use the <strong>Media Configurator</strong> tool to set up hero sections and process media blocks.</p>
+                                <a href="media-configurator.html" class="btn btn-secondary" style="margin-top: 1rem;">Open Media Configurator →</a>
                             </div>
                         </fieldset>
 
-                        <!-- Status -->
+                        <!-- Display Status -->
                         <fieldset>
-                            <legend>Display Settings</legend>
-
-                            <div class="form-group checkbox-group">
-                                <label>
-                                    <input type="checkbox" id="featured">
-                                    <span>⭐ Featured on Homepage</span>
-                                </label>
-                            </div>
-
-                            <div class="form-group" id="featuredOrderGroup" style="display: none;">
-                                <label for="featuredOrder">Featured Order</label>
-                                <input type="number" id="featuredOrder" min="1" max="6">
-                                <small>Position in featured section (1-6)</small>
-                            </div>
+                            <legend>Display Status</legend>
 
                             <div class="form-group checkbox-group">
                                 <label>
                                     <input type="checkbox" id="visible" checked>
                                     <span>👁️ Visible on Site</span>
                                 </label>
+                                <small style="display: block; margin-top: 0.5rem; color: var(--text-secondary);">Controls whether this project appears on the projects page</small>
+                            </div>
+
+                            <div style="margin-top: 1rem; padding: 1rem; background: rgba(255, 107, 107, 0.1); border-radius: 8px; border: 1px solid rgba(255, 107, 107, 0.3);">
+                                <p style="margin: 0 0 0.5rem 0;">⭐ Homepage featuring is managed visually!</p>
+                                <p style="margin: 0; font-size: 0.9rem; color: var(--text-secondary);">Use the <strong>Layout Manager</strong> to drag projects into the featured section.</p>
+                                <a href="project-manager.html" class="btn btn-secondary" style="margin-top: 1rem;">Open Layout Manager →</a>
                             </div>
                         </fieldset>
                     </form>
@@ -199,34 +176,9 @@
         <div id="statusMessage" class="status-message"></div>
     </div>
 
-    <!-- Media Item Template -->
-    <template id="mediaItemTemplate">
-        <div class="media-item" data-index="">
-            <div class="media-header">
-                <span class="media-label">Before/After Set #<span class="media-number"></span></span>
-                <button type="button" class="remove-media">✕</button>
-            </div>
-            <div class="media-inputs">
-                <div class="form-group">
-                    <label>Type</label>
-                    <select class="media-type">
-                        <option value="video">Video</option>
-                        <option value="image">Image</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Before Path</label>
-                    <input type="text" class="media-before" placeholder="assets/videos/1798/1798-before-1.mp4">
-                </div>
-                <div class="form-group">
-                    <label>After Path</label>
-                    <input type="text" class="media-after" placeholder="assets/videos/1798/1798-after-1.mp4">
-                </div>
-            </div>
-        </div>
-    </template>
+    <!-- Removed Media Item Template - Now handled by Media Configurator -->
 
-    <script src="js/utils.js"></script>
-    <script src="js/editor.js"></script>
+    <script src="js/utils.js?v=3"></script>
+    <script src="js/editor.js?v=3"></script>
 </body>
 </html>

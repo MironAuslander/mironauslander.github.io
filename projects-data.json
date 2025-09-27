@@ -3,19 +3,20 @@
     {
       "id": "1798",
       "displayTitle": "Big Brother",
-      "fullTitle": "Big Brother Israel",
-      "category": "personal",
-      "client": "Reshet TV",
-      "year": "2025",
-      "duration": "3 weeks",
-      "description": "Created the official logo and branding identity for Big Brother Israel 2025. The design captures the show's iconic surveillance theme while incorporating modern Hebrew typography and contemporary visual elements that resonate with Israeli audiences.",
+      "fullTitle": "Big Brother | האח הגדול",
+      "category": "vfx",
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
       "role": [
-        "Concept Development",
-        "Logo Design",
-        "Motion Graphics",
-        "Brand Guidelines"
+        "Compositing",
+        "Motion Tracking"
       ],
-      "tools": ["After Effects", "Illustrator", "Photoshop", "Cinema 4D"],
+      "tools": [
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": true,
       "featuredOrder": 1,
       "projectsPageOrder": 1,
@@ -28,39 +29,65 @@
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-1.mp4",
-          "after": "assets/videos/1798/1798-after-1.mp4",
-          "label": "Process & Variations"
+          "after": "assets/videos/1798/1798-after-1.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-2.mp4",
-          "after": "assets/videos/1798/1798-after-2.mp4",
-          "label": "Concept Evolution"
+          "after": "assets/videos/1798/1798-after-2.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-3.mp4",
-          "after": "assets/videos/1798/1798-after-3.mp4",
-          "label": "Final Refinements"
+          "after": "assets/videos/1798/1798-after-3.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1798/project-1798.mp4",
+        "poster": "assets/images/projects/1798/1798-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-1.mp4",
+          "after": "assets/videos/1798/1798-after-1.mp4",
+          "label": "Screen Replacement"
+        },
+        {
+          "type": "video",
+          "src": "assets/videos/1798/1798-breakdown.mp4",
+          "poster": "assets/images/projects/1798/1798-breakdown-poster.jpg",
+          "caption": "VFX Breakdown"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-2.mp4",
+          "after": "assets/videos/1798/1798-after-2.mp4",
+          "label": "Color Grading"
         }
       ]
     },
     {
       "id": "1238",
-      "displayTitle": "Project B Title",
-      "fullTitle": "Project B - Full Title",
+      "displayTitle": "8200",
+      "fullTitle": "רוח-צפונית | 8200",
       "category": "vfx",
       "client": "Client Name",
-      "year": "2024",
+      "year": 2024,
       "duration": "2 months",
-      "description": "Visual effects and compositing work for a major production. Involved complex green screen work, motion tracking, and seamless integration of CGI elements with live action footage.",
+      "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
       "role": [
-        "VFX Supervision",
-        "Compositing",
-        "Motion Tracking",
-        "Color Grading"
+        "Motion Graphics",
+        "Compositing Lead"
       ],
-      "tools": ["After Effects", "Nuke", "Mocha", "DaVinci Resolve"],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Illustrator",
+        "Cinema 4D",
+        "Redshift"
+      ],
       "featured": true,
       "featuredOrder": 2,
       "projectsPageOrder": 2,
@@ -74,16 +101,21 @@
           "type": "video",
           "before": "assets/videos/1238/1238-before-1.mp4",
           "after": "assets/videos/1238/1238-after-1.mp4"
-        },
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1238/project-1238.mp4",
+        "poster": "assets/images/projects/1238/1238-poster.jpg"
+      },
+      "processMedia": [
         {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-2.mp4",
-          "after": "assets/videos/1238/1238-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-3.mp4",
-          "after": "assets/videos/1238/1238-after-3.mp4"
+          "type": "before-after-video",
+          "before": "assets/videos/1238/1238-before-1.mp4",
+          "after": "assets/videos/1238/1238-after-1.mp4",
+          "label": "UI Animation Compositing",
+          "labelBefore": "Before",
+          "labelAfter": "After"
         }
       ]
     },
@@ -102,7 +134,11 @@
         "Typography",
         "Art Direction"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Illustrator"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator"
+      ],
       "featured": true,
       "featuredOrder": 3,
       "projectsPageOrder": 3,
@@ -127,24 +163,57 @@
           "before": "assets/videos/1537/1537-before-3.mp4",
           "after": "assets/videos/1537/1537-after-3.mp4"
         }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1537/project-1537.mp4",
+        "poster": "assets/images/projects/1537/1537-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-1.mp4",
+          "after": "assets/videos/1537/1537-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-2.mp4",
+          "after": "assets/videos/1537/1537-after-2.mp4",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-3.mp4",
+          "after": "assets/videos/1537/1537-after-3.mp4",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
       ]
     },
     {
       "id": "1654",
       "displayTitle": "Personetics",
-      "fullTitle": "Personetics",
-      "category": "vfx",
-      "client": "Client Name",
-      "year": "2024",
-      "duration": "2 months",
-      "description": "Comprehensive visual effects work including particle simulations, digital environments, and character enhancements for a feature film production.",
+      "fullTitle": "Personetics.com",
+      "category": "motion",
+      "client": "Personetics Technologies LTD",
+      "year": 2024,
+      "duration": "4 weeks",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds :)",
       "role": [
-        "VFX Artist",
-        "3D Modeling",
-        "Particle Effects",
+        "Motion Graphics",
         "Rendering"
       ],
-      "tools": ["Houdini", "Maya", "After Effects", "Redshift"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Redshift"
+      ],
       "featured": true,
       "featuredOrder": 4,
       "projectsPageOrder": 4,
@@ -169,6 +238,37 @@
           "before": "assets/images/projects/1654/1654-before-3.webp",
           "after": "assets/images/projects/1654/1654-after-3.webp"
         }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1654/project-1654.mp4",
+        "poster": "assets/images/projects/1654/1654-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-1.webp",
+          "after": "assets/images/projects/1654/1654-after-1.webp",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-2.webp",
+          "after": "assets/images/projects/1654/1654-after-2.webp",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-3.webp",
+          "after": "assets/images/projects/1654/1654-after-3.webp",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
       ]
     },
     {
@@ -186,7 +286,11 @@
         "Audio Mixing",
         "Format Optimization"
       ],
-      "tools": ["Premiere Pro", "DaVinci Resolve", "Audition"],
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Audition"
+      ],
       "featured": true,
       "featuredOrder": 5,
       "projectsPageOrder": 5,
@@ -211,6 +315,37 @@
           "before": "assets/videos/1270/1270-before-3.mp4",
           "after": "assets/videos/1270/1270-after-3.mp4"
         }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1270/project-1270.mp4",
+        "poster": "assets/images/projects/1270/1270-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-1.mp4",
+          "after": "assets/videos/1270/1270-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-2.mp4",
+          "after": "assets/videos/1270/1270-after-2.mp4",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-3.mp4",
+          "after": "assets/videos/1270/1270-after-3.mp4",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
       ]
     },
     {
@@ -228,7 +363,12 @@
         "Character Animation",
         "Sound Design"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Illustrator", "Audition"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator",
+        "Audition"
+      ],
       "featured": true,
       "featuredOrder": 6,
       "projectsPageOrder": 6,
@@ -253,6 +393,37 @@
           "before": "assets/videos/1711/1711-before-3.mp4",
           "after": "assets/videos/1711/1711-after-3.mp4"
         }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1711/project-1711.mp4",
+        "poster": "assets/images/projects/1711/1711-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1711/1711-before-1.mp4",
+          "after": "assets/videos/1711/1711-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1711/1711-before-2.mp4",
+          "after": "assets/videos/1711/1711-after-2.mp4",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1711/1711-before-3.mp4",
+          "after": "assets/videos/1711/1711-after-3.mp4",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
       ]
     },
     {
@@ -270,7 +441,11 @@
         "Brand Animation",
         "Social Media Assets"
       ],
-      "tools": ["After Effects", "Premiere Pro", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 7,
       "projectsPageOrder": 7,
@@ -279,7 +454,13 @@
       "heroImage": "assets/images/projects/1353/1353.webp",
       "mainVideo": "assets/videos/1353/project-1353.mp4",
       "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1353/project-1353.mp4",
+        "poster": "assets/images/projects/1353/1353-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1003",
@@ -296,7 +477,11 @@
         "Color Grading",
         "Creative Finishing"
       ],
-      "tools": ["After Effects", "DaVinci Resolve", "Mocha"],
+      "tools": [
+        "After Effects",
+        "DaVinci Resolve",
+        "Mocha"
+      ],
       "featured": false,
       "featuredOrder": 8,
       "projectsPageOrder": 8,
@@ -305,7 +490,13 @@
       "heroImage": "assets/images/projects/1003/1003.webp",
       "mainVideo": "assets/videos/1003/project-1003.mp4",
       "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1003/project-1003.mp4",
+        "poster": "assets/images/projects/1003/1003-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1004",
@@ -322,7 +513,11 @@
         "Animation",
         "Template Creation"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 9,
       "projectsPageOrder": 9,
@@ -331,7 +526,13 @@
       "heroImage": "assets/images/projects/1004/1004.webp",
       "mainVideo": "assets/videos/1004/project-1004.mp4",
       "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1004/project-1004.mp4",
+        "poster": "assets/images/projects/1004/1004-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1699",
@@ -348,7 +549,11 @@
         "Visual Enhancement",
         "Title Design"
       ],
-      "tools": ["DaVinci Resolve", "After Effects", "Premiere Pro"],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
       "featured": false,
       "featuredOrder": 10,
       "projectsPageOrder": 10,
@@ -357,7 +562,13 @@
       "heroImage": "assets/images/projects/1699/1699.webp",
       "mainVideo": "assets/videos/1699/project-1699.mp4",
       "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1699/project-1699.mp4",
+        "poster": "assets/images/projects/1699/1699-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1661",
@@ -374,7 +585,12 @@
         "Guidelines Development",
         "Template Creation"
       ],
-      "tools": ["After Effects", "Illustrator", "Photoshop", "InDesign"],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Photoshop",
+        "InDesign"
+      ],
       "featured": false,
       "featuredOrder": 11,
       "projectsPageOrder": 11,
@@ -383,7 +599,13 @@
       "heroImage": "assets/images/projects/1661/1661.webp",
       "mainVideo": "assets/videos/1661/project-1661.mp4",
       "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1661/project-1661.mp4",
+        "poster": "assets/images/projects/1661/1661-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1528",
@@ -400,7 +622,11 @@
         "Typography",
         "Compositing"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 12,
       "projectsPageOrder": 12,
@@ -409,7 +635,13 @@
       "heroImage": "assets/images/projects/1528/1528.webp",
       "mainVideo": "assets/videos/1528/project-1528.mp4",
       "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1528/project-1528.mp4",
+        "poster": "assets/images/projects/1528/1528-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1470",
@@ -426,7 +658,12 @@
         "Technical Direction",
         "User Experience"
       ],
-      "tools": ["After Effects", "TouchDesigner", "Processing", "Cinema 4D"],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Processing",
+        "Cinema 4D"
+      ],
       "featured": false,
       "featuredOrder": 13,
       "projectsPageOrder": 13,
@@ -435,7 +672,13 @@
       "heroImage": "assets/images/projects/1470/1470.webp",
       "mainVideo": "assets/videos/1470/project-1470.mp4",
       "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1470/project-1470.mp4",
+        "poster": "assets/images/projects/1470/1470-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1828",
@@ -452,7 +695,12 @@
         "Motion Graphics",
         "Campaign Assets"
       ],
-      "tools": ["Cinema 4D", "Octane", "After Effects", "Photoshop"],
+      "tools": [
+        "Cinema 4D",
+        "Octane",
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 14,
       "projectsPageOrder": 14,
@@ -461,7 +709,13 @@
       "heroImage": "assets/images/projects/1828/1828.webp",
       "mainVideo": "assets/videos/1828/project-1828.mp4",
       "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1828/project-1828.mp4",
+        "poster": "assets/images/projects/1828/1828-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1160",
@@ -478,7 +732,12 @@
         "Animation Systems",
         "Real-time Graphics"
       ],
-      "tools": ["After Effects", "Vizrt", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Vizrt",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 15,
       "projectsPageOrder": 15,
@@ -487,7 +746,13 @@
       "heroImage": "assets/images/projects/1160/1160.webp",
       "mainVideo": "assets/videos/1160/project-1160.mp4",
       "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1160/project-1160.mp4",
+        "poster": "assets/images/projects/1160/1160-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1336",
@@ -504,7 +769,12 @@
         "Live Graphics",
         "Template Systems"
       ],
-      "tools": ["After Effects", "Premiere Pro", "OBS", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "OBS",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 16,
       "projectsPageOrder": 16,
@@ -513,7 +783,13 @@
       "heroImage": "assets/images/projects/1336/1336.webp",
       "mainVideo": "assets/videos/1336/project-1336.mp4",
       "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1336/project-1336.mp4",
+        "poster": "assets/images/projects/1336/1336-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1092",
@@ -530,7 +806,11 @@
         "Visual Effects",
         "Editorial"
       ],
-      "tools": ["DaVinci Resolve", "After Effects", "Premiere Pro"],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
       "featured": false,
       "featuredOrder": 17,
       "projectsPageOrder": 17,
@@ -539,7 +819,13 @@
       "heroImage": "assets/images/projects/1092/1092.webp",
       "mainVideo": "assets/videos/1092/project-1092.mp4",
       "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1092/project-1092.mp4",
+        "poster": "assets/images/projects/1092/1092-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1509",
@@ -556,7 +842,12 @@
         "Lighting & Rendering",
         "Compositing"
       ],
-      "tools": ["Unreal Engine", "Maya", "Houdini", "Nuke"],
+      "tools": [
+        "Unreal Engine",
+        "Maya",
+        "Houdini",
+        "Nuke"
+      ],
       "featured": false,
       "featuredOrder": 18,
       "projectsPageOrder": 18,
@@ -565,7 +856,13 @@
       "heroImage": "assets/images/projects/1509/1509.webp",
       "mainVideo": "assets/videos/1509/project-1509.mp4",
       "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1509/project-1509.mp4",
+        "poster": "assets/images/projects/1509/1509-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1029",
@@ -582,7 +879,12 @@
         "Lighting Artist",
         "Animation"
       ],
-      "tools": ["3ds Max", "Corona", "After Effects", "Photoshop"],
+      "tools": [
+        "3ds Max",
+        "Corona",
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 19,
       "projectsPageOrder": 19,
@@ -591,7 +893,13 @@
       "heroImage": "assets/images/projects/1029/1029.webp",
       "mainVideo": "assets/videos/1029/project-1029.mp4",
       "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1029/project-1029.mp4",
+        "poster": "assets/images/projects/1029/1029-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1459",
@@ -608,7 +916,12 @@
         "Platform Optimization",
         "Campaign Strategy"
       ],
-      "tools": ["After Effects", "Premiere Pro", "Photoshop", "Spark AR"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Spark AR"
+      ],
       "featured": false,
       "featuredOrder": 20,
       "projectsPageOrder": 20,
@@ -617,7 +930,13 @@
       "heroImage": "assets/images/projects/1459/1459.webp",
       "mainVideo": "assets/videos/1459/project-1459.mp4",
       "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1459/project-1459.mp4",
+        "poster": "assets/images/projects/1459/1459-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1584",
@@ -634,7 +953,12 @@
         "Storyboarding",
         "Voice Direction"
       ],
-      "tools": ["After Effects", "Illustrator", "Audition", "Character Animator"],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Audition",
+        "Character Animator"
+      ],
       "featured": false,
       "featuredOrder": 21,
       "projectsPageOrder": 21,
@@ -643,7 +967,13 @@
       "heroImage": "assets/images/projects/1584/1584.webp",
       "mainVideo": "assets/videos/1584/project-1584.mp4",
       "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1584/project-1584.mp4",
+        "poster": "assets/images/projects/1584/1584-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1292",
@@ -660,7 +990,12 @@
         "Projection Mapping",
         "Content Creation"
       ],
-      "tools": ["Notch", "TouchDesigner", "After Effects", "Resolume"],
+      "tools": [
+        "Notch",
+        "TouchDesigner",
+        "After Effects",
+        "Resolume"
+      ],
       "featured": false,
       "featuredOrder": 22,
       "projectsPageOrder": 22,
@@ -669,7 +1004,13 @@
       "heroImage": "assets/images/projects/1292/1292.webp",
       "mainVideo": "assets/videos/1292/project-1292.mp4",
       "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1292/project-1292.mp4",
+        "poster": "assets/images/projects/1292/1292-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1626",
@@ -686,7 +1027,12 @@
         "Data Design",
         "Technical Accuracy"
       ],
-      "tools": ["Cinema 4D", "After Effects", "Houdini", "Redshift"],
+      "tools": [
+        "Cinema 4D",
+        "After Effects",
+        "Houdini",
+        "Redshift"
+      ],
       "featured": false,
       "featuredOrder": 23,
       "projectsPageOrder": 23,
@@ -695,7 +1041,13 @@
       "heroImage": "assets/images/projects/1626/1626.webp",
       "mainVideo": "assets/videos/1626/project-1626.mp4",
       "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1626/project-1626.mp4",
+        "poster": "assets/images/projects/1626/1626-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1582",
@@ -712,7 +1064,12 @@
         "Environment Design",
         "Compositing"
       ],
-      "tools": ["Maya", "V-Ray", "Nuke", "After Effects"],
+      "tools": [
+        "Maya",
+        "V-Ray",
+        "Nuke",
+        "After Effects"
+      ],
       "featured": false,
       "featuredOrder": 24,
       "projectsPageOrder": 24,
@@ -721,7 +1078,13 @@
       "heroImage": "assets/images/projects/1582/1582.webp",
       "mainVideo": "assets/videos/1582/project-1582.mp4",
       "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1582/project-1582.mp4",
+        "poster": "assets/images/projects/1582/1582-poster.jpg"
+      },
+      "processMedia": []
     },
     {
       "id": "1453",
@@ -738,7 +1101,12 @@
         "Historical Recreation",
         "Visitor Experience"
       ],
-      "tools": ["After Effects", "TouchDesigner", "Unity", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Unity",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 25,
       "projectsPageOrder": 25,
@@ -747,18 +1115,29 @@
       "heroImage": "assets/images/projects/1453/1453.webp",
       "mainVideo": "assets/videos/1453/project-1453.mp4",
       "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1453/project-1453.mp4",
+        "poster": "assets/images/projects/1453/1453-poster.jpg"
+      },
+      "processMedia": []
     }
   ],
   "metadata": {
-    "version": "2.0",
+    "version": "3.0",
     "lastUpdated": "2024-09-26",
     "totalProjects": 25,
     "featuredCount": 6,
     "dataStructure": {
-      "mediaTypes": ["video", "image"],
+      "mediaTypes": [
+        "video",
+        "image"
+      ],
       "beforeAfterSupport": true,
       "dynamicContent": true
-    }
+    },
+    "lastMigration": "2025-09-27T17:48:45.568Z",
+    "format": "advanced"
   }
 }

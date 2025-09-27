@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Configurator - Visual Layout Designer</title>
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/media-configurator.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1>🎬 Visual Media Configurator</h1>
+                <div class="header-actions">
+                    <button id="saveBtn" class="btn btn-primary">💾 Save Configuration</button>
+                    <button id="generateBtn" class="btn btn-success">🚀 Generate Page</button>
+                    <button id="previewBtn" class="btn btn-secondary">👁️ Preview</button>
+                    <a href="index.html" class="btn btn-link">← Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="configurator-main">
+            <!-- Left Panel: Project Selector -->
+            <aside class="project-selector-panel">
+                <div class="panel-header">
+                    <h2>Select Project</h2>
+                    <input type="text" id="searchProject" placeholder="🔍 Search..." class="search-input">
+                </div>
+                <div id="projectGrid" class="project-grid">
+                    <!-- Project cards will be inserted here -->
+                </div>
+            </aside>
+
+            <!-- Center Panel: Media Configuration -->
+            <section class="media-config-panel">
+                <div class="panel-header">
+                    <h2>Configure Media: <span id="currentProject">No Project Selected</span></h2>
+                </div>
+
+                <div class="config-sections">
+                    <!-- Hero Section -->
+                    <div class="config-section hero-section">
+                        <h3>📸 Hero Section</h3>
+                        <div class="hero-type-selector">
+                            <label class="radio-card">
+                                <input type="radio" name="heroType" value="video" checked>
+                                <div class="radio-card-content">
+                                    <span class="icon">🎬</span>
+                                    <span>Video</span>
+                                </div>
+                            </label>
+                            <label class="radio-card">
+                                <input type="radio" name="heroType" value="image">
+                                <div class="radio-card-content">
+                                    <span class="icon">🖼️</span>
+                                    <span>Image</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="heroVideoConfig" class="hero-config">
+                            <div class="form-group">
+                                <label>Video Path</label>
+                                <input type="text" id="heroVideoSrc" placeholder="assets/videos/[id]/project-[id].mp4">
+                            </div>
+                            <div class="form-group">
+                                <label>Poster Image</label>
+                                <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/poster.jpg">
+                            </div>
+                        </div>
+
+                        <div id="heroImageConfig" class="hero-config" style="display: none;">
+                            <div class="form-group">
+                                <label>Image Path</label>
+                                <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/hero.jpg">
+                            </div>
+                            <div class="form-group">
+                                <label>Alt Text</label>
+                                <input type="text" id="heroImageAlt" placeholder="Description of image">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Process Section -->
+                    <div class="config-section process-section">
+                        <h3>🎨 Process & Variations</h3>
+                        <p class="section-info">Add 1-6 media blocks. Drag to reorder.</p>
+
+                        <!-- Media Type Palette -->
+                        <div class="media-type-palette">
+                            <div class="media-type-card" data-type="video">
+                                <span class="icon">🎬</span>
+                                <span>Video</span>
+                            </div>
+                            <div class="media-type-card" data-type="image">
+                                <span class="icon">🖼️</span>
+                                <span>Image</span>
+                            </div>
+                            <div class="media-type-card" data-type="before-after-video">
+                                <span class="icon">🎬↔️</span>
+                                <span>Before/After Video</span>
+                            </div>
+                            <div class="media-type-card" data-type="before-after-image">
+                                <span class="icon">🖼️↔️</span>
+                                <span>Before/After Image</span>
+                            </div>
+                        </div>
+
+                        <!-- Process Media Blocks -->
+                        <div id="processMediaBlocks" class="process-media-blocks">
+                            <div class="empty-state">
+                                <p>Drag media types here or click to add</p>
+                                <button id="addMediaBtn" class="btn btn-secondary">+ Add Media Block</button>
+                            </div>
+                        </div>
+
+                        <!-- Grid Layout Preview -->
+                        <div class="grid-preview">
+                            <h4>Layout Preview</h4>
+                            <div id="gridPreview" class="grid-preview-container">
+                                <!-- Grid preview will be shown here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Live Preview -->
+            <aside class="preview-panel">
+                <div class="panel-header">
+                    <h2>Live Preview</h2>
+                    <div class="preview-controls">
+                        <button class="preview-btn active" data-device="desktop">💻</button>
+                        <button class="preview-btn" data-device="tablet">📱</button>
+                        <button class="preview-btn" data-device="mobile">📱</button>
+                    </div>
+                </div>
+                <div id="previewContainer" class="preview-container desktop">
+                    <div class="preview-placeholder">
+                        <p>Select a project and configure media to see preview</p>
+                    </div>
+                </div>
+            </aside>
+        </main>
+
+        <!-- Status Messages -->
+        <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <!-- Media Block Template -->
+    <template id="mediaBlockTemplate">
+        <div class="media-block" data-type="" data-index="">
+            <div class="block-header">
+                <span class="block-icon"></span>
+                <span class="block-title">Media Block #<span class="block-number"></span></span>
+                <div class="block-actions">
+                    <button class="btn-icon settings-btn" title="Settings">⚙️</button>
+                    <button class="btn-icon remove-btn" title="Remove">🗑️</button>
+                </div>
+            </div>
+            <div class="block-preview">
+                <!-- Visual representation based on type -->
+            </div>
+            <div class="block-config" style="display: none;">
+                <!-- Configuration fields based on type -->
+            </div>
+        </div>
+    </template>
+
+    <!-- Media Settings Modal -->
+    <div id="mediaSettingsModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Media Block Settings</h3>
+                <button class="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <!-- Settings form will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary modal-cancel">Cancel</button>
+                <button class="btn btn-primary modal-save">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/media-configurator.js"></script>
+</body>
+</html>

@@ -5,6 +5,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 Professional portfolio website for **Miron Auslander**, a Visual Effects & Motion Graphics Creative. Built as a high-performance static site hosted on GitHub Pages with automatic deployment, focusing on showcasing visual work for TV, Films, and Digital Media.
 
+## Project Management System
+This project uses an **advanced template-based generation system** for project pages:
+
+### Core Components
+- **Data Source**: `projects-data.json` with flexible media configurations
+- **Templates**:
+  - `templates/project-page.html` - Basic template
+  - `templates/project-page-advanced.html` - Advanced flexible media template
+- **Generators**:
+  - `scripts/generate-project-pages.js` - Basic generator
+  - `scripts/generate-project-pages-advanced.js` - Advanced generator with media handlers
+- **Migration**: `scripts/migrate-to-advanced.js` - Convert to new format
+- **Validation**: `scripts/validate-projects.js` - Check for missing files/issues
+- **Visual Tools**: `tools/project-manager.html` - Drag-drop project organization
+- **Examples**: `templates/media-examples.json` - Media configuration examples
+
+### Media Configuration Options
+Each project supports customizable media layouts:
+- **Hero Section**: Video (with poster) OR Image
+- **Process Section**: 1-6 media blocks, each can be:
+  - Standard video player
+  - Standard image
+  - Before/after video comparison widget
+  - Before/after image comparison widget
+
 ## Commands
 
 ### Local Development
@@ -36,6 +61,24 @@ lighthouse http://localhost:8000 --view
 # DevTools > Lighthouse > Accessibility
 ```
 
+### Project Updates
+```bash
+# Update all project pages from projects-data.json
+node scripts/run-all-updates.js
+
+# Generate with basic template
+node scripts/generate-project-pages.js 1238
+
+# Generate with advanced template (flexible media)
+node scripts/generate-project-pages-advanced.js 1238
+
+# Migrate data to advanced format
+node scripts/migrate-to-advanced.js
+
+# Validate all projects (check for missing files)
+node scripts/validate-projects.js
+```
+
 ### Deployment
 ```bash
 # GitHub Pages deploys automatically on push to main branch
@@ -43,11 +86,11 @@ git add .
 git commit -m "commit message"
 git push origin main
 
-# Site available at: https://mironauslander.github.io
+# Site available at: https://mironauslander.com
 ```
 
 ## Quick Reference
-- **Live Site**: https://mironauslander.github.io
+- **Live Site**: https://mironauslander.com
 - **Tech Stack**: Vanilla HTML/CSS/JS (no frameworks, no build process)
 - **Deployment**: Automatic via GitHub Pages (`.nojekyll` disables Jekyll)
 - **Performance Target**: Lighthouse scores >90 all categories
@@ -55,22 +98,19 @@ git push origin main
 ## Architecture
 
 ### Navigation Flow
-- **Homepage (index.html)**: Single-page with hero, about, featured projects, skills/links, contact sections
-- **Projects Page (projects.html)**: Full portfolio grid with all projects
+- **Homepage (index.html)**: Single-page with hero, about, 6 featured projects, skills/links, contact sections
+- **Projects Page (projects.html)**: Full portfolio grid displaying all 25 projects with filter tagging
 - **Individual Projects (projects/Project-XXXX.html)**: Detailed project showcases
 - **Skills Page (skills.html)**: Technical skills breakdown
 - **Links Page (links.html)**: Professional resources and inspirations
 - **404 Page (404.html)**: Custom error page
 
 ### Project Files (projects/)
-- Project-1238.html - Individual project showcase
-- Project-1270.html - Individual project showcase
-- Project-1537.html - Individual project showcase
-- Project-1654.html - Individual project showcase
-- Project-1711.html - Individual project showcase
-- Project-1798.html - Individual project showcase
+25 individual project showcase pages (Project-XXXX.html format)
 
-### JavaScript Architecture (assets/js/main.js)
+### JavaScript Architecture
+- **main.js**: Core site functionality (navigation, smooth scroll)
+- **before-after.js**: Interactive before/after comparison widgets
 - **MobileNav**: Hamburger menu functionality for mobile devices
 - **ContactForm**: Form validation and submission handling
 - **SmoothScroll**: Smooth scrolling to page sections

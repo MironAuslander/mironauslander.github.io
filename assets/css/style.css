@@ -765,7 +765,7 @@ body {
     overflow: hidden;
     aspect-ratio: 16/9;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
 }
 
@@ -786,11 +786,10 @@ body {
     position: relative;
     z-index: 2;
     padding: 0.8rem 1.5rem;
-    text-shadow: 
+    text-shadow:
         2px 2px 4px rgba(0, 0, 0, 0.9),
         -1px -1px 3px rgba(0, 0, 0, 0.5),
         0 0 10px rgba(0, 0, 0, 0.8);
-    margin-bottom: 1rem;
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.3s ease;

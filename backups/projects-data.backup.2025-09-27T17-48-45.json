@@ -1,0 +1,863 @@
+{
+  "projects": [
+    {
+      "id": "1798",
+      "displayTitle": "Big Brother",
+      "fullTitle": "Big Brother | האח הגדול",
+      "category": "vfx",
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
+      "role": [
+        "Compositing",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": true,
+      "featuredOrder": 1,
+      "projectsPageOrder": 1,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
+      "heroImage": "assets/images/projects/1798/1798.webp",
+      "mainVideo": "assets/videos/1798/project-1798.mp4",
+      "videoPoster": "assets/images/projects/1798/1798-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-1.mp4",
+          "after": "assets/videos/1798/1798-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-2.mp4",
+          "after": "assets/videos/1798/1798-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-3.mp4",
+          "after": "assets/videos/1798/1798-after-3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "1238",
+      "displayTitle": "8200",
+      "fullTitle": "רוח-צפונית | 8200",
+      "category": "vfx",
+      "client": "Client Name",
+      "year": 2024,
+      "duration": "2 months",
+      "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
+      "role": [
+        "Motion Graphics",
+        "Compositing Lead"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Illustrator",
+        "Cinema 4D",
+        "Redshift"
+      ],
+      "featured": true,
+      "featuredOrder": 2,
+      "projectsPageOrder": 2,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
+      "heroImage": "assets/images/projects/1238/1238.webp",
+      "mainVideo": "assets/videos/1238/project-1238.mp4",
+      "videoPoster": "assets/images/projects/1238/1238-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1238/1238-before-1.mp4",
+          "after": "assets/videos/1238/1238-after-1.mp4"
+        }
+      ]
+    },
+    {
+      "id": "1537",
+      "displayTitle": "Project C Title",
+      "fullTitle": "Project C - Full Title",
+      "category": "motion",
+      "client": "Client Name",
+      "year": "2024",
+      "duration": "1 month",
+      "description": "Motion graphics package for broadcast television. Created animated transitions, lower thirds, and title sequences that enhanced the visual storytelling.",
+      "role": [
+        "Motion Design",
+        "Animation",
+        "Typography",
+        "Art Direction"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator"
+      ],
+      "featured": true,
+      "featuredOrder": 3,
+      "projectsPageOrder": 3,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
+      "heroImage": "assets/images/projects/1537/1537.webp",
+      "mainVideo": "assets/videos/1537/project-1537.mp4",
+      "videoPoster": "assets/images/projects/1537/1537-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-1.mp4",
+          "after": "assets/videos/1537/1537-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-2.mp4",
+          "after": "assets/videos/1537/1537-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-3.mp4",
+          "after": "assets/videos/1537/1537-after-3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "1654",
+      "displayTitle": "Personetics",
+      "fullTitle": "Personetics.com",
+      "category": "motion",
+      "client": "Personetics Technologies LTD",
+      "year": 2024,
+      "duration": "4 weeks",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds :)",
+      "role": [
+        "Motion Graphics",
+        "Rendering"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Redshift"
+      ],
+      "featured": true,
+      "featuredOrder": 4,
+      "projectsPageOrder": 4,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
+      "heroImage": "assets/images/projects/1654/1654.webp",
+      "mainVideo": "assets/videos/1654/project-1654.mp4",
+      "videoPoster": "assets/images/projects/1654/1654-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-1.webp",
+          "after": "assets/images/projects/1654/1654-after-1.webp"
+        },
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-2.webp",
+          "after": "assets/images/projects/1654/1654-after-2.webp"
+        },
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-3.webp",
+          "after": "assets/images/projects/1654/1654-after-3.webp"
+        }
+      ]
+    },
+    {
+      "id": "1270",
+      "displayTitle": "Project E Title",
+      "fullTitle": "Project E - Full Title",
+      "category": "editing",
+      "client": "Client Name",
+      "year": "2024",
+      "duration": "2 weeks",
+      "description": "Fast-paced editing project for commercial content. Delivered multiple versions optimized for different platforms and audiences.",
+      "role": [
+        "Video Editing",
+        "Color Correction",
+        "Audio Mixing",
+        "Format Optimization"
+      ],
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Audition"
+      ],
+      "featured": true,
+      "featuredOrder": 5,
+      "projectsPageOrder": 5,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
+      "heroImage": "assets/images/projects/1270/1270.webp",
+      "mainVideo": "assets/videos/1270/project-1270.mp4",
+      "videoPoster": "assets/images/projects/1270/1270-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-1.mp4",
+          "after": "assets/videos/1270/1270-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-2.mp4",
+          "after": "assets/videos/1270/1270-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-3.mp4",
+          "after": "assets/videos/1270/1270-after-3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "1711",
+      "displayTitle": "Project F Title",
+      "fullTitle": "Project F - Full Title",
+      "category": "motion",
+      "client": "Client Name",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "Animated explainer video series combining 2D and 3D elements. Created engaging visual narratives that simplified complex concepts.",
+      "role": [
+        "Animation Director",
+        "Storyboarding",
+        "Character Animation",
+        "Sound Design"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator",
+        "Audition"
+      ],
+      "featured": true,
+      "featuredOrder": 6,
+      "projectsPageOrder": 6,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1711/1711-thumb.webp",
+      "heroImage": "assets/images/projects/1711/1711.webp",
+      "mainVideo": "assets/videos/1711/project-1711.mp4",
+      "videoPoster": "assets/images/projects/1711/1711-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-1.mp4",
+          "after": "assets/videos/1711/1711-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-2.mp4",
+          "after": "assets/videos/1711/1711-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-3.mp4",
+          "after": "assets/videos/1711/1711-after-3.mp4"
+        }
+      ]
+    },
+    {
+      "id": "1353",
+      "displayTitle": "Digital Brand Campaign",
+      "fullTitle": "Digital Brand Campaign - Interactive Experience",
+      "category": "motion",
+      "client": "Tech Startup",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Comprehensive digital brand campaign featuring animated content for web and social media platforms.",
+      "role": [
+        "Creative Direction",
+        "Motion Design",
+        "Brand Animation",
+        "Social Media Assets"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 7,
+      "projectsPageOrder": 7,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
+      "heroImage": "assets/images/projects/1353/1353.webp",
+      "mainVideo": "assets/videos/1353/project-1353.mp4",
+      "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1003",
+      "displayTitle": "Music Video Production",
+      "fullTitle": "Music Video - Artist Name",
+      "category": "vfx",
+      "client": "Record Label",
+      "year": "2024",
+      "duration": "3 weeks",
+      "description": "Visual effects and post-production for a high-energy music video featuring complex compositing and color grading.",
+      "role": [
+        "VFX Supervisor",
+        "Compositing",
+        "Color Grading",
+        "Creative Finishing"
+      ],
+      "tools": [
+        "After Effects",
+        "DaVinci Resolve",
+        "Mocha"
+      ],
+      "featured": false,
+      "featuredOrder": 8,
+      "projectsPageOrder": 8,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
+      "heroImage": "assets/images/projects/1003/1003.webp",
+      "mainVideo": "assets/videos/1003/project-1003.mp4",
+      "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1004",
+      "displayTitle": "Sports Broadcast Package",
+      "fullTitle": "Sports Broadcast Graphics Package",
+      "category": "editing",
+      "client": "Sports Network",
+      "year": "2024",
+      "duration": "1 month",
+      "description": "Complete broadcast graphics package including scoreboards, transitions, and statistical visualizations.",
+      "role": [
+        "Broadcast Design",
+        "Data Visualization",
+        "Animation",
+        "Template Creation"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 9,
+      "projectsPageOrder": 9,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
+      "heroImage": "assets/images/projects/1004/1004.webp",
+      "mainVideo": "assets/videos/1004/project-1004.mp4",
+      "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1699",
+      "displayTitle": "Documentary Series",
+      "fullTitle": "Documentary Series - Nature & Wildlife",
+      "category": "vfx",
+      "client": "Streaming Platform",
+      "year": "2024",
+      "duration": "4 months",
+      "description": "Post-production and visual enhancement for a nature documentary series, including color grading and visual effects.",
+      "role": [
+        "Post-Production Lead",
+        "Color Grading",
+        "Visual Enhancement",
+        "Title Design"
+      ],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
+      "featured": false,
+      "featuredOrder": 10,
+      "projectsPageOrder": 10,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
+      "heroImage": "assets/images/projects/1699/1699.webp",
+      "mainVideo": "assets/videos/1699/project-1699.mp4",
+      "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1661",
+      "displayTitle": "Corporate Identity System",
+      "fullTitle": "Corporate Identity and Motion System",
+      "category": "personal",
+      "client": "Fortune 500 Company",
+      "year": "2024",
+      "duration": "3 months",
+      "description": "Developed comprehensive corporate identity system including animated logos, presentation templates, and brand guidelines.",
+      "role": [
+        "Brand Design",
+        "Motion Identity",
+        "Guidelines Development",
+        "Template Creation"
+      ],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Photoshop",
+        "InDesign"
+      ],
+      "featured": false,
+      "featuredOrder": 11,
+      "projectsPageOrder": 11,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
+      "heroImage": "assets/images/projects/1661/1661.webp",
+      "mainVideo": "assets/videos/1661/project-1661.mp4",
+      "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1528",
+      "displayTitle": "Film Title Sequence",
+      "fullTitle": "Feature Film Title Sequence",
+      "category": "motion",
+      "client": "Film Studio",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "Designed and animated the main title sequence for a feature film, setting the tone and atmosphere for the narrative.",
+      "role": [
+        "Title Design",
+        "Animation Direction",
+        "Typography",
+        "Compositing"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 12,
+      "projectsPageOrder": 12,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
+      "heroImage": "assets/images/projects/1528/1528.webp",
+      "mainVideo": "assets/videos/1528/project-1528.mp4",
+      "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1470",
+      "displayTitle": "Interactive Installation",
+      "fullTitle": "Interactive Digital Installation",
+      "category": "motion",
+      "client": "Museum",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Created interactive motion graphics for a museum installation, responding to visitor movement and engagement.",
+      "role": [
+        "Interactive Design",
+        "Motion Graphics",
+        "Technical Direction",
+        "User Experience"
+      ],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Processing",
+        "Cinema 4D"
+      ],
+      "featured": false,
+      "featuredOrder": 13,
+      "projectsPageOrder": 13,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
+      "heroImage": "assets/images/projects/1470/1470.webp",
+      "mainVideo": "assets/videos/1470/project-1470.mp4",
+      "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1828",
+      "displayTitle": "Product Launch Campaign",
+      "fullTitle": "Global Product Launch Campaign",
+      "category": "vfx",
+      "client": "Tech Giant",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Visual effects and motion graphics for a global product launch, including hero videos and social media content.",
+      "role": [
+        "VFX Lead",
+        "3D Product Visualization",
+        "Motion Graphics",
+        "Campaign Assets"
+      ],
+      "tools": [
+        "Cinema 4D",
+        "Octane",
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 14,
+      "projectsPageOrder": 14,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
+      "heroImage": "assets/images/projects/1828/1828.webp",
+      "mainVideo": "assets/videos/1828/project-1828.mp4",
+      "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1160",
+      "displayTitle": "News Graphics Package",
+      "fullTitle": "24-Hour News Channel Graphics",
+      "category": "editing",
+      "client": "News Network",
+      "year": "2024",
+      "duration": "3 months",
+      "description": "Comprehensive graphics package for 24-hour news channel including breaking news alerts, weather graphics, and data visualizations.",
+      "role": [
+        "Broadcast Design Lead",
+        "Template Development",
+        "Animation Systems",
+        "Real-time Graphics"
+      ],
+      "tools": [
+        "After Effects",
+        "Vizrt",
+        "Cinema 4D",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 15,
+      "projectsPageOrder": 15,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
+      "heroImage": "assets/images/projects/1160/1160.webp",
+      "mainVideo": "assets/videos/1160/project-1160.mp4",
+      "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1336",
+      "displayTitle": "Virtual Event Platform",
+      "fullTitle": "Virtual Event Platform Graphics",
+      "category": "motion",
+      "client": "Event Company",
+      "year": "2024",
+      "duration": "1 month",
+      "description": "Motion graphics and visual assets for virtual event platform including transitions, backgrounds, and interactive elements.",
+      "role": [
+        "Motion Design",
+        "UI Animation",
+        "Live Graphics",
+        "Template Systems"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "OBS",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 16,
+      "projectsPageOrder": 16,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
+      "heroImage": "assets/images/projects/1336/1336.webp",
+      "mainVideo": "assets/videos/1336/project-1336.mp4",
+      "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1092",
+      "displayTitle": "Fashion Film",
+      "fullTitle": "High Fashion Brand Film",
+      "category": "personal",
+      "client": "Fashion House",
+      "year": "2024",
+      "duration": "3 weeks",
+      "description": "Artistic fashion film combining live action with animated elements and sophisticated color grading.",
+      "role": [
+        "Creative Direction",
+        "Color Grading",
+        "Visual Effects",
+        "Editorial"
+      ],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
+      "featured": false,
+      "featuredOrder": 17,
+      "projectsPageOrder": 17,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
+      "heroImage": "assets/images/projects/1092/1092.webp",
+      "mainVideo": "assets/videos/1092/project-1092.mp4",
+      "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1509",
+      "displayTitle": "Gaming Cinematics",
+      "fullTitle": "AAA Game Cinematic Sequences",
+      "category": "vfx",
+      "client": "Game Studio",
+      "year": "2024",
+      "duration": "4 months",
+      "description": "Cinematic sequences for AAA video game including character animation, environment design, and visual effects.",
+      "role": [
+        "Cinematic Director",
+        "VFX Supervision",
+        "Lighting & Rendering",
+        "Compositing"
+      ],
+      "tools": [
+        "Unreal Engine",
+        "Maya",
+        "Houdini",
+        "Nuke"
+      ],
+      "featured": false,
+      "featuredOrder": 18,
+      "projectsPageOrder": 18,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
+      "heroImage": "assets/images/projects/1509/1509.webp",
+      "mainVideo": "assets/videos/1509/project-1509.mp4",
+      "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1029",
+      "displayTitle": "Architectural Visualization",
+      "fullTitle": "Luxury Development Visualization",
+      "category": "motion",
+      "client": "Architecture Firm",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "Photorealistic architectural visualization featuring animated walkthroughs and environmental storytelling.",
+      "role": [
+        "3D Visualization",
+        "Environment Design",
+        "Lighting Artist",
+        "Animation"
+      ],
+      "tools": [
+        "3ds Max",
+        "Corona",
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 19,
+      "projectsPageOrder": 19,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
+      "heroImage": "assets/images/projects/1029/1029.webp",
+      "mainVideo": "assets/videos/1029/project-1029.mp4",
+      "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1459",
+      "displayTitle": "Social Media Campaign",
+      "fullTitle": "Viral Social Media Campaign",
+      "category": "personal",
+      "client": "Lifestyle Brand",
+      "year": "2024",
+      "duration": "2 weeks",
+      "description": "Fast-paced social media campaign with platform-specific content optimized for engagement and shareability.",
+      "role": [
+        "Content Creation",
+        "Motion Graphics",
+        "Platform Optimization",
+        "Campaign Strategy"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Spark AR"
+      ],
+      "featured": false,
+      "featuredOrder": 20,
+      "projectsPageOrder": 20,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
+      "heroImage": "assets/images/projects/1459/1459.webp",
+      "mainVideo": "assets/videos/1459/project-1459.mp4",
+      "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1584",
+      "displayTitle": "Educational Series",
+      "fullTitle": "Educational Animation Series",
+      "category": "motion",
+      "client": "Education Platform",
+      "year": "2024",
+      "duration": "3 months",
+      "description": "Educational animation series making complex topics accessible through engaging visual storytelling and clear information design.",
+      "role": [
+        "Animation Director",
+        "Educational Design",
+        "Storyboarding",
+        "Voice Direction"
+      ],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Audition",
+        "Character Animator"
+      ],
+      "featured": false,
+      "featuredOrder": 21,
+      "projectsPageOrder": 21,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
+      "heroImage": "assets/images/projects/1584/1584.webp",
+      "mainVideo": "assets/videos/1584/project-1584.mp4",
+      "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1292",
+      "displayTitle": "Concert Visuals",
+      "fullTitle": "Live Concert Visual Production",
+      "category": "vfx",
+      "client": "Music Artist",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Live visual production for concert tour including LED wall content, projection mapping, and real-time effects.",
+      "role": [
+        "Visual Director",
+        "Live VFX",
+        "Projection Mapping",
+        "Content Creation"
+      ],
+      "tools": [
+        "Notch",
+        "TouchDesigner",
+        "After Effects",
+        "Resolume"
+      ],
+      "featured": false,
+      "featuredOrder": 22,
+      "projectsPageOrder": 22,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
+      "heroImage": "assets/images/projects/1292/1292.webp",
+      "mainVideo": "assets/videos/1292/project-1292.mp4",
+      "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1626",
+      "displayTitle": "Healthcare Innovation",
+      "fullTitle": "Healthcare Technology Showcase",
+      "category": "motion",
+      "client": "MedTech Company",
+      "year": "2024",
+      "duration": "1 month",
+      "description": "Medical technology visualization combining 3D animation with data visualization to showcase innovative healthcare solutions.",
+      "role": [
+        "Medical Visualization",
+        "3D Animation",
+        "Data Design",
+        "Technical Accuracy"
+      ],
+      "tools": [
+        "Cinema 4D",
+        "After Effects",
+        "Houdini",
+        "Redshift"
+      ],
+      "featured": false,
+      "featuredOrder": 23,
+      "projectsPageOrder": 23,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
+      "heroImage": "assets/images/projects/1626/1626.webp",
+      "mainVideo": "assets/videos/1626/project-1626.mp4",
+      "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1582",
+      "displayTitle": "Automotive Commercial",
+      "fullTitle": "Luxury Automotive Commercial",
+      "category": "vfx",
+      "client": "Auto Manufacturer",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "High-end automotive commercial featuring photorealistic car visualization, dynamic environments, and cinematic effects.",
+      "role": [
+        "VFX Supervisor",
+        "Car Rigging",
+        "Environment Design",
+        "Compositing"
+      ],
+      "tools": [
+        "Maya",
+        "V-Ray",
+        "Nuke",
+        "After Effects"
+      ],
+      "featured": false,
+      "featuredOrder": 24,
+      "projectsPageOrder": 24,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
+      "heroImage": "assets/images/projects/1582/1582.webp",
+      "mainVideo": "assets/videos/1582/project-1582.mp4",
+      "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
+      "beforeAfterMedia": []
+    },
+    {
+      "id": "1453",
+      "displayTitle": "Museum Exhibition",
+      "fullTitle": "Interactive Museum Exhibition",
+      "category": "motion",
+      "client": "National Museum",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Interactive museum exhibition combining historical footage with modern animation techniques to create immersive educational experiences.",
+      "role": [
+        "Exhibition Design",
+        "Interactive Media",
+        "Historical Recreation",
+        "Visitor Experience"
+      ],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Unity",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": 25,
+      "projectsPageOrder": 25,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
+      "heroImage": "assets/images/projects/1453/1453.webp",
+      "mainVideo": "assets/videos/1453/project-1453.mp4",
+      "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
+      "beforeAfterMedia": []
+    }
+  ],
+  "metadata": {
+    "version": "2.0",
+    "lastUpdated": "2024-09-26",
+    "totalProjects": 25,
+    "featuredCount": 6,
+    "dataStructure": {
+      "mediaTypes": [
+        "video",
+        "image"
+      ],
+      "beforeAfterSupport": true,
+      "dynamicContent": true
+    }
+  }
+}

@@ -3,7 +3,12 @@
   "permissions": {
     "allow": [
       "Bash(start http://localhost:8000/tools/)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(node:*)",
+      "Bash(start http://localhost:8000/tools/project-editor.html)",
+      "Bash(start http://localhost:8000/tools/test-editor.html)",
+      "Bash(del:*)",
+      "Read(//c/Users/admin/Pictures/Screenshots/**)"
     ],
     "deny": [],
     "ask": []

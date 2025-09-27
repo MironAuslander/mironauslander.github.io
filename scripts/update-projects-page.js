@@ -35,7 +35,15 @@ function generateProjectsHTML(projects) {
         // Determine display title (use fullTitle or displayTitle)
         const displayName = project.displayTitle || project.fullTitle;
 
-        return `                    <a href="projects/Project-${project.id}.html" class="project-card" data-category="${project.category}" aria-label="View ${displayName}">
+        // Handle both string and array categories
+        let categoryData = '';
+        if (project.category) {
+            categoryData = Array.isArray(project.category)
+                ? project.category.join(',')
+                : project.category;
+        }
+
+        return `                    <a href="projects/Project-${project.id}.html" class="project-card" data-category="${categoryData}" aria-label="View ${displayName}">
                         <img src="${project.thumbnail}" alt="${displayName}" loading="lazy">
                         <span>${displayName}</span>
                     </a>`;
@@ -100,12 +108,24 @@ function updateProjectsFile(htmlContent) {
 // Validate categories
 function validateCategories(projects) {
     const validCategories = ['vfx', 'motion', 'editing', 'personal'];
-    const invalidProjects = projects.filter(p => !validCategories.includes(p.category));
+    const invalidProjects = [];
+
+    projects.forEach(p => {
+        if (p.category) {
+            // Handle both string and array formats
+            const categories = Array.isArray(p.category) ? p.category : [p.category];
+            const invalidCats = categories.filter(cat => !validCategories.includes(cat));
+
+            if (invalidCats.length > 0) {
+                invalidProjects.push({ id: p.id, invalid: invalidCats });
+            }
+        }
+    });
 
     if (invalidProjects.length > 0) {
         console.warn('⚠️  Warning: Some projects have invalid categories:');
         invalidProjects.forEach(p => {
-            console.warn(`   - Project ${p.id}: "${p.category}"`);
+            console.warn(`   - Project ${p.id}: "${p.invalid.join(', ')}"`);
         });
         console.log('   Valid categories are: vfx, motion, editing, personal');
     }
