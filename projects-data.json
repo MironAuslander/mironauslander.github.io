@@ -3,19 +3,20 @@
     {
       "id": "1798",
       "displayTitle": "Big Brother",
-      "fullTitle": "Big Brother Israel",
-      "category": "personal",
-      "client": "Reshet TV",
-      "year": "2025",
-      "duration": "3 weeks",
-      "description": "Created the official logo and branding identity for Big Brother Israel 2025. The design captures the show's iconic surveillance theme while incorporating modern Hebrew typography and contemporary visual elements that resonate with Israeli audiences.",
+      "fullTitle": "Big Brother | האח הגדול",
+      "category": "vfx",
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
       "role": [
-        "Concept Development",
-        "Logo Design",
-        "Motion Graphics",
-        "Brand Guidelines"
+        "Compositing",
+        "Motion Tracking"
       ],
-      "tools": ["After Effects", "Illustrator", "Photoshop", "Cinema 4D"],
+      "tools": [
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": true,
       "featuredOrder": 1,
       "projectsPageOrder": 1,
@@ -28,39 +29,40 @@
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-1.mp4",
-          "after": "assets/videos/1798/1798-after-1.mp4",
-          "label": "Process & Variations"
+          "after": "assets/videos/1798/1798-after-1.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-2.mp4",
-          "after": "assets/videos/1798/1798-after-2.mp4",
-          "label": "Concept Evolution"
+          "after": "assets/videos/1798/1798-after-2.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-3.mp4",
-          "after": "assets/videos/1798/1798-after-3.mp4",
-          "label": "Final Refinements"
+          "after": "assets/videos/1798/1798-after-3.mp4"
         }
       ]
     },
     {
       "id": "1238",
-      "displayTitle": "Project B Title",
-      "fullTitle": "Project B - Full Title",
+      "displayTitle": "8200",
+      "fullTitle": "רוח-צפונית | 8200",
       "category": "vfx",
       "client": "Client Name",
-      "year": "2024",
+      "year": 2024,
       "duration": "2 months",
-      "description": "Visual effects and compositing work for a major production. Involved complex green screen work, motion tracking, and seamless integration of CGI elements with live action footage.",
+      "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
       "role": [
-        "VFX Supervision",
-        "Compositing",
-        "Motion Tracking",
-        "Color Grading"
+        "Motion Graphics",
+        "Compositing Lead"
       ],
-      "tools": ["After Effects", "Nuke", "Mocha", "DaVinci Resolve"],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Illustrator",
+        "Cinema 4D",
+        "Redshift"
+      ],
       "featured": true,
       "featuredOrder": 2,
       "projectsPageOrder": 2,
@@ -74,16 +76,6 @@
           "type": "video",
           "before": "assets/videos/1238/1238-before-1.mp4",
           "after": "assets/videos/1238/1238-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-2.mp4",
-          "after": "assets/videos/1238/1238-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-3.mp4",
-          "after": "assets/videos/1238/1238-after-3.mp4"
         }
       ]
     },
@@ -102,7 +94,11 @@
         "Typography",
         "Art Direction"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Illustrator"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator"
+      ],
       "featured": true,
       "featuredOrder": 3,
       "projectsPageOrder": 3,
@@ -132,19 +128,21 @@
     {
       "id": "1654",
       "displayTitle": "Personetics",
-      "fullTitle": "Personetics",
-      "category": "vfx",
-      "client": "Client Name",
-      "year": "2024",
-      "duration": "2 months",
-      "description": "Comprehensive visual effects work including particle simulations, digital environments, and character enhancements for a feature film production.",
+      "fullTitle": "Personetics.com",
+      "category": "motion",
+      "client": "Personetics Technologies LTD",
+      "year": 2024,
+      "duration": "4 weeks",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds :)",
       "role": [
-        "VFX Artist",
-        "3D Modeling",
-        "Particle Effects",
+        "Motion Graphics",
         "Rendering"
       ],
-      "tools": ["Houdini", "Maya", "After Effects", "Redshift"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Redshift"
+      ],
       "featured": true,
       "featuredOrder": 4,
       "projectsPageOrder": 4,
@@ -186,7 +184,11 @@
         "Audio Mixing",
         "Format Optimization"
       ],
-      "tools": ["Premiere Pro", "DaVinci Resolve", "Audition"],
+      "tools": [
+        "Premiere Pro",
+        "DaVinci Resolve",
+        "Audition"
+      ],
       "featured": true,
       "featuredOrder": 5,
       "projectsPageOrder": 5,
@@ -228,7 +230,12 @@
         "Character Animation",
         "Sound Design"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Illustrator", "Audition"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Illustrator",
+        "Audition"
+      ],
       "featured": true,
       "featuredOrder": 6,
       "projectsPageOrder": 6,
@@ -270,7 +277,11 @@
         "Brand Animation",
         "Social Media Assets"
       ],
-      "tools": ["After Effects", "Premiere Pro", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 7,
       "projectsPageOrder": 7,
@@ -296,7 +307,11 @@
         "Color Grading",
         "Creative Finishing"
       ],
-      "tools": ["After Effects", "DaVinci Resolve", "Mocha"],
+      "tools": [
+        "After Effects",
+        "DaVinci Resolve",
+        "Mocha"
+      ],
       "featured": false,
       "featuredOrder": 8,
       "projectsPageOrder": 8,
@@ -322,7 +337,11 @@
         "Animation",
         "Template Creation"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 9,
       "projectsPageOrder": 9,
@@ -348,7 +367,11 @@
         "Visual Enhancement",
         "Title Design"
       ],
-      "tools": ["DaVinci Resolve", "After Effects", "Premiere Pro"],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
       "featured": false,
       "featuredOrder": 10,
       "projectsPageOrder": 10,
@@ -374,7 +397,12 @@
         "Guidelines Development",
         "Template Creation"
       ],
-      "tools": ["After Effects", "Illustrator", "Photoshop", "InDesign"],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Photoshop",
+        "InDesign"
+      ],
       "featured": false,
       "featuredOrder": 11,
       "projectsPageOrder": 11,
@@ -400,7 +428,11 @@
         "Typography",
         "Compositing"
       ],
-      "tools": ["After Effects", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 12,
       "projectsPageOrder": 12,
@@ -426,7 +458,12 @@
         "Technical Direction",
         "User Experience"
       ],
-      "tools": ["After Effects", "TouchDesigner", "Processing", "Cinema 4D"],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Processing",
+        "Cinema 4D"
+      ],
       "featured": false,
       "featuredOrder": 13,
       "projectsPageOrder": 13,
@@ -452,7 +489,12 @@
         "Motion Graphics",
         "Campaign Assets"
       ],
-      "tools": ["Cinema 4D", "Octane", "After Effects", "Photoshop"],
+      "tools": [
+        "Cinema 4D",
+        "Octane",
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 14,
       "projectsPageOrder": 14,
@@ -478,7 +520,12 @@
         "Animation Systems",
         "Real-time Graphics"
       ],
-      "tools": ["After Effects", "Vizrt", "Cinema 4D", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Vizrt",
+        "Cinema 4D",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 15,
       "projectsPageOrder": 15,
@@ -504,7 +551,12 @@
         "Live Graphics",
         "Template Systems"
       ],
-      "tools": ["After Effects", "Premiere Pro", "OBS", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "OBS",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 16,
       "projectsPageOrder": 16,
@@ -530,7 +582,11 @@
         "Visual Effects",
         "Editorial"
       ],
-      "tools": ["DaVinci Resolve", "After Effects", "Premiere Pro"],
+      "tools": [
+        "DaVinci Resolve",
+        "After Effects",
+        "Premiere Pro"
+      ],
       "featured": false,
       "featuredOrder": 17,
       "projectsPageOrder": 17,
@@ -556,7 +612,12 @@
         "Lighting & Rendering",
         "Compositing"
       ],
-      "tools": ["Unreal Engine", "Maya", "Houdini", "Nuke"],
+      "tools": [
+        "Unreal Engine",
+        "Maya",
+        "Houdini",
+        "Nuke"
+      ],
       "featured": false,
       "featuredOrder": 18,
       "projectsPageOrder": 18,
@@ -582,7 +643,12 @@
         "Lighting Artist",
         "Animation"
       ],
-      "tools": ["3ds Max", "Corona", "After Effects", "Photoshop"],
+      "tools": [
+        "3ds Max",
+        "Corona",
+        "After Effects",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 19,
       "projectsPageOrder": 19,
@@ -608,7 +674,12 @@
         "Platform Optimization",
         "Campaign Strategy"
       ],
-      "tools": ["After Effects", "Premiere Pro", "Photoshop", "Spark AR"],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Spark AR"
+      ],
       "featured": false,
       "featuredOrder": 20,
       "projectsPageOrder": 20,
@@ -634,7 +705,12 @@
         "Storyboarding",
         "Voice Direction"
       ],
-      "tools": ["After Effects", "Illustrator", "Audition", "Character Animator"],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Audition",
+        "Character Animator"
+      ],
       "featured": false,
       "featuredOrder": 21,
       "projectsPageOrder": 21,
@@ -660,7 +736,12 @@
         "Projection Mapping",
         "Content Creation"
       ],
-      "tools": ["Notch", "TouchDesigner", "After Effects", "Resolume"],
+      "tools": [
+        "Notch",
+        "TouchDesigner",
+        "After Effects",
+        "Resolume"
+      ],
       "featured": false,
       "featuredOrder": 22,
       "projectsPageOrder": 22,
@@ -686,7 +767,12 @@
         "Data Design",
         "Technical Accuracy"
       ],
-      "tools": ["Cinema 4D", "After Effects", "Houdini", "Redshift"],
+      "tools": [
+        "Cinema 4D",
+        "After Effects",
+        "Houdini",
+        "Redshift"
+      ],
       "featured": false,
       "featuredOrder": 23,
       "projectsPageOrder": 23,
@@ -712,7 +798,12 @@
         "Environment Design",
         "Compositing"
       ],
-      "tools": ["Maya", "V-Ray", "Nuke", "After Effects"],
+      "tools": [
+        "Maya",
+        "V-Ray",
+        "Nuke",
+        "After Effects"
+      ],
       "featured": false,
       "featuredOrder": 24,
       "projectsPageOrder": 24,
@@ -738,7 +829,12 @@
         "Historical Recreation",
         "Visitor Experience"
       ],
-      "tools": ["After Effects", "TouchDesigner", "Unity", "Photoshop"],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Unity",
+        "Photoshop"
+      ],
       "featured": false,
       "featuredOrder": 25,
       "projectsPageOrder": 25,
@@ -756,7 +852,10 @@
     "totalProjects": 25,
     "featuredCount": 6,
     "dataStructure": {
-      "mediaTypes": ["video", "image"],
+      "mediaTypes": [
+        "video",
+        "image"
+      ],
       "beforeAfterSupport": true,
       "dynamicContent": true
     }
