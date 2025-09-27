@@ -42,36 +42,36 @@ class MobileNav {
   }
 }
 
-// Form handling
-class ContactForm {
-  constructor() {
-    this.init();
-  }
-  
-  init() {
-    this.form = document.querySelector('.contact-form');
-    if (this.form) {
-      this.bindEvents();
-    }
-  }
-  
-  bindEvents() {
-    this.form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      this.handleSubmit();
-    });
-  }
-  
-  handleSubmit() {
-    // Basic form handling - customize as needed
-    const formData = new FormData(this.form);
-    console.log('Form submitted:', Object.fromEntries(formData));
-    
-    // Show success message
-    alert('Thank you for your message! I will get back to you soon.');
-    this.form.reset();
-  }
-}
+// Form handling - COMMENTED OUT TO ALLOW FORMSPREE SUBMISSION
+// class ContactForm {
+//   constructor() {
+//     this.init();
+//   }
+//
+//   init() {
+//     this.form = document.querySelector('.contact-form');
+//     if (this.form) {
+//       this.bindEvents();
+//     }
+//   }
+//
+//   bindEvents() {
+//     this.form.addEventListener('submit', (e) => {
+//       e.preventDefault();
+//       this.handleSubmit();
+//     });
+//   }
+//
+//   handleSubmit() {
+//     // Basic form handling - customize as needed
+//     const formData = new FormData(this.form);
+//     console.log('Form submitted:', Object.fromEntries(formData));
+//
+//     // Show success message
+//     alert('Thank you for your message! I will get back to you soon.');
+//     this.form.reset();
+//   }
+// }
 
 // Smooth scrolling and section navigation
 class SmoothScroll {
@@ -325,7 +325,8 @@ class ShowreelPlayer {
 // Initialize on DOM load
 document.addEventListener('DOMContentLoaded', () => {
   new MobileNav();
-  new ContactForm();
+  // ContactForm disabled to allow Formspree submission
+  // new ContactForm();
   new SmoothScroll();
   new SkipLink();
   new ShowreelPlayer();

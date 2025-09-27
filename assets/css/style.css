@@ -1253,7 +1253,7 @@ body {
 }
 
 .skill-category {
-    background-color: var(--text-gray);
+    background-color: #b0b0b0;
     padding: 2.5rem;
     border-radius: var(--border-radius);
     color: var(--darker-bg);
