@@ -529,7 +529,8 @@ class MediaConfigurator {
             return;
         }
 
-        preview.className = `grid-preview-container grid-preview-${count}`;
+        // Updated to use vertical layout - removed count-based class
+        preview.className = 'grid-preview-container';
         preview.innerHTML = '';
 
         for (let i = 0; i < count; i++) {

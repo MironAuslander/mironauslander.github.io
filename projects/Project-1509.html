@@ -11,7 +11,7 @@
     <link rel="preload" href="../assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="../assets/css/style.css">
-    <script src="../assets/js/before-after.js" defer></script>
+    
 
     <style>
         /* Font Face Declarations */
@@ -98,13 +98,143 @@
             font-family: var(--font-body);
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        /* Navigation and logo elements */
+        .logo {
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu a {
             font-family: var(--font-primary);
-            font-weight: 400;
+        }
+
+        /* Project titles and headings */
+        h1, h2, h3, .project-subtitle {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .btn, button {
+            font-family: var(--font-primary);
+        }
+
+        /* Content descriptions use body font by default */
+        p, ul, li {
+            font-family: var(--font-body);
+        }
+
+        /* Process Media Grid Layouts - Commented out to use vertical layout
+        .process-media-grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .process-grid-1 {
+            grid-template-columns: 1fr;
+        }
+
+        .process-grid-2 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .process-grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .process-grid-3 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .process-grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .process-grid-4 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .process-grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .process-grid-5 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .process-grid-5 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .process-grid-5 .media-item:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        .process-grid-6 {
+            grid-template-columns: 1fr;
+        }
+        @media (min-width: 768px) {
+            .process-grid-6 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (min-width: 480px) and (max-width: 767px) {
+            .process-grid-6 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        */
+
+        /* Media item styling */
+        .media-item {
+            position: relative;
+            width: 100%;
+        }
+
+        .media-caption {
+            margin-top: 0.75rem;
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--text-light, #999);
+            font-style: italic;
+        }
+
+        .media-label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-white, #fff);
+        }
+
+        /* Video and Image responsive */
+        .media-item video,
+        .media-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Before/After specific */
+        .before-after-wrapper {
+            margin-bottom: 1rem;
+        }
+
+        .slider-tip {
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
-<body class="project-page">
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
     <!-- Header -->
     <header class="header">
         <nav class="nav-container" aria-label="Main navigation">
@@ -132,8 +262,9 @@
             <div class="container">
                 <h1 style="margin-bottom: 3rem;">AAA Game Cinematic Sequences</h1>
 
-                <!-- Project video/image -->
+                <!-- Project Hero Media -->
                 <div class="project-media">
+                    
                     <video controls loop disablePictureInPicture controlsList="nodownload" poster="../assets/images/projects/1509/1509-poster.jpg">
                         <source src="../assets/videos/1509/project-1509.mp4" type="video/mp4">
                         Your browser does not support the video tag.
@@ -153,18 +284,28 @@
 
                         <h3>My Role</h3>
                         <ul>
+                            
                             <li>Cinematic Director</li>
+                            
                             <li>VFX Supervision</li>
+                            
                             <li>Lighting & Rendering</li>
+                            
                             <li>Compositing</li>
+                            
                         </ul>
 
                         <h3>Tools Used</h3>
                         <div class="tech-tags" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem;">
+                            
                             <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Unreal Engine</span>
+                            
                             <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Maya</span>
+                            
                             <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Houdini</span>
+                            
                             <span class="tech-tag" style="display: inline-block; background: linear-gradient(145deg, rgba(255, 107, 107, 0.15) 0%, rgba(0, 0, 0, 0.7) 30%, rgba(0, 0, 0, 0.9) 70%, rgba(0, 0, 0, 0.95) 100%); color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 500; font-size: 0.95rem; border: 2px solid rgba(255, 107, 107, 0.4); backdrop-filter: blur(10px); position: relative;">Nuke</span>
+                            
                         </div>
                     </div>
 
@@ -185,25 +326,26 @@
                 </div>
                 <!-- PROJECT_INFO_END -->
 
-                <!-- BEFORE_AFTER_SECTION_START -->
-
-                <!-- BEFORE_AFTER_SECTION_END -->
+                
             </div>
         </section>
 
-                        <!-- Related Projects -->
+        <!-- Related Projects -->
         <section class="related-projects">
             <div class="container">
                 <h2>Related Projects</h2>
                 <div class="projects-grid" style="max-width: 600px; margin: 0 auto;">
-                    <a href="Project-1828.html" class="project-card" style="max-width: 250px;">
-                        <img src="../assets/images/projects/1828/1828-thumb.webp" alt="Product Launch Campaign">
-                        <h3>Product Launch Campaign</h3>
+                    
+                    <a href="Project-1798.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1798/1798-thumb.webp" alt="Big Brother">
+                        <h3>Big Brother</h3>
                     </a>
-                    <a href="Project-1699.html" class="project-card" style="max-width: 250px;">
-                        <img src="../assets/images/projects/1699/1699-thumb.webp" alt="Documentary Series">
-                        <h3>Documentary Series</h3>
+                    
+                    <a href="Project-1238.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1238/1238-thumb.webp" alt="8200">
+                        <h3>8200</h3>
                     </a>
+                    
                 </div>
             </div>
         </section>

@@ -129,19 +129,17 @@
             font-family: var(--font-body);
         }
 
-        /* Process Media Grid Layouts */
+        /* Process Media Grid Layouts - Commented out to use vertical layout
         .process-media-grid {
             display: grid;
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Single item - full width */
         .process-grid-1 {
             grid-template-columns: 1fr;
         }
 
-        /* 2 items - side by side on desktop, stack on mobile */
         .process-grid-2 {
             grid-template-columns: 1fr;
         }
@@ -151,7 +149,6 @@
             }
         }
 
-        /* 3 items - single column mobile, 3 columns desktop */
         .process-grid-3 {
             grid-template-columns: 1fr;
         }
@@ -161,7 +158,6 @@
             }
         }
 
-        /* 4 items - 2x2 grid */
         .process-grid-4 {
             grid-template-columns: 1fr;
         }
@@ -171,7 +167,6 @@
             }
         }
 
-        /* 5 items - 2-3 layout */
         .process-grid-5 {
             grid-template-columns: 1fr;
         }
@@ -184,7 +179,6 @@
             }
         }
 
-        /* 6 items - 3x2 grid */
         .process-grid-6 {
             grid-template-columns: 1fr;
         }
@@ -198,6 +192,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        */
 
         /* Media item styling */
         .media-item {
@@ -321,7 +316,7 @@
                 <!-- PROCESS_MEDIA_START -->
                 <div class="project-gallery" style="margin-top: 4rem;">
                     <h3>Process & Variations</h3>
-                    <div class="process-media-grid process-grid-{{processMediaCount}}">
+                    <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
                         {{processMediaContent}}
                     </div>
                 </div>

@@ -55,12 +55,6 @@
           "label": "Screen Replacement"
         },
         {
-          "type": "video",
-          "src": "assets/videos/1798/1798-breakdown.mp4",
-          "poster": "assets/images/projects/1798/1798-breakdown-poster.jpg",
-          "caption": "VFX Breakdown"
-        },
-        {
           "type": "before-after-video",
           "before": "assets/videos/1798/1798-before-2.mp4",
           "after": "assets/videos/1798/1798-after-2.mp4",

@@ -38,8 +38,8 @@ if (allSuccess && !runScript('update-projects-page.js', 'Updating projects page'
     allSuccess = false;
 }
 
-// Generate project pages from template (new system)
-if (allSuccess && !runScript('generate-project-pages.js', 'Generating project pages from template')) {
+// Generate project pages using unified system
+if (allSuccess && !runScript('generate-project-unified.js', 'Generating project pages with unified template system')) {
     allSuccess = false;
 }
 

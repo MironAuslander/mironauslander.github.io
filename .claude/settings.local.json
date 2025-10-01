@@ -8,7 +8,10 @@
       "Bash(start http://localhost:8000/tools/project-editor.html)",
       "Bash(start http://localhost:8000/tools/test-editor.html)",
       "Bash(del:*)",
-      "Read(//c/Users/admin/Pictures/Screenshots/**)"
+      "Read(//c/Users/admin/Pictures/Screenshots/**)",
+      "Read(//e/WebSite/Claude_Coder/**)",
+      "Bash(xargs ls:*)",
+      "Bash(awk:*)"
     ],
     "deny": [],
     "ask": []
