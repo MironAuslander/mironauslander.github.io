@@ -232,56 +232,85 @@
                 </div>
             </div>
 
-            <!-- Tools Grid -->
-            <div class="tools-grid">
-                <a href="project-manager.html" class="tool-card">
-                    <div class="tool-icon">🎯</div>
-                    <h2 class="tool-title">Layout Manager</h2>
-                    <p class="tool-description">
-                        Visual control center for project placement. Drag projects to featured section,
-                        reorder them, or hide from public view.
-                    </p>
-                    <ul class="tool-features">
-                        <li>Drag-and-drop interface</li>
-                        <li>Homepage featuring control</li>
-                        <li>Project ordering</li>
-                        <li>Visibility management</li>
-                    </ul>
-                    <span class="tool-tag tag-primary" style="position: absolute; top: 1rem; right: 1rem; background: var(--accent-color); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Controls Homepage</span>
-                </a>
-
-                <a href="project-editor.html" class="tool-card">
-                    <div class="tool-icon">✏️</div>
-                    <h2 class="tool-title">Content Editor</h2>
-                    <p class="tool-description">
-                        Edit project text content and metadata. Update titles, descriptions,
-                        categories, roles, and tools used.
-                    </p>
-                    <ul class="tool-features">
-                        <li>Text content editing</li>
-                        <li>Category & metadata</li>
-                        <li>Roles & tools tags</li>
-                        <li>Live preview</li>
-                    </ul>
-                    <span class="tool-tag tag-updated" style="position: absolute; top: 1rem; right: 1rem; background: var(--warning-color); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Simplified</span>
-                </a>
-
-                <a href="media-configurator.html" class="tool-card">
-                    <div class="tool-icon">🎬</div>
-                    <h2 class="tool-title">Media Configurator</h2>
-                    <p class="tool-description">
-                        Visual layout designer for project media. Configure hero sections
-                        and process variations with drag-and-drop simplicity.
-                    </p>
-                    <ul class="tool-features">
-                        <li>Hero section customization</li>
-                        <li>1-6 media blocks per project</li>
-                        <li>Before/after comparisons</li>
-                        <li>Visual grid preview</li>
-                    </ul>
-                    <span class="tool-tag tag-new" style="position: absolute; top: 1rem; right: 1rem; background: var(--success-bg); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">All Media Control</span>
+            <!-- Primary Tool - Project Studio -->
+            <div style="margin-bottom: 2rem;">
+                <a href="project-studio.html" class="tool-card" style="background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(79, 209, 197, 0.1) 100%); border: 2px solid var(--accent-color); display: block; max-width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 2rem;">
+                        <div style="font-size: 4rem;">🚀</div>
+                        <div style="flex: 1;">
+                            <h2 class="tool-title" style="font-size: 2rem; margin-bottom: 0.5rem;">Project Studio</h2>
+                            <span class="tool-tag" style="background: linear-gradient(135deg, var(--accent-color), var(--warning-color)); color: white; padding: 0.25rem 1rem; border-radius: 20px; font-size: 0.9rem; display: inline-block; margin-bottom: 1rem;">✨ NEW - All-in-One Solution</span>
+                            <p class="tool-description" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                                Unified management system combining all project tools. Control organization, edit details, and configure media - all in one place with a single save operation.
+                            </p>
+                            <ul class="tool-features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.5rem;">
+                                <li>📊 Project organization & featuring</li>
+                                <li>✏️ Complete content editing</li>
+                                <li>🎬 Visual media configuration</li>
+                                <li>👁️ Live preview with device modes</li>
+                                <li>💾 Single unified save operation</li>
+                                <li>🎯 No manual JSON merging needed</li>
+                            </ul>
+                        </div>
+                    </div>
                 </a>
             </div>
+
+            <!-- Legacy Tools Section -->
+            <details style="margin-bottom: 2rem;">
+                <summary style="cursor: pointer; padding: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; font-size: 1.1rem; color: var(--text-secondary);">
+                    📁 Legacy Tools (Individual Editors)
+                </summary>
+                <div class="tools-grid" style="margin-top: 1rem;">
+                    <a href="project-manager.html" class="tool-card" style="opacity: 0.8;">
+                        <div class="tool-icon">🎯</div>
+                        <h2 class="tool-title">Layout Manager</h2>
+                        <p class="tool-description">
+                            Visual control center for project placement. Drag projects to featured section,
+                            reorder them, or hide from public view.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Drag-and-drop interface</li>
+                            <li>Homepage featuring control</li>
+                            <li>Project ordering</li>
+                            <li>Visibility management</li>
+                        </ul>
+                        <span class="tool-tag tag-primary" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
+                    </a>
+
+                    <a href="project-editor.html" class="tool-card" style="opacity: 0.8;">
+                        <div class="tool-icon">✏️</div>
+                        <h2 class="tool-title">Content Editor</h2>
+                        <p class="tool-description">
+                            Edit project text content and metadata. Update titles, descriptions,
+                            categories, roles, and tools used.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Text content editing</li>
+                            <li>Category & metadata</li>
+                            <li>Roles & tools tags</li>
+                            <li>Live preview</li>
+                        </ul>
+                        <span class="tool-tag tag-updated" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
+                    </a>
+
+                    <a href="media-configurator.html" class="tool-card" style="opacity: 0.8;">
+                        <div class="tool-icon">🎬</div>
+                        <h2 class="tool-title">Media Configurator</h2>
+                        <p class="tool-description">
+                            Visual layout designer for project media. Configure hero sections
+                            and process variations with drag-and-drop simplicity.
+                        </p>
+                        <ul class="tool-features">
+                            <li>Hero section customization</li>
+                            <li>1-6 media blocks per project</li>
+                            <li>Before/after comparisons</li>
+                            <li>Visual grid preview</li>
+                        </ul>
+                        <span class="tool-tag tag-new" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
+                    </a>
+                </div>
+            </details>
 
             <!-- Quick Actions -->
             <div class="quick-actions">

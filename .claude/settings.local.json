@@ -11,7 +11,10 @@
       "Read(//c/Users/admin/Pictures/Screenshots/**)",
       "Read(//e/WebSite/Claude_Coder/**)",
       "Bash(xargs ls:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(xargs:*)",
+      "Bash(start http://localhost:8000/tools/project-studio.html)",
+      "Bash(start http://localhost:8000/projects/Project-1798.html)"
     ],
     "deny": [],
     "ask": []

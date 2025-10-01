@@ -4,13 +4,16 @@
       "id": "1798",
       "displayTitle": "Big Brother",
       "fullTitle": "Big Brother | האח הגדול",
-      "category": "vfx",
+      "category": [
+        "vfx"
+      ],
       "client": "Endemol | Reshet 13",
       "year": 2025,
       "duration": "4 weeks",
       "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
       "role": [
         "Compositing",
+        "Color Grading",
         "Motion Tracking"
       ],
       "tools": [
@@ -58,9 +61,21 @@
           "type": "before-after-video",
           "before": "assets/videos/1798/1798-before-2.mp4",
           "after": "assets/videos/1798/1798-after-2.mp4",
-          "label": "Color Grading"
+          "label": "Color Grading",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-3.mp4",
+          "after": "assets/videos/1798/1798-after-3.mp4",
+          "label": "Final Composite",
+          "labelBefore": "Before",
+          "labelAfter": "After"
         }
-      ]
+      ],
+      "hidden": false,
+      "displayOrder": null
     },
     {
       "id": "1238",
@@ -111,7 +126,8 @@
           "labelBefore": "Before",
           "labelAfter": "After"
         }
-      ]
+      ],
+      "displayOrder": null
     },
     {
       "id": "1537",
@@ -188,7 +204,8 @@
           "labelBefore": "Before",
           "labelAfter": "After"
         }
-      ]
+      ],
+      "displayOrder": null
     },
     {
       "id": "1654",
@@ -263,7 +280,8 @@
           "labelBefore": "Before",
           "labelAfter": "After"
         }
-      ]
+      ],
+      "displayOrder": null
     },
     {
       "id": "1270",
@@ -286,7 +304,7 @@
         "Audition"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 6,
       "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
@@ -340,7 +358,8 @@
           "labelBefore": "Before",
           "labelAfter": "After"
         }
-      ]
+      ],
+      "displayOrder": null
     },
     {
       "id": "1711",
@@ -364,7 +383,7 @@
         "Audition"
       ],
       "featured": true,
-      "featuredOrder": 6,
+      "featuredOrder": 5,
       "projectsPageOrder": 6,
       "visible": true,
       "thumbnail": "assets/images/projects/1711/1711-thumb.webp",
@@ -418,7 +437,9 @@
           "labelBefore": "Before",
           "labelAfter": "After"
         }
-      ]
+      ],
+      "hidden": false,
+      "displayOrder": null
     },
     {
       "id": "1353",
@@ -441,7 +462,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 7,
+      "featuredOrder": null,
       "projectsPageOrder": 7,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
@@ -454,7 +475,8 @@
         "src": "assets/videos/1353/project-1353.mp4",
         "poster": "assets/images/projects/1353/1353-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 1
     },
     {
       "id": "1003",
@@ -477,7 +499,7 @@
         "Mocha"
       ],
       "featured": false,
-      "featuredOrder": 8,
+      "featuredOrder": null,
       "projectsPageOrder": 8,
       "visible": true,
       "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
@@ -490,7 +512,8 @@
         "src": "assets/videos/1003/project-1003.mp4",
         "poster": "assets/images/projects/1003/1003-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 2
     },
     {
       "id": "1004",
@@ -513,7 +536,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 9,
+      "featuredOrder": null,
       "projectsPageOrder": 9,
       "visible": true,
       "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
@@ -526,7 +549,8 @@
         "src": "assets/videos/1004/project-1004.mp4",
         "poster": "assets/images/projects/1004/1004-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 3
     },
     {
       "id": "1699",
@@ -549,7 +573,7 @@
         "Premiere Pro"
       ],
       "featured": false,
-      "featuredOrder": 10,
+      "featuredOrder": null,
       "projectsPageOrder": 10,
       "visible": true,
       "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
@@ -562,7 +586,8 @@
         "src": "assets/videos/1699/project-1699.mp4",
         "poster": "assets/images/projects/1699/1699-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 4
     },
     {
       "id": "1661",
@@ -586,7 +611,7 @@
         "InDesign"
       ],
       "featured": false,
-      "featuredOrder": 11,
+      "featuredOrder": null,
       "projectsPageOrder": 11,
       "visible": true,
       "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
@@ -599,7 +624,8 @@
         "src": "assets/videos/1661/project-1661.mp4",
         "poster": "assets/images/projects/1661/1661-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 5
     },
     {
       "id": "1528",
@@ -622,7 +648,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 12,
+      "featuredOrder": null,
       "projectsPageOrder": 12,
       "visible": true,
       "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
@@ -635,7 +661,8 @@
         "src": "assets/videos/1528/project-1528.mp4",
         "poster": "assets/images/projects/1528/1528-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 6
     },
     {
       "id": "1470",
@@ -659,7 +686,7 @@
         "Cinema 4D"
       ],
       "featured": false,
-      "featuredOrder": 13,
+      "featuredOrder": null,
       "projectsPageOrder": 13,
       "visible": true,
       "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
@@ -672,7 +699,8 @@
         "src": "assets/videos/1470/project-1470.mp4",
         "poster": "assets/images/projects/1470/1470-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 7
     },
     {
       "id": "1828",
@@ -696,7 +724,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 14,
+      "featuredOrder": null,
       "projectsPageOrder": 14,
       "visible": true,
       "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
@@ -709,7 +737,8 @@
         "src": "assets/videos/1828/project-1828.mp4",
         "poster": "assets/images/projects/1828/1828-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 8
     },
     {
       "id": "1160",
@@ -733,7 +762,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 15,
+      "featuredOrder": null,
       "projectsPageOrder": 15,
       "visible": true,
       "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
@@ -746,7 +775,8 @@
         "src": "assets/videos/1160/project-1160.mp4",
         "poster": "assets/images/projects/1160/1160-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 9
     },
     {
       "id": "1336",
@@ -770,7 +800,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 16,
+      "featuredOrder": null,
       "projectsPageOrder": 16,
       "visible": true,
       "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
@@ -783,7 +813,8 @@
         "src": "assets/videos/1336/project-1336.mp4",
         "poster": "assets/images/projects/1336/1336-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 10
     },
     {
       "id": "1092",
@@ -806,7 +837,7 @@
         "Premiere Pro"
       ],
       "featured": false,
-      "featuredOrder": 17,
+      "featuredOrder": null,
       "projectsPageOrder": 17,
       "visible": true,
       "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
@@ -819,7 +850,8 @@
         "src": "assets/videos/1092/project-1092.mp4",
         "poster": "assets/images/projects/1092/1092-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 11
     },
     {
       "id": "1509",
@@ -843,7 +875,7 @@
         "Nuke"
       ],
       "featured": false,
-      "featuredOrder": 18,
+      "featuredOrder": null,
       "projectsPageOrder": 18,
       "visible": true,
       "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
@@ -856,7 +888,8 @@
         "src": "assets/videos/1509/project-1509.mp4",
         "poster": "assets/images/projects/1509/1509-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 12
     },
     {
       "id": "1029",
@@ -880,7 +913,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 19,
+      "featuredOrder": null,
       "projectsPageOrder": 19,
       "visible": true,
       "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
@@ -893,7 +926,8 @@
         "src": "assets/videos/1029/project-1029.mp4",
         "poster": "assets/images/projects/1029/1029-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 13
     },
     {
       "id": "1459",
@@ -917,7 +951,7 @@
         "Spark AR"
       ],
       "featured": false,
-      "featuredOrder": 20,
+      "featuredOrder": null,
       "projectsPageOrder": 20,
       "visible": true,
       "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
@@ -930,7 +964,8 @@
         "src": "assets/videos/1459/project-1459.mp4",
         "poster": "assets/images/projects/1459/1459-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 14
     },
     {
       "id": "1584",
@@ -954,7 +989,7 @@
         "Character Animator"
       ],
       "featured": false,
-      "featuredOrder": 21,
+      "featuredOrder": null,
       "projectsPageOrder": 21,
       "visible": true,
       "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
@@ -967,7 +1002,8 @@
         "src": "assets/videos/1584/project-1584.mp4",
         "poster": "assets/images/projects/1584/1584-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 15
     },
     {
       "id": "1292",
@@ -991,7 +1027,7 @@
         "Resolume"
       ],
       "featured": false,
-      "featuredOrder": 22,
+      "featuredOrder": null,
       "projectsPageOrder": 22,
       "visible": true,
       "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
@@ -1004,7 +1040,8 @@
         "src": "assets/videos/1292/project-1292.mp4",
         "poster": "assets/images/projects/1292/1292-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 16
     },
     {
       "id": "1626",
@@ -1028,7 +1065,7 @@
         "Redshift"
       ],
       "featured": false,
-      "featuredOrder": 23,
+      "featuredOrder": null,
       "projectsPageOrder": 23,
       "visible": true,
       "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
@@ -1041,7 +1078,8 @@
         "src": "assets/videos/1626/project-1626.mp4",
         "poster": "assets/images/projects/1626/1626-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 17
     },
     {
       "id": "1582",
@@ -1065,7 +1103,7 @@
         "After Effects"
       ],
       "featured": false,
-      "featuredOrder": 24,
+      "featuredOrder": null,
       "projectsPageOrder": 24,
       "visible": true,
       "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
@@ -1078,7 +1116,8 @@
         "src": "assets/videos/1582/project-1582.mp4",
         "poster": "assets/images/projects/1582/1582-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 18
     },
     {
       "id": "1453",
@@ -1102,7 +1141,7 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 25,
+      "featuredOrder": null,
       "projectsPageOrder": 25,
       "visible": true,
       "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
@@ -1115,7 +1154,8 @@
         "src": "assets/videos/1453/project-1453.mp4",
         "poster": "assets/images/projects/1453/1453-poster.jpg"
       },
-      "processMedia": []
+      "processMedia": [],
+      "displayOrder": 19
     }
   ],
   "metadata": {
