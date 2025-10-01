@@ -129,19 +129,17 @@
             font-family: var(--font-body);
         }
 
-        /* Process Media Grid Layouts */
+        /* Process Media Grid Layouts - Commented out to use vertical layout
         .process-media-grid {
             display: grid;
             gap: 2rem;
             margin-top: 2rem;
         }
 
-        /* Single item - full width */
         .process-grid-1 {
             grid-template-columns: 1fr;
         }
 
-        /* 2 items - side by side on desktop, stack on mobile */
         .process-grid-2 {
             grid-template-columns: 1fr;
         }
@@ -151,7 +149,6 @@
             }
         }
 
-        /* 3 items - single column mobile, 3 columns desktop */
         .process-grid-3 {
             grid-template-columns: 1fr;
         }
@@ -161,7 +158,6 @@
             }
         }
 
-        /* 4 items - 2x2 grid */
         .process-grid-4 {
             grid-template-columns: 1fr;
         }
@@ -171,7 +167,6 @@
             }
         }
 
-        /* 5 items - 2-3 layout */
         .process-grid-5 {
             grid-template-columns: 1fr;
         }
@@ -184,7 +179,6 @@
             }
         }
 
-        /* 6 items - 3x2 grid */
         .process-grid-6 {
             grid-template-columns: 1fr;
         }
@@ -198,6 +192,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+        */
 
         /* Media item styling */
         .media-item {
@@ -335,7 +330,7 @@
                 <!-- PROCESS_MEDIA_START -->
                 <div class="project-gallery" style="margin-top: 4rem;">
                     <h3>Process & Variations</h3>
-                    <div class="process-media-grid process-grid-1">
+                    <div class="gallery-grid" style="display: flex; flex-direction: column; gap: 1.5rem;">
                         
                         <div class="media-item before-after-wrapper">
                             <div class="media-label">UI Animation Compositing</div>
@@ -359,19 +354,22 @@
             </div>
         </section>
 
-                        <!-- Related Projects -->
+        <!-- Related Projects -->
         <section class="related-projects">
             <div class="container">
                 <h2>Related Projects</h2>
                 <div class="projects-grid" style="max-width: 600px; margin: 0 auto;">
-                    <a href="Project-1828.html" class="project-card" style="max-width: 250px;">
-                        <img src="../assets/images/projects/1828/1828-thumb.webp" alt="Product Launch Campaign">
-                        <h3>Product Launch Campaign</h3>
+                    
+                    <a href="Project-1003.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1003/1003-thumb.webp" alt="Music Video Production">
+                        <h3>Music Video Production</h3>
                     </a>
-                    <a href="Project-1798.html" class="project-card" style="max-width: 250px;">
-                        <img src="../assets/images/projects/1798/1798-thumb.webp" alt="Big Brother">
-                        <h3>Big Brother</h3>
+                    
+                    <a href="Project-1699.html" class="project-card" style="max-width: 250px;">
+                        <img src="../assets/images/projects/1699/1699-thumb.webp" alt="Documentary Series">
+                        <h3>Documentary Series</h3>
                     </a>
+                    
                 </div>
             </div>
         </section>

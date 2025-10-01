@@ -277,15 +277,17 @@
     color: var(--text-secondary);
 }
 
+/* Updated to vertical layout to match project pages */
 .grid-preview-container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 0.5rem;
     padding: 1rem;
     background: var(--bg-primary);
     border-radius: 8px;
 }
 
-/* Grid layouts based on count */
+/* Grid layouts based on count - Commented out to use vertical layout
 .grid-preview-1 {
     grid-template-columns: 1fr;
 }
@@ -313,9 +315,11 @@
 .grid-preview-6 {
     grid-template-columns: repeat(3, 1fr);
 }
+*/
 
 .grid-item {
     aspect-ratio: 16/9;
+    min-height: 100px;
     background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -324,6 +328,8 @@
     justify-content: center;
     font-size: 0.8rem;
     color: var(--text-secondary);
+    /* Add subtle separator for vertical layout */
+    margin-bottom: 0.25rem;
 }
 
 /* Preview Panel */

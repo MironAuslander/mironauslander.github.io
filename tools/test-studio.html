@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Studio Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+        .success { color: #4CAF50; }
+        .error { color: #f44336; }
+        .info { color: #2196F3; }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        pre {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Project Studio Functionality Test</h1>
+
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="loadProjectData()">1. Load Project Data</button>
+        <button onclick="testOrganization()">2. Test Organization</button>
+        <button onclick="testProjectSelection()">3. Test Project Selection</button>
+        <button onclick="testMediaConfig()">4. Test Media Config</button>
+        <button onclick="testSaveOperation()">5. Test Save Operation</button>
+        <button onclick="openStudio()">Open Project Studio</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Data Preview</h2>
+        <pre id="dataPreview"></pre>
+    </div>
+
+    <script>
+        const resultsDiv = document.getElementById('results');
+        const dataPreview = document.getElementById('dataPreview');
+
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            resultsDiv.appendChild(div);
+        }
+
+        async function loadProjectData() {
+            try {
+                log('Loading project data...');
+                const response = await fetch('../projects-data.json');
+                const data = await response.json();
+
+                log(`Successfully loaded ${data.projects.length} projects`, 'success');
+
+                // Check featured projects
+                const featured = data.projects.filter(p => p.featured);
+                log(`Found ${featured.length} featured projects`, 'info');
+
+                // Check hidden projects
+                const hidden = data.projects.filter(p => p.hidden);
+                log(`Found ${hidden.length} hidden projects`, 'info');
+
+                // Check for processMedia
+                const withMedia = data.projects.filter(p => p.processMedia || p.beforeAfterMedia);
+                log(`Found ${withMedia.length} projects with media configuration`, 'info');
+
+                // Display sample project
+                if (data.projects.length > 0) {
+                    dataPreview.textContent = JSON.stringify(data.projects[0], null, 2);
+                }
+
+                return data;
+            } catch (error) {
+                log(`Error loading data: ${error.message}`, 'error');
+            }
+        }
+
+        async function testOrganization() {
+            log('Testing organization features...');
+            const data = await loadProjectData();
+            if (!data) return;
+
+            // Check featuredOrder
+            const featuredOrder = data.projects
+                .filter(p => p.featured)
+                .sort((a, b) => (a.featuredOrder || 999) - (b.featuredOrder || 999));
+
+            log(`Featured order: ${featuredOrder.map(p => p.id).join(', ')}`, 'info');
+
+            // Check displayOrder
+            const displayOrder = data.projects
+                .filter(p => !p.hidden)
+                .sort((a, b) => (a.displayOrder || 999) - (b.displayOrder || 999));
+
+            log(`Display order (first 5): ${displayOrder.slice(0, 5).map(p => p.id).join(', ')}`, 'info');
+
+            log('Organization test complete', 'success');
+        }
+
+        async function testProjectSelection() {
+            log('Testing project selection...');
+            const data = await loadProjectData();
+            if (!data) return;
+
+            // Find a project with complete data
+            const completeProject = data.projects.find(p =>
+                p.categories && p.role && p.tools && (p.processMedia || p.beforeAfterMedia)
+            );
+
+            if (completeProject) {
+                log(`Found complete project: ${completeProject.id} - ${completeProject.displayTitle}`, 'success');
+                log(`Categories: ${completeProject.categories.join(', ')}`, 'info');
+                log(`Roles: ${completeProject.role.join(', ')}`, 'info');
+                log(`Tools: ${completeProject.tools.join(', ')}`, 'info');
+
+                dataPreview.textContent = JSON.stringify(completeProject, null, 2);
+            } else {
+                log('No complete project found', 'error');
+            }
+        }
+
+        async function testMediaConfig() {
+            log('Testing media configuration...');
+            const data = await loadProjectData();
+            if (!data) return;
+
+            // Find projects with different media types
+            const withHeroVideo = data.projects.find(p => p.heroMedia?.type === 'video');
+            const withProcessMedia = data.projects.find(p => p.processMedia?.length > 0);
+            const withBeforeAfter = data.projects.find(p =>
+                p.processMedia?.some(m => m.type.includes('before-after')) ||
+                p.beforeAfterMedia?.length > 0
+            );
+
+            if (withHeroVideo) {
+                log(`Found project with hero video: ${withHeroVideo.id}`, 'success');
+            }
+
+            if (withProcessMedia) {
+                log(`Found project with process media: ${withProcessMedia.id} (${withProcessMedia.processMedia.length} blocks)`, 'success');
+                withProcessMedia.processMedia.forEach((media, i) => {
+                    log(`  Block ${i + 1}: ${media.type}`, 'info');
+                });
+            }
+
+            if (withBeforeAfter) {
+                log(`Found project with before/after: ${withBeforeAfter.id}`, 'success');
+            }
+        }
+
+        async function testSaveOperation() {
+            log('Testing save operation (simulation)...');
+
+            // Create test data
+            const testData = {
+                projects: [
+                    {
+                        id: "test-001",
+                        displayTitle: "Test Project",
+                        fullTitle: "Test Project Full Title",
+                        description: "Test description",
+                        categories: ["VFX", "Motion Graphics"],
+                        featured: true,
+                        featuredOrder: 1,
+                        displayOrder: 1,
+                        hidden: false
+                    }
+                ]
+            };
+
+            log('Test data created', 'success');
+            log('Would save to: projects-data-backup-[timestamp].json', 'info');
+
+            // Show save data structure
+            dataPreview.textContent = JSON.stringify(testData, null, 2);
+
+            log('Save operation test complete', 'success');
+        }
+
+        function openStudio() {
+            window.open('project-studio.html', '_blank');
+        }
+
+        // Auto-load on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            log('Test interface ready', 'success');
+            loadProjectData();
+        });
+    </script>
+</body>
+</html>

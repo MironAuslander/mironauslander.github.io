@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Project Studio - Unified Management System</title>
+    <link rel="stylesheet" href="css/tools.css?v=4">
+    <link rel="stylesheet" href="css/project-studio.css?v=1">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+    <div class="studio-container">
+        <!-- Left Sidebar: Project List & Organization -->
+        <aside class="project-sidebar">
+            <div class="sidebar-header">
+                <h2>Projects</h2>
+                <div class="sidebar-tabs">
+                    <button class="sidebar-tab active" data-view="organize">📊 Organize</button>
+                    <button class="sidebar-tab" data-view="edit">✏️ Edit</button>
+                </div>
+            </div>
+
+            <!-- Organize View -->
+            <div class="sidebar-view active" id="organize-view">
+                <div class="search-bar">
+                    <input type="text" id="searchOrganize" placeholder="🔍 Search projects...">
+                </div>
+
+                <div class="project-sections">
+                    <!-- Featured Section -->
+                    <div class="section featured-section">
+                        <div class="section-header">
+                            <h3>⭐ Featured (Homepage)</h3>
+                            <span class="count-badge"><span id="featuredCount">0</span>/6</span>
+                        </div>
+                        <div id="featuredProjects" class="project-list sortable-list">
+                            <!-- Featured projects -->
+                        </div>
+                    </div>
+
+                    <!-- All Projects Section -->
+                    <div class="section all-section">
+                        <div class="section-header">
+                            <h3>📁 All Projects</h3>
+                            <span class="count-badge"><span id="visibleCount">0</span></span>
+                        </div>
+                        <div id="allProjects" class="project-list sortable-list">
+                            <!-- Visible projects -->
+                        </div>
+                    </div>
+
+                    <!-- Hidden Section -->
+                    <div class="section hidden-section">
+                        <div class="section-header">
+                            <h3>👁️ Hidden</h3>
+                            <span class="count-badge"><span id="hiddenCount">0</span></span>
+                        </div>
+                        <div id="hiddenProjects" class="project-list sortable-list">
+                            <!-- Hidden projects -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Edit View -->
+            <div class="sidebar-view" id="edit-view">
+                <div class="search-bar">
+                    <input type="text" id="searchEdit" placeholder="🔍 Search to edit...">
+                </div>
+                <div id="editProjectList" class="project-list-simple">
+                    <!-- Clickable project list -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="studio-main">
+            <!-- Tab Navigation -->
+            <div class="studio-tabs">
+                <button class="tab-btn active" data-tab="organize">📊 Organize Layout</button>
+                <button class="tab-btn" data-tab="details">📝 Project Details</button>
+                <button class="tab-btn" data-tab="media">🎬 Media Config</button>
+                <button class="tab-btn" data-tab="preview">👁️ Preview</button>
+            </div>
+
+            <!-- Tab Panels -->
+            <div class="tab-panels">
+                <!-- Tab 1: Organize Layout -->
+                <div class="tab-panel active" id="organize-tab">
+                    <div class="organize-content">
+                        <h2>Project Organization & Layout</h2>
+                        <div class="organize-instructions">
+                            <div class="instruction-cards">
+                                <div class="instruction-card">
+                                    <span class="icon">⭐</span>
+                                    <h3>Featured Projects</h3>
+                                    <p>Drag up to 6 projects to feature on the homepage</p>
+                                </div>
+                                <div class="instruction-card">
+                                    <span class="icon">📁</span>
+                                    <h3>Project Order</h3>
+                                    <p>Arrange the order for the projects page</p>
+                                </div>
+                                <div class="instruction-card">
+                                    <span class="icon">👁️</span>
+                                    <h3>Visibility</h3>
+                                    <p>Hide projects from public view</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="organize-stats">
+                            <div class="stat-card">
+                                <span class="stat-label">Total Projects</span>
+                                <span class="stat-value" id="totalProjects">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Featured</span>
+                                <span class="stat-value" id="featuredStat">0/6</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Visible</span>
+                                <span class="stat-value" id="visibleStat">0</span>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-label">Hidden</span>
+                                <span class="stat-value" id="hiddenStat">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 2: Project Details -->
+                <div class="tab-panel" id="details-tab">
+                    <div class="edit-header">
+                        <h2>Editing: <span id="currentProjectName">Select a project</span></h2>
+                        <div class="project-id-badge">ID: <span id="currentProjectId">-</span></div>
+                    </div>
+
+                    <form id="projectForm" class="project-form">
+                        <!-- Basic Information -->
+                        <fieldset>
+                            <legend>Basic Information</legend>
+
+                            <div class="form-group">
+                                <label for="displayTitle">Display Title <span class="char-count">0/50</span></label>
+                                <input type="text" id="displayTitle" maxlength="50" required>
+                                <small>Short title for cards and lists</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fullTitle">Full Title <span class="char-count">0/100</span></label>
+                                <input type="text" id="fullTitle" maxlength="100" required>
+                                <small>Complete title for project page</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description <span class="char-count">0/500</span></label>
+                                <textarea id="description" rows="4" maxlength="500" required></textarea>
+                                <small>Project overview and main achievements</small>
+                            </div>
+                        </fieldset>
+
+                        <!-- Categories -->
+                        <fieldset>
+                            <legend>Categories <small>(Select all that apply)</small></legend>
+                            <div id="categoryList" class="tag-selector">
+                                <!-- Category tags will be generated -->
+                            </div>
+                            <small style="color: var(--text-secondary);">Projects can belong to multiple categories</small>
+                        </fieldset>
+
+                        <!-- Project Details -->
+                        <fieldset>
+                            <legend>Project Details</legend>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="year">Year</label>
+                                    <input type="number" id="year" min="2020" max="2030" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="client">Client</label>
+                                    <input type="text" id="client" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="duration">Duration</label>
+                                <input type="text" id="duration" placeholder="e.g., 2 weeks, 3 months">
+                            </div>
+                        </fieldset>
+
+                        <!-- Roles & Tools -->
+                        <fieldset>
+                            <legend>Roles & Tools</legend>
+
+                            <div class="form-group">
+                                <label>My Role</label>
+                                <div id="roleList" class="tag-selector">
+                                    <!-- Role tags will be generated -->
+                                </div>
+                                <input type="text" id="roleInput" placeholder="+ Add custom role" class="tag-input">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Tools Used</label>
+                                <div id="toolsList" class="tag-selector">
+                                    <!-- Tool tags will be generated -->
+                                </div>
+                                <input type="text" id="toolsInput" placeholder="+ Add custom tool" class="tag-input">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <!-- Tab 3: Media Configuration -->
+                <div class="tab-panel" id="media-tab">
+                    <div class="media-config-container">
+                        <!-- Hero Section -->
+                        <div class="config-section hero-section">
+                            <h3>📸 Hero Section</h3>
+                            <div class="hero-type-selector">
+                                <label class="radio-card">
+                                    <input type="radio" name="heroType" value="video" checked>
+                                    <div class="radio-card-content">
+                                        <span class="icon">🎬</span>
+                                        <span>Video</span>
+                                    </div>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="heroType" value="image">
+                                    <div class="radio-card-content">
+                                        <span class="icon">🖼️</span>
+                                        <span>Image</span>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div id="heroVideoConfig" class="hero-config">
+                                <div class="form-group">
+                                    <label>Video Path</label>
+                                    <input type="text" id="heroVideoSrc" placeholder="assets/videos/[id]/project-[id].mp4">
+                                </div>
+                                <div class="form-group">
+                                    <label>Poster Image</label>
+                                    <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/poster.jpg">
+                                </div>
+                            </div>
+
+                            <div id="heroImageConfig" class="hero-config" style="display: none;">
+                                <div class="form-group">
+                                    <label>Image Path</label>
+                                    <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/hero.jpg">
+                                </div>
+                                <div class="form-group">
+                                    <label>Alt Text</label>
+                                    <input type="text" id="heroImageAlt" placeholder="Description of image">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Process Media Section -->
+                        <div class="config-section process-section">
+                            <h3>🎨 Process & Variations</h3>
+                            <p class="section-info">Add 1-6 media blocks. Drag to reorder.</p>
+
+                            <!-- Media Type Palette -->
+                            <div class="media-type-palette">
+                                <div class="media-type-card" data-type="video">
+                                    <span class="icon">🎬</span>
+                                    <span>Video</span>
+                                </div>
+                                <div class="media-type-card" data-type="image">
+                                    <span class="icon">🖼️</span>
+                                    <span>Image</span>
+                                </div>
+                                <div class="media-type-card" data-type="before-after-video">
+                                    <span class="icon">🎬↔️</span>
+                                    <span>Before/After Video</span>
+                                </div>
+                                <div class="media-type-card" data-type="before-after-image">
+                                    <span class="icon">🖼️↔️</span>
+                                    <span>Before/After Image</span>
+                                </div>
+                            </div>
+
+                            <!-- Process Media Blocks -->
+                            <div id="processMediaBlocks" class="process-media-blocks">
+                                <div class="empty-state">
+                                    <p>Drag media types here or click to add</p>
+                                    <button id="addMediaBtn" class="btn btn-secondary">+ Add Media Block</button>
+                                </div>
+                            </div>
+
+                            <!-- Layout Preview -->
+                            <div class="grid-preview">
+                                <h4>Layout Preview (Vertical)</h4>
+                                <div id="gridPreview" class="grid-preview-container">
+                                    <!-- Preview will be shown here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab 4: Preview -->
+                <div class="tab-panel" id="preview-tab">
+                    <div class="preview-header">
+                        <h2>Live Preview</h2>
+                        <div class="preview-controls">
+                            <button class="preview-btn active" data-device="desktop">💻 Desktop</button>
+                            <button class="preview-btn" data-device="tablet">📱 Tablet</button>
+                            <button class="preview-btn" data-device="mobile">📱 Mobile</button>
+                        </div>
+                    </div>
+                    <div id="previewContainer" class="preview-container desktop">
+                        <iframe id="previewFrame" src="about:blank"></iframe>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Action Bar -->
+        <footer class="studio-actions">
+            <div class="action-left">
+                <span id="changeIndicator" class="change-indicator">
+                    <span class="indicator-dot"></span>
+                    <span class="indicator-text">No changes</span>
+                </span>
+            </div>
+            <div class="action-right">
+                <button id="reloadBtn" class="btn btn-secondary">🔄 Reload</button>
+                <button id="saveBtn" class="btn btn-primary">💾 Save All Changes</button>
+                <button id="generateBtn" class="btn btn-success">🚀 Generate & Apply</button>
+                <a href="index.html" class="btn btn-link">← Dashboard</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Status Messages -->
+    <div id="statusMessage" class="status-message"></div>
+
+    <!-- Templates -->
+    <!-- Project Card Template for Organize View -->
+    <template id="projectCardTemplate">
+        <div class="project-card" data-id="">
+            <div class="card-handle">⋮⋮</div>
+            <div class="card-thumbnail">
+                <img src="" alt="">
+            </div>
+            <div class="card-info">
+                <div class="card-title"></div>
+                <div class="card-meta">
+                    <span class="card-id"></span>
+                    <span class="card-category"></span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Project Item Template for Edit List -->
+    <template id="projectItemTemplate">
+        <div class="project-item" data-id="">
+            <div class="item-thumbnail">
+                <img src="" alt="">
+            </div>
+            <div class="item-info">
+                <div class="item-title"></div>
+                <div class="item-meta">
+                    <span class="item-id"></span>
+                    <span class="item-category"></span>
+                </div>
+            </div>
+            <div class="item-status">
+                <span class="status-badge"></span>
+            </div>
+        </div>
+    </template>
+
+    <script src="js/utils.js?v=2"></script>
+    <script src="js/project-studio.js?v=1"></script>
+</body>
+</html>
