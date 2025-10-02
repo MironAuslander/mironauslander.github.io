@@ -9,6 +9,9 @@ class ProjectStudio {
         this.currentView = 'organize'; // 'organize' or 'edit'
         this.currentTab = 'organize'; // 'organize', 'details', 'media', 'preview'
 
+        // Multi-project editing support
+        this.modifiedProjects = new Set(); // Track which projects have been edited
+
         // Project organization
         this.featuredProjects = [];
         this.visibleProjects = [];
@@ -27,9 +30,15 @@ class ProjectStudio {
 
         this.availableRoles = [
             'Concept Development', 'Art Direction', 'Animation', '3D Modeling',
-            'Compositing', 'Motion Graphics', 'VFX Supervision', 'Color Grading',
+            'Compositing', 'Compositing Lead', 'Motion Graphics', 'Motion Design',
+            'VFX Supervision', 'VFX Supervisor', 'VFX Lead', 'Color Grading',
             'Sound Design', 'Editing', 'Storyboarding', 'Character Animation',
-            'Motion Tracking', 'Rendering', 'Lighting', 'Texturing'
+            'Motion Tracking', 'Rendering', 'Lighting', 'Texturing',
+            'Animation Director', 'Creative Direction', 'Broadcast Design',
+            'Broadcast Design Lead', 'Post-Production Lead', 'Brand Design',
+            'Title Design', 'Interactive Design', 'Cinematic Director',
+            '3D Visualization', 'Content Creation', 'Visual Director',
+            'Medical Visualization', 'Exhibition Design'
         ];
 
         this.availableTools = [
@@ -49,7 +58,6 @@ class ProjectStudio {
         try {
             // Load projects data
             this.projectsData = await Utils.loadProjectsData();
-            console.log('Loaded', this.projectsData.projects?.length, 'projects');
 
             // Setup UI components
             this.setupSidebarViews();
@@ -261,10 +269,10 @@ class ProjectStudio {
         this.featuredProjects = this.projectsData.projects.filter(p => p.featured)
             .sort((a, b) => (a.featuredOrder || 999) - (b.featuredOrder || 999));
 
-        this.visibleProjects = this.projectsData.projects.filter(p => p.visible && !p.featured)
+        this.visibleProjects = this.projectsData.projects.filter(p => !p.hidden && !p.featured)
             .sort((a, b) => (a.displayOrder || 999) - (b.displayOrder || 999));
 
-        this.hiddenProjects = this.projectsData.projects.filter(p => !p.visible);
+        this.hiddenProjects = this.projectsData.projects.filter(p => p.hidden);
 
         // Render cards
         this.featuredProjects.forEach(p => this.renderProjectCard(p, 'featuredProjects'));
@@ -348,7 +356,98 @@ class ProjectStudio {
         });
     }
 
+    hasDataChanged(original, updated) {
+        // Helper function to compare data objects
+        for (const key in updated) {
+            let origVal = original[key];
+            let newVal = updated[key];
+
+            // Skip undefined values
+            if (newVal === undefined) continue;
+
+            // Special handling for category field - normalize to array for comparison
+            if (key === 'category') {
+                // Ensure both values are arrays for comparison
+                origVal = Array.isArray(origVal) ? origVal : [origVal];
+                newVal = Array.isArray(newVal) ? newVal : [newVal];
+
+                // Compare as sorted arrays
+                if (origVal.length !== newVal.length) return true;
+                const sortedOrig = [...origVal].sort();
+                const sortedNew = [...newVal].sort();
+                if (JSON.stringify(sortedOrig) !== JSON.stringify(sortedNew)) {
+                    return true;
+                }
+            }
+            // Handle arrays
+            else if (Array.isArray(origVal) && Array.isArray(newVal)) {
+                if (origVal.length !== newVal.length) return true;
+                // Sort and compare for arrays (order doesn't matter for categories, roles, tools)
+                const sortedOrig = [...origVal].sort();
+                const sortedNew = [...newVal].sort();
+                if (JSON.stringify(sortedOrig) !== JSON.stringify(sortedNew)) {
+                    return true;
+                }
+            }
+            // Handle objects (like heroMedia)
+            else if (origVal && newVal && typeof origVal === 'object' && typeof newVal === 'object' && !Array.isArray(origVal)) {
+                if (JSON.stringify(origVal) !== JSON.stringify(newVal)) {
+                    return true;
+                }
+            }
+            // Handle primitives
+            else if (origVal !== newVal) {
+                // Special case: year comparison (string vs number)
+                if (key === 'year' && parseInt(origVal) === parseInt(newVal)) {
+                    continue;
+                }
+                return true;
+            }
+        }
+        return false;
+    }
+
+    savePendingProjectChanges() {
+        // Save current project's changes to memory before switching
+        if (!this.currentProject) return;
+
+        // Only save if we're in details or media tab (editing mode)
+        if (this.currentTab !== 'details' && this.currentTab !== 'media') return;
+
+        try {
+            // Get current form data
+            const formData = this.getFormData();
+            const mediaConfig = this.getMediaConfiguration();
+
+            // Find the project in the main data array
+            const projectIndex = this.projectsData.projects.findIndex(p => p.id === this.currentProject.id);
+            if (projectIndex !== -1) {
+                const originalProject = this.projectsData.projects[projectIndex];
+
+                // Check if anything actually changed
+                const hasFormChanges = this.hasDataChanged(originalProject, formData);
+                const hasMediaChanges = this.hasDataChanged(originalProject, mediaConfig);
+
+                if (hasFormChanges || hasMediaChanges) {
+                    // Only update and mark as modified if there are actual changes
+                    Object.assign(this.projectsData.projects[projectIndex], formData, mediaConfig);
+
+                    // Track that this project has been modified
+                    this.modifiedProjects.add(this.currentProject.id);
+                    this.hasChanges = true;
+
+                    // Update visual indicator
+                    this.updateProjectModifiedIndicator(this.currentProject.id, true);
+                }
+            }
+        } catch (error) {
+            console.error('Error saving pending changes:', error);
+        }
+    }
+
     selectProjectForEdit(projectId) {
+        // Auto-save current project before switching
+        this.savePendingProjectChanges();
         // Update selected state
         document.querySelectorAll('.project-item').forEach(item => {
             item.classList.toggle('selected', item.dataset.id === projectId);
@@ -388,15 +487,67 @@ class ProjectStudio {
             tag.classList.toggle('selected', categories.includes(tag.dataset.value));
         });
 
-        // Load roles
-        document.querySelectorAll('#roleList .tag').forEach(tag => {
-            tag.classList.toggle('selected', project.role?.includes(tag.dataset.value));
-        });
+        // Load roles - first ensure all project roles exist as tags
+        if (project.role && project.role.length > 0) {
+            const roleContainer = document.getElementById('roleList');
+            project.role.forEach(role => {
+                // Check if tag already exists
+                if (!Array.from(roleContainer.querySelectorAll('.tag')).some(tag => tag.dataset.value === role)) {
+                    // Create new tag for this role
+                    const newTag = document.createElement('span');
+                    newTag.className = 'tag';
+                    newTag.dataset.value = role;
+                    newTag.textContent = role;
+                    newTag.addEventListener('click', () => {
+                        newTag.classList.toggle('selected');
+                        this.hasChanges = true;
+                        this.updateChangeIndicator();
+                    });
+                    roleContainer.appendChild(newTag);
+                }
+            });
 
-        // Load tools
-        document.querySelectorAll('#toolsList .tag').forEach(tag => {
-            tag.classList.toggle('selected', project.tools?.includes(tag.dataset.value));
-        });
+            // Now select the appropriate tags
+            document.querySelectorAll('#roleList .tag').forEach(tag => {
+                tag.classList.toggle('selected', project.role.includes(tag.dataset.value));
+            });
+        } else {
+            // No roles, deselect all
+            document.querySelectorAll('#roleList .tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+        }
+
+        // Load tools - first ensure all project tools exist as tags
+        if (project.tools && project.tools.length > 0) {
+            const toolsContainer = document.getElementById('toolsList');
+            project.tools.forEach(tool => {
+                // Check if tag already exists
+                if (!Array.from(toolsContainer.querySelectorAll('.tag')).some(tag => tag.dataset.value === tool)) {
+                    // Create new tag for this tool
+                    const newTag = document.createElement('span');
+                    newTag.className = 'tag';
+                    newTag.dataset.value = tool;
+                    newTag.textContent = tool;
+                    newTag.addEventListener('click', () => {
+                        newTag.classList.toggle('selected');
+                        this.hasChanges = true;
+                        this.updateChangeIndicator();
+                    });
+                    toolsContainer.appendChild(newTag);
+                }
+            });
+
+            // Now select the appropriate tags
+            document.querySelectorAll('#toolsList .tag').forEach(tag => {
+                tag.classList.toggle('selected', project.tools.includes(tag.dataset.value));
+            });
+        } else {
+            // No tools, deselect all
+            document.querySelectorAll('#toolsList .tag').forEach(tag => {
+                tag.classList.remove('selected');
+            });
+        }
 
         // Update character counters
         this.updateAllCharCounters();
@@ -1057,25 +1208,35 @@ class ProjectStudio {
     }
 
     async saveAllChanges() {
-        // Update organization data
+        // Update organization data (always runs)
         this.updateProjectOrganization();
 
-        // If editing a project, save its details
-        if (this.currentProject && (this.currentTab === 'details' || this.currentTab === 'media')) {
-            const formData = this.getFormData();
-            const mediaConfig = this.getMediaConfiguration();
+        // Save any pending changes from currently editing project
+        this.savePendingProjectChanges();
 
-            // Update current project
-            Object.assign(this.currentProject, formData, mediaConfig);
-        }
-
-        // Save to file
+        // Save to file (includes all organization + all edited projects)
         const saved = await Utils.saveProjectsData(this.projectsData);
 
         if (saved) {
+            // Get count before clearing
+            const modifiedCount = this.modifiedProjects.size;
+
+            // Clear all change tracking
             this.hasChanges = false;
+            this.modifiedProjects.clear();
             this.updateChangeIndicator();
-            this.showStatus('✅ All changes saved! Download started.', 'success');
+
+            // Clear all modified indicators in UI
+            document.querySelectorAll('.project-item').forEach(item => {
+                this.updateProjectModifiedIndicator(item.dataset.id, false);
+            });
+
+            // Show success message with count
+            const message = modifiedCount > 0
+                ? `✅ All changes saved! (${modifiedCount} project${modifiedCount !== 1 ? 's' : ''} edited) Download started.`
+                : '✅ All changes saved! Download started.';
+
+            this.showStatus(message, 'success');
         } else {
             this.showStatus('Failed to save changes', 'error');
         }
@@ -1166,13 +1327,14 @@ class ProjectStudio {
             document.getElementById('hiddenProjects').querySelectorAll('.project-card').length;
 
         // Stats panel
+        const featuredCount = document.getElementById('featuredProjects').querySelectorAll('.project-card').length;
+
         document.getElementById('totalProjects').textContent = this.projectsData.projects.length;
-        document.getElementById('featuredStat').textContent =
-            `${document.getElementById('featuredProjects').querySelectorAll('.project-card').length}/6`;
+        document.getElementById('featuredStat').textContent = `${featuredCount}/6`;
         document.getElementById('visibleStat').textContent =
-            this.projectsData.projects.filter(p => p.visible && !p.hidden).length;
+            this.projectsData.projects.filter(p => !p.hidden && !p.featured).length;
         document.getElementById('hiddenStat').textContent =
-            this.projectsData.projects.filter(p => !p.visible).length;
+            this.projectsData.projects.filter(p => p.hidden).length;
     }
 
     updateChangeIndicator() {
@@ -1196,6 +1358,47 @@ class ProjectStudio {
             statusEl.classList.remove('show');
             setTimeout(() => statusEl.remove(), 300);
         }, 3000);
+    }
+
+    updateProjectModifiedIndicator(projectId, isModified) {
+        // Find the project item in the edit list
+        const projectItem = document.querySelector(`.project-item[data-id="${projectId}"]`);
+        if (!projectItem) return;
+
+        if (isModified) {
+            projectItem.classList.add('modified');
+            // Add badge if not exists
+            if (!projectItem.querySelector('.modified-badge')) {
+                const badge = document.createElement('span');
+                badge.className = 'modified-badge';
+                badge.textContent = '●';
+                badge.title = 'Has unsaved changes';
+                projectItem.appendChild(badge);
+            }
+        } else {
+            projectItem.classList.remove('modified');
+            // Remove badge
+            const badge = projectItem.querySelector('.modified-badge');
+            if (badge) badge.remove();
+        }
+
+        // Update the modified summary count
+        this.updateModifiedSummary();
+    }
+
+    updateModifiedSummary() {
+        const count = this.modifiedProjects.size;
+        const summary = document.getElementById('modifiedSummary');
+        const countEl = document.getElementById('modifiedCount');
+
+        if (!summary || !countEl) return;
+
+        if (count > 0) {
+            countEl.textContent = count;
+            summary.style.display = 'block';
+        } else {
+            summary.style.display = 'none';
+        }
     }
 
     getCategoryDisplay(category) {

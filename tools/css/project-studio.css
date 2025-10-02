@@ -78,6 +78,22 @@
     color: var(--text-white);
 }
 
+.modified-summary {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 193, 7, 0.1);
+    border: 1px solid var(--warning-color);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--warning-color);
+}
+
+.modified-count {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 /* Project Sections in Organize View */
 .project-sections {
     display: flex;
@@ -205,6 +221,7 @@
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
+    position: relative;
 }
 
 .project-item:hover {
@@ -214,6 +231,25 @@
 .project-item.selected {
     background: linear-gradient(145deg, rgba(255, 107, 107, 0.2) 0%, rgba(78, 205, 196, 0.2) 100%);
     border: 1px solid var(--accent-color);
+}
+
+.project-item.modified {
+    border-left: 3px solid var(--warning-color);
+}
+
+.modified-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--warning-color);
+    font-size: 1.2rem;
+    line-height: 1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 .item-thumbnail {
@@ -386,9 +422,7 @@
     display: block;
     font-size: 2rem;
     font-weight: bold;
-    background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: white; /* Simple white color - guaranteed to be visible */
 }
 
 /* Project Form */
