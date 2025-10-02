@@ -14,7 +14,9 @@
       "Bash(awk:*)",
       "Bash(xargs:*)",
       "Bash(start http://localhost:8000/tools/project-studio.html)",
-      "Bash(start http://localhost:8000/projects/Project-1798.html)"
+      "Bash(start http://localhost:8000/projects/Project-1798.html)",
+      "Bash(start http://localhost:8000/projects/Project-1270.html)",
+      "Bash(jq:*)"
     ],
     "deny": [],
     "ask": []

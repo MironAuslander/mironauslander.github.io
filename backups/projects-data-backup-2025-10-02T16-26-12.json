@@ -133,19 +133,21 @@
       "id": "1537",
       "displayTitle": "Project C Title",
       "fullTitle": "Project C - Full Title",
-      "category": [
-        "motion"
-      ],
+      "category": "motion",
       "client": "Client Name",
-      "year": 2024,
+      "year": "2024",
       "duration": "1 month",
       "description": "Motion graphics package for broadcast television. Created animated transitions, lower thirds, and title sequences that enhanced the visual storytelling.",
       "role": [
-        "Texturing"
+        "Motion Design",
+        "Animation",
+        "Typography",
+        "Art Direction"
       ],
       "tools": [
         "After Effects",
-        "Mocha"
+        "Cinema 4D",
+        "Illustrator"
       ],
       "featured": true,
       "featuredOrder": 3,
@@ -183,6 +185,22 @@
           "before": "assets/videos/1537/1537-before-1.mp4",
           "after": "assets/videos/1537/1537-after-1.mp4",
           "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-2.mp4",
+          "after": "assets/videos/1537/1537-after-2.mp4",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-3.mp4",
+          "after": "assets/videos/1537/1537-after-3.mp4",
+          "label": "Comparison 3",
           "labelBefore": "Before",
           "labelAfter": "After"
         }
@@ -269,20 +287,24 @@
       "id": "1270",
       "displayTitle": "Project E Title",
       "fullTitle": "Project E - Full Title",
-      "category": [
-        "personal"
-      ],
+      "category": "editing",
       "client": "Client Name",
-      "year": 2024,
+      "year": "2024",
       "duration": "2 weeks",
       "description": "Fast-paced editing project for commercial content. Delivered multiple versions optimized for different platforms and audiences.",
-      "role": [],
+      "role": [
+        "Video Editing",
+        "Color Correction",
+        "Audio Mixing",
+        "Format Optimization"
+      ],
       "tools": [
+        "Premiere Pro",
         "DaVinci Resolve",
-        "ZBrush"
+        "Audition"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 6,
       "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
@@ -319,10 +341,25 @@
           "label": "Comparison 1",
           "labelBefore": "Before",
           "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-2.mp4",
+          "after": "assets/videos/1270/1270-after-2.mp4",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-3.mp4",
+          "after": "assets/videos/1270/1270-after-3.mp4",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
         }
       ],
-      "displayOrder": null,
-      "hidden": false
+      "displayOrder": null
     },
     {
       "id": "1711",
@@ -346,7 +383,7 @@
         "Audition"
       ],
       "featured": true,
-      "featuredOrder": 6,
+      "featuredOrder": 5,
       "projectsPageOrder": 6,
       "visible": true,
       "thumbnail": "assets/images/projects/1711/1711-thumb.webp",

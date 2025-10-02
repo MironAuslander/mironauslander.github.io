@@ -56,20 +56,25 @@ The portfolio uses a **unified template-based generation system** that:
 Access at `http://localhost:8000/tools/` after starting local server:
 
 - **`tools/index.html`** - Dashboard hub for all tools
-- **`tools/project-manager.html`** - Drag-and-drop project organization
-  - Reorder projects visually
-  - Select featured projects for homepage
-  - Export updated JSON configuration
 
-- **`tools/project-editor.html`** - Visual project data editor
-  - Edit project details without touching JSON
-  - Preview changes in real-time
-  - Batch edit capabilities
+- **`tools/project-studio.html`** ⭐ **PRIMARY TOOL - All-in-One Solution**
+  - Unified interface combining all project management functions
+  - **Multi-project editing**: Edit multiple projects before saving
+  - **Auto-save on switch**: Changes persist in memory when switching projects
+  - **Visual indicators**: Shows which projects have pending changes
+  - **Single save operation**: Download one JSON file with all changes
+  - Features:
+    - Drag-and-drop project organization (featured/visible/hidden)
+    - Complete project details editing (categories, roles, tools)
+    - Visual media configuration (hero + process media blocks)
+    - Live preview with device modes
+    - No manual JSON merging required
 
-- **`tools/media-configurator.html`** - Visual media layout designer
-  - Design hero and process media sections
-  - Preview with vertical layout (matching production)
-  - Generate configuration for projects-data.json
+- **Legacy Tools** (Individual editors - still functional):
+  - `tools/project-manager.html` - Organization only
+  - `tools/project-editor.html` - Content editing only
+  - `tools/media-configurator.html` - Media configuration only
+  - Note: Legacy tools require manual JSON merging when editing multiple projects
 
 ### Media Configuration
 
@@ -241,12 +246,36 @@ Projects use markers for updatable sections:
 4. Test locally before deploying
 
 ### Using Visual Tools
+
+#### Project Studio (Recommended)
 1. Start server: `python -m http.server 8000`
-2. Open: `http://localhost:8000/tools/`
-3. Make changes visually
-4. Export/download updated JSON
-5. Replace `projects-data.json`
+2. Open: `http://localhost:8000/tools/project-studio.html`
+3. **Edit multiple projects**:
+   - Switch to "Edit" view in sidebar
+   - Click any project to edit details/media
+   - Changes auto-save to memory when switching projects
+   - Visual indicators show modified projects
+4. **Save once**: Click "Save All Changes" for single JSON download
+5. Replace `projects-data.json` with downloaded file
 6. Run: `node scripts/run-all-updates.js`
+
+#### Multi-Project Editing Workflow
+```
+Edit Project A (details/media) →
+Switch to Project B (A auto-saves to memory) →
+Edit Project B →
+Switch to Project C (B auto-saves to memory) →
+Edit Project C →
+Click "Save All Changes" → Single JSON file with A, B, C changes
+```
+
+**Benefits**:
+- No manual JSON merging
+- Clear visual feedback (orange dots on modified projects)
+- Edit as many projects as needed before saving
+- Single download contains all changes
+
+See `docs/MULTI-PROJECT-EDITING.md` for detailed documentation.
 
 ## Key Constraints
 - **GitHub Pages**: Static hosting only, no server-side processing

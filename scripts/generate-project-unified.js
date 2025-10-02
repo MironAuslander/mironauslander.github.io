@@ -287,7 +287,11 @@ function generateProjectPage(project, allProjects) {
         hasVideo: !!processedProject.mainVideo,
         hasBeforeAfter: hasBeforeAfterMedia(processedProject),
         categoryDisplay: CATEGORY_DISPLAY[processedProject.category] || processedProject.category,
-        relatedProjects: findRelatedProjects(processedProject, allProjects)
+        relatedProjects: findRelatedProjects(processedProject, allProjects),
+
+        // Conditional field helpers for hiding empty sections
+        hasRole: Array.isArray(processedProject.role) && processedProject.role.length > 0,
+        hasTools: Array.isArray(processedProject.tools) && processedProject.tools.length > 0
     };
 
     // Add advanced template-specific data
