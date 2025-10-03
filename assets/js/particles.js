@@ -10,17 +10,19 @@ class ParticleNetwork {
         this.particles = [];
         this.mouse = { x: null, y: null, radius: 150 };
         this.animationFrame = null;
+        this.glassBoxRect = null;
 
         // Configuration
         this.config = {
-            particleCount: 100,
-            particleSize: 2,
+            particleCount: 150,
+            particleSize: 2.5,
             connectionDistance: 120,
             mouseConnectionDistance: 200,
             particleSpeed: 0.3,
             particleColor: 'rgba(102, 126, 234, 0.8)',
             lineColor: 'rgba(102, 126, 234, 0.2)',
-            mouseLineColor: 'rgba(102, 126, 234, 0.4)'
+            mouseLineColor: 'rgba(102, 126, 234, 0.4)',
+            refractionOffset: { x: 3, y: 3 } // Offset for refraction effect
         };
 
         this.init();
@@ -30,7 +32,22 @@ class ParticleNetwork {
         this.resize();
         this.createParticles();
         this.setupEventListeners();
+        this.updateGlassBoxRect();
         this.animate();
+    }
+
+    updateGlassBoxRect() {
+        const glassBox = document.querySelector('.hero-content');
+        if (glassBox) {
+            const rect = glassBox.getBoundingClientRect();
+            const canvasRect = this.canvas.getBoundingClientRect();
+            this.glassBoxRect = {
+                x: rect.left - canvasRect.left,
+                y: rect.top - canvasRect.top,
+                width: rect.width,
+                height: rect.height
+            };
+        }
     }
 
     resize() {
@@ -57,6 +74,7 @@ class ParticleNetwork {
         window.addEventListener('resize', () => {
             this.resize();
             this.createParticles();
+            this.updateGlassBoxRect();
         });
 
         // Mouse events for desktop
@@ -147,6 +165,11 @@ class ParticleNetwork {
 
         // Draw connections
         for (let i = 0; i < this.particles.length; i++) {
+            // Check if particle is behind glass box and draw refracted version
+            if (this.glassBoxRect && this.isParticleBehindGlass(this.particles[i])) {
+                this.drawRefractedParticle(this.particles[i]);
+            }
+
             for (let j = i + 1; j < this.particles.length; j++) {
                 const dx = this.particles[i].x - this.particles[j].x;
                 const dy = this.particles[i].y - this.particles[j].y;
@@ -223,7 +246,7 @@ class ParticleNetwork {
 
             this.ctx.fillStyle = middleGradient;
             this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.size * 2.5, 0, Math.PI * 2);
+            this.ctx.arc(particle.x, particle.y, particle.size * .5, 0, Math.PI * 2);
             this.ctx.fill();
 
             // Dark/transparent core with soft edges
@@ -256,6 +279,47 @@ class ParticleNetwork {
             this.ctx.arc(this.mouse.x, this.mouse.y, 12, 0, Math.PI * 2);
             this.ctx.fill();
         }
+    }
+
+    isParticleBehindGlass(particle) {
+        if (!this.glassBoxRect) return false;
+        return particle.x >= this.glassBoxRect.x &&
+               particle.x <= this.glassBoxRect.x + this.glassBoxRect.width &&
+               particle.y >= this.glassBoxRect.y &&
+               particle.y <= this.glassBoxRect.y + this.glassBoxRect.height;
+    }
+
+    drawRefractedParticle(particle) {
+        // Draw a slightly offset, more transparent version to simulate refraction
+        const offsetX = particle.x + this.config.refractionOffset.x;
+        const offsetY = particle.y + this.config.refractionOffset.y;
+
+        // Convert hex to RGB
+        const hexToRgb = (hex) => {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        };
+
+        const rgb = hexToRgb(particle.color);
+        const colorString = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+
+        // Draw refracted particle with reduced opacity
+        const refractedGradient = this.ctx.createRadialGradient(
+            offsetX, offsetY, 0,
+            offsetX, offsetY, particle.size * 3
+        );
+        refractedGradient.addColorStop(0, `rgba(${colorString}, 0.15)`);
+        refractedGradient.addColorStop(0.5, `rgba(${colorString}, 0.08)`);
+        refractedGradient.addColorStop(1, `rgba(${colorString}, 0)`);
+
+        this.ctx.fillStyle = refractedGradient;
+        this.ctx.beginPath();
+        this.ctx.arc(offsetX, offsetY, particle.size * 3, 0, Math.PI * 2);
+        this.ctx.fill();
     }
 
     animate() {
