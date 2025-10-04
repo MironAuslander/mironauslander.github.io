@@ -330,7 +330,7 @@
         .hero-light-center {
             content: '';
             position: absolute;
-            top: 1%;
+            top: 50%;
             right: -10%;
             width: 40%;
             height: 60%;
@@ -367,9 +367,14 @@
             z-index: 2;
             padding: 3rem 2.5rem;
             border-radius: 20px;
-            background: rgba(10, 10, 15, 0.4);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(10px);
+            background:
+                radial-gradient(ellipse 200px 200px at bottom -40px left -30px,
+                    rgba(255, 255, 255, 0.04) 0%,
+                    rgba(255, 255, 255, 0.01) 40%,
+                    transparent 60%),
+                rgba(10, 10, 15, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(20px);
             /* Thin purple gradient border only in top-left corner */
             border: 2px solid transparent;
             /* Subtle white inner glow from top fading to transparent */
@@ -435,7 +440,7 @@
 
         .hero h1 {
             font-family: var(--font-primary);
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(1.8rem, 5vw, 3rem);
             font-weight: 100;
             margin-bottom: 1rem;
             letter-spacing: 1px;
@@ -1204,6 +1209,25 @@
             }
         }
 
+        /* Desktop/tablet specific hero adjustments */
+        @media (min-width: 769px) {
+            .hero-content {
+                padding: 3rem 5.5rem;
+            }
+        }
+
+        /* Mobile specific hero adjustments */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 2rem 1.25rem;
+            }
+
+            .hero h1 {
+                letter-spacing: 0.5px;
+                word-spacing: -0.1em;
+            }
+        }
+
         /* Mobile viewport height handling */
         @media (max-height: 600px) {
             .section {
@@ -1370,21 +1394,21 @@
                         <img src="assets/images/projects/1238/1238-thumb.webp" alt="רוח-צפונית | 8200" />
                         <span>8200</span>
                     </a>
-                    <a href="projects/Project-1537.html" class="project-card" aria-label="View Project C - Full Title project details">
-                        <img src="assets/images/projects/1537/1537-thumb.webp" alt="Project C - Full Title" />
-                        <span>Project C Title</span>
+                    <a href="projects/Project-1537.html" class="project-card" aria-label="View The Truth | האמת project details">
+                        <img src="assets/images/projects/1537/1537-thumb.webp" alt="The Truth | האמת" />
+                        <span>The Truth</span>
                     </a>
                     <a href="projects/Project-1654.html" class="project-card" aria-label="View Personetics.com project details">
                         <img src="assets/images/projects/1654/1654-thumb.webp" alt="Personetics.com" />
                         <span>Personetics</span>
                     </a>
-                    <a href="projects/Project-1270.html" class="project-card" aria-label="View Project E - Full Title project details">
-                        <img src="assets/images/projects/1270/1270-thumb.webp" alt="Project E - Full Title" />
-                        <span>Project E Title</span>
+                    <a href="projects/Project-1270.html" class="project-card" aria-label="View Patrik | פטריק project details">
+                        <img src="assets/images/projects/1270/1270-thumb.webp" alt="Patrik | פטריק" />
+                        <span>Parik</span>
                     </a>
-                    <a href="projects/Project-1711.html" class="project-card" aria-label="View Project F - Full Title project details">
-                        <img src="assets/images/projects/1711/1711-thumb.webp" alt="Project F - Full Title" />
-                        <span>Project F Title</span>
+                    <a href="projects/Project-1711.html" class="project-card" aria-label="View Fauda | פאודה project details">
+                        <img src="assets/images/projects/1711/1711-thumb.webp" alt="Fauda | פאודה" />
+                        <span>Fauda</span>
                     </a>
                 </div>
                 <!-- FEATURED_PROJECTS_END -->
