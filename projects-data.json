@@ -131,10 +131,10 @@
     },
     {
       "id": "1537",
-      "displayTitle": "Project C Title",
-      "fullTitle": "Project C - Full Title",
+      "displayTitle": "The Truth",
+      "fullTitle": "The Truth | האמת",
       "category": [
-        "motion"
+        "vfx"
       ],
       "client": "Client Name",
       "year": 2024,
@@ -267,10 +267,10 @@
     },
     {
       "id": "1270",
-      "displayTitle": "Project E Title",
-      "fullTitle": "Project E - Full Title",
+      "displayTitle": "Parik",
+      "fullTitle": "Patrik | פטריק",
       "category": [
-        "personal"
+        "vfx"
       ],
       "client": "Client Name",
       "year": 2024,
@@ -326,23 +326,25 @@
     },
     {
       "id": "1711",
-      "displayTitle": "Project F Title",
-      "fullTitle": "Project F - Full Title",
-      "category": "motion",
+      "displayTitle": "Fauda",
+      "fullTitle": "Fauda | פאודה",
+      "category": [
+        "vfx"
+      ],
       "client": "Client Name",
-      "year": "2024",
+      "year": 2015,
       "duration": "6 weeks",
       "description": "Animated explainer video series combining 2D and 3D elements. Created engaging visual narratives that simplified complex concepts.",
       "role": [
-        "Animation Director",
+        "Sound Design",
         "Storyboarding",
         "Character Animation",
-        "Sound Design"
+        "Animation Director"
       ],
       "tools": [
         "After Effects",
-        "Cinema 4D",
         "Illustrator",
+        "Cinema 4D",
         "Audition"
       ],
       "featured": true,
@@ -381,22 +383,6 @@
           "before": "assets/videos/1711/1711-before-1.mp4",
           "after": "assets/videos/1711/1711-after-1.mp4",
           "label": "Comparison 1",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-2.mp4",
-          "after": "assets/videos/1711/1711-after-2.mp4",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-3.mp4",
-          "after": "assets/videos/1711/1711-after-3.mp4",
-          "label": "Comparison 3",
           "labelBefore": "Before",
           "labelAfter": "After"
         }
