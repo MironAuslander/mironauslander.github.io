@@ -19,9 +19,9 @@ class ProjectEditor {
         ];
         this.availableTools = [
             'After Effects', 'Premiere Pro', 'Photoshop', 'Illustrator',
-            'Cinema 4D', 'Blender', 'Maya', 'Houdini', 'Nuke', 'DaVinci Resolve',
-            'Mocha', 'Element 3D', 'Redshift', 'Octane', 'Arnold', 'V-Ray',
-            'Substance Painter', 'ZBrush', 'Audition', 'Pro Tools'
+            'Cinema 4D', 'Blender', 'EmberGen', 'Houdini', 'Fusion', 'DaVinci Resolve',
+            'Mocha', 'Element 3D', 'Redshift', 'Octane', 'Arnold', 'ComfyUI',
+            'Substance Painter', 'AI', 'Runway AI', 'ElevenLabs'
         ];
         this.init();
     }
