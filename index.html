@@ -25,8 +25,8 @@
     <link rel="preload" href="assets/fonts/Primary/Poppins-Light.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
     
-    <!-- Favicon using emoji -->
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🎬%3C/text%3E%3C/svg%3E">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/slate.svg">
     
     <style>
         /* Font Face Declarations */
@@ -981,6 +981,13 @@
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
         }
 
+        .social-link img {
+            width: 30px;
+            height: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
         /* Video Modal Styles */
         .video-modal {
             display: none;
@@ -1463,10 +1470,18 @@
 
                 <!-- Social Links -->
                 <div class="social-links">
-                    <a href="#" class="social-link" aria-label="Phone">📱</a>
-                    <a href="#" class="social-link" aria-label="Behance">🎨</a>
-                    <a href="#" class="social-link" aria-label="LinkedIn">💼</a>
-                    <a href="mailto:contact@yourname.com" class="social-link" aria-label="Email">✉️</a>
+                    <a href="https://www.instagram.com/m.iro_ori.m/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/icons/social/instagram.svg" alt="Instagram">
+                    </a>
+                    <a href="https://x.com/mirOOrim1" class="social-link" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/icons/social/X.svg" alt="X">
+                    </a>
+                    <a href="https://www.linkedin.com/in/miron-auslander-47366a33" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/icons/social/linkedin.svg" alt="LinkedIn">
+                    </a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=mironosl@gmail.com" class="social-link" aria-label="Email" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/icons/social/mail.svg" alt="Email">
+                    </a>
                 </div>
             </div>
         </section>
