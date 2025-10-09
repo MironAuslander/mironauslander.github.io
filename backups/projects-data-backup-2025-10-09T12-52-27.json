@@ -3,26 +3,25 @@
     {
       "id": "1798",
       "displayTitle": "Big Brother",
-      "fullTitle": "Big Brother Israel",
-      "category": "personal",
-      "client": "Reshet TV",
-      "year": "2025",
-      "duration": "3 weeks",
-      "description": "Created the official logo and branding identity for Big Brother Israel 2025. The design captures the show's iconic surveillance theme while incorporating modern Hebrew typography and contemporary visual elements that resonate with Israeli audiences.",
+      "fullTitle": "Big Brother | האח הגדול",
+      "category": [
+        "vfx"
+      ],
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
       "role": [
-        "Concept Development",
-        "Logo Design",
-        "Motion Graphics",
-        "Brand Guidelines"
+        "Compositing",
+        "Motion Tracking"
       ],
       "tools": [
         "After Effects",
-        "Illustrator",
         "Photoshop",
-        "Cinema 4D"
+        "Mocha"
       ],
-      "featured": true,
-      "featuredOrder": 1,
+      "featured": false,
+      "featuredOrder": null,
       "projectsPageOrder": 1,
       "visible": true,
       "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
@@ -33,46 +32,77 @@
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-1.mp4",
-          "after": "assets/videos/1798/1798-after-1.mp4",
-          "label": "Process & Variations"
+          "after": "assets/videos/1798/1798-after-1.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-2.mp4",
-          "after": "assets/videos/1798/1798-after-2.mp4",
-          "label": "Concept Evolution"
+          "after": "assets/videos/1798/1798-after-2.mp4"
         },
         {
           "type": "video",
           "before": "assets/videos/1798/1798-before-3.mp4",
-          "after": "assets/videos/1798/1798-after-3.mp4",
-          "label": "Final Refinements"
+          "after": "assets/videos/1798/1798-after-3.mp4"
         }
-      ]
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1798/project-1798.mp4",
+        "poster": "assets/images/projects/1798/1798-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-1.mp4",
+          "after": "assets/videos/1798/1798-after-1.mp4",
+          "label": "Screen Replacement"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-2.mp4",
+          "after": "assets/videos/1798/1798-after-2.mp4",
+          "label": "Color Grading",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-3.mp4",
+          "after": "assets/videos/1798/1798-after-3.mp4",
+          "label": "Final Composite",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false,
+      "displayOrder": 2
     },
     {
       "id": "1238",
-      "displayTitle": "Project B Title",
-      "fullTitle": "Project B - Full Title",
-      "category": "vfx",
-      "client": "Client Name",
-      "year": "2024",
+      "displayTitle": "8200",
+      "fullTitle": "רוח-צפונית | 8200",
+      "category": [
+        "vfx",
+        "motion"
+      ],
+      "client": "Yoav Gross Productions",
+      "year": 2024,
       "duration": "2 months",
-      "description": "Visual effects and compositing work for a major production. Involved complex green screen work, motion tracking, and seamless integration of CGI elements with live action footage.",
+      "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
       "role": [
-        "VFX Supervision",
-        "Compositing",
-        "Motion Tracking",
-        "Color Grading"
+        "Animation",
+        "Compositing Lead",
+        "Motion Graphics"
       ],
       "tools": [
         "After Effects",
-        "Nuke",
-        "Mocha",
-        "DaVinci Resolve"
+        "Photoshop",
+        "Illustrator",
+        "Cinema 4D",
+        "Redshift"
       ],
       "featured": true,
-      "featuredOrder": 2,
+      "featuredOrder": 1,
       "projectsPageOrder": 2,
       "visible": true,
       "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
@@ -84,41 +114,54 @@
           "type": "video",
           "before": "assets/videos/1238/1238-before-1.mp4",
           "after": "assets/videos/1238/1238-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-2.mp4",
-          "after": "assets/videos/1238/1238-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-3.mp4",
-          "after": "assets/videos/1238/1238-after-3.mp4"
         }
-      ]
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1238/project-1238.mp4",
+        "poster": "assets/images/projects/1238/1238-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1238/1238-before-1.mp4",
+          "after": "assets/videos/1238/1238-after-1.mp4",
+          "label": "UI Animation Compositing",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1537",
-      "displayTitle": "Project C Title",
-      "fullTitle": "Project C - Full Title",
-      "category": "motion",
-      "client": "Client Name",
-      "year": "2024",
-      "duration": "1 month",
-      "description": "Motion graphics package for broadcast television. Created animated transitions, lower thirds, and title sequences that enhanced the visual storytelling.",
+      "displayTitle": "The Truth",
+      "fullTitle": "The Truth | האמת",
+      "category": [
+        "vfx"
+      ],
+      "client": "Endemol Shine|Kan 11",
+      "year": 2024,
+      "duration": "8 month",
+      "description": "The Truth\" is a suspense drama series that explores the complexities of truth and justice, loosely inspired by the Tair Rada murder case. My involvement spanned the entire visual effects pipeline, from pre-production planning through to the final post-production stages of the series. That includes intricate set extensions designed to amplify the narrative's atmosphere, and much more 🧙‍♂️",
       "role": [
-        "Motion Design",
-        "Animation",
-        "Typography",
-        "Art Direction"
+        "Compositing",
+        "Motion Graphics",
+        "VFX Supervision",
+        "Motion Tracking"
       ],
       "tools": [
         "After Effects",
-        "Cinema 4D",
-        "Illustrator"
+        "Photoshop",
+        "Illustrator",
+        "Fusion",
+        "DaVinci Resolve",
+        "Mocha",
+        "AI"
       ],
-      "featured": true,
-      "featuredOrder": 4,
+      "featured": false,
+      "featuredOrder": null,
       "projectsPageOrder": 3,
       "visible": true,
       "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
@@ -141,31 +184,48 @@
           "before": "assets/videos/1537/1537-before-3.mp4",
           "after": "assets/videos/1537/1537-after-3.mp4"
         }
-      ]
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1537/project-1537.mp4",
+        "poster": "assets/images/projects/1537/1537-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-1.mp4",
+          "after": "assets/videos/1537/1537-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "displayOrder": 1,
+      "hidden": false
     },
     {
       "id": "1654",
       "displayTitle": "Personetics",
-      "fullTitle": "Personetics",
-      "category": "vfx",
-      "client": "Client Name",
-      "year": "2024",
-      "duration": "2 months",
-      "description": "Comprehensive visual effects work including particle simulations, digital environments, and character enhancements for a feature film production.",
+      "fullTitle": "Personetics.com",
+      "category": [
+        "motion"
+      ],
+      "client": "Personetics Technologies LTD",
+      "year": 2024,
+      "duration": "4 weeks",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds 😎",
       "role": [
-        "VFX Artist",
-        "3D Modeling",
-        "Particle Effects",
-        "Rendering"
+        "Motion Graphics",
+        "Rendering",
+        "Lighting"
       ],
       "tools": [
-        "Houdini",
-        "Maya",
         "After Effects",
+        "Cinema 4D",
         "Redshift"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": 4,
       "projectsPageOrder": 4,
       "visible": true,
       "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
@@ -189,30 +249,66 @@
           "after": "assets/images/projects/1654/1654-after-3.webp"
         }
       ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1654/project-1654.mp4",
+        "poster": "assets/images/projects/1654/1654-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-1.webp",
+          "after": "assets/images/projects/1654/1654-after-1.webp",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-2.webp",
+          "after": "assets/images/projects/1654/1654-after-2.webp",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-3.webp",
+          "after": "assets/images/projects/1654/1654-after-3.webp",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "displayOrder": null,
       "hidden": false
     },
     {
       "id": "1270",
-      "displayTitle": "Project E Title",
-      "fullTitle": "Project E - Full Title",
-      "category": "editing",
-      "client": "Client Name",
-      "year": "2024",
-      "duration": "2 weeks",
-      "description": "Fast-paced editing project for commercial content. Delivered multiple versions optimized for different platforms and audiences.",
+      "displayTitle": "Patrick",
+      "fullTitle": "Patrick | פטריק",
+      "category": [
+        "vfx"
+      ],
+      "client": "Yoav Gross Productions",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "A crime thriller series, created by and starring Shalom Assayag. The series features realistic FX and carefully planned, Mexican-style gunfights. The trick was making sure all these big action moments fit smoothly into the story and looked real in every shot.",
       "role": [
-        "Video Editing",
-        "Color Correction",
-        "Audio Mixing",
-        "Format Optimization"
+        "Compositing",
+        "Motion Tracking",
+        "Simulation"
       ],
       "tools": [
-        "Premiere Pro",
+        "After Effects",
+        "Photoshop",
+        "EmberGen",
+        "Fusion",
         "DaVinci Resolve",
-        "Audition"
+        "Mocha"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 3,
       "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
@@ -235,28 +331,45 @@
           "before": "assets/videos/1270/1270-before-3.mp4",
           "after": "assets/videos/1270/1270-after-3.mp4"
         }
-      ]
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1270/project-1270.mp4",
+        "poster": "assets/images/projects/1270/1270-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-1.mp4",
+          "after": "assets/videos/1270/1270-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1711",
-      "displayTitle": "Project F Title",
-      "fullTitle": "Project F - Full Title",
-      "category": "motion",
-      "client": "Client Name",
-      "year": "2024",
+      "displayTitle": "Fauda",
+      "fullTitle": "Fauda | פאודה",
+      "category": [
+        "vfx"
+      ],
+      "client": "Tender Productions LTD",
+      "year": 2015,
       "duration": "6 weeks",
-      "description": "Animated explainer video series combining 2D and 3D elements. Created engaging visual narratives that simplified complex concepts.",
+      "description": "Fauda is a suspense drama starring Lior Raz that follows the life of a commander in an elite undercover counter-terrorism units. The series is known for its authenticity, which was expressed in the creation of the effects and the design of elements that faithfully accompany the work and intense lives of the members of this special unit. The project's success was almost immediate, highlighting the compelling nature of its storytelling and production.",
       "role": [
-        "Animation Director",
-        "Storyboarding",
-        "Character Animation",
-        "Sound Design"
+        "Compositing",
+        "Motion Graphics",
+        "VFX Supervision"
       ],
       "tools": [
         "After Effects",
-        "Cinema 4D",
-        "Illustrator",
-        "Audition"
+        "Photoshop",
+        "Mocha"
       ],
       "featured": true,
       "featuredOrder": 6,
@@ -282,37 +395,66 @@
           "before": "assets/videos/1711/1711-before-3.mp4",
           "after": "assets/videos/1711/1711-after-3.mp4"
         }
-      ]
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1711/project-1711.mp4",
+        "poster": "assets/images/projects/1711/1711-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1711/1711-before-1.mp4",
+          "after": "assets/videos/1711/1711-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false,
+      "displayOrder": null
     },
     {
       "id": "1353",
-      "displayTitle": "Digital Brand Campaign",
-      "fullTitle": "Digital Brand Campaign - Interactive Experience",
-      "category": "motion",
-      "client": "Tech Startup",
-      "year": "2024",
-      "duration": "2 months",
-      "description": "Comprehensive digital brand campaign featuring animated content for web and social media platforms.",
+      "displayTitle": "IAI",
+      "fullTitle": "Israel Aerospace Industries (IAI)",
+      "category": [
+        "motion"
+      ],
+      "client": "",
+      "year": 2024,
+      "duration": "2 weeks",
+      "description": "\"Soft Landing\" video for Employee Recruitment Day, Israel Aerospace Industries (IAI)",
       "role": [
-        "Creative Direction",
-        "Motion Design",
-        "Brand Animation",
-        "Social Media Assets"
+        "Animation",
+        "Motion Graphics",
+        "Motion Design"
       ],
       "tools": [
         "After Effects",
         "Premiere Pro",
-        "Photoshop"
+        "Photoshop",
+        "Illustrator",
+        "AI",
+        "Runway AI"
       ],
-      "featured": false,
-      "featuredOrder": 7,
+      "featured": true,
+      "featuredOrder": 5,
       "projectsPageOrder": 7,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
       "heroImage": "assets/images/projects/1353/1353.webp",
       "mainVideo": "assets/videos/1353/project-1353.mp4",
       "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1353/project-1353.mp4",
+        "poster": "assets/images/projects/1353/1353-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1003",
@@ -335,14 +477,21 @@
         "Mocha"
       ],
       "featured": false,
-      "featuredOrder": 8,
+      "featuredOrder": null,
       "projectsPageOrder": 8,
       "visible": true,
       "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
       "heroImage": "assets/images/projects/1003/1003.webp",
       "mainVideo": "assets/videos/1003/project-1003.mp4",
       "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1003/project-1003.mp4",
+        "poster": "assets/images/projects/1003/1003-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 3
     },
     {
       "id": "1004",
@@ -365,14 +514,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 9,
+      "featuredOrder": null,
       "projectsPageOrder": 9,
       "visible": true,
       "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
       "heroImage": "assets/images/projects/1004/1004.webp",
       "mainVideo": "assets/videos/1004/project-1004.mp4",
       "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1004/project-1004.mp4",
+        "poster": "assets/images/projects/1004/1004-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 4
     },
     {
       "id": "1699",
@@ -394,15 +550,23 @@
         "After Effects",
         "Premiere Pro"
       ],
-      "featured": false,
-      "featuredOrder": 10,
+      "featured": true,
+      "featuredOrder": 2,
       "projectsPageOrder": 10,
       "visible": true,
       "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
       "heroImage": "assets/images/projects/1699/1699.webp",
       "mainVideo": "assets/videos/1699/project-1699.mp4",
       "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1699/project-1699.mp4",
+        "poster": "assets/images/projects/1699/1699-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1661",
@@ -426,14 +590,21 @@
         "InDesign"
       ],
       "featured": false,
-      "featuredOrder": 11,
+      "featuredOrder": null,
       "projectsPageOrder": 11,
       "visible": true,
       "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
       "heroImage": "assets/images/projects/1661/1661.webp",
       "mainVideo": "assets/videos/1661/project-1661.mp4",
       "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1661/project-1661.mp4",
+        "poster": "assets/images/projects/1661/1661-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 5
     },
     {
       "id": "1528",
@@ -456,14 +627,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 12,
+      "featuredOrder": null,
       "projectsPageOrder": 12,
       "visible": true,
       "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
       "heroImage": "assets/images/projects/1528/1528.webp",
       "mainVideo": "assets/videos/1528/project-1528.mp4",
       "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1528/project-1528.mp4",
+        "poster": "assets/images/projects/1528/1528-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 6
     },
     {
       "id": "1470",
@@ -487,14 +665,21 @@
         "Cinema 4D"
       ],
       "featured": false,
-      "featuredOrder": 13,
+      "featuredOrder": null,
       "projectsPageOrder": 13,
       "visible": true,
       "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
       "heroImage": "assets/images/projects/1470/1470.webp",
       "mainVideo": "assets/videos/1470/project-1470.mp4",
       "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1470/project-1470.mp4",
+        "poster": "assets/images/projects/1470/1470-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 7
     },
     {
       "id": "1828",
@@ -518,14 +703,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 14,
+      "featuredOrder": null,
       "projectsPageOrder": 14,
       "visible": true,
       "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
       "heroImage": "assets/images/projects/1828/1828.webp",
       "mainVideo": "assets/videos/1828/project-1828.mp4",
       "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1828/project-1828.mp4",
+        "poster": "assets/images/projects/1828/1828-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 8
     },
     {
       "id": "1160",
@@ -549,14 +741,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 15,
+      "featuredOrder": null,
       "projectsPageOrder": 15,
       "visible": true,
       "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
       "heroImage": "assets/images/projects/1160/1160.webp",
       "mainVideo": "assets/videos/1160/project-1160.mp4",
       "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1160/project-1160.mp4",
+        "poster": "assets/images/projects/1160/1160-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 9
     },
     {
       "id": "1336",
@@ -580,14 +779,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 16,
+      "featuredOrder": null,
       "projectsPageOrder": 16,
       "visible": true,
       "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
       "heroImage": "assets/images/projects/1336/1336.webp",
       "mainVideo": "assets/videos/1336/project-1336.mp4",
       "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1336/project-1336.mp4",
+        "poster": "assets/images/projects/1336/1336-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 10
     },
     {
       "id": "1092",
@@ -610,14 +816,21 @@
         "Premiere Pro"
       ],
       "featured": false,
-      "featuredOrder": 17,
+      "featuredOrder": null,
       "projectsPageOrder": 17,
       "visible": true,
       "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
       "heroImage": "assets/images/projects/1092/1092.webp",
       "mainVideo": "assets/videos/1092/project-1092.mp4",
       "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1092/project-1092.mp4",
+        "poster": "assets/images/projects/1092/1092-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 11
     },
     {
       "id": "1509",
@@ -641,14 +854,21 @@
         "Nuke"
       ],
       "featured": false,
-      "featuredOrder": 18,
+      "featuredOrder": null,
       "projectsPageOrder": 18,
       "visible": true,
       "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
       "heroImage": "assets/images/projects/1509/1509.webp",
       "mainVideo": "assets/videos/1509/project-1509.mp4",
       "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1509/project-1509.mp4",
+        "poster": "assets/images/projects/1509/1509-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 12
     },
     {
       "id": "1029",
@@ -672,14 +892,21 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 19,
+      "featuredOrder": null,
       "projectsPageOrder": 19,
       "visible": true,
       "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
       "heroImage": "assets/images/projects/1029/1029.webp",
       "mainVideo": "assets/videos/1029/project-1029.mp4",
       "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1029/project-1029.mp4",
+        "poster": "assets/images/projects/1029/1029-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 13
     },
     {
       "id": "1459",
@@ -703,14 +930,21 @@
         "Spark AR"
       ],
       "featured": false,
-      "featuredOrder": 20,
+      "featuredOrder": null,
       "projectsPageOrder": 20,
       "visible": true,
       "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
       "heroImage": "assets/images/projects/1459/1459.webp",
       "mainVideo": "assets/videos/1459/project-1459.mp4",
       "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1459/project-1459.mp4",
+        "poster": "assets/images/projects/1459/1459-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 14
     },
     {
       "id": "1584",
@@ -734,14 +968,21 @@
         "Character Animator"
       ],
       "featured": false,
-      "featuredOrder": 21,
+      "featuredOrder": null,
       "projectsPageOrder": 21,
       "visible": true,
       "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
       "heroImage": "assets/images/projects/1584/1584.webp",
       "mainVideo": "assets/videos/1584/project-1584.mp4",
       "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1584/project-1584.mp4",
+        "poster": "assets/images/projects/1584/1584-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 15
     },
     {
       "id": "1292",
@@ -765,14 +1006,21 @@
         "Resolume"
       ],
       "featured": false,
-      "featuredOrder": 22,
+      "featuredOrder": null,
       "projectsPageOrder": 22,
       "visible": true,
       "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
       "heroImage": "assets/images/projects/1292/1292.webp",
       "mainVideo": "assets/videos/1292/project-1292.mp4",
       "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1292/project-1292.mp4",
+        "poster": "assets/images/projects/1292/1292-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 16
     },
     {
       "id": "1626",
@@ -796,14 +1044,21 @@
         "Redshift"
       ],
       "featured": false,
-      "featuredOrder": 23,
+      "featuredOrder": null,
       "projectsPageOrder": 23,
       "visible": true,
       "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
       "heroImage": "assets/images/projects/1626/1626.webp",
       "mainVideo": "assets/videos/1626/project-1626.mp4",
       "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1626/project-1626.mp4",
+        "poster": "assets/images/projects/1626/1626-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 17
     },
     {
       "id": "1582",
@@ -827,14 +1082,21 @@
         "After Effects"
       ],
       "featured": false,
-      "featuredOrder": 24,
+      "featuredOrder": null,
       "projectsPageOrder": 24,
       "visible": true,
       "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
       "heroImage": "assets/images/projects/1582/1582.webp",
       "mainVideo": "assets/videos/1582/project-1582.mp4",
       "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1582/project-1582.mp4",
+        "poster": "assets/images/projects/1582/1582-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 18
     },
     {
       "id": "1453",
@@ -858,18 +1120,25 @@
         "Photoshop"
       ],
       "featured": false,
-      "featuredOrder": 25,
+      "featuredOrder": null,
       "projectsPageOrder": 25,
       "visible": true,
       "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
       "heroImage": "assets/images/projects/1453/1453.webp",
       "mainVideo": "assets/videos/1453/project-1453.mp4",
       "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
-      "beforeAfterMedia": []
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1453/project-1453.mp4",
+        "poster": "assets/images/projects/1453/1453-poster.jpg"
+      },
+      "processMedia": [],
+      "displayOrder": 19
     }
   ],
   "metadata": {
-    "version": "2.0",
+    "version": "3.0",
     "lastUpdated": "2024-09-26",
     "totalProjects": 25,
     "featuredCount": 6,
@@ -880,6 +1149,8 @@
       ],
       "beforeAfterSupport": true,
       "dynamicContent": true
-    }
+    },
+    "lastMigration": "2025-09-27T17:48:45.568Z",
+    "format": "advanced"
   }
 }

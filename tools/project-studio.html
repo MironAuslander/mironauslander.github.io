@@ -44,11 +44,11 @@
                     <!-- All Projects Section -->
                     <div class="section all-section">
                         <div class="section-header">
-                            <h3>📁 All Projects</h3>
+                            <h3>📁 All Projects <small title="Controls display order on projects.html page">(projects.html order)</small></h3>
                             <span class="count-badge"><span id="visibleCount">0</span></span>
                         </div>
                         <div id="allProjects" class="project-list sortable-list">
-                            <!-- Visible projects -->
+                            <!-- All visible projects (including featured) -->
                         </div>
                     </div>
 
@@ -104,8 +104,8 @@
                                 </div>
                                 <div class="instruction-card">
                                     <span class="icon">📁</span>
-                                    <h3>Project Order</h3>
-                                    <p>Arrange the order for the projects page</p>
+                                    <h3>Projects.html Order</h3>
+                                    <p>All Projects section controls the display order on projects.html</p>
                                 </div>
                                 <div class="instruction-card">
                                     <span class="icon">👁️</span>
@@ -146,6 +146,15 @@
                         <!-- Basic Information -->
                         <fieldset>
                             <legend>Basic Information</legend>
+
+                            <!-- Featured Status Checkbox -->
+                            <div class="form-group featured-checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="featuredCheckbox">
+                                    <span class="checkbox-text">⭐ Featured on Homepage</span>
+                                </label>
+                                <small>Feature this project on the homepage (max 6 projects)</small>
+                            </div>
 
                             <div class="form-group">
                                 <label for="displayTitle">Display Title <span class="char-count">0/50</span></label>
@@ -352,6 +361,7 @@
     <template id="projectCardTemplate">
         <div class="project-card" data-id="">
             <div class="card-handle">⋮⋮</div>
+            <button class="featured-toggle" title="Toggle Featured Status">☆</button>
             <div class="card-thumbnail">
                 <img src="" alt="">
             </div>

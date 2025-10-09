@@ -209,49 +209,60 @@ class ProjectStudio {
         const project = this.projectsData.projects.find(p => p.id === projectId);
         if (!project) return;
 
-        // Update project status based on section
+        // Update visibility status based on section (but NOT featured status)
         if (section === 'featured') {
-            project.featured = true;
+            // Only update visibility, not featured status
             project.visible = true;
             project.hidden = false;
 
-            // Update featured order
+            // Update featured order for featured projects only
             const featuredCards = document.getElementById('featuredProjects').querySelectorAll('.project-card');
             featuredCards.forEach((card, index) => {
                 const p = this.projectsData.projects.find(pr => pr.id === card.dataset.id);
-                if (p) p.featuredOrder = index + 1;
+                if (p && p.featured) { // Only update order for actually featured projects
+                    p.featuredOrder = index + 1;
+                }
             });
 
-            // Check limit
+            // Check if non-featured projects are in featured section
+            if (!project.featured) {
+                this.showStatus('⚠️ Use the star button to feature this project', 'warning');
+            }
+
+            // Enforce visual limit of 6 in featured section
             if (featuredCards.length > 6) {
-                // Move excess to visible
+                // Move excess to visible section
                 const excess = Array.from(featuredCards).slice(6);
                 excess.forEach(card => {
                     document.getElementById('allProjects').appendChild(card);
-                    const p = this.projectsData.projects.find(pr => pr.id === card.dataset.id);
-                    if (p) {
-                        p.featured = false;
-                        p.featuredOrder = null;
-                    }
                 });
+                this.showStatus('⚠️ Featured section limited to 6 projects for display', 'warning');
             }
         } else if (section === 'visible') {
-            project.featured = false;
+            // Only update visibility, not featured status
             project.visible = true;
             project.hidden = false;
-            project.featuredOrder = null;
+            // Don't clear featuredOrder here - project can be both featured and in all projects
 
-            // Update display order
+            // Update projectsPageOrder for ALL visible projects (this controls projects.html order)
             const visibleCards = document.getElementById('allProjects').querySelectorAll('.project-card');
             visibleCards.forEach((card, index) => {
                 const p = this.projectsData.projects.find(pr => pr.id === card.dataset.id);
-                if (p) p.displayOrder = index + 1;
+                if (p) {
+                    p.projectsPageOrder = index + 1;
+                    p.visible = true;  // Ensure visibility
+                }
             });
         } else if (section === 'hidden') {
-            project.featured = false;
+            // Hidden section still affects visibility
             project.visible = false;
             project.hidden = true;
             project.featuredOrder = null;
+
+            // If project was featured, warn user
+            if (project.featured) {
+                this.showStatus('⚠️ Project is still featured but now hidden. Use star to unfeature.', 'warning');
+            }
         }
 
         this.hasChanges = true;
@@ -269,8 +280,10 @@ class ProjectStudio {
         this.featuredProjects = this.projectsData.projects.filter(p => p.featured)
             .sort((a, b) => (a.featuredOrder || 999) - (b.featuredOrder || 999));
 
-        this.visibleProjects = this.projectsData.projects.filter(p => !p.hidden && !p.featured)
-            .sort((a, b) => (a.displayOrder || 999) - (b.displayOrder || 999));
+        // All Projects now includes ALL visible projects (featured and non-featured)
+        // This controls the order for projects.html page
+        this.visibleProjects = this.projectsData.projects.filter(p => p.visible && !p.hidden)
+            .sort((a, b) => (a.projectsPageOrder || 999) - (b.projectsPageOrder || 999));
 
         this.hiddenProjects = this.projectsData.projects.filter(p => p.hidden);
 
@@ -291,7 +304,71 @@ class ProjectStudio {
         card.querySelector('.card-id').textContent = `ID: ${project.id}`;
         card.querySelector('.card-category').textContent = this.getCategoryDisplay(project.category);
 
+        // Setup featured toggle
+        const featuredToggle = card.querySelector('.featured-toggle');
+        if (project.featured) {
+            featuredToggle.classList.add('active');
+            featuredToggle.textContent = '⭐';
+        } else {
+            featuredToggle.textContent = '☆';
+        }
+
+        // Add click handler for featured toggle
+        featuredToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent drag from triggering
+            this.toggleFeaturedStatus(project.id);
+        });
+
+        // Add featured badge in All Projects section to show which projects are featured
+        if (containerId === 'allProjects' && project.featured) {
+            const cardInfo = card.querySelector('.card-info');
+            const featuredBadge = document.createElement('span');
+            featuredBadge.className = 'featured-indicator';
+            featuredBadge.textContent = '⭐ Featured';
+            featuredBadge.title = 'This project is featured on the homepage';
+            cardInfo.appendChild(featuredBadge);
+        }
+
         document.getElementById(containerId).appendChild(card);
+    }
+
+    toggleFeaturedStatus(projectId) {
+        const project = this.projectsData.projects.find(p => p.id === projectId);
+        if (!project) return;
+
+        // Count current featured projects
+        const currentFeaturedCount = this.projectsData.projects.filter(p => p.featured).length;
+
+        // If trying to feature and already at limit
+        if (!project.featured && currentFeaturedCount >= 6) {
+            this.showStatus('⚠️ Maximum 6 featured projects allowed. Please unfeature another project first.', 'warning');
+            return;
+        }
+
+        // Toggle featured status
+        project.featured = !project.featured;
+
+        // Update the visual state of the button
+        const card = document.querySelector(`.project-card[data-id="${projectId}"]`);
+        if (card) {
+            const toggle = card.querySelector('.featured-toggle');
+            if (project.featured) {
+                toggle.classList.add('active');
+                toggle.textContent = '⭐';
+            } else {
+                toggle.classList.remove('active');
+                toggle.textContent = '☆';
+            }
+        }
+
+        // Mark as changed
+        this.hasChanges = true;
+        this.updateChangeIndicator();
+        this.updateAllCounts();
+
+        // Show status message
+        const action = project.featured ? 'featured' : 'unfeatured';
+        this.showStatus(`✓ Project ${project.displayTitle} ${action}`, 'success');
     }
 
     filterProjectCards(query) {
@@ -472,6 +549,9 @@ class ProjectStudio {
     loadProjectDetails() {
         const project = this.currentProject;
         if (!project) return;
+
+        // Load featured status
+        document.getElementById('featuredCheckbox').checked = project.featured || false;
 
         // Load basic fields
         document.getElementById('displayTitle').value = project.displayTitle || '';
@@ -1101,6 +1181,35 @@ class ProjectStudio {
     // ==================== EVENT LISTENERS ====================
 
     setupEventListeners() {
+        // Featured checkbox
+        document.getElementById('featuredCheckbox')?.addEventListener('change', (e) => {
+            if (!this.currentProject) return;
+
+            // Check if trying to feature and already at limit
+            const currentFeaturedCount = this.projectsData.projects.filter(p => p.featured && p.id !== this.currentProject.id).length;
+            if (e.target.checked && currentFeaturedCount >= 6) {
+                e.target.checked = false;
+                this.showStatus('⚠️ Maximum 6 featured projects allowed. Please unfeature another project first.', 'warning');
+                return;
+            }
+
+            this.currentProject.featured = e.target.checked;
+            this.markProjectAsModified(this.currentProject.id);
+
+            // Update the star in organize view if visible
+            const card = document.querySelector(`.project-card[data-id="${this.currentProject.id}"]`);
+            if (card) {
+                const toggle = card.querySelector('.featured-toggle');
+                if (this.currentProject.featured) {
+                    toggle.classList.add('active');
+                    toggle.textContent = '⭐';
+                } else {
+                    toggle.classList.remove('active');
+                    toggle.textContent = '☆';
+                }
+            }
+        });
+
         // Save button
         document.getElementById('saveBtn')?.addEventListener('click', () => {
             this.saveAllChanges();
@@ -1243,31 +1352,34 @@ class ProjectStudio {
     }
 
     updateProjectOrganization() {
-        // Already handled by handleProjectDrop, but ensure consistency
+        // Reset order values
         this.projectsData.projects.forEach(project => {
-            // Reset all projects
             project.featuredOrder = null;
-            project.displayOrder = null;
+            project.projectsPageOrder = null;
+            // Remove obsolete displayOrder if it exists
+            delete project.displayOrder;
         });
 
-        // Update featured projects
+        // Update order for projects in featured section (but don't change featured status)
         const featuredCards = document.getElementById('featuredProjects').querySelectorAll('.project-card');
         featuredCards.forEach((card, index) => {
             const project = this.projectsData.projects.find(p => p.id === card.dataset.id);
             if (project) {
-                project.featured = true;
-                project.featuredOrder = index + 1;
+                // Only set featuredOrder if actually featured
+                if (project.featured) {
+                    project.featuredOrder = index + 1;
+                }
                 project.visible = true;
             }
         });
 
-        // Update visible projects
-        const visibleCards = document.getElementById('allProjects').querySelectorAll('.project-card');
-        visibleCards.forEach((card, index) => {
+        // Update ALL visible projects order (controls projects.html page order)
+        const allProjectCards = document.getElementById('allProjects').querySelectorAll('.project-card');
+        allProjectCards.forEach((card, index) => {
             const project = this.projectsData.projects.find(p => p.id === card.dataset.id);
             if (project) {
                 project.visible = true;
-                project.displayOrder = index + 1;
+                project.projectsPageOrder = index + 1;  // This determines projects.html order
             }
         });
 
@@ -1277,7 +1389,8 @@ class ProjectStudio {
             const project = this.projectsData.projects.find(p => p.id === card.dataset.id);
             if (project) {
                 project.visible = false;
-                project.featured = false;
+                project.hidden = true;
+                // Don't automatically unfeature hidden projects - let user control that
             }
         });
     }
@@ -1328,11 +1441,12 @@ class ProjectStudio {
 
         // Stats panel
         const featuredCount = document.getElementById('featuredProjects').querySelectorAll('.project-card').length;
+        const allProjectsCount = document.getElementById('allProjects').querySelectorAll('.project-card').length;
 
         document.getElementById('totalProjects').textContent = this.projectsData.projects.length;
         document.getElementById('featuredStat').textContent = `${featuredCount}/6`;
-        document.getElementById('visibleStat').textContent =
-            this.projectsData.projects.filter(p => !p.hidden && !p.featured).length;
+        // Visible stat should now show all visible projects (same as All Projects count)
+        document.getElementById('visibleStat').textContent = allProjectsCount;
         document.getElementById('hiddenStat').textContent =
             this.projectsData.projects.filter(p => p.hidden).length;
     }
