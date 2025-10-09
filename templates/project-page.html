@@ -180,8 +180,10 @@
                 <!-- PROJECT_INFO_START -->
                 <div class="project-info-grid">
                     <div class="project-description">
+                        {{#if hasDescription}}
                         <h2>Project Overview</h2>
                         <p>{{description}}</p>
+                        {{/if}}
 
                         {{#if hasRole}}
                         <h3>My Role</h3>

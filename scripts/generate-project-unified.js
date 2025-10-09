@@ -283,13 +283,16 @@ function generateProjectPage(project, allProjects) {
     // Prepare template data
     const templateData = {
         ...processedProject,
-        metaDescription: processedProject.description.substring(0, 150) + '...',
+        metaDescription: processedProject.description ?
+            processedProject.description.substring(0, 150) + '...' :
+            `${processedProject.fullTitle} - ${CATEGORY_DISPLAY[processedProject.category] || processedProject.category} project by Miron Auslander`,
         hasVideo: !!processedProject.mainVideo,
         hasBeforeAfter: hasBeforeAfterMedia(processedProject),
         categoryDisplay: CATEGORY_DISPLAY[processedProject.category] || processedProject.category,
         relatedProjects: findRelatedProjects(processedProject, allProjects),
 
         // Conditional field helpers for hiding empty sections
+        hasDescription: processedProject.description && processedProject.description.trim() !== '',
         hasRole: Array.isArray(processedProject.role) && processedProject.role.length > 0,
         hasTools: Array.isArray(processedProject.tools) && processedProject.tools.length > 0
     };
