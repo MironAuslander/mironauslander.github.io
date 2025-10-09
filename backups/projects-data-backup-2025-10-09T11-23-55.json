@@ -13,15 +13,15 @@
       "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
       "role": [
         "Compositing",
-        "Color Grading",
         "Motion Tracking"
       ],
       "tools": [
         "After Effects",
-        "Photoshop"
+        "Photoshop",
+        "Mocha"
       ],
       "featured": true,
-      "featuredOrder": 1,
+      "featuredOrder": null,
       "projectsPageOrder": 1,
       "visible": true,
       "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
@@ -75,20 +75,24 @@
         }
       ],
       "hidden": false,
-      "displayOrder": null
+      "displayOrder": 2
     },
     {
       "id": "1238",
       "displayTitle": "8200",
       "fullTitle": "רוח-צפונית | 8200",
-      "category": "vfx",
-      "client": "Client Name",
+      "category": [
+        "vfx",
+        "motion"
+      ],
+      "client": "Yoav Gross Productions",
       "year": 2024,
       "duration": "2 months",
       "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
       "role": [
-        "Motion Graphics",
-        "Compositing Lead"
+        "Animation",
+        "Compositing Lead",
+        "Motion Graphics"
       ],
       "tools": [
         "After Effects",
@@ -98,7 +102,7 @@
         "Redshift"
       ],
       "featured": true,
-      "featuredOrder": 2,
+      "featuredOrder": 1,
       "projectsPageOrder": 2,
       "visible": true,
       "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
@@ -131,15 +135,15 @@
     },
     {
       "id": "1537",
-      "displayTitle": "Project C Title",
-      "fullTitle": "Project C - Full Title",
+      "displayTitle": "The Truth",
+      "fullTitle": "The Truth | האמת",
       "category": [
-        "motion"
+        "vfx"
       ],
-      "client": "Client Name",
+      "client": "Endemol Shine|Kan 11",
       "year": 2024,
-      "duration": "1 month",
-      "description": "Motion graphics package for broadcast television. Created animated transitions, lower thirds, and title sequences that enhanced the visual storytelling.",
+      "duration": "8 month",
+      "description": "The Truth\" is a suspense drama series that explores the complexities of truth and justice, loosely inspired by the Tair Rada murder case. My involvement spanned the entire visual effects pipeline, from pre-production planning through to the final post-production stages of the series. That includes intricate set extensions designed to amplify the narrative's atmosphere, and much more 🧙‍♂️",
       "role": [
         "Texturing"
       ],
@@ -148,7 +152,7 @@
         "Mocha"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": null,
       "projectsPageOrder": 3,
       "visible": true,
       "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
@@ -187,20 +191,24 @@
           "labelAfter": "After"
         }
       ],
-      "displayOrder": null
+      "displayOrder": 1,
+      "hidden": false
     },
     {
       "id": "1654",
       "displayTitle": "Personetics",
       "fullTitle": "Personetics.com",
-      "category": "motion",
+      "category": [
+        "motion"
+      ],
       "client": "Personetics Technologies LTD",
       "year": 2024,
       "duration": "4 weeks",
-      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds :)",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds 😎",
       "role": [
         "Motion Graphics",
-        "Rendering"
+        "Rendering",
+        "Lighting"
       ],
       "tools": [
         "After Effects",
@@ -263,26 +271,35 @@
           "labelAfter": "After"
         }
       ],
-      "displayOrder": null
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1270",
-      "displayTitle": "Project E Title",
-      "fullTitle": "Project E - Full Title",
+      "displayTitle": "Patrick",
+      "fullTitle": "Patrick | פטריק",
       "category": [
-        "personal"
+        "vfx"
       ],
-      "client": "Client Name",
-      "year": 2024,
-      "duration": "2 weeks",
-      "description": "Fast-paced editing project for commercial content. Delivered multiple versions optimized for different platforms and audiences.",
-      "role": [],
+      "client": "Yoav Gross Productions",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "A crime thriller series, created by and starring Shalom Assayag. The series features realistic FX and carefully planned, Mexican-style gunfights. The trick was making sure all these big action moments fit smoothly into the story and looked real in every shot.",
+      "role": [
+        "Compositing",
+        "Motion Tracking",
+        "Simulation"
+      ],
       "tools": [
+        "After Effects",
+        "Photoshop",
+        "EmberGen",
+        "Fusion",
         "DaVinci Resolve",
-        "ZBrush"
+        "Mocha"
       ],
       "featured": true,
-      "featuredOrder": 5,
+      "featuredOrder": 3,
       "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
@@ -326,24 +343,24 @@
     },
     {
       "id": "1711",
-      "displayTitle": "Project F Title",
-      "fullTitle": "Project F - Full Title",
-      "category": "motion",
-      "client": "Client Name",
-      "year": "2024",
+      "displayTitle": "Fauda",
+      "fullTitle": "Fauda | פאודה",
+      "category": [
+        "vfx"
+      ],
+      "client": "Tender Productions LTD",
+      "year": 2015,
       "duration": "6 weeks",
-      "description": "Animated explainer video series combining 2D and 3D elements. Created engaging visual narratives that simplified complex concepts.",
+      "description": "Fauda is a suspense drama starring Lior Raz that follows the life of a commander in an elite undercover counter-terrorism units. The series is known for its authenticity, which was expressed in the creation of the effects and the design of elements that faithfully accompany the work and intense lives of the members of this special unit. The project's success was almost immediate, highlighting the compelling nature of its storytelling and production.",
       "role": [
-        "Animation Director",
-        "Storyboarding",
-        "Character Animation",
-        "Sound Design"
+        "Compositing",
+        "Motion Graphics",
+        "VFX Supervision"
       ],
       "tools": [
         "After Effects",
-        "Cinema 4D",
-        "Illustrator",
-        "Audition"
+        "Photoshop",
+        "Mocha"
       ],
       "featured": true,
       "featuredOrder": 6,
@@ -383,22 +400,6 @@
           "label": "Comparison 1",
           "labelBefore": "Before",
           "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-2.mp4",
-          "after": "assets/videos/1711/1711-after-2.mp4",
-          "label": "Comparison 2",
-          "labelBefore": "Before",
-          "labelAfter": "After"
-        },
-        {
-          "type": "before-after-video",
-          "before": "assets/videos/1711/1711-before-3.mp4",
-          "after": "assets/videos/1711/1711-after-3.mp4",
-          "label": "Comparison 3",
-          "labelBefore": "Before",
-          "labelAfter": "After"
         }
       ],
       "hidden": false,
@@ -406,26 +407,30 @@
     },
     {
       "id": "1353",
-      "displayTitle": "Digital Brand Campaign",
-      "fullTitle": "Digital Brand Campaign - Interactive Experience",
-      "category": "motion",
-      "client": "Tech Startup",
-      "year": "2024",
-      "duration": "2 months",
-      "description": "Comprehensive digital brand campaign featuring animated content for web and social media platforms.",
+      "displayTitle": "IAI",
+      "fullTitle": "Israel Aerospace Industries (IAI)",
+      "category": [
+        "motion"
+      ],
+      "client": "",
+      "year": 2024,
+      "duration": "2 weeks",
+      "description": "\"Soft Landing\" video for Employee Recruitment Day, Israel Aerospace Industries (IAI)",
       "role": [
-        "Creative Direction",
-        "Motion Design",
-        "Brand Animation",
-        "Social Media Assets"
+        "Animation",
+        "Motion Graphics",
+        "Motion Design"
       ],
       "tools": [
         "After Effects",
         "Premiere Pro",
-        "Photoshop"
+        "Photoshop",
+        "Illustrator",
+        "AI",
+        "Runway AI"
       ],
-      "featured": false,
-      "featuredOrder": null,
+      "featured": true,
+      "featuredOrder": 5,
       "projectsPageOrder": 7,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
@@ -439,7 +444,8 @@
         "poster": "assets/images/projects/1353/1353-poster.jpg"
       },
       "processMedia": [],
-      "displayOrder": 1
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1003",
@@ -476,7 +482,7 @@
         "poster": "assets/images/projects/1003/1003-poster.jpg"
       },
       "processMedia": [],
-      "displayOrder": 2
+      "displayOrder": 3
     },
     {
       "id": "1004",
@@ -513,7 +519,7 @@
         "poster": "assets/images/projects/1004/1004-poster.jpg"
       },
       "processMedia": [],
-      "displayOrder": 3
+      "displayOrder": 4
     },
     {
       "id": "1699",
@@ -535,8 +541,8 @@
         "After Effects",
         "Premiere Pro"
       ],
-      "featured": false,
-      "featuredOrder": null,
+      "featured": true,
+      "featuredOrder": 2,
       "projectsPageOrder": 10,
       "visible": true,
       "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
@@ -550,7 +556,8 @@
         "poster": "assets/images/projects/1699/1699-poster.jpg"
       },
       "processMedia": [],
-      "displayOrder": 4
+      "displayOrder": null,
+      "hidden": false
     },
     {
       "id": "1661",
