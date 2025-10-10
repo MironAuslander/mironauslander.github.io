@@ -155,6 +155,68 @@
         .footer {
             font-family: var(--font-body);
         }
+
+        /* Placeholder link styling to match real links exactly */
+        .placeholder-link {
+            color: #888;
+            font-style: italic;
+            display: inline-block;
+            padding-bottom: 2px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+            /* Match the exact same properties as .link-list a */
+            line-height: 1.6;
+        }
+
+        /* Force equal grid columns for Professional Links */
+        .links-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            grid-auto-rows: 1fr; /* Force equal row heights */
+            align-items: stretch; /* Stretch items to fill */
+        }
+
+        /* Make wrapper divs full height */
+        .links-grid > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure consistent card heights and stretch to fill */
+        .link-category {
+            min-height: 150px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Make link list stretch to fill available space */
+        .link-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Override default h3 spacing for more breathing room */
+        .link-category h3 {
+            margin-bottom: 2.5rem;  /* Increased from default 1.5rem */
+        }
+
+        /* Make sure both desktop and mobile have equal columns */
+        @media (min-width: 768px) {
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        /* For smaller screens, stack vertically */
+        @media (max-width: 767px) {
+            .links-grid {
+                grid-template-columns: 1fr !important;
+                grid-auto-rows: auto; /* Allow natural height on mobile */
+            }
+        }
     </style>
 </head>
 <body>
@@ -184,11 +246,10 @@
 
     <main id="main" class="main">
         <!-- Links Hero Section -->
-        <section class="section">
+        <section class="section" style="padding-top: 120px;">
             <div class="container">
-                <h1 class="section-title">Professional & Inspirational Links</h1>
                 <div class="links-content">
-                    <p class="links-intro">Discover resources, inspiration, and professional connections that fuel my creative work.</p>
+                    <p class="links-intro" style="font-size: 1.2rem; text-align: center; margin-bottom: 3rem;">Discover resources, inspiration, and professional connections that fuel my creative work.</p>
                 </div>
             </div>
         </section>
@@ -198,76 +259,29 @@
             <div class="container">
                 <h2 class="section-title">Professional Links</h2>
                 <div class="links-grid">
-                    <div class="link-category">
-                        <h3>Portfolio & Work</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Behance Portfolio</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Vimeo Showreel</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">IMDB Credits</a></li>
-                        </ul>
+                    <div>
+                        <div class="link-category">
+                            <h3>Portfolio</h3>
+                            <ul class="link-list">
+                                <li><a href="https://www.youtube.com/@mironosl1/featured" target="_blank" rel="noopener noreferrer">YouTube Showreel</a></li>
+                                <li><a href="https://www.imdb.com/name/nm5731103/" target="_blank" rel="noopener noreferrer">IMDB Credits</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <div class="link-category">
-                        <h3>Industry Networks</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">VFX Society</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Motion Graphics Network</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Creative Industry Forum</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Post Production Alliance</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="link-category">
-                        <h3>Collaboration Platforms</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">GitHub Projects</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Dribbble Shots</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Creative Freelancers</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Industry Collaborations</a></li>
-                        </ul>
+
+                    <div>
+                        <div class="link-category">
+                            <h3>Work</h3>
+                            <ul class="link-list">
+                                <li><span class="placeholder-link">Coming Soon</span></li>
+                                <li><span class="placeholder-link">Coming Soon</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Inspirational Links Section -->
-        <section class="section">
-            <div class="container">
-                <h2 class="section-title">Inspirational Resources</h2>
-                <div class="links-grid">
-                    <div class="link-category">
-                        <h3>Creative Inspiration</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Art of VFX</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Motion Graphics Inspiration</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Creative Bloq</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">FXGuide</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="link-category">
-                        <h3>Learning Resources</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Video Copilot Tutorials</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">CG Society</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">School of Motion</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Digital Arts Magazine</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="link-category">
-                        <h3>Industry News</h3>
-                        <ul class="link-list">
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Post Magazine</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">VFX Voice</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Animation World Network</a></li>
-                            <li><a href="#" target="_blank" rel="noopener noreferrer">Cartoon Brew</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Downloadable Links Section -->
         <section class="section">
@@ -276,20 +290,14 @@
                 <div class="download-links">
                     <div class="download-item">
                         <h3>Resume / CV</h3>
-                        <p>Download my complete professional resume with detailed work experience and credentials.</p>
-                        <a href="#" class="cta-button" download>Download CV (PDF)</a>
+                        <p>Download my complete professional resume with detailed work experience.</p>
+                        <a href="docs/Miron_Auslander_CV_ENG.pdf" class="cta-button" download>Download CV (PDF)</a>
                     </div>
                     
                     <div class="download-item">
-                        <h3>Portfolio Deck</h3>
-                        <p>Comprehensive portfolio presentation showcasing my best work and creative process.</p>
-                        <a href="#" class="cta-button" download>Download Portfolio (PDF)</a>
-                    </div>
-                    
-                    <div class="download-item">
-                        <h3>Rate Card</h3>
-                        <p>Current rates and service offerings for freelance and project-based work.</p>
-                        <a href="#" class="cta-button" download>Download Rate Card (PDF)</a>
+                        <h3>קורות חיים</h3>
+                        <p>הורד את קורות החיים המקצועיים המלאים שלי עם ניסיון תעסוקתי מפורט</p>
+                        <a href="docs/Miron_Auslander_CV_HEB.pdf" class="cta-button" download>הורדה ק.חיים (PDF)</a>
                     </div>
                 </div>
             </div>
