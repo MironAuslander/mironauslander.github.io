@@ -25,14 +25,23 @@ const CATEGORY_DISPLAY = {
     'personal': 'Personal Project'
 };
 
+// Helper function to prefer WebP over JPG for better performance
+function preferWebP(imagePath) {
+    if (!imagePath) return imagePath;
+    // Replace .jpg with .webp (case insensitive)
+    return imagePath.replace(/\.jpg$/i, '.webp');
+}
+
 // Media type generators (from advanced generator)
 const MediaGenerators = {
     generateHeroMedia(heroData) {
         if (!heroData) return '';
 
         if (heroData.type === 'video') {
+            // Use WebP poster if available
+            const posterPath = preferWebP(heroData.poster) || '';
             return `
-                    <video controls loop disablePictureInPicture controlsList="nodownload" poster="../${heroData.poster || ''}">
+                    <video controls loop disablePictureInPicture controlsList="nodownload" poster="../${posterPath}">
                         <source src="../${heroData.src}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>`;
@@ -59,10 +68,12 @@ const MediaGenerators = {
     },
 
     generateVideo(item) {
+        // Use WebP poster if available
+        const posterAttr = item.poster ? `poster="../${preferWebP(item.poster)}"` : '';
         return `
                         <div class="media-item">
                             ${item.label ? `<div class="media-label">${item.label}</div>` : ''}
-                            <video controls loop disablePictureInPicture controlsList="nodownload" ${item.poster ? `poster="../${item.poster}"` : ''}>
+                            <video controls loop disablePictureInPicture controlsList="nodownload" ${posterAttr}>
                                 <source src="../${item.src}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -169,7 +180,7 @@ function convertToAdvancedFormat(project) {
             converted.heroMedia = {
                 type: 'video',
                 src: project.mainVideo,
-                poster: project.videoPoster || null
+                poster: project.videoPoster || null  // Keep original, will be converted to WebP during rendering
             };
         } else if (project.heroImage) {
             converted.heroMedia = {
@@ -288,7 +299,10 @@ function generateProjectPage(project, allProjects) {
             `${processedProject.fullTitle} - ${CATEGORY_DISPLAY[processedProject.category] || processedProject.category} project by Miron Auslander`,
         hasVideo: !!processedProject.mainVideo,
         hasBeforeAfter: hasBeforeAfterMedia(processedProject),
-        categoryDisplay: CATEGORY_DISPLAY[processedProject.category] || processedProject.category,
+        // Handle both single category (string) and multiple categories (array)
+        categoryDisplay: Array.isArray(processedProject.category)
+            ? processedProject.category.map(cat => CATEGORY_DISPLAY[cat] || cat).join(' & ')
+            : (CATEGORY_DISPLAY[processedProject.category] || processedProject.category),
         relatedProjects: findRelatedProjects(processedProject, allProjects),
 
         // Conditional field helpers for hiding empty sections

@@ -159,9 +159,9 @@
         "Mocha",
         "AI"
       ],
-      "featured": true,
-      "featuredOrder": 5,
-      "projectsPageOrder": null,
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 4,
       "visible": true,
       "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
       "heroImage": "assets/images/projects/1537/1537.webp",
@@ -223,8 +223,8 @@
         "Redshift"
       ],
       "featured": true,
-      "featuredOrder": 4,
-      "projectsPageOrder": 4,
+      "featuredOrder": 3,
+      "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
       "heroImage": "assets/images/projects/1654/1654.webp",
@@ -305,7 +305,7 @@
         "Mocha"
       ],
       "featured": true,
-      "featuredOrder": 3,
+      "featuredOrder": 4,
       "projectsPageOrder": 3,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
@@ -433,8 +433,8 @@
         "AI",
         "Runway AI"
       ],
-      "featured": false,
-      "featuredOrder": null,
+      "featured": true,
+      "featuredOrder": 5,
       "projectsPageOrder": 8,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
