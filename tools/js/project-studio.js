@@ -244,14 +244,36 @@ class ProjectStudio {
             project.hidden = false;
             // Don't clear featuredOrder here - project can be both featured and in all projects
 
-            // Update projectsPageOrder for ALL visible projects (this controls projects.html order)
-            const visibleCards = document.getElementById('allProjects').querySelectorAll('.project-card');
-            visibleCards.forEach((card, index) => {
-                const p = this.projectsData.projects.find(pr => pr.id === card.dataset.id);
-                if (p) {
-                    p.projectsPageOrder = index + 1;
-                    p.visible = true;  // Ensure visibility
-                }
+            // Get current DOM order from "All Projects" section
+            const visibleCards = Array.from(document.getElementById('allProjects').querySelectorAll('.project-card'));
+            const cardOrder = visibleCards.map(card => card.dataset.id);
+
+            // Update projectsPageOrder for ALL visible projects (including featured ones)
+            const allVisibleProjects = this.projectsData.projects
+                .filter(p => p.visible && !p.hidden)
+                .sort((a, b) => {
+                    // Projects in DOM get ordered by their visual position
+                    const aIndex = cardOrder.indexOf(a.id);
+                    const bIndex = cardOrder.indexOf(b.id);
+
+                    if (aIndex !== -1 && bIndex !== -1) {
+                        // Both in DOM - use DOM order
+                        return aIndex - bIndex;
+                    } else if (aIndex !== -1) {
+                        // Only A in DOM - A comes first
+                        return -1;
+                    } else if (bIndex !== -1) {
+                        // Only B in DOM - B comes first
+                        return 1;
+                    } else {
+                        // Neither in DOM - maintain existing order
+                        return (a.projectsPageOrder || 999) - (b.projectsPageOrder || 999);
+                    }
+                });
+
+            // Assign sequential projectsPageOrder to ALL visible projects
+            allVisibleProjects.forEach((p, index) => {
+                p.projectsPageOrder = index + 1;
             });
         } else if (section === 'hidden') {
             // Hidden section still affects visibility
@@ -1374,13 +1396,36 @@ class ProjectStudio {
         });
 
         // Update ALL visible projects order (controls projects.html page order)
-        const allProjectCards = document.getElementById('allProjects').querySelectorAll('.project-card');
-        allProjectCards.forEach((card, index) => {
-            const project = this.projectsData.projects.find(p => p.id === card.dataset.id);
-            if (project) {
-                project.visible = true;
-                project.projectsPageOrder = index + 1;  // This determines projects.html order
-            }
+        // Get current DOM order from "All Projects" section
+        const allProjectsCards = Array.from(document.getElementById('allProjects').querySelectorAll('.project-card'));
+        const cardOrder = allProjectsCards.map(card => card.dataset.id);
+
+        // Get all visible projects and sort by DOM order
+        const visibleProjects = this.projectsData.projects
+            .filter(p => p.visible && !p.hidden)
+            .sort((a, b) => {
+                // Projects in DOM get ordered by their visual position
+                const aIndex = cardOrder.indexOf(a.id);
+                const bIndex = cardOrder.indexOf(b.id);
+
+                if (aIndex !== -1 && bIndex !== -1) {
+                    // Both in DOM - use DOM order
+                    return aIndex - bIndex;
+                } else if (aIndex !== -1) {
+                    // Only A in DOM - A comes first
+                    return -1;
+                } else if (bIndex !== -1) {
+                    // Only B in DOM - B comes first
+                    return 1;
+                } else {
+                    // Neither in DOM - shouldn't happen, but maintain order
+                    return 0;
+                }
+            });
+
+        // Assign sequential projectsPageOrder to all visible projects
+        visibleProjects.forEach((project, index) => {
+            project.projectsPageOrder = index + 1;  // This determines projects.html order
         });
 
         // Update hidden projects
@@ -1392,6 +1437,20 @@ class ProjectStudio {
                 project.hidden = true;
                 // Don't automatically unfeature hidden projects - let user control that
             }
+        });
+
+        // Sort the entire projects array to match the visual order
+        // This ensures the JSON file has projects in the expected order
+        this.projectsData.projects.sort((a, b) => {
+            // Hidden projects go to the end
+            if (a.hidden && !b.hidden) return 1;
+            if (!a.hidden && b.hidden) return -1;
+            if (a.hidden && b.hidden) return 0;
+
+            // Both visible - sort by projectsPageOrder
+            const aOrder = a.projectsPageOrder || 999999;
+            const bOrder = b.projectsPageOrder || 999999;
+            return aOrder - bOrder;
         });
     }
 
