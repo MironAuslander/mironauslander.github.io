@@ -1,0 +1,8 @@
+# robots.txt for mironauslander.com
+# Allow all search engines to crawl the entire site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://mironauslander.com/sitemap.xml
