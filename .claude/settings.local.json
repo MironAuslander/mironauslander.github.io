@@ -23,7 +23,8 @@
       "Bash(start http://localhost:8000/links.html)",
       "Bash(start http://localhost:8000/projects/Project-1654.html)",
       "Read(//e/**)",
-      "Bash(start http://localhost:8000/projects/Project-1470.html)"
+      "Bash(start http://localhost:8000/projects/Project-1470.html)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []
