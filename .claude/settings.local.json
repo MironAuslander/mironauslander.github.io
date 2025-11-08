@@ -24,7 +24,14 @@
       "Bash(start http://localhost:8000/projects/Project-1654.html)",
       "Read(//e/**)",
       "Bash(start http://localhost:8000/projects/Project-1470.html)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "Bash(start http://localhost:8000)",
+      "Bash(copy styles.css backup-header-modificationstyles.css)",
+      "Bash(copy main.js backup-header-modificationmain.js)",
+      "Bash(copy index.html backup-header-modificationindex.html)",
+      "Bash(start:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YLKXVMJEQ4"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-YLKXVMJEQ4');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Links - Miron Auslander Portfolio</title>
+    <meta name="description" content="Professional and inspirational links - Miron Auslander Portfolio">
+    
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        /* CSS Custom Properties with Font Variables */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Body font-family update */
+        body {
+            font-family: var(--font-body);
+        }
+
+        /* Navigation and logo elements */
+        .logo {
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu a {
+            font-family: var(--font-primary);
+        }
+
+        /* Section titles and headings */
+        .section-title,
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .cta-button,
+        .menu-toggle {
+            font-family: var(--font-primary);
+        }
+
+        /* Link cards and items */
+        .link-category h3 {
+            font-family: var(--font-primary);
+        }
+
+        .link-list a {
+            font-family: var(--font-body);
+        }
+
+        .links-intro {
+            font-family: var(--font-body);
+        }
+
+        .download-item h3 {
+            font-family: var(--font-primary);
+        }
+
+        .download-item p {
+            font-family: var(--font-body);
+        }
+
+        /* Social links */
+        .social-link {
+            font-family: var(--font-primary);
+        }
+
+        /* Footer */
+        .footer {
+            font-family: var(--font-body);
+        }
+
+        /* Placeholder link styling to match real links exactly */
+        .placeholder-link {
+            color: #888;
+            font-style: italic;
+            display: inline-block;
+            padding-bottom: 2px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+            /* Match the exact same properties as .link-list a */
+            line-height: 1.6;
+        }
+
+        /* Force equal grid columns for Professional Links */
+        .links-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            grid-auto-rows: 1fr; /* Force equal row heights */
+            align-items: stretch; /* Stretch items to fill */
+        }
+
+        /* Make wrapper divs full height */
+        .links-grid > div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Ensure consistent card heights and stretch to fill */
+        .link-category {
+            min-height: 150px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Make link list stretch to fill available space */
+        .link-list {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Override default h3 spacing for more breathing room */
+        .link-category h3 {
+            margin-bottom: 2.5rem;  /* Increased from default 1.5rem */
+        }
+
+        /* Make sure both desktop and mobile have equal columns */
+        @media (min-width: 768px) {
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        /* For smaller screens, stack vertically */
+        @media (max-width: 767px) {
+            .links-grid {
+                grid-template-columns: 1fr !important;
+                grid-auto-rows: auto; /* Allow natural height on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Homepage">Ma</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#skills">Skills & Links</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="main">
+        <!-- Links Hero Section -->
+        <section class="section" style="padding-top: 120px;">
+            <div class="container">
+                <div class="links-content">
+                    <p class="links-intro" style="font-size: 1.2rem; text-align: center; margin-bottom: 3rem;">Discover resources, inspiration, and professional connections that fuel my creative work.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Links Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Links</h2>
+                <div class="links-grid">
+                    <div>
+                        <div class="link-category">
+                            <h3>Portfolio</h3>
+                            <ul class="link-list">
+                                <li><a href="https://www.youtube.com/@mironosl1/featured" target="_blank" rel="noopener noreferrer">YouTube Showreel</a></li>
+                                <li><a href="https://www.imdb.com/name/nm5731103/" target="_blank" rel="noopener noreferrer">IMDB Credits</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="link-category">
+                            <h3>Work</h3>
+                            <ul class="link-list">
+                                <li><span class="placeholder-link">Coming Soon</span></li>
+                                <li><span class="placeholder-link">Coming Soon</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Downloadable Links Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Downloadable Resources</h2>
+                <div class="download-links">
+                    <div class="download-item">
+                        <h3>Resume / CV</h3>
+                        <p>Download my complete professional resume with detailed work experience.</p>
+                        <a href="docs/Miron_Auslander_CV_ENG.pdf" class="cta-button" download>Download CV (PDF)</a>
+                    </div>
+                    
+                    <div class="download-item">
+                        <h3>קורות חיים</h3>
+                        <p>הורד את קורות החיים המקצועיים המלאים שלי עם ניסיון תעסוקתי מפורט</p>
+                        <a href="docs/Miron_Auslander_CV_HEB.pdf" class="cta-button" download>הורדה ק.חיים (PDF)</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of Ai and Coffee ☕</p>
+            <div class="social-links" style="display: none;">
+                <!-- Hidden div to maintain structure for iPad landscape fix -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

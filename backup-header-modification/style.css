@@ -155,8 +155,8 @@ body {
 
 /* Main Content */
 .main {
-    margin-top: 70px; /* Match header height */
-    min-height: calc(100vh - 70px);
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
 }
 
 .container {
@@ -827,39 +827,17 @@ body {
 
 /* Responsive Design */
 @media (min-width: 768px) {
-    /* Enhanced header layout for desktop */
-    .header {
-        padding: 1rem 0; /* Balanced padding */
-        height: 70px; /* Fixed height for consistency */
-    }
-
-    .nav-container {
-        max-width: none; /* Remove width constraint - allow full width */
-        padding: 0 2rem; /* Consistent edge padding */
-        position: relative;
-        height: 100%; /* Full height of header */
-        display: flex;
-        align-items: center; /* Center logo vertically */
-    }
-
-    /* Navigation menu - center aligned at bottom */
     .nav-menu {
-        position: absolute;
-        bottom: 0.25rem; /* Very small gap from bottom */
-        left: 50%;
-        transform: translateX(-50%);
-        width: auto;
+        position: static;
         height: auto;
+        width: auto;
         background: none;
         flex-direction: row;
         gap: 2rem;
-        margin: 0; /* Remove any margins */
-        padding: 0;
-        list-style: none;
     }
 
     .menu-toggle {
-        display: none; /* Hide hamburger on desktop */
+        display: none;
     }
 
     .nav-menu li {

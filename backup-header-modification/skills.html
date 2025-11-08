@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-YLKXVMJEQ4"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-YLKXVMJEQ4');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Miron Auslander Portfolio</title>
+    <meta name="description" content="Technical skills and expertise - Miron Auslander Portfolio">
+    
+    <!-- Font Preloading for Critical Fonts -->
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Thin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Primary/Poppins-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/Secondary/Inter_28pt-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Thin.woff2') format('woff2');
+            font-weight: 100;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Poppins';
+            src: url('assets/fonts/Primary/Poppins-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_24pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Secondary/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Medium.woff2') format('woff2');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Inter';
+            src: url('assets/fonts/Accent/Inter_28pt-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Devil Breeze';
+            src: url('assets/fonts/Logo/Devil Breeze Demi.woff2') format('woff2');
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        /* Custom Font Properties */
+        :root {
+            /* Font Variables with Fallback Stacks */
+            --font-primary: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Body Font Family */
+        body {
+            font-family: var(--font-body);
+        }
+
+        /* Navigation and Logo Elements */
+        .logo {
+            font-family: 'Devil Breeze', var(--font-primary);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-white);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-menu a {
+            font-family: var(--font-primary);
+        }
+
+        /* Section Titles and Headings */
+        .section-title,
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+        }
+
+        /* Buttons */
+        .cta-button,
+        .menu-toggle {
+            font-family: var(--font-primary);
+        }
+
+        /* Skills Cards and Items */
+        .skill-category h3 {
+            font-family: var(--font-primary);
+        }
+
+        .skill-name {
+            font-family: var(--font-primary);
+        }
+
+        .skill-level {
+            font-family: var(--font-body);
+        }
+
+        .service-card h3 {
+            font-family: var(--font-primary);
+        }
+
+        .service-card p {
+            font-family: var(--font-body);
+        }
+
+        /* Footer */
+        .footer {
+            font-family: var(--font-body);
+        }
+
+        .social-link {
+            font-family: var(--font-primary);
+        }
+    </style>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container" aria-label="Main navigation">
+            <a href="index.html" class="logo" aria-label="Homepage">Ma</a>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#skills">Skills & Links</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main" class="main">
+        <!-- Skills Hero Section -->
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title">Skills & Expertise</h1>
+                <div class="skills-intro">
+                    <p>Tools and technologies I use to bring creative visions to life with over a decade of professional experience.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-categories">
+                    
+                    <div class="skill-category">
+                        <h3>Motion Graphics & Animation</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">After Effects</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Cinema 4D</span>
+                                    <span class="skill-level">Advanced - 8+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Illustrator</span>
+                                    <span class="skill-level">Intermediate - 4+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Compositing & VFX</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">After Effects</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Fusion</span>
+                                    <span class="skill-level">Advanced - 7+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Mocha Pro</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">3D & Simulations</span>
+                                    <span class="skill-level">Advanced - 6+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Color & Finishing</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">DaVinci Resolve</span>
+                                    <span class="skill-level">Advanced - 6+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Photoshop</span>
+                                    <span class="skill-level">Expert - 12+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 92%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Editing</h3>
+                        <div class="skill-items">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Premiere Pro</span>
+                                    <span class="skill-level">Expert - 10+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 93%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">DaVinci Resolve</span>
+                                    <span class="skill-level">Advanced - 6+ years</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <span class="skill-name">Avid</span>
+                                    <span class="skill-level">Previous Experience</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Services Section -->
+        <section class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/icons/Skills/motion.svg" alt="Motion Graphics">
+                        </div>
+                        <h3>Motion Graphics</h3>
+                        <p>Dynamic animations, title sequences, and brand motion design for TV, film, and digital media.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/icons/Skills/visual-effects.svg" alt="Visual Effects">
+                        </div>
+                        <h3>Visual Effects</h3>
+                        <p>Compositing, digital matte painting, and seamless integration of CGI with live-action footage.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/icons/Skills/post-production.svg" alt="Post-Production">
+                        </div>
+                        <h3>Post-Production</h3>
+                        <p>Complete post-production workflows from editing to final delivery for various platforms.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <img src="assets/icons/Skills/AI.svg" alt="AI">
+                        </div>
+                        <h3>AI</h3>
+                        <p>Exploring artificial intelligence for content creation, from advanced image generation to dynamic video synthesis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Home Section -->
+        <section class="section">
+            <div class="container">
+                <div class="back-to-home">
+                    <h2>Ready to Work Together?</h2>
+                    <p>Let's discuss your next project and bring your vision to life with professional expertise.</p>
+                    <a href="index.html#contact" class="cta-button">Get in Touch</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Miron Auslander. All rights reserved. Built with lots of Ai and Coffee ☕</p>
+            <div class="social-links" style="display: none;">
+                <!-- Hidden div to maintain structure for iPad landscape fix -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
