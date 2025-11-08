@@ -148,6 +148,56 @@
     --warm-gradient: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
     --accent-warm: #ff6b6b;
     --accent-cyan: #4facfe;
+
+    /* Common Opacity Values */
+    --opacity-10: 0.1;
+    --opacity-20: 0.2;
+    --opacity-30: 0.3;
+    --opacity-50: 0.5;
+    --opacity-70: 0.7;
+    --opacity-80: 0.8;
+    --opacity-90: 0.9;
+    --opacity-95: 0.95;
+
+    /* Common RGBA Transparency Values */
+    --white-10: rgba(255, 255, 255, 0.1);
+    --white-15: rgba(255, 255, 255, 0.15);
+    --white-20: rgba(255, 255, 255, 0.2);
+    --white-30: rgba(255, 255, 255, 0.3);
+    --black-30: rgba(0, 0, 0, 0.3);
+    --black-50: rgba(0, 0, 0, 0.5);
+    --black-70: rgba(0, 0, 0, 0.7);
+    --black-90: rgba(0, 0, 0, 0.9);
+    --black-95: rgba(0, 0, 0, 0.95);
+
+    /* Common Gradients */
+    --gradient-warm-button: linear-gradient(145deg,
+        rgba(255, 107, 107, 0.15) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.9) 70%,
+        rgba(0, 0, 0, 0.95) 100%);
+    --gradient-cool-button: linear-gradient(145deg,
+        rgba(79, 172, 254, 0.15) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.9) 70%,
+        rgba(0, 0, 0, 0.95) 100%);
+    --gradient-blue-button: linear-gradient(145deg,
+        rgba(102, 126, 234, 0.15) 0%,
+        rgba(0, 0, 0, 0.7) 30%,
+        rgba(0, 0, 0, 0.9) 70%,
+        rgba(0, 0, 0, 0.95) 100%);
+
+    /* Common Measurements */
+    --border-width: 2px;
+    --border-radius-pill: 50px;
+    --blur-light: 10px;
+    --blur-heavy: 20px;
+
+    /* Common Box Shadows */
+    --shadow-warm: 0 10px 30px rgba(255, 107, 107, 0.3);
+    --shadow-cool: 0 10px 30px rgba(79, 172, 254, 0.3);
+    --shadow-blue: 0 10px 25px rgba(102, 126, 234, 0.2);
+    --shadow-dark: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* ========================================
@@ -646,6 +696,15 @@ ul {
 .cta-button:focus {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    color: var(--text-white); /* Ensure text stays white */
+}
+
+/* Hero section button specific hover - purple/blue glow */
+.hero .cta-button:hover,
+.hero .cta-button:focus {
+    box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3),
+                0 0 40px rgba(102, 126, 234, 0.2);
+    border-color: rgba(118, 75, 162, 0.6);
 }
 
 /* ========================================
@@ -858,6 +917,15 @@ ul {
     font-size: 1rem;
 }
 
+.projects-cta-button:hover,
+.projects-cta-button:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3),
+                0 0 40px rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.6);
+    color: var(--text-white); /* Ensure text stays white */
+}
+
 /* Projects Page Specific Styles */
 .projects-page {
     min-height: 100vh;
@@ -875,7 +943,26 @@ ul {
     gap: 1rem;
     flex-wrap: wrap;
     margin: 2rem 0;
-    padding: 0 1rem;
+    padding: 0 1rem 2rem;
+    position: relative;
+}
+
+/* Orange separator line below filters */
+.project-filters::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(255, 107, 107, 0.3) 20%,
+        rgba(255, 107, 107, 0.5) 50%,
+        rgba(255, 107, 107, 0.3) 80%,
+        transparent 100%);
 }
 
 .filter-btn {
@@ -885,16 +972,18 @@ ul {
         rgba(0, 0, 0, 0.5) 100%);
     color: var(--text-gray);
     border: 2px solid rgba(176, 176, 176, 0.3);
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--border-radius);
+    padding: 0.75rem 1.75rem;
+    border-radius: 50px; /* More rounded like other buttons */
     font-family: var(--font-primary);
     font-weight: 600;
     font-size: 0.95rem;
+    letter-spacing: 0.5px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    text-transform: uppercase;
 }
 
 .filter-btn::before {
@@ -905,21 +994,29 @@ ul {
     right: 0;
     bottom: 0;
     background: linear-gradient(45deg,
-        rgba(255, 107, 107, 0.25) 0%,
+        rgba(255, 255, 255, 0.2) 0%,
         transparent 50%,
-        rgba(254, 202, 87, 0.15) 100%);
-    transform: translateX(-100%);
-    transition: var(--transition);
+        rgba(255, 255, 255, 0.1) 100%);
     opacity: 0;
+    transition: var(--transition);
+    border-radius: 50px;
 }
 
 .filter-btn:hover::before,
-.filter-btn.active::before {
+.filter-btn:focus::before {
     opacity: 1;
-    transform: translateX(100%);
 }
 
 .filter-btn:hover,
+.filter-btn:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 107, 107, 0.25),
+                0 0 40px rgba(255, 107, 107, 0.15);
+    border-color: rgba(255, 107, 107, 0.5);
+    color: var(--text-white);
+    outline: none;
+}
+
 .filter-btn.active {
     background: linear-gradient(145deg,
         rgba(255, 107, 107, 0.15) 0%,
@@ -927,9 +1024,9 @@ ul {
         rgba(0, 0, 0, 0.9) 70%,
         rgba(0, 0, 0, 0.95) 100%);
     color: var(--text-white);
-    border-color: rgba(255, 107, 107, 0.5);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.2);
+    border-color: rgba(255, 107, 107, 0.6);
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.25),
+                inset 0 0 20px rgba(255, 107, 107, 0.1);
 }
 
 /* Skills & Links */
@@ -952,15 +1049,120 @@ ul {
     border: 2px solid rgba(79, 172, 254, 0.4);
 }
 
+.skills-links-buttons .cta-button:hover,
+.skills-links-buttons .cta-button:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3),
+                0 0 40px rgba(79, 172, 254, 0.2);
+    border-color: rgba(79, 172, 254, 0.6);
+    color: var(--text-white); /* Ensure text stays white */
+}
+
 /* Skills Page Specific Styles */
 .skills-page {
     padding-top: var(--header-height);
 }
 
+/* Override section styles for skills page to reduce vertical spacing */
+.skills-page .section {
+    min-height: auto;
+    padding: 3rem 1rem;
+}
+
+/* First section (Skills & Expertise title) - minimal top padding */
+.skills-page .section:first-of-type {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+}
+
+/* Technical Skills section */
+.skills-page .section:nth-of-type(2) {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Professional Services section */
+.skills-page .section:nth-of-type(3) {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+/* Ready to Work Together section - compact spacing */
+.skills-page .section:last-of-type {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Reduce section title margins on skills page */
+.skills-page .section-title {
+    margin-bottom: 2rem;
+}
+
+/* Mobile adjustments for skills page */
+@media (max-width: 768px) {
+    .skills-page .section {
+        padding: 2rem 1rem;
+    }
+
+    .skills-page .section:first-of-type {
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+    }
+
+    .skills-page .section-title {
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Override section styles for links page to reduce vertical spacing */
+.links-page .section {
+    min-height: auto;
+    padding: 3rem 1rem;
+}
+
+/* First section (intro) - override inline style with important */
+.links-page .section:first-of-type {
+    padding-top: 2rem !important;
+    padding-bottom: 1.5rem;
+}
+
+/* Professional Links section */
+.links-page .section:nth-of-type(2) {
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+}
+
+/* Downloadable Resources section */
+.links-page .section:nth-of-type(3) {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Reduce section title margins on links page */
+.links-page .section-title {
+    margin-bottom: 2rem;
+}
+
+/* Mobile adjustments for links page */
+@media (max-width: 768px) {
+    .links-page .section {
+        padding: 2rem 1rem;
+    }
+
+    .links-page .section:first-of-type {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1rem;
+    }
+
+    .links-page .section-title {
+        margin-bottom: 1.5rem;
+    }
+}
+
 .skills-intro {
     text-align: center;
     max-width: 800px;
-    margin: 0 auto 3rem;
+    margin: 0 auto 0.5rem;
     padding: 0 1rem;
 }
 
@@ -1123,8 +1325,16 @@ ul {
     height: 60px;
     display: block;
     margin: 0 auto;
-    filter: brightness(0) invert(1);
-    opacity: 0.9;
+    /* Preserve original colors with slight enhancement */
+    filter: brightness(1.1) contrast(1.05);
+    opacity: 1;
+    transition: var(--transition);
+}
+
+.service-card:hover .service-icon img {
+    filter: brightness(1.2) contrast(1.1);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 .service-card h3 {
@@ -1146,13 +1356,13 @@ ul {
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
-    padding: 2rem 1rem;
+    padding: 1rem;
 }
 
 .back-to-home h2 {
     font-family: var(--font-primary);
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     color: var(--text-white);
     font-weight: 300;
 }
@@ -1287,7 +1497,7 @@ ul {
 }
 
 .download-item {
-    background: var(--warm-gradient);
+    background: var(--cyan-gradient);
     padding: 2.5rem;
     border-radius: var(--border-radius);
     text-align: center;
@@ -1295,7 +1505,7 @@ ul {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 107, 107, 0.3);
+    border: 2px solid rgba(79, 172, 254, 0.3);
 }
 
 .download-item::before {
@@ -1349,8 +1559,10 @@ ul {
 
 .download-item .cta-button:hover {
     border-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3),
+                0 0 30px rgba(79, 172, 254, 0.2);
     transform: translateY(-2px);
+    color: var(--text-white); /* Ensure text stays white */
 }
 
 /* Contact Form */
@@ -1564,7 +1776,472 @@ ul {
 }
 
 /* ========================================
-   SECTION 9: FOOTER
+   SECTION 9: PROJECT PAGES
+   ======================================== */
+
+/* Project Hero Section */
+.project-hero {
+    background: linear-gradient(135deg,
+        rgba(255, 107, 107, 0.8) 0%,
+        rgba(254, 202, 87, 0.8) 100%);
+    padding: 4rem 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+}
+
+.project-hero .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.project-hero h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.project-media {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.project-media video,
+.project-media img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Project Details Section */
+.project-details {
+    background-color: var(--dark-bg);
+    padding: 4rem 0;
+}
+
+.project-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 3rem;
+    align-items: start;
+}
+
+.project-description {
+    color: var(--text-white);
+}
+
+.project-description h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+.project-description h3 {
+    font-family: var(--font-primary);
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 2rem 0 1rem;
+    color: var(--text-white);
+}
+
+.project-description p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
+
+.project-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.project-description ul li {
+    font-family: var(--font-body);
+    color: var(--text-muted);
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.project-description ul li:before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-cyan);
+}
+
+/* Project Meta Info Box */
+.project-meta {
+    background: linear-gradient(145deg,
+        rgba(200, 200, 200, 0.95) 0%,
+        rgba(220, 220, 220, 0.95) 100%);
+    padding: 2rem;
+    border-radius: 15px;
+    position: sticky;
+    top: 100px;
+}
+
+.project-meta h3 {
+    font-family: var(--font-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.project-meta p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: #111;
+    margin-bottom: 1.5rem;
+}
+
+.project-meta p:last-child {
+    margin-bottom: 0;
+}
+
+/* Tools Used Section */
+.tools-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+}
+
+.tool-tag {
+    background: transparent;
+    border: 2px solid var(--accent-warm);
+    color: var(--accent-warm);
+    padding: 0.5rem 1.25rem;
+    border-radius: 25px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: var(--transition);
+}
+
+.tool-tag:hover {
+    background: var(--accent-warm);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Tech Tags Container and Individual Tags */
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.tech-tag {
+    display: inline-block;
+    background: var(--gradient-warm-button);
+    color: var(--text-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--border-radius-pill);
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: var(--border-width) solid rgba(255, 107, 107, 0.4);
+    backdrop-filter: blur(var(--blur-light));
+    position: relative;
+    transition: var(--transition);
+}
+
+.tech-tag:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 107, 107, 0.6);
+    box-shadow: var(--shadow-warm);
+}
+
+/* Project Hero Section Adjustments */
+.project-hero {
+    padding: 4rem 0;
+}
+
+.project-hero h1 {
+    margin-bottom: 3rem;
+}
+
+/* Process & Variations Gallery */
+.project-gallery {
+    margin-top: 4rem;
+}
+
+.project-gallery h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-white);
+}
+
+.process-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.process-item {
+    width: 100%;
+}
+
+.process-item h3 {
+    font-family: var(--font-primary);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.process-item video,
+.process-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Before/After Container Styles */
+.before-after-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #000;
+}
+
+.before-after-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+}
+
+.before-after-wrapper video,
+.before-after-wrapper img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.after-media {
+    clip-path: inset(0 0 0 50%);
+}
+
+.before-after-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: white;
+    cursor: ew-resize;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
+
+.before-after-slider:hover {
+    opacity: 1;
+}
+
+.slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-handle::before,
+.slider-handle::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+}
+
+.slider-handle::before {
+    left: 8px;
+    border-width: 6px 6px 6px 0;
+    border-color: transparent #333 transparent transparent;
+    transform: translateY(-50%);
+}
+
+.slider-handle::after {
+    right: 8px;
+    border-width: 6px 0 6px 6px;
+    border-color: transparent transparent transparent #333;
+    transform: translateY(-50%);
+}
+
+.before-label,
+.after-label {
+    position: absolute;
+    top: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.before-label {
+    left: 20px;
+}
+
+.after-label {
+    right: 20px;
+}
+
+/* Related Projects Section */
+.related-projects {
+    background-color: var(--dark-bg);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.related-projects h2 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-white);
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.related-grid .project-card {
+    max-width: none !important;
+}
+
+/* Responsive Design for Project Pages */
+@media (max-width: 1024px) {
+    .project-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-meta {
+        position: static;
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-hero {
+        padding: 3rem 0;
+        min-height: 50vh;
+    }
+
+    .project-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .project-details {
+        padding: 3rem 0;
+    }
+
+    .project-info-grid {
+        gap: 2rem;
+    }
+
+    .project-description h2 {
+        font-size: 1.5rem;
+    }
+
+    .project-description p {
+        font-size: 1rem;
+    }
+
+    .project-meta {
+        padding: 1.5rem;
+    }
+
+    .tools-list {
+        gap: 0.5rem;
+    }
+
+    .tool-tag {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .before-label,
+    .after-label {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .related-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+}
+
+/* ========================================
+   SECTION 10: FOOTER
    ======================================== */
 
 .footer {
@@ -1634,6 +2311,16 @@ ul {
     .about-text p:last-child br:nth-of-type(3),
     .about-text p:last-child br:nth-of-type(4) {
         display: none;
+    }
+}
+
+/* Homepage Featured Projects - 2 columns on landscape mobile */
+@media (min-width: 480px) and (max-width: 767px) {
+    #projects .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        max-width: 600px;
+        margin: 0 auto;
     }
 }
 
@@ -1749,6 +2436,13 @@ ul {
         gap: 1.25rem;
     }
 
+    /* Homepage Featured Projects - ensure proper 3x2 layout */
+    #projects .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
     .projects-cta-wrapper {
         margin-top: 3.5rem;
     }
@@ -1778,6 +2472,12 @@ ul {
     .project-filters {
         gap: 1.5rem;
         margin: 2.5rem 0;
+        padding-bottom: 2.5rem;
+    }
+
+    .project-filters::after {
+        width: 80%;
+        max-width: 1000px;
     }
 
     /* Services grid - 2 columns on tablet */
@@ -1802,6 +2502,13 @@ ul {
         gap: 1.25rem;
         max-width: 100%;
         padding: 0;
+    }
+
+    /* Keep Featured Projects on homepage as 3x2 grid */
+    #projects .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
     .hero {
@@ -1837,6 +2544,14 @@ ul {
 
     .projects-grid {
         gap: 1.5rem;
+    }
+
+    /* Maintain 3x2 grid for Featured Projects on homepage */
+    #projects .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1100px;
+        margin: 0 auto;
+        gap: 2rem;
     }
 }
 

@@ -31,7 +31,8 @@
       "Bash(copy index.html backup-header-modificationindex.html)",
       "Bash(start:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(find:*)"
     ],
     "deny": [],
     "ask": []

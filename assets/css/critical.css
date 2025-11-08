@@ -1,6 +1,0 @@
-/* Critical CSS - inline in <head> */
-:root { /* variables */ }
-body { /* base styles */ }
-.header { /* navigation styles */ }
-.hero { /* hero section */ }
-/* Only styles for content visible without scrolling */
