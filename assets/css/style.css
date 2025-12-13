@@ -1781,9 +1781,7 @@ ul {
 
 /* Project Hero Section */
 .project-hero {
-    background: linear-gradient(135deg,
-        rgba(255, 107, 107, 0.8) 0%,
-        rgba(254, 202, 87, 0.8) 100%);
+    background: var(--warm-gradient);
     padding: 4rem 0;
     min-height: 60vh;
     display: flex;
@@ -1793,6 +1791,7 @@ ul {
     overflow: hidden;
 }
 
+/* Subtle 10% softening overlay */
 .project-hero::before {
     content: '';
     position: absolute;
@@ -1800,9 +1799,7 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(0, 0, 0, 0.4) 100%);
+    background: rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
@@ -1842,7 +1839,7 @@ ul {
 /* Project Details Section */
 .project-details {
     background-color: var(--dark-bg);
-    padding: 4rem 0;
+    padding: 4rem 0 1rem 0;
 }
 
 .project-info-grid {
@@ -1910,6 +1907,7 @@ ul {
     border-radius: 15px;
     position: sticky;
     top: 100px;
+    color: #111; /* Base text color for all children */
 }
 
 .project-meta h3 {
@@ -1931,6 +1929,26 @@ ul {
 
 .project-meta p:last-child {
     margin-bottom: 0;
+}
+
+/* Meta item structure (used in templates) */
+.project-meta .meta-item {
+    margin-bottom: 1.25rem;
+}
+
+.project-meta .meta-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-meta strong {
+    display: block;
+    color: #333;
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
 }
 
 /* Tools Used Section */
@@ -2001,6 +2019,7 @@ ul {
 /* Process & Variations Gallery */
 .project-gallery {
     margin-top: 4rem;
+    margin-bottom: 1.5rem;
 }
 
 .project-gallery h2 {
@@ -2010,6 +2029,21 @@ ul {
     text-align: center;
     margin-bottom: 3rem;
     color: var(--text-white);
+}
+
+.project-gallery h3 {
+    font-family: var(--font-primary);
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--text-white);
+}
+
+/* Gap between before/after players */
+.gallery-grid,
+.project-gallery .gallery-grid {
+    gap: 1.5rem !important;
 }
 
 .process-grid {
@@ -2044,7 +2078,7 @@ ul {
     position: relative;
     width: 100%;
     max-width: 1200px;
-    margin: 0 auto 2rem;
+    margin: 0 auto;
     overflow: hidden;
     border-radius: 10px;
     background: #000;
@@ -2053,8 +2087,7 @@ ul {
 .before-after-wrapper {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    overflow: hidden;
+    /* padding-bottom removed - .ba-wrapper handles aspect ratio */
 }
 
 .before-after-wrapper video,
@@ -2071,20 +2104,14 @@ ul {
     clip-path: inset(0 0 0 50%);
 }
 
+/* Container class added by JavaScript - NOT the slider line element */
 .before-after-slider {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 4px;
-    background: white;
-    cursor: ew-resize;
-    z-index: 10;
-    transition: opacity 0.3s ease;
-}
-
-.before-after-slider:hover {
-    opacity: 1;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .slider-handle {
@@ -2149,10 +2176,283 @@ ul {
     right: 20px;
 }
 
+/* ===============================================
+   BEFORE/AFTER SLIDER - DYNAMIC .ba-* CLASSES
+   (Created by before-after.js)
+   =============================================== */
+
+.ba-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Video aspect ratio */
+.ba-wrapper:has(video) {
+    padding-bottom: 56.25%; /* 16:9 aspect ratio for videos */
+}
+
+/* Image handling - maintain 16:9 aspect ratio using modern aspect-ratio property */
+.ba-wrapper:has(img) {
+    position: relative;
+    aspect-ratio: 16/9;
+    line-height: 0;
+}
+
+.ba-before,
+.ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* For images, both should be absolute within the aspect ratio container */
+.ba-wrapper:has(img) .ba-before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ba-wrapper:has(img) .ba-after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ba-before video,
+.ba-after video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ba-before img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ba-after img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ba-after {
+    clip-path: inset(0 50% 0 0); /* Initial 50% position - clip from right */
+}
+
+/* Slider Controls */
+.ba-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    transform: translateX(-50%);
+    cursor: ew-resize;
+    z-index: 3;
+    transition: opacity 0.3s ease;
+}
+
+.ba-slider-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+}
+
+.ba-slider-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    cursor: ew-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.ba-slider-handle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.ba-slider-handle:active,
+.ba-slider.dragging .ba-slider-handle {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+.ba-slider-handle svg {
+    width: 24px;
+    height: 24px;
+    color: white;
+    pointer-events: none;
+}
+
+/* Labels */
+.ba-label {
+    position: absolute;
+    top: 20px;
+    padding: 10px 20px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.85);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: 50px;
+    pointer-events: none;
+    z-index: 2;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: var(--font-primary);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ba-label-before {
+    left: 20px;
+}
+
+.ba-label-after {
+    right: 20px;
+}
+
+/* Hover Effects */
+.before-after-slider:hover .ba-slider {
+    opacity: 1;
+}
+
+.before-after-slider:not(:hover) .ba-slider {
+    opacity: 0.8;
+}
+
+/* Dragging State */
+.before-after-slider.is-dragging {
+    cursor: ew-resize;
+}
+
+.before-after-slider.is-dragging .ba-slider-handle {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .ba-slider {
+        opacity: 1 !important;
+    }
+
+    .ba-slider-handle {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* Mobile Responsive - Before/After Slider */
+@media (max-width: 768px) {
+    .ba-label {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .ba-label-before {
+        left: 10px;
+    }
+
+    .ba-label-after {
+        right: 10px;
+    }
+
+    .ba-slider-handle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .ba-slider-handle svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Slider Tip */
+.slider-tip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--font-body);
+}
+
+.tip-icon {
+    font-size: 16px;
+}
+
+.tip-text {
+    line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+    .slider-tip {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .tip-icon {
+        font-size: 14px;
+    }
+}
+
 /* Related Projects Section */
 .related-projects {
     background-color: var(--dark-bg);
-    padding: 4rem 0;
+    padding: 2rem 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -2175,6 +2475,26 @@ ul {
 
 .related-grid .project-card {
     max-width: none !important;
+}
+
+/* Fix for templates using .projects-grid instead of .related-grid */
+.related-projects .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.related-projects .projects-grid .project-card {
+    max-width: none !important;
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .related-projects .projects-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Responsive Design for Project Pages */
@@ -2655,7 +2975,7 @@ ul {
 }
 
 .media-label {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
     font-weight: 500;
     color: var(--text-white, #fff);
 }
@@ -2670,10 +2990,5 @@ ul {
 
 /* Before/After specific */
 .before-after-wrapper {
-    margin-bottom: 1rem;
-}
-
-.slider-tip {
-    margin-top: 0.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
 }
