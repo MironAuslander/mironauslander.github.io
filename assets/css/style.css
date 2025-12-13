@@ -2087,17 +2087,8 @@ ul {
 .before-after-wrapper {
     position: relative;
     width: 100%;
-    /* padding-bottom removed - .ba-wrapper handles aspect ratio */
-}
-
-.before-after-wrapper video,
-.before-after-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin-bottom: 0;
+    /* Note: .ba-wrapper (created by JS) handles aspect ratio */
 }
 
 .after-media {
@@ -2986,9 +2977,4 @@ ul {
     width: 100%;
     height: auto;
     border-radius: 8px;
-}
-
-/* Before/After specific */
-.before-after-wrapper {
-    margin-bottom: 0;
 }
