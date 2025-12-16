@@ -1779,7 +1779,17 @@ ul {
 
 /* Project Hero Section */
 .project-hero {
-    background: var(--warm-gradient);
+    background:
+        /* Orange separator line at bottom */
+        linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 107, 107, 0.3) 20%,
+            rgba(255, 107, 107, 0.5) 50%,
+            rgba(255, 107, 107, 0.3) 80%,
+            transparent 100%)
+        bottom center / 90% 1px no-repeat,
+        /* Dark background */
+        var(--dark-bg);
     padding: 4rem 0;
     min-height: 60vh;
     display: flex;
@@ -1789,7 +1799,7 @@ ul {
     overflow: hidden;
 }
 
-/* Subtle 10% softening overlay */
+/* Orange gradient layer - curved light leak at top */
 .project-hero::before {
     content: '';
     position: absolute;
@@ -1797,8 +1807,44 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1);
-    z-index: 1;
+    /* Arc glow from top - subtle, understated */
+    background: radial-gradient(
+        ellipse 80% 100% at 50% 0%,
+        rgba(255, 107, 107, 0.55) 0%,
+        rgba(255, 107, 107, 0.28) 15%,
+        rgba(255, 107, 107, 0.12) 35%,
+        rgba(255, 107, 107, 0.04) 55%,
+        rgba(255, 107, 107, 0.01) 75%,
+        transparent 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(40px);
+}
+
+/* Yellow gradient layer - curved light leak at bottom */
+.project-hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Arc glow from bottom - smaller with very gradual fade */
+    background: radial-gradient(
+        ellipse 50% 80% at 50% 100%,
+        rgba(254, 202, 87, 0.55) 0%,
+        rgba(254, 202, 87, 0.42) 10%,
+        rgba(254, 202, 87, 0.3) 25%,
+        rgba(254, 202, 87, 0.2) 40%,
+        rgba(254, 202, 87, 0.12) 55%,
+        rgba(254, 202, 87, 0.06) 70%,
+        rgba(254, 202, 87, 0.02) 85%,
+        transparent 100%
+    );
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(40px);
 }
 
 .project-hero .container {
@@ -1824,7 +1870,7 @@ ul {
     margin: 0 auto;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .project-media video,
