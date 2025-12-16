@@ -210,47 +210,84 @@
 
     <script src="assets/js/main.js"></script>
     <script>
-        // Enhanced filter functionality
+        // Enhanced filter functionality with multi-select support
         document.addEventListener('DOMContentLoaded', function() {
             const filterButtons = document.querySelectorAll('.filter-btn');
             const projectCards = document.querySelectorAll('.project-card');
+            const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+            const categoryButtons = document.querySelectorAll('.filter-btn:not([data-filter="all"])');
 
-            filterButtons.forEach(button => {
+            // Get currently active category filters (excludes "all")
+            function getActiveFilters() {
+                return Array.from(categoryButtons)
+                    .filter(btn => btn.classList.contains('active'))
+                    .map(btn => btn.dataset.filter);
+            }
+
+            // Update project visibility based on active filters
+            function updateProjectVisibility() {
+                const activeFilters = getActiveFilters();
+                const showAll = allButton.classList.contains('active') || activeFilters.length === 0;
+
+                projectCards.forEach(card => {
+                    const categoryAttr = card.dataset.category || '';
+                    const categories = categoryAttr.includes(',')
+                        ? categoryAttr.split(',').map(c => c.trim())
+                        : [categoryAttr];
+
+                    // Show if "all" is active OR if any of the card's categories match active filters
+                    const shouldShow = showAll || categories.some(cat => activeFilters.includes(cat));
+
+                    if (shouldShow) {
+                        card.style.display = 'flex';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            }
+
+            // Handle "All Projects" button click
+            allButton.addEventListener('click', function() {
+                // Deselect all category buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                // Activate "All" button
+                allButton.classList.add('active');
+                updateProjectVisibility();
+            });
+
+            // Handle category button clicks
+            categoryButtons.forEach(button => {
                 button.addEventListener('click', function() {
-                    // Update active button
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
+                    // Toggle this category button
+                    this.classList.toggle('active');
 
-                    const filter = this.dataset.filter;
+                    // Remove focus if button was deselected (so :focus styles don't persist)
+                    if (!this.classList.contains('active')) {
+                        this.blur();
+                    }
 
-                    // Filter projects with animation (supports multi-category)
-                    projectCards.forEach(card => {
-                        // Support both single category (legacy) and multi-category (new)
-                        const categoryAttr = card.dataset.category || '';
-                        const categories = categoryAttr.includes(',')
-                            ? categoryAttr.split(',').map(c => c.trim())
-                            : [categoryAttr];
+                    // If any category is now active, deactivate "All"
+                    const activeFilters = getActiveFilters();
+                    if (activeFilters.length > 0) {
+                        allButton.classList.remove('active');
+                    } else {
+                        // If no categories are active, activate "All"
+                        allButton.classList.add('active');
+                    }
 
-                        const shouldShow = filter === 'all' || categories.includes(filter);
-
-                        if (shouldShow) {
-                            card.style.display = 'flex';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'scale(1)';
-                            }, 10);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'scale(0.95)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
+                    updateProjectVisibility();
                 });
             });
 
-            // Initial animation
+            // Initial animation setup
             projectCards.forEach(card => {
                 card.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
             });
