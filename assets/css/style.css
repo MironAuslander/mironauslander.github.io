@@ -2596,6 +2596,247 @@ ul {
 }
 
 /* ========================================
+   SECTION 9B: PROJECT HERO V2 (REDESIGN)
+   Cover image with overlay title + meta
+   ======================================== */
+
+/* Hero — cover image with centered overlay */
+.project-hero-v2 {
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    overflow: hidden;
+    background-color: var(--dark-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.project-hero-v2 .hero-cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+}
+
+/* Cinematic vignette — fades bottom into page bg */
+.project-hero-v2::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(to top,
+            var(--dark-bg) 0%,
+            rgba(8, 9, 10, 0.7) 12%,
+            rgba(8, 9, 10, 0.25) 35%,
+            rgba(8, 9, 10, 0.1) 50%,
+            rgba(8, 9, 10, 0.2) 75%,
+            rgba(8, 9, 10, 0.5) 100%);
+}
+
+/* Title overlay — centered */
+.project-hero-v2 .hero-overlay {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+}
+
+.project-hero-v2 h1 {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    margin: 0;
+    text-transform: uppercase;
+    text-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.85),
+        0 6px 50px rgba(0, 0, 0, 0.65),
+        0 12px 80px rgba(0, 0, 0, 0.5);
+}
+
+.project-hero-v2 .hero-title-accent {
+    color: rgba(255, 94, 20, 0.85);
+}
+
+/* Line break between title and accent — hidden on desktop, shown on mobile */
+.project-hero-v2 .hero-title-break {
+    display: none;
+}
+
+/* Meta bar — bottom-pinned, inline film-credits style */
+.project-hero-v2 .hero-meta-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: center;
+    background: rgba(8, 9, 10, 0.45);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-top: none;
+    background-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 94, 20, 0.2) 15%,
+        rgba(255, 94, 20, 0.2) 85%,
+        transparent 100%
+    );
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    background-position: top;
+}
+
+.project-hero-v2 .project-meta-grid {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.project-hero-v2 .meta-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0 1.8rem;
+    border-right: 1px solid rgba(255, 94, 20, 0.25);
+}
+
+.project-hero-v2 .meta-col:last-child {
+    border-right: none;
+}
+
+.project-hero-v2 .meta-label {
+    font-family: var(--font-secondary);
+    font-size: 0.55rem;
+    font-weight: 500;
+    color: rgba(255, 94, 20, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+}
+
+.project-hero-v2 .meta-value {
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.75);
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Orange section divider — fades at edges */
+.section-divider-orange {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(255, 94, 20, 0.03) 15%,
+        rgba(255, 94, 20, 0.4) 40%,
+        rgba(255, 94, 20, 0.6) 50%,
+        rgba(255, 94, 20, 0.4) 60%,
+        rgba(255, 94, 20, 0.03) 85%,
+        transparent 100%
+    );
+    margin: 0;
+}
+
+/* Video player section */
+.project-hero-v2-video {
+    background-color: var(--dark-bg);
+    padding: 2.5rem 0;
+}
+
+.project-hero-v2-video video {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 0;
+    background: #000;
+}
+
+/* Override grey border on related-projects when using V2 layout */
+.section-divider-orange + .related-projects {
+    border-top: none;
+}
+
+/* Responsive — Project Hero V2 */
+@media (max-width: 768px) {
+    .project-hero-v2 {
+        height: 65vh;
+    }
+
+    .project-hero-v2 .hero-cover {
+        object-position: center center;
+    }
+
+    .project-hero-v2 h1 {
+        font-size: clamp(1.8rem, 7vw, 2.6rem);
+    }
+
+    .project-hero-v2 .hero-title-break {
+        display: block;
+    }
+
+    .project-hero-v2 .hero-meta-bar {
+        padding: 0.6rem 1.5rem;
+    }
+
+    .project-hero-v2 .meta-col {
+        padding: 0 1.2rem;
+    }
+
+    .project-hero-v2 .meta-value {
+        font-size: 0.75rem;
+    }
+
+    .project-hero-v2-video {
+        padding: 2rem 1rem;
+    }
+
+    .project-hero-v2-video video {
+        max-width: 100%;
+        border-radius: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-hero-v2 {
+        height: 60vh;
+    }
+
+    .project-hero-v2 h1 {
+        font-size: clamp(1.5rem, 6.5vw, 2.2rem);
+    }
+
+    .project-hero-v2 .hero-meta-bar {
+        padding: 0.5rem 1rem;
+    }
+
+    .project-hero-v2 .meta-col {
+        padding: 0 0.8rem;
+    }
+
+    .project-hero-v2 .meta-label {
+        font-size: 0.5rem;
+    }
+
+    .project-hero-v2 .meta-value {
+        font-size: 0.65rem;
+    }
+}
+
+/* ========================================
    SECTION 10: FOOTER
    ======================================== */
 
