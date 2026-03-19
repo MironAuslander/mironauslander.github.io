@@ -32,7 +32,10 @@
       "Bash(start:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "mcp__stitch__list_projects",
+      "Skill(design-md)",
+      "Skill(design-md:*)"
     ],
     "deny": [],
     "ask": []
