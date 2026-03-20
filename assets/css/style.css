@@ -2600,7 +2600,7 @@ ul {
    Cover image with overlay title + meta
    ======================================== */
 
-/* Hero — cover image with centered overlay */
+/* Hero — cover image with bottom-aligned overlay */
 .project-hero-v2 {
     position: relative;
     width: 100%;
@@ -2608,8 +2608,9 @@ ul {
     overflow: hidden;
     background-color: var(--dark-bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
 }
 
 .project-hero-v2 .hero-cover {
@@ -2620,6 +2621,8 @@ ul {
     object-fit: cover;
     object-position: center top;
     z-index: 0;
+    will-change: transform;
+    animation: heroZoom 20s linear forwards;
 }
 
 /* Cinematic vignette — fades bottom into page bg */
@@ -2639,12 +2642,14 @@ ul {
             rgba(8, 9, 10, 0.5) 100%);
 }
 
-/* Title overlay — centered */
+/* Title overlay — bottom-positioned, just above meta bar */
 .project-hero-v2 .hero-overlay {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 2rem;
+    padding: 0 2rem 0.6rem;
+    margin-top: auto;
+    animation: heroFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
 }
 
 .project-hero-v2 h1 {
@@ -2664,6 +2669,9 @@ ul {
 
 .project-hero-v2 .hero-title-accent {
     color: rgba(255, 94, 20, 0.85);
+    font-weight: 300;
+    display: inline-block;
+    animation: heroFadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1.2s both;
 }
 
 /* Line break between title and accent — hidden on desktop, shown on mobile */
@@ -2671,12 +2679,10 @@ ul {
     display: none;
 }
 
-/* Meta bar — bottom-pinned, inline film-credits style */
+/* Meta bar — bottom of hero, inline film-credits style */
 .project-hero-v2 .hero-meta-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    width: 100%;
     z-index: 2;
     padding: 0.8rem 2rem;
     display: flex;
@@ -2695,6 +2701,25 @@ ul {
     background-size: 100% 1px;
     background-repeat: no-repeat;
     background-position: top;
+    animation: heroFadeUp 1.6s cubic-bezier(0.16, 1, 0.3, 1) 2.2s both;
+}
+
+/* Shimmer sweep across meta bar top line */
+.project-hero-v2 .hero-meta-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 94, 20, 0.4),
+        transparent
+    );
+    animation: metaShimmer 6s ease-in-out 4.5s infinite;
+    pointer-events: none;
 }
 
 .project-hero-v2 .project-meta-grid {
@@ -2768,6 +2793,23 @@ ul {
 /* Override grey border on related-projects when using V2 layout */
 .section-divider-orange + .related-projects {
     border-top: none;
+}
+
+/* --- Hero V2 Entrance Animations --- */
+
+@keyframes heroZoom {
+    from { transform: scale(1); }
+    to   { transform: scale(1.12); }
+}
+
+@keyframes heroFadeUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes metaShimmer {
+    0%, 100% { opacity: 0; transform: translateX(-100%); }
+    50%      { opacity: 0.8; transform: translateX(100%); }
 }
 
 /* Responsive — Project Hero V2 */
@@ -3180,6 +3222,33 @@ ul {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+
+    /* Hero V2 entrance animations are slow/subtle — safe to keep */
+    .project-hero-v2 .hero-cover {
+        animation-duration: 20s !important;
+        animation-timing-function: linear !important;
+    }
+
+    .project-hero-v2 .hero-overlay {
+        animation-duration: 1.8s !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .project-hero-v2 .hero-title-accent {
+        animation-duration: 1.6s !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .project-hero-v2 .hero-meta-bar {
+        animation-duration: 1.6s !important;
+        animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .project-hero-v2 .hero-meta-bar::before {
+        animation-duration: 6s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
     }
 }
 

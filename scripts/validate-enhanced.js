@@ -177,6 +177,16 @@ function validateHTMLStructure(htmlContent, project) {
         }
     }
 
+    // Check for V2 hero structure
+    if (htmlContent.includes('project-hero-v2')) {
+        if (!htmlContent.includes('hero-cover')) {
+            warnings.push('V2 hero section missing hero-cover image');
+        }
+        if (!htmlContent.includes('hero-meta-bar')) {
+            warnings.push('V2 hero section missing meta bar');
+        }
+    }
+
     // Check for accessibility features
     if (!htmlContent.includes('alt=')) {
         suggestions.push('Consider adding alt attributes to all images for accessibility');
