@@ -171,7 +171,7 @@
                             <div class="form-group">
                                 <label for="description">Description <span class="char-count">0/500</span></label>
                                 <textarea id="description" rows="4" maxlength="500" required></textarea>
-                                <small>Project overview and main achievements</small>
+                                <small style="color: #f0ad4e;">Used for SEO meta description only — not displayed on project page</small>
                             </div>
                         </fieldset>
 
@@ -206,8 +206,8 @@
                             </div>
                         </fieldset>
 
-                        <!-- Roles & Tools -->
-                        <fieldset>
+                        <!-- Roles & Tools — Hidden in V2 (data preserved in JSON, not displayed on project pages) -->
+                        <fieldset style="display:none;">
                             <legend>Roles & Tools</legend>
 
                             <div class="form-group">

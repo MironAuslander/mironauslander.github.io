@@ -25,6 +25,14 @@ const CATEGORY_DISPLAY = {
     'personal': 'Personal Project'
 };
 
+// Category accent mapping for V2 hero overlay
+const CATEGORY_ACCENT = {
+    'vfx': 'VFX BREAKDOWN',
+    'motion': 'MOTION GRAPHICS',
+    'editing': 'VIDEO EDITING',
+    'personal': 'PERSONAL PROJECT'
+};
+
 // Helper function to prefer WebP over JPG for better performance
 function preferWebP(imagePath) {
     if (!imagePath) return imagePath;
@@ -34,6 +42,17 @@ function preferWebP(imagePath) {
 
 // Media type generators (from advanced generator)
 const MediaGenerators = {
+    generateHeroCover(heroData) {
+        if (!heroData) return '';
+        if (heroData.type === 'video') {
+            const posterPath = preferWebP(heroData.poster) || '';
+            return `<img class="hero-cover" src="../${posterPath}" alt="">`;
+        } else if (heroData.type === 'image') {
+            return `<img class="hero-cover" src="../${heroData.src}" alt="">`;
+        }
+        return '';
+    },
+
     generateHeroMedia(heroData) {
         if (!heroData) return '';
 
@@ -322,6 +341,19 @@ function generateProjectPage(project, allProjects) {
                 .map((item, index) => MediaGenerators.generateProcessMediaItem(item, index))
                 .join('\n');
         }
+
+        // V2 Hero data
+        const categories = Array.isArray(processedProject.category)
+            ? processedProject.category
+            : [processedProject.category];
+        const primaryCategory = categories[0];
+
+        templateData.heroCoverContent = MediaGenerators.generateHeroCover(processedProject.heroMedia);
+        templateData.heroTitleUpper = processedProject.displayTitle.toUpperCase();
+        templateData.heroAccent = CATEGORY_ACCENT[primaryCategory] || primaryCategory.toUpperCase();
+        templateData.hasHeroVideo = !!(processedProject.heroMedia && processedProject.heroMedia.type === 'video');
+        templateData.heroVideoSrc = (processedProject.heroMedia && processedProject.heroMedia.src) || '';
+        templateData.heroPosterWebP = preferWebP((processedProject.heroMedia && processedProject.heroMedia.poster) || '') || '';
     }
 
     // Render template
