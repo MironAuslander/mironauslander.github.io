@@ -20,7 +20,7 @@ class ProjectStudio {
         // Media configuration
         this.processMediaBlocks = [];
 
-        // Available options (from editor.js)
+        // Available options
         this.availableCategories = [
             { value: 'vfx', label: 'Visual Effects' },
             { value: 'motion', label: 'Motion Graphics' },
@@ -464,6 +464,12 @@ class ProjectStudio {
             // Skip undefined values
             if (newVal === undefined) continue;
 
+            // null means "field removed": only a change if the field currently has a value
+            if (newVal === null) {
+                if (origVal !== undefined && origVal !== null) return true;
+                continue;
+            }
+
             // Special handling for category field - normalize to array for comparison
             if (key === 'category') {
                 // Ensure both values are arrays for comparison
@@ -529,7 +535,13 @@ class ProjectStudio {
 
                 if (hasFormChanges || hasMediaChanges) {
                     // Only update and mark as modified if there are actual changes
-                    Object.assign(this.projectsData.projects[projectIndex], formData, mediaConfig);
+                    const project = this.projectsData.projects[projectIndex];
+                    Object.assign(project, formData, mediaConfig);
+
+                    // Remove fields cleared in the form (e.g. cover, coverPosition)
+                    Object.keys(mediaConfig).forEach(key => {
+                        if (mediaConfig[key] === null) delete project[key];
+                    });
 
                     // Track that this project has been modified
                     this.modifiedProjects.add(this.currentProject.id);
@@ -787,9 +799,66 @@ class ProjectStudio {
             });
         });
 
+        // Project image inputs: live previews + change tracking
+        ['projectThumbnail', 'projectCover', 'coverPositionDesktop', 'coverPositionMobile', 'heroVideoPoster'].forEach(id => {
+            document.getElementById(id)?.addEventListener('input', () => {
+                this.updateImagePreviews();
+                this.hasChanges = true;
+                this.updateChangeIndicator();
+            });
+        });
+
+        // Fill empty image fields with the standard file names for this project
+        document.getElementById('fillDefaultImagesBtn')?.addEventListener('click', () => {
+            if (!this.currentProject) return;
+            const defaults = Utils.getDefaultImagePaths(this.currentProject.id);
+            const fields = {
+                projectThumbnail: defaults.thumbnail,
+                projectCover: defaults.cover,
+                heroVideoPoster: defaults.poster
+            };
+            Object.entries(fields).forEach(([id, value]) => {
+                const input = document.getElementById(id);
+                if (input && !input.value.trim()) input.value = value;
+            });
+            this.updateImagePreviews();
+            this.hasChanges = true;
+            this.updateChangeIndicator();
+        });
+
         // Media type cards
         this.setupMediaTypeCards();
         this.setupProcessMediaBlocks();
+    }
+
+    // Refresh thumbnail / cover / video poster previews from the current input values
+    updateImagePreviews() {
+        const desktopPos = document.getElementById('coverPositionDesktop').value.trim();
+        const mobilePos = document.getElementById('coverPositionMobile').value.trim();
+
+        document.querySelectorAll('[data-preview-for]').forEach(preview => {
+            const input = document.getElementById(preview.dataset.previewFor);
+            let path = input ? input.value.trim() : '';
+
+            // Cover falls back to the video poster, same as the generator
+            if (!path && preview.dataset.previewFor === 'projectCover') {
+                path = document.getElementById('heroVideoPoster').value.trim();
+            }
+
+            const img = preview.querySelector('img');
+            preview.classList.remove('missing');
+            preview.classList.toggle('empty', !path);
+            preview.style.setProperty('--cover-pos', desktopPos || 'center top');
+            preview.style.setProperty('--cover-pos-mobile', mobilePos || 'center center');
+
+            if (!path) {
+                img.removeAttribute('src');
+                return;
+            }
+            img.onerror = () => preview.classList.add('missing');
+            img.onload = () => preview.classList.remove('missing');
+            img.src = Utils.getServedImage(path);
+        });
     }
 
     setupMediaTypeCards() {
@@ -859,40 +928,30 @@ class ProjectStudio {
         const project = this.currentProject;
         if (!project) return;
 
-        // Load hero configuration
-        let heroType = 'video';
-        let heroSrc = '';
-        let heroPoster = '';
-        let heroAlt = '';
+        // Load project images
+        const coverPosition = project.coverPosition || {};
+        document.getElementById('projectThumbnail').value = project.thumbnail || '';
+        document.getElementById('projectCover').value = project.cover || '';
+        document.getElementById('coverPositionDesktop').value = coverPosition.desktop || '';
+        document.getElementById('coverPositionMobile').value = coverPosition.mobile || '';
 
-        if (project.heroMedia) {
-            heroType = project.heroMedia.type;
-            heroSrc = project.heroMedia.src || '';
-            heroPoster = project.heroMedia.poster || '';
-            heroAlt = project.heroMedia.alt || '';
-        } else if (project.mainVideo) {
-            heroType = 'video';
-            heroSrc = project.mainVideo;
-            heroPoster = project.videoPoster || '';
-        } else if (project.heroImage) {
-            heroType = 'image';
-            heroSrc = project.heroImage;
-            heroAlt = project.fullTitle;
-        }
+        // Load hero configuration
+        const heroMedia = project.heroMedia || { type: 'video' };
+        const heroType = heroMedia.type === 'image' ? 'image' : 'video';
 
         // Set hero type
         document.querySelector(`input[name="heroType"][value="${heroType}"]`).checked = true;
         document.getElementById('heroVideoConfig').style.display = heroType === 'video' ? 'block' : 'none';
         document.getElementById('heroImageConfig').style.display = heroType === 'image' ? 'block' : 'none';
 
-        // Set hero fields
-        if (heroType === 'video') {
-            document.getElementById('heroVideoSrc').value = heroSrc;
-            document.getElementById('heroVideoPoster').value = heroPoster;
-        } else {
-            document.getElementById('heroImageSrc').value = heroSrc;
-            document.getElementById('heroImageAlt').value = heroAlt;
-        }
+        // Set hero fields (clear the other type so values don't leak between projects)
+        const isVideo = heroType === 'video';
+        document.getElementById('heroVideoSrc').value = isVideo ? (heroMedia.src || '') : '';
+        document.getElementById('heroVideoPoster').value = isVideo ? (heroMedia.poster || '') : '';
+        document.getElementById('heroImageSrc').value = isVideo ? '' : (heroMedia.src || '');
+        document.getElementById('heroImageAlt').value = isVideo ? '' : (heroMedia.alt || '');
+
+        this.updateImagePreviews();
 
         // Load process media
         this.loadProcessMedia();
@@ -907,20 +966,7 @@ class ProjectStudio {
         this.processMediaBlocks = [];
 
         // Load media items
-        let mediaItems = [];
-        if (project.processMedia?.length > 0) {
-            mediaItems = project.processMedia;
-        } else if (project.beforeAfterMedia?.length > 0) {
-            // Convert old format
-            mediaItems = project.beforeAfterMedia.map((item, index) => ({
-                type: item.type === 'video' ? 'before-after-video' : 'before-after-image',
-                before: item.before,
-                after: item.after,
-                label: item.label || `Comparison ${index + 1}`,
-                labelBefore: item.labelBefore || 'Before',
-                labelAfter: item.labelAfter || 'After'
-            }));
-        }
+        const mediaItems = project.processMedia || [];
 
         if (mediaItems.length > 0) {
             mediaItems.forEach(item => {
@@ -1269,8 +1315,8 @@ class ProjectStudio {
             });
         });
 
-        // Hero config inputs
-        ['heroVideoSrc', 'heroVideoPoster', 'heroImageSrc', 'heroImageAlt'].forEach(id => {
+        // Hero config inputs (heroVideoPoster is tracked in setupMediaConfig)
+        ['heroVideoSrc', 'heroImageSrc', 'heroImageAlt'].forEach(id => {
             document.getElementById(id)?.addEventListener('input', () => {
                 this.hasChanges = true;
                 this.updateChangeIndicator();
@@ -1335,7 +1381,20 @@ class ProjectStudio {
             return data;
         });
 
-        return { heroMedia, processMedia };
+        // Project images. Empty values are null so they are removed on merge.
+        const coverPosition = {};
+        const desktopPos = document.getElementById('coverPositionDesktop').value.trim();
+        const mobilePos = document.getElementById('coverPositionMobile').value.trim();
+        if (desktopPos) coverPosition.desktop = desktopPos;
+        if (mobilePos) coverPosition.mobile = mobilePos;
+
+        return {
+            thumbnail: document.getElementById('projectThumbnail').value.trim() || null,
+            cover: document.getElementById('projectCover').value.trim() || null,
+            coverPosition: Object.keys(coverPosition).length ? coverPosition : null,
+            heroMedia,
+            processMedia
+        };
     }
 
     async saveAllChanges() {

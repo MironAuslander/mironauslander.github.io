@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Project Studio - Unified Management System</title>
     <link rel="stylesheet" href="css/tools.css?v=4">
-    <link rel="stylesheet" href="css/project-studio.css?v=1">
+    <link rel="stylesheet" href="css/project-studio.css?v=2">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
@@ -232,6 +232,62 @@
                 <!-- Tab 3: Media Configuration -->
                 <div class="tab-panel" id="media-tab">
                     <div class="media-config-container">
+                        <!-- Project Images: thumbnail, cover (see docs/ASSET-GUIDE.md) -->
+                        <div class="config-section images-section">
+                            <div class="images-section-header">
+                                <h3>🖼️ Project Images</h3>
+                                <button type="button" id="fillDefaultImagesBtn" class="btn btn-secondary btn-small">Fill default paths</button>
+                            </div>
+
+                            <div class="image-field">
+                                <div class="form-group">
+                                    <label for="projectThumbnail">Thumbnail <small class="inline-hint">16:9 · 1280×720 · project cards</small></label>
+                                    <input type="text" id="projectThumbnail" placeholder="assets/images/projects/[id]/[id]-thumb.webp">
+                                </div>
+                                <div class="image-preview thumb-preview" data-preview-for="projectThumbnail">
+                                    <img alt="Thumbnail preview">
+                                    <span class="image-missing">✗ Not found</span>
+                                </div>
+                            </div>
+
+                            <div class="image-field">
+                                <div class="form-group">
+                                    <label for="projectCover">Cover <small class="inline-hint">2560×1440 · cropped hero behind the title</small></label>
+                                    <input type="text" id="projectCover" placeholder="assets/images/projects/[id]/[id]-cover.jpg">
+                                    <small>Empty = the video poster is used as cover.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="coverPositionDesktop">Cover crop · desktop</label>
+                                    <input type="text" id="coverPositionDesktop" placeholder="center top (default)">
+                                </div>
+                                <div class="form-group">
+                                    <label for="coverPositionMobile">Cover crop · mobile</label>
+                                    <input type="text" id="coverPositionMobile" placeholder="center center (default)">
+                                </div>
+                            </div>
+
+                            <div class="cover-crop-previews">
+                                <div class="cover-crop">
+                                    <span class="cover-crop-label">Desktop crop</span>
+                                    <div class="image-preview cover-frame-desktop" data-preview-for="projectCover">
+                                        <img alt="Cover desktop crop preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
+                                </div>
+                                <div class="cover-crop">
+                                    <span class="cover-crop-label">Mobile crop</span>
+                                    <div class="image-preview cover-frame-mobile" data-preview-for="projectCover">
+                                        <img alt="Cover mobile crop preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="section-info">Frames approximate the live hero crop. The HTML title covers the bottom ~25% of each frame.</small>
+                        </div>
+
                         <!-- Hero Section -->
                         <div class="config-section hero-section">
                             <h3>📸 Hero Section</h3>
@@ -257,16 +313,22 @@
                                     <label>Video Path</label>
                                     <input type="text" id="heroVideoSrc" placeholder="assets/videos/[id]/project-[id].mp4">
                                 </div>
-                                <div class="form-group">
-                                    <label>Poster Image</label>
-                                    <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/poster.jpg">
+                                <div class="image-field">
+                                    <div class="form-group">
+                                        <label for="heroVideoPoster">Video Poster <small class="inline-hint">16:9 · 1920×1080 · full frame in the player</small></label>
+                                        <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/[id]-video-poster.jpg">
+                                    </div>
+                                    <div class="image-preview thumb-preview" data-preview-for="heroVideoPoster">
+                                        <img alt="Video poster preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div id="heroImageConfig" class="hero-config" style="display: none;">
                                 <div class="form-group">
-                                    <label>Image Path</label>
-                                    <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/hero.jpg">
+                                    <label for="heroImageSrc">Image Path <small class="inline-hint">shown uncropped below the cover</small></label>
+                                    <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/[id]-hero.jpg">
                                 </div>
                                 <div class="form-group">
                                     <label>Alt Text</label>
@@ -394,7 +456,7 @@
         </div>
     </template>
 
-    <script src="js/utils.js?v=2"></script>
-    <script src="js/project-studio.js?v=1"></script>
+    <script src="js/utils.js?v=3"></script>
+    <script src="js/project-studio.js?v=2"></script>
 </body>
 </html>

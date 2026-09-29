@@ -11,8 +11,7 @@ The portfolio uses a unified template-based generation system to create and main
 mironauslander.github.io/
 ├── projects-data.json          # Single source of truth for all project data
 ├── templates/
-│   ├── project-page.html       # Basic template (legacy)
-│   └── project-page-advanced.html # Advanced template with flexible media
+│   └── project-page-advanced.html # Project page template
 ├── scripts/
 │   ├── generate-project-unified.js  # Main generation script (USE THIS)
 │   ├── validate-enhanced.js    # Comprehensive validation
@@ -33,10 +32,11 @@ mironauslander.github.io/
   "category": "vfx",
   "description": "Detailed project description...",
   "thumbnail": "assets/images/projects/1234/1234-thumb.webp",
+  "cover": "assets/images/projects/1234/1234-cover.jpg",
   "heroMedia": {
     "type": "video",
     "src": "assets/videos/1234/project-1234.mp4",
-    "poster": "assets/images/projects/1234/1234-poster.jpg"
+    "poster": "assets/images/projects/1234/1234-video-poster.jpg"
   },
   "processMedia": [
     {
@@ -67,22 +67,42 @@ node scripts/validate-enhanced.js --verbose
 
 ## Media Configuration Options
 
+### Project Images
+
+Each project has three separate images, one per role. Sizes, crops and safe areas are in `docs/ASSET-GUIDE.md`.
+
+| Role | JSON field | Where it shows |
+|---|---|---|
+| Thumbnail | `thumbnail` | Project cards (homepage, projects page, related projects) |
+| Cover | `cover` | Hero background, cropped, with the title on top; also the og:image |
+| Video poster | `heroMedia.poster` | Full frame in the video player before playback |
+
+- JSON stores `.jpg` paths. The generator serves the `.webp` twin, so both files must exist.
+- If `cover` is missing, the video poster is used as cover and validation warns.
+- Optional `coverPosition` adjusts the crop with CSS `object-position` values:
+
+```json
+"coverPosition": { "desktop": "center 30%", "mobile": "40% center" }
+```
+
+Defaults: `center top` on desktop, `center center` on mobile.
+
 ### Hero Media Types
 
 **Video Hero:**
 ```json
 "heroMedia": {
   "type": "video",
-  "src": "assets/videos/1234/main.mp4",
-  "poster": "assets/images/1234/poster.jpg"
+  "src": "assets/videos/1234/project-1234.mp4",
+  "poster": "assets/images/projects/1234/1234-video-poster.jpg"
 }
 ```
 
-**Image Hero:**
+**Image Hero** (shown uncropped below the cover, in place of the video):
 ```json
 "heroMedia": {
   "type": "image",
-  "src": "assets/images/1234/hero.jpg",
+  "src": "assets/images/projects/1234/1234-hero.jpg",
   "alt": "Description for accessibility"
 }
 ```
@@ -131,19 +151,10 @@ node scripts/validate-enhanced.js --verbose
 }
 ```
 
-## Data Format Migration
+## Data Format
 
-The system supports both legacy and advanced formats:
-
-### Legacy Format (still supported):
-- Uses `beforeAfterMedia` array
-- Simple `mainVideo` and `heroImage` fields
-- Automatically converted when using unified generator
-
-### Advanced Format (recommended):
-- Uses `heroMedia` object
-- Flexible `processMedia` array
-- Supports mixed media types
+Projects use `thumbnail`, `cover`, `heroMedia` and `processMedia`.
+The legacy fields `videoPoster`, `heroImage`, `mainVideo` and `beforeAfterMedia` are no longer supported. The validators warn if any of them appears in `projects-data.json`.
 
 ## Workflow Commands
 
@@ -194,9 +205,10 @@ node scripts/validate-enhanced.js --fix
 - ✅ Required scripts (main.js, before-after.js when needed)
 - ✅ CSS inclusion
 - ✅ Font declarations
-- ✅ Media file existence
+- ✅ Media file existence (including `.jpg` + `.webp` twins for cover and video poster)
+- ✅ Hero cover on the page matches `cover` in the JSON
 - ✅ Template markers
-- ✅ SEO meta tags
+- ✅ SEO meta tags (description, og:image)
 - ✅ Data consistency
 
 ### Local Testing
@@ -228,8 +240,9 @@ node scripts/generate-project-unified.js PROJECT_ID
 ```
 assets/
 ├── images/projects/1234/
-│   ├── 1234-thumb.webp
-│   └── 1234-poster.jpg
+│   ├── 1234-thumb.webp / .jpg
+│   ├── 1234-cover.webp / .jpg
+│   └── 1234-video-poster.webp / .jpg
 └── videos/1234/
     ├── project-1234.mp4
     ├── 1234-before.mp4
@@ -243,18 +256,9 @@ assets/
 
 ## Template System Details
 
-### How Templates Are Selected
+### Template
 
-The unified generator automatically selects the appropriate template:
-
-1. **Advanced Template Used When:**
-   - Project has `processMedia` field
-   - Project has `heroMedia` field
-   - Project needs flexible media layouts
-
-2. **Basic Template Used When:**
-   - Simple projects with standard layout
-   - Legacy data format without advanced features
+All pages are generated from `templates/project-page-advanced.html`. `scripts/generate-project-unified.js` is the only generator; `quick-update.js` and `run-update.bat/.ps1` call it.
 
 ### Template Markers
 
@@ -264,9 +268,9 @@ Templates include markers for partial updates:
   (updatable project information)
 <!-- PROJECT_INFO_END -->
 
-<!-- BEFORE_AFTER_SECTION_START -->
-  (before/after comparisons)
-<!-- BEFORE_AFTER_SECTION_END -->
+<!-- PROCESS_MEDIA_START -->
+  (process & variations media)
+<!-- PROCESS_MEDIA_END -->
 ```
 
 ## Best Practices
@@ -287,8 +291,8 @@ Templates include markers for partial updates:
 
 4. **Optimize media files:**
    - Videos: MP4 format, reasonable compression
-   - Images: WebP with JPG fallbacks
-   - Thumbnails: Under 50KB when possible
+   - Images: WebP with JPG twins
+   - Sizes and targets: see `docs/ASSET-GUIDE.md`
 
 5. **Test locally before deploying:**
    - Check all before/after widgets
@@ -299,15 +303,15 @@ Templates include markers for partial updates:
 
 For non-technical management, use the visual tools:
 
-1. **Project Manager** (`tools/project-manager.html`)
-   - Drag-and-drop project ordering
-   - Visual project selection for homepage
-   - Export updated JSON
+1. **Project Studio** (`tools/project-studio.html`)
+   - Edit project details, images (thumbnail, cover, cover crop, video poster) and media
+   - Desktop and mobile cover crop previews
+   - Multi-project editing with a single JSON export
 
-2. **Media Configurator** (`tools/media-configurator.html`)
-   - Visual media layout design
-   - Preview before/after setups
-   - Generate media configurations
+2. **Layout & Assets Manager** (`tools/project-manager.html`)
+   - Drag-and-drop project ordering and homepage featuring
+   - Asset badges showing whether each project's thumbnail, cover and video poster exist
+   - Inline editing of the three image paths
 
 ## Deployment
 

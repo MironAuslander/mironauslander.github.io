@@ -173,8 +173,8 @@ function updateProjects() {
         process.stdout.write(`${progress} Updating ${project.id}... `);
 
         try {
-            // Run the single project generator
-            execSync(`node scripts/generate-single-project.js ${project.id}`, {
+            // Run the unified generator for this project
+            execSync(`node scripts/generate-project-unified.js ${project.id}`, {
                 stdio: 'pipe' // Suppress output
             });
 

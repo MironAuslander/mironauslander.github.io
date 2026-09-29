@@ -970,3 +970,146 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Project Images (thumbnail / cover / video poster) */
+.images-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.images-section-header h3 {
+    margin-bottom: 0;
+}
+
+.btn-small {
+    padding: 0.4rem 0.9rem;
+    font-size: 0.85rem;
+}
+
+.inline-hint {
+    display: inline !important;
+    margin-left: 0.5rem;
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.image-field {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    gap: 1rem;
+    align-items: start;
+    margin-bottom: 1.5rem;
+}
+
+.image-field .form-group {
+    margin-bottom: 0;
+}
+
+.image-preview {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+}
+
+.image-preview img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-preview .image-missing {
+    display: none;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: var(--error-color, #f44336);
+}
+
+.image-preview.missing img {
+    visibility: hidden;
+}
+
+.image-preview.missing .image-missing {
+    display: flex;
+}
+
+.image-preview.empty img,
+.image-preview.empty .image-missing {
+    display: none;
+}
+
+.thumb-preview {
+    aspect-ratio: 16 / 9;
+}
+
+.cover-crop-previews {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 0.5rem;
+}
+
+.cover-crop {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.cover-crop:first-child {
+    flex: 1;
+}
+
+.cover-crop-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Approximate live hero ratios: desktop 1920x528 (55vh), phone 390x470 (60vh) */
+.cover-frame-desktop {
+    aspect-ratio: 3.6 / 1;
+}
+
+.cover-frame-mobile {
+    width: 120px;
+    aspect-ratio: 0.83 / 1;
+}
+
+.cover-frame-desktop img {
+    object-position: var(--cover-pos, center top);
+}
+
+.cover-frame-mobile img {
+    object-position: var(--cover-pos-mobile, center center);
+}
+
+/* Title + meta bar overlay zone (bottom ~25%) */
+.cover-frame-desktop::after,
+.cover-frame-mobile::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 25%;
+    background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 107, 107, 0.25) 0 6px,
+        rgba(0, 0, 0, 0.35) 6px 12px
+    );
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+    .image-field {
+        grid-template-columns: 1fr;
+    }
+}

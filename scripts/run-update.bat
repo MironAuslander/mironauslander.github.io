@@ -28,7 +28,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo.
 echo Updating individual project pages...
-node scripts\update-project-pages.js
+node scripts\generate-project-unified.js
 
 if %ERRORLEVEL% NEQ 0 (
     echo.

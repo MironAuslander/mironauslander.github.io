@@ -30,20 +30,11 @@
       "projectsPageOrder": 1,
       "visible": true,
       "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
-      "heroImage": "assets/images/projects/1238/1238.webp",
-      "mainVideo": "assets/videos/1238/project-1238.mp4",
-      "videoPoster": "assets/images/projects/1238/1238-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "video",
-          "before": "assets/videos/1238/1238-before-1.mp4",
-          "after": "assets/videos/1238/1238-after-1.mp4"
-        }
-      ],
+      "cover": "assets/images/projects/1238/1238-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1238/project-1238.mp4",
-        "poster": "assets/images/projects/1238/1238-poster.jpg"
+        "poster": "assets/images/projects/1238/1238-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -82,14 +73,11 @@
       "projectsPageOrder": 2,
       "visible": true,
       "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
-      "heroImage": "assets/images/projects/1699/1699.webp",
-      "mainVideo": "assets/videos/1699/project-1699.mp4",
-      "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1699/1699-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1699/project-1699.mp4",
-        "poster": "assets/images/projects/1699/1699-poster.jpg"
+        "poster": "assets/images/projects/1699/1699-video-poster.jpg"
       },
       "processMedia": [],
       "hidden": false
@@ -123,30 +111,11 @@
       "projectsPageOrder": 3,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
-      "heroImage": "assets/images/projects/1270/1270.webp",
-      "mainVideo": "assets/videos/1270/project-1270.mp4",
-      "videoPoster": "assets/images/projects/1270/1270-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "video",
-          "before": "assets/videos/1270/1270-before-1.mp4",
-          "after": "assets/videos/1270/1270-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1270/1270-before-2.mp4",
-          "after": "assets/videos/1270/1270-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1270/1270-before-3.mp4",
-          "after": "assets/videos/1270/1270-after-3.mp4"
-        }
-      ],
+      "cover": "assets/images/projects/1270/1270-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1270/project-1270.mp4",
-        "poster": "assets/images/projects/1270/1270-poster.jpg"
+        "poster": "assets/images/projects/1270/1270-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -191,30 +160,11 @@
       "projectsPageOrder": 4,
       "visible": true,
       "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
-      "heroImage": "assets/images/projects/1537/1537.webp",
-      "mainVideo": "assets/videos/1537/project-1537.mp4",
-      "videoPoster": "assets/images/projects/1537/1537-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "video",
-          "before": "assets/videos/1537/1537-before-1.mp4",
-          "after": "assets/videos/1537/1537-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1537/1537-before-2.mp4",
-          "after": "assets/videos/1537/1537-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1537/1537-before-3.mp4",
-          "after": "assets/videos/1537/1537-after-3.mp4"
-        }
-      ],
+      "cover": "assets/images/projects/1537/1537-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1537/project-1537.mp4",
-        "poster": "assets/images/projects/1537/1537-poster.jpg"
+        "poster": "assets/images/projects/1537/1537-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -253,30 +203,11 @@
       "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
-      "heroImage": "assets/images/projects/1798/1798.webp",
-      "mainVideo": "assets/videos/1798/project-1798.mp4",
-      "videoPoster": "assets/images/projects/1798/1798-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "video",
-          "before": "assets/videos/1798/1798-before-1.mp4",
-          "after": "assets/videos/1798/1798-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1798/1798-before-2.mp4",
-          "after": "assets/videos/1798/1798-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1798/1798-before-3.mp4",
-          "after": "assets/videos/1798/1798-after-3.mp4"
-        }
-      ],
+      "cover": "assets/images/projects/1798/1798-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1798/project-1798.mp4",
-        "poster": "assets/images/projects/1798/1798-poster.jpg"
+        "poster": "assets/images/projects/1798/1798-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -330,30 +261,11 @@
       "projectsPageOrder": 6,
       "visible": true,
       "thumbnail": "assets/images/projects/1711/1711-thumb.webp",
-      "heroImage": "assets/images/projects/1711/1711.webp",
-      "mainVideo": "assets/videos/1711/project-1711.mp4",
-      "videoPoster": "assets/images/projects/1711/1711-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "video",
-          "before": "assets/videos/1711/1711-before-1.mp4",
-          "after": "assets/videos/1711/1711-after-1.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1711/1711-before-2.mp4",
-          "after": "assets/videos/1711/1711-after-2.mp4"
-        },
-        {
-          "type": "video",
-          "before": "assets/videos/1711/1711-before-3.mp4",
-          "after": "assets/videos/1711/1711-after-3.mp4"
-        }
-      ],
+      "cover": "assets/images/projects/1711/1711-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1711/project-1711.mp4",
-        "poster": "assets/images/projects/1711/1711-poster.jpg"
+        "poster": "assets/images/projects/1711/1711-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -393,30 +305,11 @@
       "projectsPageOrder": 7,
       "visible": true,
       "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
-      "heroImage": "assets/images/projects/1654/1654.webp",
-      "mainVideo": "assets/videos/1654/project-1654.mp4",
-      "videoPoster": "assets/images/projects/1654/1654-poster.jpg",
-      "beforeAfterMedia": [
-        {
-          "type": "image",
-          "before": "assets/images/projects/1654/1654-before-1.webp",
-          "after": "assets/images/projects/1654/1654-after-1.webp"
-        },
-        {
-          "type": "image",
-          "before": "assets/images/projects/1654/1654-before-2.webp",
-          "after": "assets/images/projects/1654/1654-after-2.webp"
-        },
-        {
-          "type": "image",
-          "before": "assets/images/projects/1654/1654-before-3.webp",
-          "after": "assets/images/projects/1654/1654-after-3.webp"
-        }
-      ],
+      "cover": "assets/images/projects/1654/1654-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1654/project-1654.mp4",
-        "poster": "assets/images/projects/1654/1654-poster.jpg"
+        "poster": "assets/images/projects/1654/1654-video-poster.jpg"
       },
       "processMedia": [
         {
@@ -475,14 +368,11 @@
       "projectsPageOrder": 8,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
-      "heroImage": "assets/images/projects/1353/1353.webp",
-      "mainVideo": "assets/videos/1353/project-1353.mp4",
-      "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1353/1353-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1353/project-1353.mp4",
-        "poster": "assets/images/projects/1353/1353-poster.jpg"
+        "poster": "assets/images/projects/1353/1353-video-poster.jpg"
       },
       "processMedia": [],
       "hidden": false
@@ -512,14 +402,11 @@
       "projectsPageOrder": 9,
       "visible": true,
       "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
-      "heroImage": "assets/images/projects/1661/1661.webp",
-      "mainVideo": "assets/videos/1661/project-1661.mp4",
-      "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1661/1661-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1661/project-1661.mp4",
-        "poster": "assets/images/projects/1661/1661-poster.jpg"
+        "poster": "assets/images/projects/1661/1661-video-poster.jpg"
       },
       "processMedia": [],
       "hidden": false
@@ -550,14 +437,11 @@
       "projectsPageOrder": 10,
       "visible": true,
       "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
-      "heroImage": "assets/images/projects/1003/1003.webp",
-      "mainVideo": "assets/videos/1003/project-1003.mp4",
-      "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1003/1003-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1003/project-1003.mp4",
-        "poster": "assets/images/projects/1003/1003-poster.jpg"
+        "poster": "assets/images/projects/1003/1003-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -586,14 +470,11 @@
       "projectsPageOrder": 11,
       "visible": true,
       "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
-      "heroImage": "assets/images/projects/1004/1004.webp",
-      "mainVideo": "assets/videos/1004/project-1004.mp4",
-      "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1004/1004-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1004/project-1004.mp4",
-        "poster": "assets/images/projects/1004/1004-poster.jpg"
+        "poster": "assets/images/projects/1004/1004-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -617,14 +498,11 @@
       "projectsPageOrder": 12,
       "visible": true,
       "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
-      "heroImage": "assets/images/projects/1528/1528.webp",
-      "mainVideo": "assets/videos/1528/project-1528.mp4",
-      "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1528/1528-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1528/project-1528.mp4",
-        "poster": "assets/images/projects/1528/1528-poster.jpg"
+        "poster": "assets/images/projects/1528/1528-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -655,14 +533,11 @@
       "projectsPageOrder": 13,
       "visible": true,
       "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
-      "heroImage": "assets/images/projects/1470/1470.webp",
-      "mainVideo": "assets/videos/1470/project-1470.mp4",
-      "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1470/1470-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1470/project-1470.mp4",
-        "poster": "assets/images/projects/1470/1470-poster.jpg"
+        "poster": "assets/images/projects/1470/1470-video-poster.jpg"
       },
       "processMedia": [],
       "hidden": false
@@ -692,14 +567,11 @@
       "projectsPageOrder": 14,
       "visible": true,
       "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
-      "heroImage": "assets/images/projects/1828/1828.webp",
-      "mainVideo": "assets/videos/1828/project-1828.mp4",
-      "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1828/1828-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1828/project-1828.mp4",
-        "poster": "assets/images/projects/1828/1828-poster.jpg"
+        "poster": "assets/images/projects/1828/1828-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -729,14 +601,11 @@
       "projectsPageOrder": 15,
       "visible": true,
       "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
-      "heroImage": "assets/images/projects/1160/1160.webp",
-      "mainVideo": "assets/videos/1160/project-1160.mp4",
-      "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1160/1160-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1160/project-1160.mp4",
-        "poster": "assets/images/projects/1160/1160-poster.jpg"
+        "poster": "assets/images/projects/1160/1160-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -765,14 +634,11 @@
       "projectsPageOrder": 16,
       "visible": true,
       "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
-      "heroImage": "assets/images/projects/1336/1336.webp",
-      "mainVideo": "assets/videos/1336/project-1336.mp4",
-      "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1336/1336-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1336/project-1336.mp4",
-        "poster": "assets/images/projects/1336/1336-poster.jpg"
+        "poster": "assets/images/projects/1336/1336-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -800,14 +666,11 @@
       "projectsPageOrder": 17,
       "visible": true,
       "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
-      "heroImage": "assets/images/projects/1092/1092.webp",
-      "mainVideo": "assets/videos/1092/project-1092.mp4",
-      "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1092/1092-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1092/project-1092.mp4",
-        "poster": "assets/images/projects/1092/1092-poster.jpg"
+        "poster": "assets/images/projects/1092/1092-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -837,14 +700,11 @@
       "projectsPageOrder": 18,
       "visible": true,
       "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
-      "heroImage": "assets/images/projects/1509/1509.webp",
-      "mainVideo": "assets/videos/1509/project-1509.mp4",
-      "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1509/1509-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1509/project-1509.mp4",
-        "poster": "assets/images/projects/1509/1509-poster.jpg"
+        "poster": "assets/images/projects/1509/1509-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -874,14 +734,11 @@
       "projectsPageOrder": 19,
       "visible": true,
       "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
-      "heroImage": "assets/images/projects/1029/1029.webp",
-      "mainVideo": "assets/videos/1029/project-1029.mp4",
-      "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1029/1029-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1029/project-1029.mp4",
-        "poster": "assets/images/projects/1029/1029-poster.jpg"
+        "poster": "assets/images/projects/1029/1029-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -911,14 +768,11 @@
       "projectsPageOrder": 20,
       "visible": true,
       "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
-      "heroImage": "assets/images/projects/1459/1459.webp",
-      "mainVideo": "assets/videos/1459/project-1459.mp4",
-      "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1459/1459-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1459/project-1459.mp4",
-        "poster": "assets/images/projects/1459/1459-poster.jpg"
+        "poster": "assets/images/projects/1459/1459-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -948,14 +802,11 @@
       "projectsPageOrder": 21,
       "visible": true,
       "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
-      "heroImage": "assets/images/projects/1584/1584.webp",
-      "mainVideo": "assets/videos/1584/project-1584.mp4",
-      "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1584/1584-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1584/project-1584.mp4",
-        "poster": "assets/images/projects/1584/1584-poster.jpg"
+        "poster": "assets/images/projects/1584/1584-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -985,14 +836,11 @@
       "projectsPageOrder": 22,
       "visible": true,
       "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
-      "heroImage": "assets/images/projects/1292/1292.webp",
-      "mainVideo": "assets/videos/1292/project-1292.mp4",
-      "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1292/1292-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1292/project-1292.mp4",
-        "poster": "assets/images/projects/1292/1292-poster.jpg"
+        "poster": "assets/images/projects/1292/1292-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -1022,14 +870,11 @@
       "projectsPageOrder": 23,
       "visible": true,
       "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
-      "heroImage": "assets/images/projects/1626/1626.webp",
-      "mainVideo": "assets/videos/1626/project-1626.mp4",
-      "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1626/1626-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1626/project-1626.mp4",
-        "poster": "assets/images/projects/1626/1626-poster.jpg"
+        "poster": "assets/images/projects/1626/1626-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -1059,14 +904,11 @@
       "projectsPageOrder": 24,
       "visible": true,
       "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
-      "heroImage": "assets/images/projects/1582/1582.webp",
-      "mainVideo": "assets/videos/1582/project-1582.mp4",
-      "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1582/1582-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1582/project-1582.mp4",
-        "poster": "assets/images/projects/1582/1582-poster.jpg"
+        "poster": "assets/images/projects/1582/1582-video-poster.jpg"
       },
       "processMedia": []
     },
@@ -1096,14 +938,11 @@
       "projectsPageOrder": 25,
       "visible": true,
       "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
-      "heroImage": "assets/images/projects/1453/1453.webp",
-      "mainVideo": "assets/videos/1453/project-1453.mp4",
-      "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
-      "beforeAfterMedia": [],
+      "cover": "assets/images/projects/1453/1453-cover.jpg",
       "heroMedia": {
         "type": "video",
         "src": "assets/videos/1453/project-1453.mp4",
-        "poster": "assets/images/projects/1453/1453-poster.jpg"
+        "poster": "assets/images/projects/1453/1453-video-poster.jpg"
       },
       "processMedia": []
     }

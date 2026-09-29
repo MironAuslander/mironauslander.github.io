@@ -2618,7 +2618,8 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    /* Per-project override via coverPosition in projects-data.json */
+    object-position: var(--cover-pos, center top);
     z-index: 0;
     will-change: transform;
     animation: heroZoom 20s linear forwards;
@@ -2780,7 +2781,8 @@ ul {
     padding: 2.5rem 0;
 }
 
-.project-hero-v2-video video {
+.project-hero-v2-video video,
+.project-hero-v2-video img {
     display: block;
     width: 100%;
     max-width: 900px;
@@ -2818,7 +2820,7 @@ ul {
     }
 
     .project-hero-v2 .hero-cover {
-        object-position: center center;
+        object-position: var(--cover-pos-mobile, center center);
     }
 
     .project-hero-v2 h1 {
@@ -2845,7 +2847,8 @@ ul {
         padding: 2rem 1rem;
     }
 
-    .project-hero-v2-video video {
+    .project-hero-v2-video video,
+    .project-hero-v2-video img {
         max-width: 100%;
         border-radius: 6px;
     }

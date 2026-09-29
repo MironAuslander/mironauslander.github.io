@@ -37,13 +37,17 @@ node scripts/validate-enhanced.js --verbose
 ```
 Your Project ID: 1234
 ├── assets/images/projects/1234/
-│   ├── 1234-thumb.webp       (Required: thumbnail)
-│   └── 1234-poster.jpg       (Optional: video poster)
+│   ├── 1234-thumb.webp/.jpg          (Required: grid thumbnail)
+│   ├── 1234-cover.webp/.jpg          (Hero cover, cropped behind the title; og:image)
+│   └── 1234-video-poster.webp/.jpg   (Video poster, full frame in the player)
 └── assets/videos/1234/
     ├── project-1234.mp4       (Main video)
     ├── 1234-before-1.mp4      (Before/after pairs)
     └── 1234-after-1.mp4
 ```
+
+Image paths in JSON use `.jpg`; pages load the `.webp` twin, so keep both files.
+Sizes, crops and safe areas: `docs/ASSET-GUIDE.md`.
 
 ## 🎨 Visual Tools
 
@@ -54,8 +58,8 @@ Open these in your browser after starting local server:
 python -m http.server 8000
 
 # Then open:
-http://localhost:8000/tools/project-manager.html     # Manage projects visually
-http://localhost:8000/tools/media-configurator.html  # Design media layouts
+http://localhost:8000/tools/project-studio.html    # Edit details, images and media
+http://localhost:8000/tools/project-manager.html   # Order projects, check image assets
 ```
 
 ## ⚡ Testing Locally
@@ -78,6 +82,8 @@ http://localhost:8000/projects/Project-1537.html
 | Before/after not working | Run: `node scripts/generate-project-unified.js [ID]` |
 | Project not on homepage | Set `"featured": true` in projects-data.json |
 | Media not showing | Check file paths in projects-data.json match actual files |
+| Cover/poster missing | Both `.jpg` and `.webp` twins must exist |
+| Cover cropped badly | Set `coverPosition` in Project Studio, then regenerate |
 | Changes not appearing | Clear browser cache (Ctrl+F5) |
 
 ## 📊 Regular Maintenance
@@ -123,10 +129,12 @@ git push origin main
   "featured": true,
   "visible": true,
   "thumbnail": "assets/images/projects/1234/1234-thumb.webp",
+  "cover": "assets/images/projects/1234/1234-cover.jpg",
+  "coverPosition": { "desktop": "center 30%" },  // optional
   "heroMedia": {
     "type": "video",
     "src": "assets/videos/1234/project-1234.mp4",
-    "poster": "assets/images/projects/1234/1234-poster.jpg"
+    "poster": "assets/images/projects/1234/1234-video-poster.jpg"
   },
   "processMedia": [
     {

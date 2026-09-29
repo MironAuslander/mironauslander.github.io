@@ -39,7 +39,7 @@ try {
 
     # Update individual project pages
     Write-Host "Updating individual project pages..." -ForegroundColor Yellow
-    $result3 = node scripts/update-project-pages.js 2>&1
+    $result3 = node scripts/generate-project-unified.js 2>&1
     if ($LASTEXITCODE -eq 0) {
         Write-Host $result3 -ForegroundColor Green
     } else {

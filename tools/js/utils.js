@@ -108,17 +108,54 @@ const Utils = {
         }, 3000);
     },
 
+    // URL the site actually serves for an image path from projects-data.json.
+    // Same rule as the generator: .jpg paths are served as their .webp twin.
+    getServedImage(imagePath) {
+        if (!imagePath) return '';
+        return `../${imagePath.replace(/\.jpg$/i, '.webp')}`;
+    },
+
+    // The three project image roles: card thumbnail, hero cover, video poster
+    getProjectImages(project) {
+        const poster = (project.heroMedia && project.heroMedia.type === 'video' && project.heroMedia.poster) || '';
+        return {
+            thumbnail: project.thumbnail || '',
+            cover: project.cover || '',
+            poster
+        };
+    },
+
+    // Default file paths for a project's images (see docs/ASSET-GUIDE.md)
+    getDefaultImagePaths(projectId) {
+        const dir = `assets/images/projects/${projectId}`;
+        return {
+            thumbnail: `${dir}/${projectId}-thumb.webp`,
+            cover: `${dir}/${projectId}-cover.jpg`,
+            poster: `${dir}/${projectId}-video-poster.jpg`
+        };
+    },
+
+    // Resolve true if the image loads, false otherwise
+    probeImage(url) {
+        return new Promise(resolve => {
+            if (!url) return resolve(false);
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
+    },
+
     // Get project thumbnail URL
     getProjectThumbnail(project) {
-        // Try to get thumbnail from various sources
         if (project.thumbnail) {
-            return `../${project.thumbnail}`;
+            return this.getServedImage(project.thumbnail);
         }
-        if (project.videoPoster) {
-            return `../${project.videoPoster}`;
+        if (project.cover) {
+            return this.getServedImage(project.cover);
         }
         // Default thumbnail path based on ID
-        return `../assets/images/projects/${project.id}/${project.id}.webp`;
+        return `../assets/images/projects/${project.id}/${project.id}-thumb.webp`;
     },
 
     // Get category display name

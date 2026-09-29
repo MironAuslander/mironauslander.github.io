@@ -87,15 +87,32 @@
                     <span class="card-category"></span>
                     <span class="card-year"></span>
                 </div>
+                <div class="card-assets">
+                    <span class="asset-badge" data-asset="thumbnail" title="Thumbnail">Thumb</span>
+                    <span class="asset-badge" data-asset="cover" title="Cover">Cover</span>
+                    <span class="asset-badge" data-asset="poster" title="Video poster">Poster</span>
+                    <button type="button" class="asset-toggle">🖼 Assets</button>
+                </div>
             </div>
             <div class="card-badges">
                 <span class="badge-featured" style="display:none">⭐ Featured</span>
                 <span class="badge-order"></span>
             </div>
+            <div class="card-assets-panel" hidden>
+                <label>Thumbnail
+                    <input type="text" data-field="thumbnail" placeholder="assets/images/projects/[id]/[id]-thumb.webp">
+                </label>
+                <label>Cover
+                    <input type="text" data-field="cover" placeholder="assets/images/projects/[id]/[id]-cover.jpg (empty = use video poster)">
+                </label>
+                <label>Video poster
+                    <input type="text" data-field="poster" placeholder="assets/images/projects/[id]/[id]-video-poster.jpg">
+                </label>
+            </div>
         </div>
     </template>
 
-    <script src="js/utils.js"></script>
-    <script src="js/manager.js"></script>
+    <script src="js/utils.js?v=3"></script>
+    <script src="js/manager.js?v=2"></script>
 </body>
 </html>

@@ -7,7 +7,8 @@ How to prepare thumbnails, covers, videos and before/after media for project pag
 | Asset | File | Size | Format | Size target | Where it shows |
 |---|---|---|---|---|---|
 | Thumbnail | `[ID]-thumb.webp` + `.jpg` | 1280×720 | WebP q80 | ≤120 KB | Project cards on the homepage, projects page and Related Projects. Always a 16:9 box. |
-| Cover / poster | `[ID]-poster.webp` + `.jpg` | 2560×1440 (1920×1080 minimum) | WebP q80 | ≤350 KB | Two places: the cropped hero cover and the video poster (full frame). |
+| Cover | `[ID]-cover.webp` + `.jpg` (`cover`) | 2560×1440 (1920×1080 minimum) | WebP q80 | ≤350 KB | Hero background, heavily cropped, with the HTML title on top. The `.jpg` is also the social share image (og:image). |
+| Video poster | `[ID]-video-poster.webp` + `.jpg` (`heroMedia.poster`) | 1920×1080, 16:9 | WebP q80 | ≤250 KB | Full frame, uncropped, in the video player until playback starts |
 | Main video | `project-[ID].mp4` | 1920×1080, 16:9 | H.264 High, yuv420p, AAC | ≤8 Mbps, file <50 MB | Player with controls, at most 900 px wide |
 | A/B video pair | `[ID]-before-N.mp4` / `[ID]-after-N.mp4` | 1920×1080, exactly 16:9 | H.264, no audio | 4–6 Mbps, ≤8 MB each, 3–10 s | Forced 16:9 box, autoplays muted and loops |
 | A/B image pair | `[ID]-before-N.webp` / `[ID]-after-N.webp` + `.jpg` | 1920×1080, exactly 16:9 | WebP q85 | ≤250 KB | Forced 16:9 box |
@@ -17,9 +18,13 @@ Why these values:
 
 - **Thumbnails.** The current thumbnails are 400×225. Phones draw the card 330–700 CSS px wide at 2–3× pixel density, so 400 px images look soft.
 - **Cover.** On phones the portrait crop draws the image about 900 CSS px wide at 3× density. On retina desktops the 1.12 zoom enlarges it further. A 1920 source gets upscaled in both cases, so use 2560.
+- **Video poster.** The player is at most 900 CSS px wide and shows the whole frame, so 1920×1080 is enough. It is only visible before playback starts.
+- **Separate files.** The cover and the video poster are separate files with separate jobs. If a project has no `cover`, the page falls back to the video poster as cover, and the validators warn.
 - **Size targets.** The cover is the first large image to load, so keep it light. Every A/B pair uses `preload="auto"`, so all pairs download as soon as the page opens. The Project 1798 page currently loads about 100 MB.
 
 ## 2. Cover safe area
+
+These rules apply to the cover only. The video poster is never cropped.
 
 The cover is cropped differently on desktop and on mobile.
 
@@ -50,8 +55,10 @@ Rules:
 - **Do not embed the title in the cover.** The page already draws the title and the category accent (for example "| VFX BREAKDOWN") in HTML on top of the cover. An embedded title appears twice. If you must embed text, keep it inside the safe box and never in the lower third.
 - **Subject placement.** Keep the key subject in the upper center of the frame (y 0–500, x 560–1360).
 - **Contrast.** A vignette darkens the top ~50% of the hero and fades the bottom to black. Use high-contrast art.
-- **Image-type hero** (`heroMedia.type: "image"`). Only the cropped cover renders. The full frame is never shown anywhere on the page.
-- **Video-type hero.** The same poster file is also the video poster, which shows the full frame uncropped. An embedded title looks correct in the player but is cropped or doubled in the hero. Separating the two needs a new `cover` field in the generator.
+- **Adjust the crop without re-exporting.** Set `coverPosition` in Project Studio (for example `{ "desktop": "center 30%", "mobile": "40% center" }`). Values are CSS `object-position`. The defaults are `center top` on desktop and `center center` on mobile. Studio shows desktop and mobile crop previews, with the title zone hatched.
+- **Social sharing.** The cover `.jpg` is the page's og:image. Facebook and LinkedIn crop it to about 1.91:1 around the center, so keep the subject near the middle band as well.
+- **Image-type hero** (`heroMedia.type: "image"`). The cover renders on top, and the `heroMedia` image renders uncropped below it, in place of the video.
+- **Video poster.** A title embedded in the video poster is fine, because the poster is shown in full.
 - **Test the crop.** In browser devtools device mode, check 360×800, 390×844, 768×1024, 1440×900, 1920×1080 and one ultrawide size.
 
 ## 3. Thumbnail rules
@@ -76,7 +83,7 @@ Rules:
 
 ## 5. General rules
 
-- **Keep both `.jpg` and `.webp` files.** `projects-data.json` and the validator reference the `.jpg` path. The generator replaces `.jpg` with `.webp`, and pages load the `.webp` file. Only `.jpg` is converted; `.jpeg` and `.png` are not.
+- **Keep both `.jpg` and `.webp` files for the cover, video poster and image hero.** `projects-data.json` stores the `.jpg` path. The generator replaces `.jpg` with `.webp`, and pages load the `.webp` file. The cover `.jpg` is also the og:image. Only `.jpg` is converted; `.jpeg` and `.png` are not. The thumbnail is stored and served as `.webp` directly; its `.jpg` twin is optional.
 - **Filenames.** Use lowercase, no spaces and no Hebrew characters. The case must match the JSON exactly: Windows ignores case, so a mismatch works locally but returns 404 on GitHub Pages.
 - **Video encoding.** Use H.264, yuv420p and `+faststart`. Do not use HEVC or ProRes. 25 fps is fine; use one frame rate per project.
 - **Hosting limits.** GitHub blocks files over 100 MiB and warns above 50 MiB. Check the current GitHub documentation, because these limits can change.
@@ -93,13 +100,22 @@ ffmpeg -i in.mov -map 0:v:0 -map 0:a:0? -c:v libx264 -profile:v high -preset slo
 # A/B clip (run the same command for the before and the after file)
 ffmpeg -i before.mov -map 0:v:0 -an -dn -c:v libx264 -profile:v high -preset slow -crf 21 -maxrate 6M -bufsize 12M -pix_fmt yuv420p -g 25 -vf scale=1920:1080 -movflags +faststart -map_metadata -1 ID-before-1.mp4
 
-# Cover and thumbnail
-ffmpeg -i cover.png -vf scale=2560:1440 -c:v libwebp -quality 80 ID-poster.webp
-ffmpeg -i cover.png -vf scale=1280:720  -c:v libwebp -quality 80 ID-thumb.webp
+# Cover (WebP for the page, JPG twin for og:image)
+ffmpeg -i cover.png -vf scale=2560:1440 -c:v libwebp -quality 80 ID-cover.webp
+ffmpeg -i cover.png -vf scale=2560:1440 -q:v 3 ID-cover.jpg
+
+# Video poster
+ffmpeg -i poster.png -vf scale=1920:1080 -c:v libwebp -quality 80 ID-video-poster.webp
+ffmpeg -i poster.png -vf scale=1920:1080 -q:v 3 ID-video-poster.jpg
+
+# Thumbnail
+ffmpeg -i thumb.png -vf scale=1280:720 -c:v libwebp -quality 80 ID-thumb.webp
+ffmpeg -i thumb.png -vf scale=1280:720 -q:v 3 ID-thumb.jpg
 ```
 
 ## 7. Placeholders still in place (as of September 2026)
 
-- About 14 projects share an identical placeholder poster (50,278 bytes) and thumbnail (7,820 bytes).
+- About 14 projects share an identical placeholder video poster (50,278 bytes) and thumbnail (7,820 bytes).
+- Every `[ID]-cover` file started as a copy of that project's video poster when the cover was split out. Replace covers with dedicated artwork one by one.
 - Many projects share the same 4-second placeholder `project-*.mp4` (1,069,582 bytes).
 - The validator does not flag these. It only detects 11-byte placeholder files.

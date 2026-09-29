@@ -18,20 +18,19 @@ The portfolio uses a **unified template-based generation system** that:
 
 #### Data Management
 - **Source of Truth**: `projects-data.json` - Single JSON file containing all project data
-- **Formats Supported**: Both legacy (beforeAfterMedia) and advanced (processMedia) formats
-- **Auto-conversion**: Legacy format automatically converted during generation
+- **Format**: `thumbnail`, `cover`, optional `coverPosition`, `heroMedia` and `processMedia` (legacy fields `videoPoster`, `heroImage`, `mainVideo`, `beforeAfterMedia` were removed; validators warn if they reappear)
 
 #### Templates
 - **`templates/project-page-advanced.html`**: Primary template with flexible media support
   - Vertical layout for Process & Variations section
-  - Supports hero video/image selection
+  - V2 hero: cropped cover image with the title overlaid, then the hero video (or full image) below
   - Handles 1-6 process media blocks
-- **`templates/project-page.html`**: Legacy template (kept for compatibility)
+  - Adds cover preload and og:image/twitter:image meta
 
 #### Generation Scripts
 - **`scripts/generate-project-unified.js`** ⭐ **PRIMARY GENERATOR**
-  - Intelligently selects appropriate template
-  - Handles both data formats
+  - The only page generator (`quick-update.js` and `run-update.bat/.ps1` call it too)
+  - Serves the `.webp` twin of any `.jpg` image path
   - Ensures consistent script inclusion
   - Usage: `node scripts/generate-project-unified.js [PROJECT_IDs]`
 
@@ -46,7 +45,7 @@ The portfolio uses a **unified template-based generation system** that:
   - Checks HTML structure, scripts, CSS inclusion
   - Validates media file existence and sizes
   - Supports `--verbose` and `--fix` flags
-  - Recognizes both old and new template markers
+  - Checks `.jpg` + `.webp` twins for cover and video poster, and that the page's hero-cover matches the JSON
 
 - **`scripts/validate-projects.js`** - Basic validation
   - Quick check for critical issues
@@ -66,17 +65,36 @@ Access at `http://localhost:8000/tools/` after starting local server:
   - Features:
     - Drag-and-drop project organization (featured/visible/hidden)
     - Complete project details editing (categories, roles, tools)
+    - Project images: thumbnail, cover, cover crop (`coverPosition`) with desktop/mobile crop previews
     - Visual media configuration (hero + process media blocks)
     - Live preview with device modes
     - No manual JSON merging required
 
-- **Legacy Tools** (Individual editors - still functional):
-  - `tools/project-manager.html` - Organization only
-  - `tools/project-editor.html` - Content editing only
-  - `tools/media-configurator.html` - Media configuration only
-  - Note: Legacy tools require manual JSON merging when editing multiple projects
+- **`tools/project-manager.html`** - Layout & Assets Manager
+  - Drag-and-drop featuring, ordering and visibility
+  - Per-project asset badges (thumbnail / cover / video poster found or missing)
+  - Inline editing of the three image paths
 
 ### Media Configuration
+
+#### Project Images
+Three separate images, each with one role (sizes and safe areas: `docs/ASSET-GUIDE.md`):
+
+| Role | File | JSON field |
+|---|---|---|
+| Card thumbnail | `[ID]-thumb.webp` + `.jpg` | `thumbnail` |
+| Hero cover (cropped, title on top, og:image) | `[ID]-cover.webp` + `.jpg` | `cover` |
+| Video poster (full frame in the player) | `[ID]-video-poster.webp` + `.jpg` | `heroMedia.poster` |
+
+- JSON stores `.jpg` paths; pages load the `.webp` twin. Keep both files.
+- No `cover` → the generator uses the video poster as cover (validator warns).
+
+```json
+"thumbnail": "assets/images/projects/[ID]/[ID]-thumb.webp",
+"cover": "assets/images/projects/[ID]/[ID]-cover.jpg",
+"coverPosition": { "desktop": "center 30%", "mobile": "40% center" }
+```
+`coverPosition` is optional CSS `object-position`; defaults are `center top` (desktop) and `center center` (mobile).
 
 #### Hero Section Options
 ```json
@@ -84,13 +102,13 @@ Access at `http://localhost:8000/tools/` after starting local server:
 "heroMedia": {
   "type": "video",
   "src": "assets/videos/[ID]/project-[ID].mp4",
-  "poster": "assets/images/projects/[ID]/[ID]-poster.jpg"
+  "poster": "assets/images/projects/[ID]/[ID]-video-poster.jpg"
 }
 
-// Image Hero
+// Image Hero (shown uncropped below the cover)
 "heroMedia": {
   "type": "image",
-  "src": "assets/images/projects/[ID]/[ID].webp",
+  "src": "assets/images/projects/[ID]/[ID]-hero.jpg",
   "alt": "Description for accessibility"
 }
 ```
@@ -108,15 +126,16 @@ Each project supports 1-6 media blocks in vertical layout:
 - **Vertical Layout Only**: All Process & Variations sections display media vertically
 - **CSS Implementation**: `display: flex; flex-direction: column; gap: 1.5rem;`
 - **No Horizontal Grids**: Horizontal grid classes commented out in templates
-- **Visual Tools Match**: Media configurator preview uses same vertical layout
+- **Visual Tools Match**: Project Studio media preview uses same vertical layout
 
 #### File Structure
 ```
 projects/[PROJECT_ID]/
 ├── assets/images/projects/[ID]/
-│   ├── [ID]-thumb.webp        # Required: Grid thumbnail
-│   ├── [ID]-poster.jpg        # Optional: Video poster
-│   └── [ID]-before-*.webp     # Before/after images
+│   ├── [ID]-thumb.webp/.jpg          # Required: grid thumbnail
+│   ├── [ID]-cover.webp/.jpg          # Hero cover + og:image
+│   ├── [ID]-video-poster.webp/.jpg   # Video poster
+│   └── [ID]-before-*.webp            # Before/after images
 └── assets/videos/[ID]/
     ├── project-[ID].mp4        # Main hero video
     ├── [ID]-before-*.mp4       # Before media
@@ -217,6 +236,8 @@ git push origin main
 | Before/after videos not working | Run `node scripts/generate-project-unified.js [ID]` |
 | Project not showing on homepage | Set `"featured": true` in projects-data.json |
 | Media files not displaying | Check file paths match structure in projects-data.json |
+| Cover or poster image missing on page | `.jpg` paths are served as `.webp` - make sure both twins exist |
+| Cover cropped badly | Set `coverPosition` in Project Studio, then regenerate |
 | Validation showing warnings | Run `node scripts/validate-enhanced.js --verbose` for details |
 | Changes not appearing | Clear browser cache (Ctrl+F5) |
 
@@ -227,7 +248,6 @@ The system detects placeholder files (11 bytes) and reports them during validati
 Projects use markers for updatable sections:
 - `PROJECT_INFO_START/END` - Project details section
 - `PROCESS_MEDIA_START/END` - Media gallery section (new format)
-- `BEFORE_AFTER_SECTION_START/END` - Legacy format (still supported)
 
 ## Development Workflow
 
