@@ -811,17 +811,16 @@ ul {
     transition: var(--transition);
     position: relative;
     overflow: hidden;
-    min-height: 150px;
     background-color: var(--dark-bg);
     border: 2px solid rgba(255, 107, 107, 0.3);
 }
 
 .project-card img {
     position: absolute;
-    top: -2px;
-    left: -2px;
-    width: calc(100% + 4px);
-    height: calc(100% + 4px);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: center;
     z-index: 0;
@@ -2939,9 +2938,6 @@ ul {
         gap: 1rem;
     }
 
-    .project-card {
-        min-height: 120px;
-    }
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
@@ -3069,14 +3065,14 @@ ul {
     }
 
     .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 100%;
         gap: 1.25rem;
     }
 
     /* Homepage Featured Projects - ensure proper 3x2 layout */
     #projects .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 1000px;
         margin: 0 auto;
     }
@@ -3136,7 +3132,7 @@ ul {
 /* Large desktop adjustments */
 @media (min-width: 1024px) {
     .projects-grid {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, minmax(0, 1fr));
         gap: 1.25rem;
         max-width: 100%;
         padding: 0;
@@ -3144,7 +3140,7 @@ ul {
 
     /* Keep Featured Projects on homepage as 3x2 grid */
     #projects .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 1200px;
         margin: 0 auto;
     }
@@ -3186,7 +3182,7 @@ ul {
 
     /* Maintain 3x2 grid for Featured Projects on homepage */
     #projects .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         max-width: 1100px;
         margin: 0 auto;
         gap: 2rem;
