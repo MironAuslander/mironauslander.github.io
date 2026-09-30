@@ -42,6 +42,7 @@
       "Bash(node scripts/quick-update.js --force)",
       "Bash(node scripts/run-all-updates.js)",
       "Bash(node --check tools/js/project-studio.js)",
+      "Bash(curl * https://cdn.jsdelivr.net/*)",
       "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.claude/settings.local.json','utf8'\\)\\); console.log\\('valid'\\)\")",
       "Bash(node -e \"const d=require\\('./projects-data.json'\\);d.projects.forEach\\(p=>{if\\(p.coverPosition\\)console.log\\(p.id,JSON.stringify\\(p.coverPosition\\)\\)}\\);console.log\\('total',d.projects.length\\)\")"
     ],
