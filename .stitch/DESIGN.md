@@ -5,7 +5,7 @@
 
 **Cinematic, immersive, and moody.** The portfolio embodies a dark theatrical aesthetic — the kind of atmosphere you'd expect from a VFX artist's personal stage. The design philosophy is "content in darkness": near-black backgrounds create a void from which media, gradients, and glass surfaces emerge with dramatic presence.
 
-The overall density is **spacious and breathable** — full-viewport sections with generous padding let each piece of work command attention. Subtle particle animations on canvas, gradient light-leaks, and glassmorphic containers give the site a layered, dimensional quality — as if the interface itself is a composited scene.
+The overall density is **spacious and breathable** — full-viewport sections with generous padding let each piece of work command attention. An interactive WebGL fluid (LiquidEther) behind the hero, gradient light-leaks, and glassmorphic containers give the site a layered, dimensional quality — as if the interface itself is a composited scene.
 
 **Key atmosphere words:** Cinematic, Dark-luxe, Glass-layered, Dramatic, Editorial, Immersive
 
