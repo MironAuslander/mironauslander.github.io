@@ -78,14 +78,14 @@ Each project has three separate images, one per role. Sizes, crops and safe area
 | Video poster | `heroMedia.poster` | Full frame in the video player before playback |
 
 - JSON stores `.jpg` paths. The generator serves the `.webp` twin, so both files must exist.
-- If `cover` is missing, the video poster is used as cover and validation warns.
+- If `cover` is missing, the hero image (image hero) or video poster (video hero) is used as cover and validation warns.
 - Optional `coverPosition` adjusts the crop with CSS `object-position` values:
 
 ```json
 "coverPosition": { "desktop": "center 30%", "mobile": "40% center" }
 ```
 
-Defaults: `center top` on desktop, `center center` on mobile.
+Defaults: `center 50%` on desktop, `center center` on mobile.
 
 ### Hero Media Types
 

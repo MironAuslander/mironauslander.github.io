@@ -809,6 +809,17 @@ class ProjectStudio {
             });
         });
 
+        // Cover crop presets: fill the input and reuse its input handler
+        document.querySelectorAll('.crop-presets').forEach(group => {
+            const input = document.getElementById(group.dataset.target);
+            group.addEventListener('click', (e) => {
+                const btn = e.target.closest('button[data-value]');
+                if (!btn || !input) return;
+                input.value = btn.dataset.value;
+                input.dispatchEvent(new Event('input'));
+            });
+        });
+
         // Fill empty image fields with the standard file names for this project
         document.getElementById('fillDefaultImagesBtn')?.addEventListener('click', () => {
             if (!this.currentProject) return;
@@ -837,6 +848,17 @@ class ProjectStudio {
         const desktopPos = document.getElementById('coverPositionDesktop').value.trim();
         const mobilePos = document.getElementById('coverPositionMobile').value.trim();
 
+        // Highlight the preset matching the current value (empty = default preset)
+        const activeValues = {
+            coverPositionDesktop: desktopPos || 'center 50%',
+            coverPositionMobile: mobilePos || 'center center'
+        };
+        document.querySelectorAll('.crop-presets').forEach(group => {
+            group.querySelectorAll('button[data-value]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === activeValues[group.dataset.target]);
+            });
+        });
+
         document.querySelectorAll('[data-preview-for]').forEach(preview => {
             const input = document.getElementById(preview.dataset.previewFor);
             let path = input ? input.value.trim() : '';
@@ -849,7 +871,7 @@ class ProjectStudio {
             const img = preview.querySelector('img');
             preview.classList.remove('missing');
             preview.classList.toggle('empty', !path);
-            preview.style.setProperty('--cover-pos', desktopPos || 'center top');
+            preview.style.setProperty('--cover-pos', desktopPos || 'center 50%');
             preview.style.setProperty('--cover-pos-mobile', mobilePos || 'center center');
 
             if (!path) {

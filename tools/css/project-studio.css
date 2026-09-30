@@ -1051,6 +1051,35 @@
     aspect-ratio: 16 / 9;
 }
 
+/* Cover crop preset chips */
+.crop-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+}
+
+.crop-presets button {
+    padding: 0.2rem 0.55rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.crop-presets button:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+.crop-presets button.active {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
 .cover-crop-previews {
     display: flex;
     gap: 1rem;
@@ -1084,7 +1113,7 @@
 }
 
 .cover-frame-desktop img {
-    object-position: var(--cover-pos, center top);
+    object-position: var(--cover-pos, center 50%);
 }
 
 .cover-frame-mobile img {

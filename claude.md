@@ -94,7 +94,7 @@ Three separate images, each with one role (sizes and safe areas: `docs/ASSET-GUI
 "cover": "assets/images/projects/[ID]/[ID]-cover.jpg",
 "coverPosition": { "desktop": "center 30%", "mobile": "40% center" }
 ```
-`coverPosition` is optional CSS `object-position`; defaults are `center top` (desktop) and `center center` (mobile).
+`coverPosition` is optional CSS `object-position`; defaults are `center 50%` (desktop) and `center center` (mobile).
 
 #### Hero Section Options
 ```json

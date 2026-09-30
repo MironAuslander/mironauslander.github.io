@@ -30,32 +30,33 @@ The cover is cropped differently on desktop and on mobile.
 
 | Device | Hero height | Crop anchor | What stays visible |
 |---|---|---|---|
-| Desktop (>768 px) | 55vh | `center top` | Only the top ~45–50% of the image. The bottom half is never seen. |
+| Desktop (>768 px) | 55vh | `center 50%` | Only the middle ~50% band of the image height. The top and bottom quarters are never seen. |
 | Phone (≤768 px) | 60–65vh | centered | Only the center ~40–45% of the width |
 
 Two more things reduce the visible area:
 
 - **Slow zoom.** The cover animates to `scale(1.12)` and stays there. This crops about 5% more from every edge.
-- **HTML title and meta bar.** The page draws both over the bottom 120–130 CSS px of the hero. In source-image pixels, this covers roughly row 310 and below on desktop, and row 780 and below on mobile.
+- **HTML title and meta bar.** The page draws both over the bottom 120–130 CSS px of the hero. In source-image pixels, this covers roughly row 690 and below on desktop, and row 780 and below on mobile.
 
-**Safe box for any embedded text, on a 1920×1080 frame: x 620–1300, y 70–300** (about 680×230 px). For a 2560×1440 frame, multiply by 1.333: x 830–1730, y 95–400.
+**Safe box for any embedded text, on a 1920×1080 frame: x 620–1300, y 300–650** (about 680×350 px). For a 2560×1440 frame, multiply by 1.333: x 830–1730, y 400–865.
 
 ```
 1920 ┌───────────────────────────────────────────┐
-     │        ┌──────────────┐  y 70             │
+     │   (top ~25%: desktop never sees it)       │  desktop cut ~ y 275
+     │        ┌──────────────┐  y 300            │
      │        │  SAFE TITLE  │                   │
-     │        └──────────────┘  y 300            │  desktop cut ~ y 500
+     │        └──────────────┘  y 650            │  title overlay from ~ y 690
      │      x 620        x 1300                  │
-     │   (lower half: desktop never sees it)     │
+     │   (bottom ~25%: desktop never sees it)    │  desktop cut ~ y 805
 1080 └───────────────────────────────────────────┘
 ```
 
 Rules:
 
 - **Do not embed the title in the cover.** The page already draws the title and the category accent (for example "| VFX BREAKDOWN") in HTML on top of the cover. An embedded title appears twice. If you must embed text, keep it inside the safe box and never in the lower third.
-- **Subject placement.** Keep the key subject in the upper center of the frame (y 0–500, x 560–1360).
+- **Subject placement.** Keep the key subject in the center of the frame (y 300–690, x 560–1360).
 - **Contrast.** A vignette darkens the top ~50% of the hero and fades the bottom to black. Use high-contrast art.
-- **Adjust the crop without re-exporting.** Set `coverPosition` in Project Studio (for example `{ "desktop": "center 30%", "mobile": "40% center" }`). Values are CSS `object-position`. The defaults are `center top` on desktop and `center center` on mobile. Studio shows desktop and mobile crop previews, with the title zone hatched.
+- **Adjust the crop without re-exporting.** Set `coverPosition` in Project Studio (for example `{ "desktop": "center 30%", "mobile": "40% center" }`). Values are CSS `object-position`. The defaults are `center 50%` on desktop and `center center` on mobile. Studio shows desktop and mobile crop previews, with the title zone hatched.
 - **Social sharing.** The cover `.jpg` is the page's og:image. Facebook and LinkedIn crop it to about 1.91:1 around the center, so keep the subject near the middle band as well.
 - **Image-type hero** (`heroMedia.type: "image"`). The cover renders on top, and the `heroMedia` image renders uncropped below it, in place of the video.
 - **Video poster.** A title embedded in the video poster is fine, because the poster is shown in full.

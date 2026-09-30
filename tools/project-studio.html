@@ -254,20 +254,37 @@
                                 <div class="form-group">
                                     <label for="projectCover">Cover <small class="inline-hint">2560×1440 · cropped hero behind the title</small></label>
                                     <input type="text" id="projectCover" placeholder="assets/images/projects/[id]/[id]-cover.jpg">
-                                    <small>Empty = the video poster is used as cover.</small>
+                                    <small>Empty = the hero image (image hero) or video poster (video hero) is used as cover.</small>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group">
                                     <label for="coverPositionDesktop">Cover crop · desktop</label>
-                                    <input type="text" id="coverPositionDesktop" placeholder="center top (default)">
+                                    <input type="text" id="coverPositionDesktop" placeholder="center 50% (default)">
+                                    <div class="crop-presets" data-target="coverPositionDesktop">
+                                        <button type="button" data-value="center top">center top</button>
+                                        <button type="button" data-value="center 30%">center 30%</button>
+                                        <button type="button" data-value="center 50%">center 50%</button>
+                                        <button type="button" data-value="center 70%">center 70%</button>
+                                        <button type="button" data-value="center bottom">center bottom</button>
+                                    </div>
+                                    <small>Wide frame: the vertical value (2nd) matters. 0%/top shows the top of the image, 100%/bottom the bottom.</small>
                                 </div>
                                 <div class="form-group">
                                     <label for="coverPositionMobile">Cover crop · mobile</label>
                                     <input type="text" id="coverPositionMobile" placeholder="center center (default)">
+                                    <div class="crop-presets" data-target="coverPositionMobile">
+                                        <button type="button" data-value="left center">left center</button>
+                                        <button type="button" data-value="30% center">30% center</button>
+                                        <button type="button" data-value="center center">center center</button>
+                                        <button type="button" data-value="70% center">70% center</button>
+                                        <button type="button" data-value="right center">right center</button>
+                                    </div>
+                                    <small>Portrait frame: the horizontal value (1st) matters. 0%/left shows the left side, 100%/right the right.</small>
                                 </div>
                             </div>
+                            <small class="section-info">Values are CSS <code>object-position</code>: <em>horizontal vertical</em>. Click a preset or type your own. Empty = default. Misspelled values are ignored.</small>
 
                             <div class="cover-crop-previews">
                                 <div class="cover-crop">

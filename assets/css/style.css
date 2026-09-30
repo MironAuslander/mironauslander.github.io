@@ -2619,7 +2619,7 @@ ul {
     height: 100%;
     object-fit: cover;
     /* Per-project override via coverPosition in projects-data.json */
-    object-position: var(--cover-pos, center top);
+    object-position: var(--cover-pos, center 50%);
     z-index: 0;
     will-change: transform;
     animation: heroZoom 20s linear forwards;
