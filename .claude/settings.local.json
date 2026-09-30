@@ -36,7 +36,13 @@
       "mcp__stitch__list_projects",
       "Skill(design-md)",
       "Skill(design-md:*)",
-      "Bash(node scripts/validate-projects.js)"
+      "Bash(node scripts/validate-projects.js)",
+      "Bash(node scripts/generate-project-unified.js)",
+      "Bash(node scripts/validate-enhanced.js)",
+      "Bash(node scripts/quick-update.js --force)",
+      "Bash(node scripts/run-all-updates.js)",
+      "Bash(node --check tools/js/project-studio.js)",
+      "Bash(node -e \"JSON.parse\\(require\\('fs'\\).readFileSync\\('.claude/settings.local.json','utf8'\\)\\); console.log\\('valid'\\)\")"
     ],
     "deny": [],
     "ask": []
