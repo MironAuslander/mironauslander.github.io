@@ -55,6 +55,21 @@ if (allSuccess) {
     }
 }
 
+// Warn about pages/media left behind by deleted projects (never moved automatically)
+if (allSuccess) {
+    try {
+        const { findOrphans } = require('./archive-deleted');
+        const { orphans } = findOrphans();
+        if (orphans.length) {
+            console.log(`\n⚠️  ${orphans.length} deleted project(s) still have files: ${orphans.map(o => o.id).join(', ')}`);
+            console.log('   Review:  node scripts/archive-deleted.js');
+            console.log('   Archive: node scripts/archive-deleted.js --yes');
+        }
+    } catch (error) {
+        console.log(`⚠️  Could not check for deleted project files: ${error.message}`);
+    }
+}
+
 // Final status
 console.log('\n=====================================');
 if (allSuccess) {

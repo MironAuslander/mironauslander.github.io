@@ -142,6 +142,54 @@ const Utils = {
         };
     },
 
+    // Random unused 4-digit project ID (1000-9999), or '' if none found
+    suggestProjectId(takenIds) {
+        for (let i = 0; i < 1000; i++) {
+            const id = String(1000 + Math.floor(Math.random() * 9000));
+            if (!takenIds.has(id)) return id;
+        }
+        return '';
+    },
+
+    // Error message for an invalid new project ID, '' if valid
+    validateNewProjectId(id, takenIds) {
+        if (!/^\d{4}$/.test(id)) return 'ID must be exactly 4 digits';
+        if (id < '1000') return 'ID must be between 1000 and 9999';
+        if (takenIds.has(id)) return `ID ${id} is already used`;
+        return '';
+    },
+
+    // Full project object for a new project, hidden until media is ready.
+    // Image/video paths use the standard file names (see docs/ASSET-GUIDE.md).
+    createProjectSkeleton({ id, displayTitle, fullTitle, category, year, client }) {
+        const images = this.getDefaultImagePaths(id);
+        return {
+            id,
+            displayTitle,
+            fullTitle,
+            category,
+            client,
+            year,
+            duration: '',
+            description: '',
+            role: [],
+            tools: [],
+            featured: false,
+            featuredOrder: null,
+            projectsPageOrder: null,
+            visible: false,
+            hidden: true,
+            thumbnail: images.thumbnail,
+            cover: images.cover,
+            heroMedia: {
+                type: 'video',
+                src: `assets/videos/${id}/project-${id}.mp4`,
+                poster: images.poster
+            },
+            processMedia: []
+        };
+    },
+
     // Resolve true if the image loads, false otherwise
     probeImage(url) {
         return new Promise(resolve => {
@@ -168,6 +216,7 @@ const Utils = {
     // Get category display name
     getCategoryDisplay(category) {
         const categories = {
+            'ai': 'AI',
             'vfx': 'Visual Effects',
             'motion': 'Motion Graphics',
             'editing': 'Video Editing',

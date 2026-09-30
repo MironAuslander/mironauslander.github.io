@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Project Studio - Unified Management System</title>
     <link rel="stylesheet" href="css/tools.css?v=4">
-    <link rel="stylesheet" href="css/project-studio.css?v=2">
+    <link rel="stylesheet" href="css/project-studio.css?v=4">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,10 @@
         <!-- Left Sidebar: Project List & Organization -->
         <aside class="project-sidebar">
             <div class="sidebar-header">
-                <h2>Projects</h2>
+                <div class="sidebar-title-row">
+                    <h2>Projects</h2>
+                    <button type="button" id="newProjectBtn" class="btn btn-primary btn-small">➕ New project</button>
+                </div>
                 <div class="sidebar-tabs">
                     <button class="sidebar-tab active" data-view="organize">📊 Organize</button>
                     <button class="sidebar-tab" data-view="edit">✏️ Edit</button>
@@ -139,7 +142,10 @@
                 <div class="tab-panel" id="details-tab">
                     <div class="edit-header">
                         <h2>Editing: <span id="currentProjectName">Select a project</span></h2>
-                        <div class="project-id-badge">ID: <span id="currentProjectId">-</span></div>
+                        <div class="edit-header-actions">
+                            <div class="project-id-badge">ID: <span id="currentProjectId">-</span></div>
+                            <button type="button" id="deleteProjectBtn" class="btn btn-danger btn-small" disabled>🗑️ Delete project</button>
+                        </div>
                     </div>
 
                     <form id="projectForm" class="project-form">
@@ -435,6 +441,59 @@
     <!-- Status Messages -->
     <div id="statusMessage" class="status-message"></div>
 
+    <!-- New Project Dialog -->
+    <dialog id="newProjectDialog" class="studio-dialog">
+        <form id="newProjectForm" method="dialog" novalidate>
+            <h2>➕ New project</h2>
+
+            <div class="form-group">
+                <label for="newProjectId">Project ID</label>
+                <div class="id-input-row">
+                    <input type="text" id="newProjectId" inputmode="numeric" maxlength="4" autocomplete="off">
+                    <button type="button" id="rerollProjectIdBtn" class="btn btn-secondary btn-small" title="Suggest another random ID">🎲</button>
+                </div>
+                <small>Random unused 4-digit ID. Type your own if you prefer.</small>
+                <small class="field-error" id="newProjectIdError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="newDisplayTitle">Display title</label>
+                <input type="text" id="newDisplayTitle" maxlength="50">
+                <small>Short title for cards and lists</small>
+            </div>
+
+            <div class="form-group">
+                <label for="newFullTitle">Full title</label>
+                <input type="text" id="newFullTitle" maxlength="100">
+                <small>Empty = same as display title</small>
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <div id="newCategoryList" class="new-category-list"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="newYear">Year</label>
+                    <input type="number" id="newYear" min="2000" max="2100">
+                </div>
+                <div class="form-group">
+                    <label for="newClient">Client</label>
+                    <input type="text" id="newClient">
+                </div>
+            </div>
+
+            <small class="field-error" id="newProjectFormError"></small>
+            <p class="dialog-note">The project starts in <strong>Hidden</strong> with standard image and video paths. Add media, then drag it to All Projects.</p>
+
+            <div class="dialog-actions">
+                <button type="button" id="cancelNewProjectBtn" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </dialog>
+
     <!-- Templates -->
     <!-- Project Card Template for Organize View -->
     <template id="projectCardTemplate">
@@ -473,7 +532,7 @@
         </div>
     </template>
 
-    <script src="js/utils.js?v=3"></script>
-    <script src="js/project-studio.js?v=2"></script>
+    <script src="js/utils.js?v=5"></script>
+    <script src="js/project-studio.js?v=5"></script>
 </body>
 </html>

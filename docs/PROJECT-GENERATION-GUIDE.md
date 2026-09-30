@@ -15,22 +15,43 @@ mironauslander.github.io/
 ├── scripts/
 │   ├── generate-project-unified.js  # Main generation script (USE THIS)
 │   ├── validate-enhanced.js    # Comprehensive validation
-│   └── run-all-updates.js      # One-command update everything
-└── projects/                   # Generated HTML files
+│   ├── run-all-updates.js      # One-command update everything
+│   └── archive-deleted.js      # Move pages/media of deleted projects to archive/
+├── projects/                   # Generated HTML files
+└── archive/                    # Deleted projects (git-ignored, local only)
 ```
 
 ## Quick Start Guide
 
 ### Adding a New Project
 
-1. **Edit `projects-data.json`** to add your project:
+**With Project Studio (recommended):**
+
+1. Open `http://localhost:8000/tools/project-studio.html` and click **➕ New project**.
+2. Keep the suggested ID (a random unused 4-digit number, 🎲 for another) or type your own. Fill in the display title, full title, category, year and client.
+3. The project is created in **Hidden** with the standard media paths for its ID and opens in the editor. Add the description and media blocks.
+4. Add the media files under `assets/images/projects/[ID]/` and `assets/videos/[ID]/`.
+5. Drag the project to **All Projects** when it is ready to show, then **Save All Changes**.
+6. Replace `projects-data.json` with the download and run `node scripts/run-all-updates.js`.
+
+**By hand:** add an entry to `projects-data.json`. The IDs are 4-digit strings and must be unique:
 ```json
 {
   "id": "1234",
   "displayTitle": "Project Name",
   "fullTitle": "Project Name - Full Description",
-  "category": "vfx",
+  "category": ["vfx"],
+  "client": "Client Name",
+  "year": 2026,
+  "duration": "",
   "description": "Detailed project description...",
+  "role": [],
+  "tools": [],
+  "featured": false,
+  "featuredOrder": null,
+  "projectsPageOrder": null,
+  "visible": false,
+  "hidden": true,
   "thumbnail": "assets/images/projects/1234/1234-thumb.webp",
   "cover": "assets/images/projects/1234/1234-cover.jpg",
   "heroMedia": {
@@ -41,15 +62,16 @@ mironauslander.github.io/
   "processMedia": [
     {
       "type": "before-after-video",
-      "before": "assets/videos/1234/1234-before.mp4",
-      "after": "assets/videos/1234/1234-after.mp4",
+      "before": "assets/videos/1234/1234-before-1.mp4",
+      "after": "assets/videos/1234/1234-after-1.mp4",
       "label": "VFX Breakdown"
     }
-  ],
-  "featured": true,
-  "visible": true
+  ]
 }
 ```
+`displayTitle` and at least one category are required: the generator fails without them. Set `visible: true` and `hidden: false` to show the project on `projects.html`.
+
+Then:
 
 2. **Generate the project page**:
 ```bash
@@ -64,6 +86,26 @@ node scripts/generate-project-unified.js
 ```bash
 node scripts/validate-enhanced.js --verbose
 ```
+
+### Hiding vs Deleting a Project
+
+- **Hidden:** the project stays in `projects-data.json` and its page is still generated (reachable by URL), but it is left out of the homepage, `projects.html` and related projects. Drag it to **Hidden** in Project Studio.
+- **Deleted:** the project is removed from the data and its page and media are moved out of the site.
+
+### Deleting a Project
+
+1. In Project Studio, open the project in the Edit view and click **🗑️ Delete project**, then confirm. The project is struck through; **↩️ Undo delete** works until you save. A new project that was never saved is discarded right away.
+2. **Save All Changes**. The project moves from `projects` to a top-level `deletedProjects` list (with a `deletedAt` date), and the `metadata` counts are updated.
+3. Replace `projects-data.json` with the download and run `node scripts/run-all-updates.js`. The pages are regenerated without the project, and a warning lists deleted projects that still have files.
+4. Review what will be archived, then archive it:
+```bash
+node scripts/archive-deleted.js         # dry run: lists pages and media folders with no live project
+node scripts/archive-deleted.js --yes   # moves them to archive/
+```
+   Each project goes to `archive/[ID]/`: `Project-[ID].html`, `images/`, `videos/` and `project.json` (its `deletedProjects` entry). If `archive/[ID]` already exists, `archive/[ID]-<timestamp>/` is used. Archived entries are removed from `deletedProjects`.
+5. Commit. Git shows the page and media as deleted; `archive/` is git-ignored, so the files stay only on your machine (and in git history).
+
+**Restoring:** move `archive/[ID]/project.json` back into `projects` in `projects-data.json` (drop `deletedAt`), move `images/` and `videos/` back to `assets/images/projects/[ID]/` and `assets/videos/[ID]/`, then run `node scripts/run-all-updates.js`.
 
 ## Media Configuration Options
 
@@ -183,6 +225,9 @@ node scripts/update-projects-page.js
 
 # Validate everything
 node scripts/validate-enhanced.js --verbose
+
+# Archive pages and media of deleted projects (dry run without --yes)
+node scripts/archive-deleted.js --yes
 ```
 
 ## Validation and Testing
@@ -304,6 +349,7 @@ Templates include markers for partial updates:
 For non-technical management, use the visual tools:
 
 1. **Project Studio** (`tools/project-studio.html`)
+   - Create projects (random unused 4-digit ID) and delete them (archived by `scripts/archive-deleted.js`)
    - Edit project details, images (thumbnail, cover, cover crop, video poster) and media
    - Desktop and mobile cover crop previews
    - Multi-project editing with a single JSON export

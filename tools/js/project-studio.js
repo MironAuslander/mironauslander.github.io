@@ -11,6 +11,8 @@ class ProjectStudio {
 
         // Multi-project editing support
         this.modifiedProjects = new Set(); // Track which projects have been edited
+        this.newProjects = new Set(); // Created in this session, not saved yet
+        this.deletedProjects = new Set(); // Marked for deletion, removed on save
 
         // Project organization
         this.featuredProjects = [];
@@ -22,6 +24,7 @@ class ProjectStudio {
 
         // Available options
         this.availableCategories = [
+            { value: 'ai', label: 'AI' },
             { value: 'vfx', label: 'Visual Effects' },
             { value: 'motion', label: 'Motion Graphics' },
             { value: 'editing', label: 'Video Editing' },
@@ -67,6 +70,7 @@ class ProjectStudio {
             this.setupMediaConfig();
             this.setupEventListeners();
             this.setupTagSelectors();
+            this.setupNewProjectDialog();
 
             // Load initial view
             this.loadProjectLists();
@@ -118,6 +122,177 @@ class ProjectStudio {
         if (view === 'edit') {
             this.loadEditList();
         }
+    }
+
+    // ==================== CREATE PROJECT ====================
+
+    // IDs that a new project must not reuse: live projects and deleted ones awaiting archive
+    getTakenProjectIds() {
+        const ids = this.projectsData.projects.map(p => p.id);
+        (this.projectsData.deletedProjects || []).forEach(p => ids.push(p.id));
+        return new Set(ids);
+    }
+
+    setupNewProjectDialog() {
+        const dialog = document.getElementById('newProjectDialog');
+        const form = document.getElementById('newProjectForm');
+        const idInput = document.getElementById('newProjectId');
+        const idError = document.getElementById('newProjectIdError');
+        if (!dialog || !form) return;
+
+        // Category checkboxes, same options as the details form
+        document.getElementById('newCategoryList').innerHTML = this.availableCategories
+            .map(c => `<label class="checkbox-label"><input type="checkbox" value="${c.value}"> ${c.label}</label>`)
+            .join('');
+
+        const checkId = () => {
+            idError.textContent = Utils.validateNewProjectId(idInput.value.trim(), this.getTakenProjectIds());
+        };
+
+        document.getElementById('newProjectBtn').addEventListener('click', () => {
+            form.reset();
+            idInput.value = Utils.suggestProjectId(this.getTakenProjectIds());
+            document.getElementById('newYear').value = new Date().getFullYear();
+            idError.textContent = '';
+            document.getElementById('newProjectFormError').textContent = '';
+            dialog.showModal();
+            document.getElementById('newDisplayTitle').focus();
+        });
+
+        document.getElementById('rerollProjectIdBtn').addEventListener('click', () => {
+            idInput.value = Utils.suggestProjectId(this.getTakenProjectIds());
+            checkId();
+        });
+
+        idInput.addEventListener('input', checkId);
+        document.getElementById('cancelNewProjectBtn').addEventListener('click', () => dialog.close());
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.createProjectFromDialog();
+        });
+    }
+
+    createProjectFromDialog() {
+        const id = document.getElementById('newProjectId').value.trim();
+        const displayTitle = document.getElementById('newDisplayTitle').value.trim();
+        const fullTitle = document.getElementById('newFullTitle').value.trim() || displayTitle;
+        const category = Array.from(document.querySelectorAll('#newCategoryList input:checked')).map(cb => cb.value);
+        const year = parseInt(document.getElementById('newYear').value, 10) || new Date().getFullYear();
+        const client = document.getElementById('newClient').value.trim();
+
+        const idError = Utils.validateNewProjectId(id, this.getTakenProjectIds());
+        document.getElementById('newProjectIdError').textContent = idError;
+
+        // The generator needs a title and at least one category
+        const formError = !displayTitle ? 'Display title is required'
+            : !category.length ? 'Pick at least one category'
+            : '';
+        document.getElementById('newProjectFormError').textContent = formError;
+        if (idError || formError) return;
+
+        const project = Utils.createProjectSkeleton({ id, displayTitle, fullTitle, category, year, client });
+        this.projectsData.projects.push(project);
+        this.newProjects.add(id);
+        this.modifiedProjects.add(id);
+        this.hasChanges = true;
+
+        document.getElementById('newProjectDialog').close();
+
+        this.loadProjectLists();
+        this.updateAllCounts();
+        this.updateChangeIndicator();
+        this.switchSidebarView('edit');
+        this.selectProjectForEdit(id);
+        this.showStatus(`✓ Project ${id} created (hidden). Save to keep it.`, 'success');
+    }
+
+    // ==================== DELETE PROJECT ====================
+
+    // Mark the current project for deletion, or undo that. Applied on save.
+    toggleDeleteCurrentProject() {
+        const project = this.currentProject;
+        if (!project) return;
+        const id = project.id;
+
+        if (this.deletedProjects.has(id)) {
+            this.deletedProjects.delete(id);
+            this.markProjectDeleted(id, false);
+            this.showStatus(`↩️ Project ${id} restored`, 'success');
+        } else if (this.newProjects.has(id)) {
+            // Never saved: drop it outright, nothing to archive
+            if (!confirm(`Discard new project ${id} "${project.displayTitle}"? It was never saved.`)) return;
+            this.projectsData.projects = this.projectsData.projects.filter(p => p.id !== id);
+            this.newProjects.delete(id);
+            this.modifiedProjects.delete(id);
+            this.clearEditor();
+            this.loadProjectLists();
+            this.loadEditList();
+            this.showStatus(`🗑️ New project ${id} discarded`, 'success');
+        } else {
+            if (!confirm(`Delete project ${id} "${project.displayTitle}"?\n\nIt is removed when you click Save All Changes. Until then you can undo.\nAfter saving, run scripts/archive-deleted.js to move its page and media to archive/.`)) return;
+            this.deletedProjects.add(id);
+            this.markProjectDeleted(id, true);
+            this.showStatus(`🗑️ Project ${id} marked for deletion. Save to apply.`, 'warning');
+        }
+
+        this.hasChanges = true;
+        this.updateChangeIndicator();
+        this.updateAllCounts();
+        this.updateDeleteButton();
+    }
+
+    // Strike through the project's card and edit-list item
+    markProjectDeleted(id, isDeleted) {
+        document.querySelectorAll(`.project-card[data-id="${id}"], .project-item[data-id="${id}"]`)
+            .forEach(el => el.classList.toggle('deleted', isDeleted));
+    }
+
+    updateDeleteButton() {
+        const btn = document.getElementById('deleteProjectBtn');
+        if (!btn) return;
+        const id = this.currentProject && this.currentProject.id;
+        btn.disabled = !id;
+        const marked = id && this.deletedProjects.has(id);
+        btn.textContent = marked ? '↩️ Undo delete' : '🗑️ Delete project';
+        btn.classList.toggle('btn-danger', !marked);
+        btn.classList.toggle('btn-secondary', !!marked);
+    }
+
+    clearEditor() {
+        this.currentProject = null;
+        document.getElementById('currentProjectName').textContent = 'Select a project';
+        document.getElementById('currentProjectId').textContent = '-';
+        this.updateDeleteButton();
+        this.switchTab('organize');
+    }
+
+    // Move marked projects into deletedProjects so the archive script can find and restore them
+    applyDeletions() {
+        if (!this.deletedProjects.size) return 0;
+        const deletedAt = new Date().toISOString();
+        const removed = this.projectsData.projects.filter(p => this.deletedProjects.has(p.id));
+
+        this.projectsData.projects = this.projectsData.projects.filter(p => !this.deletedProjects.has(p.id));
+        this.projectsData.deletedProjects = [
+            ...(this.projectsData.deletedProjects || []),
+            ...removed.map(p => ({ ...p, deletedAt }))
+        ];
+
+        removed.forEach(p => this.modifiedProjects.delete(p.id));
+        if (this.currentProject && this.deletedProjects.has(this.currentProject.id)) {
+            this.clearEditor();
+        }
+        this.deletedProjects.clear();
+        return removed.length;
+    }
+
+    updateMetadata() {
+        const meta = this.projectsData.metadata;
+        if (!meta) return;
+        meta.totalProjects = this.projectsData.projects.length;
+        meta.featuredCount = this.projectsData.projects.filter(p => p.featured).length;
+        meta.lastUpdated = new Date().toISOString().slice(0, 10);
     }
 
     // ==================== TAB MANAGEMENT ====================
@@ -172,6 +347,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'featured')
                 })
             );
@@ -185,6 +361,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'visible')
                 })
             );
@@ -198,6 +375,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'hidden')
                 })
             );
@@ -351,6 +529,8 @@ class ProjectStudio {
             cardInfo.appendChild(featuredBadge);
         }
 
+        card.querySelector('.project-card').classList.toggle('deleted', this.deletedProjects.has(project.id));
+
         document.getElementById(containerId).appendChild(card);
     }
 
@@ -436,12 +616,21 @@ class ProjectStudio {
             } else {
                 statusBadge.textContent = '✓ Visible';
             }
+            if (this.newProjects.has(project.id)) {
+                statusBadge.textContent = '🆕 New';
+            }
+            item.querySelector('.project-item').classList.toggle('deleted', this.deletedProjects.has(project.id));
 
             item.querySelector('.project-item').addEventListener('click', () => {
                 this.selectProjectForEdit(project.id);
             });
 
             container.appendChild(item);
+
+            // Keep unsaved-change markers when the list is rebuilt
+            if (this.modifiedProjects.has(project.id)) {
+                this.updateProjectModifiedIndicator(project.id, true);
+            }
         });
     }
 
@@ -578,6 +767,7 @@ class ProjectStudio {
         // Update header
         document.getElementById('currentProjectName').textContent = this.currentProject.displayTitle;
         document.getElementById('currentProjectId').textContent = this.currentProject.id;
+        this.updateDeleteButton();
     }
 
     loadProjectDetails() {
@@ -1312,6 +1502,10 @@ class ProjectStudio {
         });
 
         // Reload button
+        document.getElementById('deleteProjectBtn')?.addEventListener('click', () => {
+            this.toggleDeleteCurrentProject();
+        });
+
         document.getElementById('reloadBtn')?.addEventListener('click', () => {
             if (this.hasChanges) {
                 if (!confirm('You have unsaved changes. Reload anyway?')) return;
@@ -1433,11 +1627,15 @@ class ProjectStudio {
     }
 
     async saveAllChanges() {
-        // Update organization data (always runs)
-        this.updateProjectOrganization();
-
         // Save any pending changes from currently editing project
         this.savePendingProjectChanges();
+
+        // Move projects marked for deletion to deletedProjects (archived later by scripts/archive-deleted.js)
+        const deletedCount = this.applyDeletions();
+
+        // Update organization data (always runs)
+        this.updateProjectOrganization();
+        this.updateMetadata();
 
         // Save to file (includes all organization + all edited projects)
         const saved = await Utils.saveProjectsData(this.projectsData);
@@ -1449,6 +1647,7 @@ class ProjectStudio {
             // Clear all change tracking
             this.hasChanges = false;
             this.modifiedProjects.clear();
+            this.newProjects.clear();
             this.updateChangeIndicator();
 
             // Clear all modified indicators in UI
@@ -1456,9 +1655,19 @@ class ProjectStudio {
                 this.updateProjectModifiedIndicator(item.dataset.id, false);
             });
 
+            // Deleted projects are gone from the data now: rebuild the lists without them
+            if (deletedCount > 0) {
+                this.loadProjectLists();
+                this.loadEditList();
+                this.updateAllCounts();
+            }
+
             // Show success message with count
-            const message = modifiedCount > 0
-                ? `✅ All changes saved! (${modifiedCount} project${modifiedCount !== 1 ? 's' : ''} edited) Download started.`
+            const parts = [];
+            if (modifiedCount > 0) parts.push(`${modifiedCount} project${modifiedCount !== 1 ? 's' : ''} edited`);
+            if (deletedCount > 0) parts.push(`${deletedCount} deleted`);
+            const message = parts.length
+                ? `✅ All changes saved! (${parts.join(', ')}) Download started.`
                 : '✅ All changes saved! Download started.';
 
             this.showStatus(message, 'success');
