@@ -196,6 +196,9 @@ Defaults: `center 50%` on desktop, `center center` on mobile.
 ## Data Format
 
 Projects use `thumbnail`, `cover`, `heroMedia` and `processMedia`.
+
+`category` is an array with one or more of `ai`, `vfx`, `motion`, `editing` and `personal`. Each value has a filter button on `projects.html` (filter buttons are hand-written in that file, outside the generated grid). The first category sets the accent in the page hero, for example "| VFX BREAKDOWN". To add a category, update `CATEGORY_DISPLAY` and `CATEGORY_ACCENT` in `scripts/generate-project-unified.js`, `validCategories` in `scripts/update-projects-page.js`, `availableCategories` in `tools/js/project-studio.js`, `getCategoryDisplay` in `tools/js/utils.js`, and add a filter button to `projects.html`.
+
 The legacy fields `videoPoster`, `heroImage`, `mainVideo` and `beforeAfterMedia` are no longer supported. The validators warn if any of them appears in `projects-data.json`.
 
 ## Workflow Commands

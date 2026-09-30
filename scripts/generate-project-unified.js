@@ -25,6 +25,7 @@ const SITE_URL = 'https://mironauslander.com';
 
 // Category display mapping
 const CATEGORY_DISPLAY = {
+    'ai': 'AI',
     'vfx': 'Visual Effects',
     'motion': 'Motion Graphics',
     'editing': 'Video Editing',
@@ -33,6 +34,7 @@ const CATEGORY_DISPLAY = {
 
 // Category accent mapping for V2 hero overlay
 const CATEGORY_ACCENT = {
+    'ai': 'AI',
     'vfx': 'VFX BREAKDOWN',
     'motion': 'MOTION GRAPHICS',
     'editing': 'VIDEO EDITING',

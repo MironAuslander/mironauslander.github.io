@@ -18,6 +18,7 @@ The portfolio uses a **unified template-based generation system** that:
 
 #### Data Management
 - **Source of Truth**: `projects-data.json` - Single JSON file containing all project data
+- **Categories**: `category` is an array of `ai`, `vfx`, `motion`, `editing`, `personal` (each has a filter button in `projects.html`; adding one touches the generator, `update-projects-page.js`, Project Studio and `tools/js/utils.js`, see `docs/PROJECT-GENERATION-GUIDE.md`)
 - **Format**: `thumbnail`, `cover`, optional `coverPosition`, `heroMedia` and `processMedia` (legacy fields `videoPoster`, `heroImage`, `mainVideo`, `beforeAfterMedia` were removed; validators warn if they reappear)
 
 #### Templates

@@ -934,17 +934,45 @@ ul {
 }
 
 /* Project Filters */
+/* Desktop: filters on one row. Below 1100px: "All Projects" on its own row, categories below */
 .project-filters {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
     margin: 2rem 0;
     padding: 0 1rem 2rem;
     position: relative;
 }
 
-/* Orange separator line below filters */
+/* Short category labels are only used on phones */
+.filter-btn .label-short {
+    display: none;
+}
+
+@media (max-width: 1099px) {
+    .project-filters {
+        flex-wrap: wrap;
+    }
+
+    /* Zero-height flex item that forces a line break after "All Projects" */
+    .project-filters::before {
+        content: '';
+        flex-basis: 100%;
+        height: 0;
+        order: 1;
+    }
+
+    .project-filters .filter-btn {
+        order: 2;
+    }
+
+    .project-filters .filter-btn[data-filter="all"] {
+        order: 0;
+    }
+}
+
 .project-filters::after {
     content: '';
     position: absolute;
@@ -969,11 +997,11 @@ ul {
         rgba(0, 0, 0, 0.5) 100%);
     color: var(--text-gray);
     border: 2px solid rgba(176, 176, 176, 0.3);
-    padding: 0.75rem 1.75rem;
+    padding: 0.65rem 1.35rem;
     border-radius: 50px; /* More rounded like other buttons */
     font-family: var(--font-primary);
     font-weight: 600;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     letter-spacing: 0.5px;
     cursor: pointer;
     position: relative;
@@ -981,6 +1009,8 @@ ul {
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
     text-transform: uppercase;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 
 .filter-btn::before {
@@ -999,19 +1029,49 @@ ul {
     border-radius: 50px;
 }
 
-.filter-btn:hover::before,
-.filter-btn:focus::before {
+/* Hover glow only on devices with a real pointer: on touch screens :hover sticks
+   after a tap, so a just-deselected filter kept looking selected. Keyboard focus
+   uses :focus-visible, which mouse clicks and taps don't trigger. */
+.filter-btn:focus-visible::before {
     opacity: 1;
 }
 
-.filter-btn:hover,
-.filter-btn:focus {
+.filter-btn:focus-visible {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(255, 107, 107, 0.25),
                 0 0 40px rgba(255, 107, 107, 0.15);
     border-color: rgba(255, 107, 107, 0.5);
     color: var(--text-white);
     outline: none;
+}
+
+.filter-btn:focus {
+    outline: none;
+}
+
+@media (hover: hover) {
+    .filter-btn:hover::before {
+        opacity: 1;
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 107, 107, 0.25),
+                    0 0 40px rgba(255, 107, 107, 0.15);
+        border-color: rgba(255, 107, 107, 0.5);
+        color: var(--text-white);
+    }
+}
+
+/* "All Projects" is the primary filter: larger than the category filters */
+.filter-btn[data-filter="all"] {
+    padding: 0.9rem 1.6rem;
+    font-size: 1.1rem;
+}
+
+/* "AI" has the shortest label: give it the same width as "VFX" */
+.filter-btn[data-filter="ai"] {
+    min-width: 5.8em;
 }
 
 .filter-btn.active {
@@ -2979,15 +3039,34 @@ ul {
         font-size: 0.95rem;
     }
 
-    /* Project filters - stack nicely on mobile */
+    /* Project filters - two tiers on mobile, short category labels */
     .project-filters {
-        gap: 0.75rem;
-        margin: 1.5rem 0;
+        gap: 0.4rem;
+        margin: 1rem 0 1.5rem;
+        padding: 0 0 1.5rem;
     }
 
     .filter-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .filter-btn[data-filter="all"] {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .filter-btn[data-filter="ai"] {
+        min-width: 4.8em;
+    }
+
+    .filter-btn .label-full {
+        display: none;
+    }
+
+    .filter-btn .label-short {
+        display: inline;
     }
 
     /* Skills and services - single column on mobile */
@@ -3107,8 +3186,8 @@ ul {
 
     /* Project filters - better spacing on tablet/desktop */
     .project-filters {
-        gap: 1.5rem;
-        margin: 2.5rem 0;
+        gap: 1rem;
+        margin: 1.75rem 0 2.5rem;
         padding-bottom: 2.5rem;
     }
 

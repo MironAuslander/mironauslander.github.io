@@ -119,7 +119,7 @@ git push origin main
   "id": "1234",
   "displayTitle": "Short Title",
   "fullTitle": "Full Project Title",
-  "category": "vfx",  // or "motion", "editing", "personal"
+  "category": ["vfx"],  // any of "ai", "vfx", "motion", "editing", "personal"
   "description": "Project description...",
   "client": "Client Name",
   "year": 2025,
