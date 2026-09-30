@@ -35,7 +35,8 @@
       "Bash(find:*)",
       "mcp__stitch__list_projects",
       "Skill(design-md)",
-      "Skill(design-md:*)"
+      "Skill(design-md:*)",
+      "Bash(node scripts/validate-projects.js)"
     ],
     "deny": [],
     "ask": []

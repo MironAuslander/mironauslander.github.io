@@ -1,0 +1,1127 @@
+{
+  "projects": [
+    {
+      "id": "1238",
+      "displayTitle": "8200",
+      "fullTitle": "רוח-צפונית | 8200",
+      "category": [
+        "vfx",
+        "motion"
+      ],
+      "client": "Yoav Gross Productions",
+      "year": 2025,
+      "duration": "6 months",
+      "description": "This spy thriller mini-series centers on the renowned intelligence unit 8200, I was tasked with leading the talented special effects team. The primary challenges involved crafting the animation for the UI/UX design of \"bealet ha'ov\" artificial intelligence system, a pivotal technological element and a virtual character deeply integrated with the main cast.",
+      "role": [
+        "Animation",
+        "Compositing Lead",
+        "Motion Graphics"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Illustrator",
+        "Cinema 4D",
+        "Mocha",
+        "Redshift"
+      ],
+      "featured": true,
+      "featuredOrder": 1,
+      "projectsPageOrder": 1,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
+      "heroImage": "assets/images/projects/1238/1238.webp",
+      "mainVideo": "assets/videos/1238/project-1238.mp4",
+      "videoPoster": "assets/images/projects/1238/1238-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1238/1238-before-1.mp4",
+          "after": "assets/videos/1238/1238-after-1.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1238/project-1238.mp4",
+        "poster": "assets/images/projects/1238/1238-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1238/1238-before-1.mp4",
+          "after": "assets/videos/1238/1238-after-1.mp4",
+          "label": "UI Animation Compositing",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1699",
+      "displayTitle": "Survivor",
+      "fullTitle": "Survivor | הישרדות",
+      "category": [
+        "vfx"
+      ],
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 months",
+      "description": "",
+      "role": [
+        "Compositing",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Fusion"
+      ],
+      "featured": true,
+      "featuredOrder": 2,
+      "projectsPageOrder": 2,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
+      "heroImage": "assets/images/projects/1699/1699.webp",
+      "mainVideo": "assets/videos/1699/project-1699.mp4",
+      "videoPoster": "assets/images/projects/1699/1699-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1699/project-1699.mp4",
+        "poster": "assets/images/projects/1699/1699-poster.jpg"
+      },
+      "processMedia": [],
+      "hidden": false
+    },
+    {
+      "id": "1270",
+      "displayTitle": "Patrick",
+      "fullTitle": "Patrick | פטריק",
+      "category": [
+        "vfx"
+      ],
+      "client": "Yoav Gross Productions",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "A crime thriller series, created by and starring Shalom Assayag. The series features realistic FX and carefully planned, Mexican-style gunfights. The trick was making sure all these big action moments fit smoothly into the story and looked real in every shot.",
+      "role": [
+        "Compositing",
+        "Motion Tracking",
+        "Simulation"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "EmberGen",
+        "Fusion",
+        "DaVinci Resolve",
+        "Mocha"
+      ],
+      "featured": true,
+      "featuredOrder": 3,
+      "projectsPageOrder": 3,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
+      "heroImage": "assets/images/projects/1270/1270.webp",
+      "mainVideo": "assets/videos/1270/project-1270.mp4",
+      "videoPoster": "assets/images/projects/1270/1270-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-1.mp4",
+          "after": "assets/videos/1270/1270-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-2.mp4",
+          "after": "assets/videos/1270/1270-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1270/1270-before-3.mp4",
+          "after": "assets/videos/1270/1270-after-3.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1270/project-1270.mp4",
+        "poster": "assets/images/projects/1270/1270-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1270/1270-before-1.mp4",
+          "after": "assets/videos/1270/1270-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1537",
+      "displayTitle": "The Truth",
+      "fullTitle": "The Truth | האמת",
+      "category": [
+        "vfx"
+      ],
+      "client": "Endemol Shine | Kan 11",
+      "year": 2025,
+      "duration": "8 months",
+      "description": "A suspense drama series that explores the complexities of truth and justice, loosely inspired by the Tair Rada murder case. My involvement spanned the entire visual effects pipeline, from pre-production planning through to the final post-production stages of the series. That includes intricate set extensions designed to amplify the narrative's atmosphere, and much more 🧙‍♂️",
+      "role": [
+        "Compositing",
+        "Motion Graphics",
+        "VFX Supervision",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Illustrator",
+        "Fusion",
+        "DaVinci Resolve",
+        "Mocha",
+        "AI"
+      ],
+      "featured": true,
+      "featuredOrder": 5,
+      "projectsPageOrder": 4,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
+      "heroImage": "assets/images/projects/1537/1537.webp",
+      "mainVideo": "assets/videos/1537/project-1537.mp4",
+      "videoPoster": "assets/images/projects/1537/1537-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-1.mp4",
+          "after": "assets/videos/1537/1537-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-2.mp4",
+          "after": "assets/videos/1537/1537-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1537/1537-before-3.mp4",
+          "after": "assets/videos/1537/1537-after-3.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1537/project-1537.mp4",
+        "poster": "assets/images/projects/1537/1537-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1537/1537-before-1.mp4",
+          "after": "assets/videos/1537/1537-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1798",
+      "displayTitle": "Big Brother",
+      "fullTitle": "Big Brother | האח הגדול",
+      "category": [
+        "vfx"
+      ],
+      "client": "Endemol | Reshet 13",
+      "year": 2025,
+      "duration": "4 weeks",
+      "description": "During the introduction phase of the Big Brother program, blank screens in the studio were transformed into dynamic displays, with content specifically designed and transplanted to reflect the unique character of each entering participant.",
+      "role": [
+        "Compositing",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Mocha"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 5,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
+      "heroImage": "assets/images/projects/1798/1798.webp",
+      "mainVideo": "assets/videos/1798/project-1798.mp4",
+      "videoPoster": "assets/images/projects/1798/1798-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-1.mp4",
+          "after": "assets/videos/1798/1798-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-2.mp4",
+          "after": "assets/videos/1798/1798-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1798/1798-before-3.mp4",
+          "after": "assets/videos/1798/1798-after-3.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1798/project-1798.mp4",
+        "poster": "assets/images/projects/1798/1798-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-1.mp4",
+          "after": "assets/videos/1798/1798-after-1.mp4",
+          "label": "Screen Replacement"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-2.mp4",
+          "after": "assets/videos/1798/1798-after-2.mp4",
+          "label": "Color Grading",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1798/1798-before-3.mp4",
+          "after": "assets/videos/1798/1798-after-3.mp4",
+          "label": "Final Composite",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1711",
+      "displayTitle": "Fauda",
+      "fullTitle": "Fauda | פאודה",
+      "category": [
+        "vfx"
+      ],
+      "client": "Tender Productions LTD",
+      "year": 2015,
+      "duration": "6 months",
+      "description": "Fauda is a suspense drama starring Lior Raz that follows the life of a commander in an elite undercover counter-terrorism units. The series is known for its authenticity, which was expressed in the creation of the effects and the design of elements that faithfully accompany the work and intense lives of the members of this special unit. The project's success was almost immediate, highlighting the compelling nature of its storytelling and production.",
+      "role": [
+        "Compositing",
+        "Motion Graphics",
+        "VFX Supervision"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Mocha"
+      ],
+      "featured": true,
+      "featuredOrder": 6,
+      "projectsPageOrder": 6,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1711/1711-thumb.webp",
+      "heroImage": "assets/images/projects/1711/1711.webp",
+      "mainVideo": "assets/videos/1711/project-1711.mp4",
+      "videoPoster": "assets/images/projects/1711/1711-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-1.mp4",
+          "after": "assets/videos/1711/1711-after-1.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-2.mp4",
+          "after": "assets/videos/1711/1711-after-2.mp4"
+        },
+        {
+          "type": "video",
+          "before": "assets/videos/1711/1711-before-3.mp4",
+          "after": "assets/videos/1711/1711-after-3.mp4"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1711/project-1711.mp4",
+        "poster": "assets/images/projects/1711/1711-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-video",
+          "before": "assets/videos/1711/1711-before-1.mp4",
+          "after": "assets/videos/1711/1711-after-1.mp4",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1654",
+      "displayTitle": "Personetics",
+      "fullTitle": "Personetics.com",
+      "category": [
+        "motion"
+      ],
+      "client": "Personetics Technologies LTD",
+      "year": 2024,
+      "duration": "4 weeks",
+      "description": "The project aims to challenge the conventional design aesthetic by utilizing a white background and predominantly light-colored content, this endeavor presents a more demanding design task. The objective was to achieving sense of wonder and sophistication, which typically relies on dark backgrounds and glowing elements, with white spaces and light tones color palette, and you will have to trust me that it's much harder then it sounds 😎",
+      "role": [
+        "Motion Graphics",
+        "Rendering",
+        "Lighting"
+      ],
+      "tools": [
+        "After Effects",
+        "Cinema 4D",
+        "Redshift"
+      ],
+      "featured": true,
+      "featuredOrder": 4,
+      "projectsPageOrder": 7,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
+      "heroImage": "assets/images/projects/1654/1654.webp",
+      "mainVideo": "assets/videos/1654/project-1654.mp4",
+      "videoPoster": "assets/images/projects/1654/1654-poster.jpg",
+      "beforeAfterMedia": [
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-1.webp",
+          "after": "assets/images/projects/1654/1654-after-1.webp"
+        },
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-2.webp",
+          "after": "assets/images/projects/1654/1654-after-2.webp"
+        },
+        {
+          "type": "image",
+          "before": "assets/images/projects/1654/1654-before-3.webp",
+          "after": "assets/images/projects/1654/1654-after-3.webp"
+        }
+      ],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1654/project-1654.mp4",
+        "poster": "assets/images/projects/1654/1654-poster.jpg"
+      },
+      "processMedia": [
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-1.webp",
+          "after": "assets/images/projects/1654/1654-after-1.webp",
+          "label": "Comparison 1",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-2.webp",
+          "after": "assets/images/projects/1654/1654-after-2.webp",
+          "label": "Comparison 2",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        },
+        {
+          "type": "before-after-image",
+          "before": "assets/images/projects/1654/1654-before-3.webp",
+          "after": "assets/images/projects/1654/1654-after-3.webp",
+          "label": "Comparison 3",
+          "labelBefore": "Before",
+          "labelAfter": "After"
+        }
+      ],
+      "hidden": false
+    },
+    {
+      "id": "1353",
+      "displayTitle": "IAI",
+      "fullTitle": "Israel Aerospace Industries (IAI)",
+      "category": [
+        "motion"
+      ],
+      "client": "Stuff Partners LTD",
+      "year": 2024,
+      "duration": "2 weeks",
+      "description": "\"Soft Landing\" video for Employee Recruitment Day, Israel Aerospace Industries (IAI)",
+      "role": [
+        "Animation",
+        "Motion Graphics",
+        "Motion Design"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Illustrator",
+        "AI",
+        "Runway AI"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 8,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
+      "heroImage": "assets/images/projects/1353/1353.webp",
+      "mainVideo": "assets/videos/1353/project-1353.mp4",
+      "videoPoster": "assets/images/projects/1353/1353-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1353/project-1353.mp4",
+        "poster": "assets/images/projects/1353/1353-poster.jpg"
+      },
+      "processMedia": [],
+      "hidden": false
+    },
+    {
+      "id": "1661",
+      "displayTitle": "The Amazing Race",
+      "fullTitle": "The Amazing Race | המירוץ למיליון",
+      "category": [
+        "vfx"
+      ],
+      "client": "",
+      "year": 2025,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Compositing Lead",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Mocha"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 9,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
+      "heroImage": "assets/images/projects/1661/1661.webp",
+      "mainVideo": "assets/videos/1661/project-1661.mp4",
+      "videoPoster": "assets/images/projects/1661/1661-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1661/project-1661.mp4",
+        "poster": "assets/images/projects/1661/1661-poster.jpg"
+      },
+      "processMedia": [],
+      "hidden": false
+    },
+    {
+      "id": "1003",
+      "displayTitle": "Macabi Stars",
+      "fullTitle": "Macabi Stars",
+      "category": [
+        "motion",
+        "editing"
+      ],
+      "client": "Stuff Partners LTD",
+      "year": 2024,
+      "duration": "3 weeks",
+      "description": "Explainer video",
+      "role": [
+        "Motion Graphics"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Illustrator"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 10,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
+      "heroImage": "assets/images/projects/1003/1003.webp",
+      "mainVideo": "assets/videos/1003/project-1003.mp4",
+      "videoPoster": "assets/images/projects/1003/1003-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1003/project-1003.mp4",
+        "poster": "assets/images/projects/1003/1003-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1004",
+      "displayTitle": "Macabi",
+      "fullTitle": "Macabi",
+      "category": [
+        "motion"
+      ],
+      "client": "Stuff Partners LTD",
+      "year": 2024,
+      "duration": "2 weeks",
+      "description": "Explainer video",
+      "role": [
+        "Motion Graphics"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Illustrator"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 11,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
+      "heroImage": "assets/images/projects/1004/1004.webp",
+      "mainVideo": "assets/videos/1004/project-1004.mp4",
+      "videoPoster": "assets/images/projects/1004/1004-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1004/project-1004.mp4",
+        "poster": "assets/images/projects/1004/1004-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1528",
+      "displayTitle": "Rehearsals",
+      "fullTitle": " Rehearsals | חזרות",
+      "category": [
+        "vfx"
+      ],
+      "client": "Norma Productions",
+      "year": 2020,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Compositing"
+      ],
+      "tools": [],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 12,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
+      "heroImage": "assets/images/projects/1528/1528.webp",
+      "mainVideo": "assets/videos/1528/project-1528.mp4",
+      "videoPoster": "assets/images/projects/1528/1528-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1528/project-1528.mp4",
+        "poster": "assets/images/projects/1528/1528-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1470",
+      "displayTitle": "Terminal X",
+      "fullTitle": "Terminal X | Sponsor ID",
+      "category": [
+        "vfx",
+        "motion",
+        "editing"
+      ],
+      "client": "Peach",
+      "year": 2025,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Motion Graphics",
+        "Color Grading"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 13,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
+      "heroImage": "assets/images/projects/1470/1470.webp",
+      "mainVideo": "assets/videos/1470/project-1470.mp4",
+      "videoPoster": "assets/images/projects/1470/1470-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1470/project-1470.mp4",
+        "poster": "assets/images/projects/1470/1470-poster.jpg"
+      },
+      "processMedia": [],
+      "hidden": false
+    },
+    {
+      "id": "1828",
+      "displayTitle": "Electra Power",
+      "fullTitle": "Electra Sunrise | Sponsor ID",
+      "category": [
+        "vfx",
+        "motion"
+      ],
+      "client": "Market Masters",
+      "year": 2022,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Compositing",
+        "Motion Graphics"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 14,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
+      "heroImage": "assets/images/projects/1828/1828.webp",
+      "mainVideo": "assets/videos/1828/project-1828.mp4",
+      "videoPoster": "assets/images/projects/1828/1828-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1828/project-1828.mp4",
+        "poster": "assets/images/projects/1828/1828-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1160",
+      "displayTitle": "Gabriella",
+      "fullTitle": "Gabriella",
+      "category": [
+        "vfx"
+      ],
+      "client": "TLVDreamPictures",
+      "year": 2025,
+      "duration": "1 month",
+      "description": "",
+      "role": [
+        "Compositing",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "Photoshop",
+        "Blender",
+        "Fusion",
+        "Mocha"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 15,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
+      "heroImage": "assets/images/projects/1160/1160.webp",
+      "mainVideo": "assets/videos/1160/project-1160.mp4",
+      "videoPoster": "assets/images/projects/1160/1160-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1160/project-1160.mp4",
+        "poster": "assets/images/projects/1160/1160-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1336",
+      "displayTitle": "The Chef",
+      "fullTitle": "הטבח | The Chef",
+      "category": [
+        "vfx"
+      ],
+      "client": "Kastina LTD",
+      "year": 2021,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Compositing",
+        "Motion Tracking"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop",
+        "Mocha"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 16,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
+      "heroImage": "assets/images/projects/1336/1336.webp",
+      "mainVideo": "assets/videos/1336/project-1336.mp4",
+      "videoPoster": "assets/images/projects/1336/1336-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1336/project-1336.mp4",
+        "poster": "assets/images/projects/1336/1336-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1092",
+      "displayTitle": "FlyCard",
+      "fullTitle": "FlyCard - ELAL | Sponsor ID",
+      "category": [
+        "motion"
+      ],
+      "client": "Peach",
+      "year": null,
+      "duration": "",
+      "description": "",
+      "role": [
+        "Motion Graphics",
+        "Visual Effects"
+      ],
+      "tools": [
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 17,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
+      "heroImage": "assets/images/projects/1092/1092.webp",
+      "mainVideo": "assets/videos/1092/project-1092.mp4",
+      "videoPoster": "assets/images/projects/1092/1092-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1092/project-1092.mp4",
+        "poster": "assets/images/projects/1092/1092-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1509",
+      "displayTitle": "Gaming Cinematics",
+      "fullTitle": "AAA Game Cinematic Sequences",
+      "category": "vfx",
+      "client": "Game Studio",
+      "year": "2024",
+      "duration": "4 months",
+      "description": "Cinematic sequences for AAA video game including character animation, environment design, and visual effects.",
+      "role": [
+        "Cinematic Director",
+        "VFX Supervision",
+        "Lighting & Rendering",
+        "Compositing"
+      ],
+      "tools": [
+        "Unreal Engine",
+        "Maya",
+        "Houdini",
+        "Nuke"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 18,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
+      "heroImage": "assets/images/projects/1509/1509.webp",
+      "mainVideo": "assets/videos/1509/project-1509.mp4",
+      "videoPoster": "assets/images/projects/1509/1509-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1509/project-1509.mp4",
+        "poster": "assets/images/projects/1509/1509-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1029",
+      "displayTitle": "Architectural Visualization",
+      "fullTitle": "Luxury Development Visualization",
+      "category": "motion",
+      "client": "Architecture Firm",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "Photorealistic architectural visualization featuring animated walkthroughs and environmental storytelling.",
+      "role": [
+        "3D Visualization",
+        "Environment Design",
+        "Lighting Artist",
+        "Animation"
+      ],
+      "tools": [
+        "3ds Max",
+        "Corona",
+        "After Effects",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 19,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
+      "heroImage": "assets/images/projects/1029/1029.webp",
+      "mainVideo": "assets/videos/1029/project-1029.mp4",
+      "videoPoster": "assets/images/projects/1029/1029-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1029/project-1029.mp4",
+        "poster": "assets/images/projects/1029/1029-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1459",
+      "displayTitle": "Social Media Campaign",
+      "fullTitle": "Viral Social Media Campaign",
+      "category": "personal",
+      "client": "Lifestyle Brand",
+      "year": "2024",
+      "duration": "2 weeks",
+      "description": "Fast-paced social media campaign with platform-specific content optimized for engagement and shareability.",
+      "role": [
+        "Content Creation",
+        "Motion Graphics",
+        "Platform Optimization",
+        "Campaign Strategy"
+      ],
+      "tools": [
+        "After Effects",
+        "Premiere Pro",
+        "Photoshop",
+        "Spark AR"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 20,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
+      "heroImage": "assets/images/projects/1459/1459.webp",
+      "mainVideo": "assets/videos/1459/project-1459.mp4",
+      "videoPoster": "assets/images/projects/1459/1459-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1459/project-1459.mp4",
+        "poster": "assets/images/projects/1459/1459-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1584",
+      "displayTitle": "Educational Series",
+      "fullTitle": "Educational Animation Series",
+      "category": "motion",
+      "client": "Education Platform",
+      "year": "2024",
+      "duration": "3 months",
+      "description": "Educational animation series making complex topics accessible through engaging visual storytelling and clear information design.",
+      "role": [
+        "Animation Director",
+        "Educational Design",
+        "Storyboarding",
+        "Voice Direction"
+      ],
+      "tools": [
+        "After Effects",
+        "Illustrator",
+        "Audition",
+        "Character Animator"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 21,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
+      "heroImage": "assets/images/projects/1584/1584.webp",
+      "mainVideo": "assets/videos/1584/project-1584.mp4",
+      "videoPoster": "assets/images/projects/1584/1584-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1584/project-1584.mp4",
+        "poster": "assets/images/projects/1584/1584-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1292",
+      "displayTitle": "Concert Visuals",
+      "fullTitle": "Live Concert Visual Production",
+      "category": "vfx",
+      "client": "Music Artist",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Live visual production for concert tour including LED wall content, projection mapping, and real-time effects.",
+      "role": [
+        "Visual Director",
+        "Live VFX",
+        "Projection Mapping",
+        "Content Creation"
+      ],
+      "tools": [
+        "Notch",
+        "TouchDesigner",
+        "After Effects",
+        "Resolume"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 22,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
+      "heroImage": "assets/images/projects/1292/1292.webp",
+      "mainVideo": "assets/videos/1292/project-1292.mp4",
+      "videoPoster": "assets/images/projects/1292/1292-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1292/project-1292.mp4",
+        "poster": "assets/images/projects/1292/1292-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1626",
+      "displayTitle": "Healthcare Innovation",
+      "fullTitle": "Healthcare Technology Showcase",
+      "category": "motion",
+      "client": "MedTech Company",
+      "year": "2024",
+      "duration": "1 month",
+      "description": "Medical technology visualization combining 3D animation with data visualization to showcase innovative healthcare solutions.",
+      "role": [
+        "Medical Visualization",
+        "3D Animation",
+        "Data Design",
+        "Technical Accuracy"
+      ],
+      "tools": [
+        "Cinema 4D",
+        "After Effects",
+        "Houdini",
+        "Redshift"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 23,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
+      "heroImage": "assets/images/projects/1626/1626.webp",
+      "mainVideo": "assets/videos/1626/project-1626.mp4",
+      "videoPoster": "assets/images/projects/1626/1626-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1626/project-1626.mp4",
+        "poster": "assets/images/projects/1626/1626-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1582",
+      "displayTitle": "Automotive Commercial",
+      "fullTitle": "Luxury Automotive Commercial",
+      "category": "vfx",
+      "client": "Auto Manufacturer",
+      "year": "2024",
+      "duration": "6 weeks",
+      "description": "High-end automotive commercial featuring photorealistic car visualization, dynamic environments, and cinematic effects.",
+      "role": [
+        "VFX Supervisor",
+        "Car Rigging",
+        "Environment Design",
+        "Compositing"
+      ],
+      "tools": [
+        "Maya",
+        "V-Ray",
+        "Nuke",
+        "After Effects"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 24,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
+      "heroImage": "assets/images/projects/1582/1582.webp",
+      "mainVideo": "assets/videos/1582/project-1582.mp4",
+      "videoPoster": "assets/images/projects/1582/1582-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1582/project-1582.mp4",
+        "poster": "assets/images/projects/1582/1582-poster.jpg"
+      },
+      "processMedia": []
+    },
+    {
+      "id": "1453",
+      "displayTitle": "Museum Exhibition",
+      "fullTitle": "Interactive Museum Exhibition",
+      "category": "motion",
+      "client": "National Museum",
+      "year": "2024",
+      "duration": "2 months",
+      "description": "Interactive museum exhibition combining historical footage with modern animation techniques to create immersive educational experiences.",
+      "role": [
+        "Exhibition Design",
+        "Interactive Media",
+        "Historical Recreation",
+        "Visitor Experience"
+      ],
+      "tools": [
+        "After Effects",
+        "TouchDesigner",
+        "Unity",
+        "Photoshop"
+      ],
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 25,
+      "visible": true,
+      "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
+      "heroImage": "assets/images/projects/1453/1453.webp",
+      "mainVideo": "assets/videos/1453/project-1453.mp4",
+      "videoPoster": "assets/images/projects/1453/1453-poster.jpg",
+      "beforeAfterMedia": [],
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/1453/project-1453.mp4",
+        "poster": "assets/images/projects/1453/1453-poster.jpg"
+      },
+      "processMedia": []
+    }
+  ],
+  "metadata": {
+    "version": "3.0",
+    "lastUpdated": "2024-09-26",
+    "totalProjects": 25,
+    "featuredCount": 6,
+    "dataStructure": {
+      "mediaTypes": [
+        "video",
+        "image"
+      ],
+      "beforeAfterSupport": true,
+      "dynamicContent": true
+    },
+    "lastMigration": "2025-09-27T17:48:45.568Z",
+    "format": "advanced"
+  }
+}
