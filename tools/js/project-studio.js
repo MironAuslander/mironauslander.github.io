@@ -794,13 +794,14 @@ class ProjectStudio {
                 const isVideo = e.target.value === 'video';
                 document.getElementById('heroVideoConfig').style.display = isVideo ? 'block' : 'none';
                 document.getElementById('heroImageConfig').style.display = isVideo ? 'none' : 'block';
+                this.updateImagePreviews();
                 this.hasChanges = true;
                 this.updateChangeIndicator();
             });
         });
 
         // Project image inputs: live previews + change tracking
-        ['projectThumbnail', 'projectCover', 'coverPositionDesktop', 'coverPositionMobile', 'heroVideoPoster'].forEach(id => {
+        ['projectThumbnail', 'projectCover', 'coverPositionDesktop', 'coverPositionMobile', 'heroVideoPoster', 'heroImageSrc'].forEach(id => {
             document.getElementById(id)?.addEventListener('input', () => {
                 this.updateImagePreviews();
                 this.hasChanges = true;
@@ -840,9 +841,9 @@ class ProjectStudio {
             const input = document.getElementById(preview.dataset.previewFor);
             let path = input ? input.value.trim() : '';
 
-            // Cover falls back to the video poster, same as the generator
+            // Cover falls back to the hero image / video poster, same as the generator
             if (!path && preview.dataset.previewFor === 'projectCover') {
-                path = document.getElementById('heroVideoPoster').value.trim();
+                path = Utils.getCoverFallback(this.getHeroMediaConfiguration());
             }
 
             const img = preview.querySelector('img');
@@ -1353,17 +1354,7 @@ class ProjectStudio {
     }
 
     getMediaConfiguration() {
-        // Get hero configuration
-        const heroType = document.querySelector('input[name="heroType"]:checked').value;
-        const heroMedia = { type: heroType };
-
-        if (heroType === 'video') {
-            heroMedia.src = document.getElementById('heroVideoSrc').value;
-            heroMedia.poster = document.getElementById('heroVideoPoster').value;
-        } else {
-            heroMedia.src = document.getElementById('heroImageSrc').value;
-            heroMedia.alt = document.getElementById('heroImageAlt').value;
-        }
+        const heroMedia = this.getHeroMediaConfiguration();
 
         // Get process media
         const processMedia = this.processMediaBlocks.map(block => {
@@ -1373,6 +1364,11 @@ class ProjectStudio {
             if (!data.type) {
                 data.type = block.type;
             }
+
+            // Trim paths so the generator's .jpg -> .webp rewrite and the validators match
+            ['src', 'poster', 'before', 'after'].forEach(key => {
+                if (typeof data[key] === 'string') data[key] = data[key].trim();
+            });
 
             // Clean empty fields (except type)
             Object.keys(data).forEach(key => {
@@ -1395,6 +1391,23 @@ class ProjectStudio {
             heroMedia,
             processMedia
         };
+    }
+
+    getHeroMediaConfiguration() {
+        const heroType = document.querySelector('input[name="heroType"]:checked').value;
+        const heroMedia = { type: heroType };
+
+        // Trim paths so the generator's .jpg -> .webp rewrite matches; drop an empty poster
+        if (heroType === 'video') {
+            heroMedia.src = document.getElementById('heroVideoSrc').value.trim();
+            const poster = document.getElementById('heroVideoPoster').value.trim();
+            if (poster) heroMedia.poster = poster;
+        } else {
+            heroMedia.src = document.getElementById('heroImageSrc').value.trim();
+            heroMedia.alt = document.getElementById('heroImageAlt').value;
+        }
+
+        return heroMedia;
     }
 
     async saveAllChanges() {

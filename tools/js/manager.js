@@ -154,6 +154,11 @@ class ProjectManager {
             panel.hidden = !panel.hidden;
         });
 
+        const refreshImages = Utils.debounce(() => {
+            cardEl.querySelector('.card-thumbnail img').src = Utils.getProjectThumbnail(project);
+            this.updateAssetBadges(cardEl, project);
+        }, 400);
+
         panel.querySelectorAll('input[data-field]').forEach(input => {
             const field = input.dataset.field;
             input.value = images[field];
@@ -164,14 +169,13 @@ class ProjectManager {
                 input.placeholder = 'No video hero - edit hero type in Project Studio';
             }
 
-            input.addEventListener('input', Utils.debounce(() => {
+            // Apply edits to the data right away so Save never misses them;
+            // only the image probes (network) are debounced
+            input.addEventListener('input', () => {
                 this.setImageField(project, field, input.value.trim());
-                if (field === 'thumbnail') {
-                    cardEl.querySelector('.card-thumbnail img').src = Utils.getProjectThumbnail(project);
-                }
-                this.updateAssetBadges(cardEl, project);
                 this.checkForChanges();
-            }, 400));
+                refreshImages();
+            });
         });
 
         this.updateAssetBadges(cardEl, project);
@@ -196,20 +200,29 @@ class ProjectManager {
         await Promise.all(Array.from(badges).map(async badge => {
             const asset = badge.dataset.asset;
             const path = images[asset];
-            badge.classList.remove('ok', 'missing', 'unset', 'fallback');
+            // Tag this probe so a slower, older probe can't overwrite a newer result
+            const probeId = (Number(badge.dataset.probeId) || 0) + 1;
+            badge.dataset.probeId = probeId;
+
+            const setState = (state, title) => {
+                if (Number(badge.dataset.probeId) !== probeId) return;
+                badge.classList.remove('ok', 'missing', 'unset', 'fallback');
+                badge.classList.add(state);
+                badge.title = title;
+            };
 
             if (!path) {
-                // No cover: page falls back to the video poster
-                const isFallback = asset === 'cover' && images.poster;
-                badge.classList.add(isFallback ? 'fallback' : 'unset');
-                badge.title = isFallback ? 'Cover not set - uses video poster' : `${badge.textContent} not set`;
+                // No cover: page falls back to the hero image / video poster
+                const fallback = asset === 'cover' && Utils.getCoverFallback(project.heroMedia);
+                const source = project.heroMedia && project.heroMedia.type === 'image' ? 'hero image' : 'video poster';
+                setState(fallback ? 'fallback' : 'unset',
+                    fallback ? `Cover not set - uses ${source}` : `${badge.textContent} not set`);
                 return;
             }
 
             const url = Utils.getServedImage(path);
             const ok = await Utils.probeImage(url);
-            badge.classList.add(ok ? 'ok' : 'missing');
-            badge.title = `${ok ? '✓' : '✗ Missing:'} ${url.replace('../', '')}`;
+            setState(ok ? 'ok' : 'missing', `${ok ? '✓' : '✗ Missing:'} ${url.replace('../', '')}`);
         }));
     }
 

@@ -109,10 +109,17 @@ const Utils = {
     },
 
     // URL the site actually serves for an image path from projects-data.json.
-    // Same rule as the generator: .jpg paths are served as their .webp twin.
+    // Mirrors scripts/lib/media-rules.js: .jpg paths are served as their .webp twin.
     getServedImage(imagePath) {
         if (!imagePath) return '';
         return `../${imagePath.replace(/\.jpg$/i, '.webp')}`;
+    },
+
+    // Image the page uses as cover when no cover is set (mirrors scripts/lib/media-rules.js):
+    // the hero image for image heroes, the video poster for video heroes
+    getCoverFallback(heroMedia) {
+        if (!heroMedia) return '';
+        return (heroMedia.type === 'image' ? heroMedia.src : heroMedia.poster) || '';
     },
 
     // The three project image roles: card thumbnail, hero cover, video poster

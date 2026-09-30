@@ -10,6 +10,15 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+    LEGACY_FIELDS,
+    servedImage,
+    imageTwins,
+    getCoverPath,
+    missingCoverMessage,
+    isBeforeAfter,
+    hasBeforeAfter: projectHasBeforeAfter
+} = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
@@ -94,18 +103,9 @@ function checkMediaFile(mediaPath) {
     };
 }
 
-// Fields removed in favour of cover / heroMedia / processMedia
-const LEGACY_FIELDS = ['videoPoster', 'heroImage', 'mainVideo', 'beforeAfterMedia'];
-
-// Path the site serves for an image (.jpg in JSON -> .webp twin), same rule as the generator
-function servedImage(imagePath) {
-    return imagePath ? imagePath.replace(/\.jpg$/i, '.webp') : imagePath;
-}
-
 // Check an image and, for .jpg paths, its .webp twin
 function checkImageTwins(imagePath) {
-    const files = /\.jpg$/i.test(imagePath) ? [imagePath, servedImage(imagePath)] : [imagePath];
-    return files.map(checkMediaFile);
+    return imageTwins(imagePath).map(checkMediaFile);
 }
 
 // Validate HTML structure
@@ -120,9 +120,7 @@ function validateHTMLStructure(htmlContent, project) {
     ];
 
     // Add before-after.js if project has before/after media
-    const hasBeforeAfter = !!(project.processMedia && project.processMedia.some(item =>
-        item.type === 'before-after-video' || item.type === 'before-after-image'
-    ));
+    const hasBeforeAfter = projectHasBeforeAfter(project);
 
     if (hasBeforeAfter) {
         requiredScripts.push({ name: 'before-after.js', path: '../assets/js/before-after.js' });
@@ -177,9 +175,7 @@ function validateHTMLStructure(htmlContent, project) {
     // Check for before-after containers if project has them
     if (hasBeforeAfter) {
         const containerCount = (htmlContent.match(/before-after-container/g) || []).length;
-        const expectedCount = project.processMedia.filter(item =>
-            item.type === 'before-after-video' || item.type === 'before-after-image'
-        ).length;
+        const expectedCount = project.processMedia.filter(isBeforeAfter).length;
 
         if (containerCount !== expectedCount) {
             warnings.push(`Expected ${expectedCount} before-after containers, found ${containerCount}`);
@@ -191,8 +187,8 @@ function validateHTMLStructure(htmlContent, project) {
         if (!htmlContent.includes('hero-cover')) {
             warnings.push('V2 hero section missing hero-cover image');
         } else {
-            // Cover falls back to the video poster when no cover is set
-            const coverPath = project.cover || (project.heroMedia && project.heroMedia.poster);
+            // Cover falls back to the hero image / video poster when no cover is set
+            const coverPath = getCoverPath(project);
             if (coverPath && !htmlContent.includes(`class="hero-cover" src="../${servedImage(coverPath)}"`)) {
                 warnings.push(`hero-cover does not match cover in JSON (${servedImage(coverPath)}) - regenerate the page`);
             }
@@ -280,27 +276,34 @@ function validateProject(project, index, total) {
         } else if (required) {
             issues.push(`Missing required field: ${field}`);
         } else if (field === 'cover') {
-            warnings.push('No cover set - page uses the video poster as cover');
+            warnings.push(missingCoverMessage(project));
         }
     });
 
     // Check process media
     if (project.processMedia) {
         project.processMedia.forEach((item, idx) => {
-            if (item.type === 'before-after-video' || item.type === 'before-after-image') {
-                const beforeResult = checkMediaFile(item.before);
-                const afterResult = checkMediaFile(item.after);
-
-                if (!beforeResult.exists) {
-                    issues.push(`Missing process media before #${idx + 1}: ${item.before}`);
-                }
-                if (!afterResult.exists) {
-                    issues.push(`Missing process media after #${idx + 1}: ${item.after}`);
-                }
+            if (isBeforeAfter(item)) {
+                ['before', 'after'].forEach(key => {
+                    if (!item[key]) {
+                        issues.push(`Process media #${idx + 1} has no ${key}`);
+                    } else if (!checkMediaFile(item[key]).exists) {
+                        issues.push(`Missing process media ${key} #${idx + 1}: ${item[key]}`);
+                    }
+                });
             } else if (item.type === 'video' || item.type === 'image') {
-                const result = checkMediaFile(item.src);
-                if (!result.exists) {
+                if (!item.src) {
+                    issues.push(`Process media #${idx + 1} has no src`);
+                } else if (!checkMediaFile(item.src).exists) {
                     issues.push(`Missing process media #${idx + 1}: ${item.src}`);
+                }
+                // Video posters are served as their .webp twin
+                if (item.type === 'video' && item.poster) {
+                    checkImageTwins(item.poster).forEach(result => {
+                        if (!result.exists) {
+                            warnings.push(`Missing process media poster #${idx + 1}: ${result.path}`);
+                        }
+                    });
                 }
             }
         });
@@ -308,15 +311,19 @@ function validateProject(project, index, total) {
 
     // Check hero media
     if (project.heroMedia) {
-        // Image heroes are served as their .webp twin, so check both files
-        const heroResults = project.heroMedia.type === 'image'
-            ? checkImageTwins(project.heroMedia.src)
-            : [checkMediaFile(project.heroMedia.src)];
-        heroResults.forEach(result => {
-            if (!result.exists) {
-                issues.push(`Missing hero media: ${result.path}`);
-            }
-        });
+        if (!project.heroMedia.src) {
+            issues.push(`Hero ${project.heroMedia.type} has no src`);
+        } else {
+            // Image heroes are served as their .webp twin, so check both files
+            const heroResults = project.heroMedia.type === 'image'
+                ? checkImageTwins(project.heroMedia.src)
+                : [checkMediaFile(project.heroMedia.src)];
+            heroResults.forEach(result => {
+                if (!result.exists) {
+                    issues.push(`Missing hero media: ${result.path}`);
+                }
+            });
+        }
         if (project.heroMedia.poster) {
             checkImageTwins(project.heroMedia.poster).forEach(posterResult => {
                 if (!posterResult.exists) {

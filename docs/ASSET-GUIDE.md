@@ -19,7 +19,7 @@ Why these values:
 - **Thumbnails.** The current thumbnails are 400×225. Phones draw the card 330–700 CSS px wide at 2–3× pixel density, so 400 px images look soft.
 - **Cover.** On phones the portrait crop draws the image about 900 CSS px wide at 3× density. On retina desktops the 1.12 zoom enlarges it further. A 1920 source gets upscaled in both cases, so use 2560.
 - **Video poster.** The player is at most 900 CSS px wide and shows the whole frame, so 1920×1080 is enough. It is only visible before playback starts.
-- **Separate files.** The cover and the video poster are separate files with separate jobs. If a project has no `cover`, the page falls back to the video poster as cover, and the validators warn.
+- **Separate files.** The cover and the video poster are separate files with separate jobs. If a project has no `cover`, the page falls back to the hero image (image heroes) or the video poster (video heroes) as cover, and the validators warn.
 - **Size targets.** The cover is the first large image to load, so keep it light. Every A/B pair uses `preload="auto"`, so all pairs download as soon as the page opens. The Project 1798 page currently loads about 100 MB.
 
 ## 2. Cover safe area

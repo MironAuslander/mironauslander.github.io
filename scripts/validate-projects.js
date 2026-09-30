@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { LEGACY_FIELDS, imageTwins, missingCoverMessage, hasBeforeAfter: projectHasBeforeAfter } = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
@@ -26,9 +27,6 @@ function loadProjectsData() {
     }
 }
 
-// Fields removed in favour of cover / heroMedia / processMedia
-const LEGACY_FIELDS = ['videoPoster', 'heroImage', 'mainVideo', 'beforeAfterMedia'];
-
 // Check if file exists
 function fileExists(filePath) {
     try {
@@ -40,10 +38,7 @@ function fileExists(filePath) {
 
 // Images stored as .jpg are served as their .webp twin, so both must exist
 function missingImageFiles(imagePath) {
-    const files = /.jpg$/i.test(imagePath)
-        ? [imagePath, imagePath.replace(/.jpg$/i, '.webp')]
-        : [imagePath];
-    return files.filter(file => !fileExists(path.join(ASSETS_DIR, file)));
+    return imageTwins(imagePath).filter(file => !fileExists(path.join(ASSETS_DIR, file)));
 }
 
 // Validate a single project
@@ -52,8 +47,7 @@ function validateProject(project) {
     const warnings = [];
 
     const processMedia = project.processMedia || [];
-    const hasBeforeAfter = processMedia.some(item =>
-        item.type === 'before-after-video' || item.type === 'before-after-image');
+    const hasBeforeAfter = projectHasBeforeAfter(project);
 
     // Check project HTML file exists
     const projectFile = path.join(PROJECTS_DIR, `Project-${project.id}.html`);
@@ -97,9 +91,9 @@ function validateProject(project) {
         missingImageFiles(project.thumbnail).forEach(file => issues.push(`Missing thumbnail: ${file}`));
     }
 
-    // Check cover (falls back to video poster when missing)
+    // Check cover (falls back to hero image / video poster when missing)
     if (!project.cover) {
-        warnings.push('No cover set - page uses the video poster as cover');
+        warnings.push(missingCoverMessage(project));
     } else {
         missingImageFiles(project.cover).forEach(file => issues.push(`Missing cover: ${file}`));
     }
@@ -131,6 +125,10 @@ function validateProject(project) {
                 issues.push(`Missing process media [${index}] ${key}: ${item[key]}`);
             }
         });
+        // Video posters are served as their .webp twin
+        if (item.type === 'video' && item.poster) {
+            missingImageFiles(item.poster).forEach(file => warnings.push(`Missing process media [${index}] poster: ${file}`));
+        }
     });
 
     // Validate data fields

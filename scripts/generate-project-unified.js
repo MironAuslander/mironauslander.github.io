@@ -10,6 +10,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+    servedImage: preferWebP,
+    getCoverPath,
+    missingCoverMessage,
+    hasBeforeAfter: hasBeforeAfterMedia
+} = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
@@ -33,13 +39,6 @@ const CATEGORY_ACCENT = {
     'personal': 'PERSONAL PROJECT'
 };
 
-// Helper function to prefer WebP over JPG for better performance
-function preferWebP(imagePath) {
-    if (!imagePath) return imagePath;
-    // Replace .jpg with .webp (case insensitive)
-    return imagePath.replace(/\.jpg$/i, '.webp');
-}
-
 // Escape a value for use inside an HTML attribute
 function escapeAttr(value) {
     return String(value)
@@ -47,11 +46,6 @@ function escapeAttr(value) {
         .replace(/"/g, '&quot;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
-}
-
-// Cover image path: dedicated cover, falling back to the hero video poster
-function getCoverPath(project) {
-    return project.cover || (project.heroMedia && project.heroMedia.poster) || '';
 }
 
 // Media type generators (from advanced generator)
@@ -205,18 +199,6 @@ function renderTemplate(template, data) {
     return rendered;
 }
 
-// Check if project has before-after media
-function hasBeforeAfterMedia(project) {
-    if (project.processMedia) {
-        return project.processMedia.some(item =>
-            item.type === 'before-after-video' ||
-            item.type === 'before-after-image'
-        );
-    }
-
-    return false;
-}
-
 // Load projects data
 function loadProjectsData() {
     try {
@@ -254,10 +236,8 @@ function findRelatedProjects(currentProject, allProjects) {
     return related;
 }
 
-// Generate a single project page
-function generateProjectPage(project, allProjects) {
-    const template = loadTemplate(ADVANCED_TEMPLATE);
-
+// Generate a single project page (pass the template to avoid re-reading it per project)
+function generateProjectPage(project, allProjects, template = loadTemplate(ADVANCED_TEMPLATE)) {
     // Prepare template data
     const templateData = {
         ...project,
@@ -343,6 +323,7 @@ function main(projectIds = null) {
         console.log(`Generating all ${projectsToGenerate.length} projects\n`);
     }
 
+    const template = loadTemplate(ADVANCED_TEMPLATE);
     let successCount = 0;
     let errorCount = 0;
     const errors = [];
@@ -352,12 +333,12 @@ function main(projectIds = null) {
         try {
             console.log(`📝 Generating Project-${project.id}.html (${project.displayTitle})`);
 
-            const html = generateProjectPage(project, projectsData.projects);
+            const html = generateProjectPage(project, projectsData.projects, template);
 
             if (saveProjectFile(project.id, html)) {
                 console.log(`   ✓ Successfully generated Project-${project.id}.html`);
                 if (!project.cover) {
-                    console.log(`   ⚠️  No cover set - using video poster as cover`);
+                    console.log(`   ⚠️  ${missingCoverMessage(project)}`);
                 }
 
                 successCount++;
@@ -394,10 +375,15 @@ function main(projectIds = null) {
     }
 }
 
+module.exports = {
+    ADVANCED_TEMPLATE,
+    loadTemplate,
+    generateProjectPage,
+    saveProjectFile
+};
+
 // Process command line arguments
-const args = process.argv.slice(2);
-if (args.length > 0) {
-    main(args);
-} else {
-    main();
+if (require.main === module) {
+    const args = process.argv.slice(2);
+    main(args.length > 0 ? args : null);
 }

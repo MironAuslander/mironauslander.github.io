@@ -87,7 +87,7 @@ Three separate images, each with one role (sizes and safe areas: `docs/ASSET-GUI
 | Video poster (full frame in the player) | `[ID]-video-poster.webp` + `.jpg` | `heroMedia.poster` |
 
 - JSON stores `.jpg` paths; pages load the `.webp` twin. Keep both files.
-- No `cover` → the generator uses the video poster as cover (validator warns).
+- No `cover` → the generator uses the hero image (image hero) or video poster (video hero) as cover (validator warns). Rules live in `scripts/lib/media-rules.js`, mirrored in `tools/js/utils.js`.
 
 ```json
 "thumbnail": "assets/images/projects/[ID]/[ID]-thumb.webp",
