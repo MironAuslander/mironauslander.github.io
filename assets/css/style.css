@@ -539,72 +539,48 @@ ul {
     position: relative;
     z-index: 2;
     padding: 3rem 2.5rem;
-    border-radius: 20px;
-    background:
-        radial-gradient(ellipse 200px 200px at bottom -40px left -30px,
-            rgba(255, 255, 255, 0.04) 0%,
-            rgba(255, 255, 255, 0.01) 40%,
-            transparent 60%),
-        rgba(10, 10, 15, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 2px solid transparent;
-    box-shadow:
-        inset 0 80px 60px -40px rgba(255, 255, 255, 0.03),
-        inset 0 40px 30px -20px rgba(255, 255, 255, 0.02);
 }
 
-/* Purple gradient border on top-left corner */
-.hero-content::after {
-    content: '';
+/* Gradient orb "eclipse" behind the hero text (canvas added by hero-orb.js).
+   Wider than the text block: the ring sits at ~0.6 of the orb radius,
+   and .hero overflow clips the faint outer glow. */
+.hero-orb {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border-radius: 20px;
-    padding: 2px;
-    background:
-        linear-gradient(135deg,
-            rgba(118, 75, 162, 0.4) 0%,
-            rgba(118, 75, 162, 0.3) 8%,
-            rgba(118, 75, 162, 0.2) 15%,
-            transparent 25%),
-        linear-gradient(315deg,
-            rgba(102, 126, 234, 0.4) 0%,
-            rgba(102, 126, 234, 0.2) 8%,
-            rgba(102, 126, 234, 0.1) 15%,
-            transparent 25%);
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Refraction layer */
-.hero-content::before {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: -5px;
-    bottom: -5px;
-    background: rgba(10, 10, 15, 0.5);
-    border-radius: 20px;
+    left: 50%;
+    top: 50%;
+    width: min(1150px, 130vh);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
     z-index: -1;
-    filter: blur(2px);
-    opacity: 0.7;
+    isolation: isolate;
+    pointer-events: none;
+}
+
+/* Dark eclipse core: keeps text readable over the fluid, and is the no-WebGL fallback */
+.hero-orb::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle closest-side,
+        #0a0a0f 0%,
+        #0a0a0f 50%,
+        rgba(10, 10, 15, 0.6) 56%,
+        transparent 62%);
+    z-index: -1;
+}
+
+.hero-orb canvas {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .hero h1 {
     font-family: var(--font-primary);
-    font-size: clamp(1.8rem, 5vw, 3rem);
+    /* Also scales with height so the text stays inside the orb ring on short laptop screens */
+    font-size: clamp(1.8rem, min(5vw, 5.5vh), 3rem);
     font-weight: 100;
     margin-bottom: 1rem;
     letter-spacing: 1px;
@@ -615,7 +591,7 @@ ul {
 .hero-subtitle {
     font-family: var(--font-primary);
     font-weight: 300;
-    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-size: clamp(1rem, min(3vw, 2.6vh), 1.3rem);
     margin-bottom: 2rem;
     line-height: 1.8;
     position: relative;
@@ -3120,16 +3096,29 @@ ul {
         right: 10px;
     }
 
+    /* Whole orb ring fits on screen; text shrinks to sit inside its dark core */
     .hero-content {
-        padding: 2rem 1.25rem;
+        padding: 0;
+    }
+
+    .hero-orb {
+        width: 130vw;
     }
 
     .hero h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: 0.68rem;
+        line-height: 1.55;
+        margin-bottom: 0.9rem;
+    }
+
+    .hero .cta-button {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.8rem;
     }
 
     .hero {
