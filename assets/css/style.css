@@ -730,7 +730,8 @@ body.links-page {
     padding: 1rem 2.5rem;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
+    /* 500 = Poppins Medium. No 600 face is loaded, so 600 rendered as faux bold */
+    font-weight: 500;
     font-size: 1.1rem;
     letter-spacing: 1px;
     transition: var(--transition);
@@ -777,24 +778,39 @@ body.links-page {
     opacity: 0;
     transition: var(--transition);
     border-radius: 50px;
-    z-index: 0;
+    /* Under the label, so the hover sheen doesn't wash out the text */
+    z-index: -1;
 }
 
+/* :focus-visible, not :focus: after a mouse click (or the showreel modal
+   handing focus back) the button no longer stays stuck in its hover look */
 .cta-button:hover::before,
-.cta-button:focus::before {
+.cta-button:focus-visible::before {
     opacity: 1;
 }
 
 .cta-button:hover,
-.cta-button:focus {
+.cta-button:focus-visible {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     color: var(--text-white); /* Ensure text stays white */
 }
 
+/* Keyboard focus ring in brand colors instead of the browser default */
+.cta-button:focus-visible {
+    outline: 2px solid rgba(149, 91, 207, 0.8);
+    outline-offset: 4px;
+}
+
+/* Hero: let the gradient border ring show (overflow: hidden clipped it away,
+   so only the solid hover border was ever visible) */
+.hero .cta-button {
+    overflow: visible;
+}
+
 /* Hero section button specific hover - purple/blue glow */
 .hero .cta-button:hover,
-.hero .cta-button:focus {
+.hero .cta-button:focus-visible {
     box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3),
                 0 0 40px rgba(102, 126, 234, 0.2);
     border-color: rgba(118, 75, 162, 0.6);
