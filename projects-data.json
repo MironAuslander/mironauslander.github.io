@@ -1,6 +1,67 @@
 {
   "projects": [
     {
+      "id": "8515",
+      "displayTitle": "Zaguri Imperia",
+      "fullTitle": "Zaguri Imperia",
+      "category": [
+        "ai",
+        "vfx"
+      ],
+      "client": "United Studios of Israel",
+      "year": 2026,
+      "duration": "",
+      "description": "",
+      "role": [],
+      "tools": [],
+      "featured": true,
+      "featuredOrder": 2,
+      "projectsPageOrder": 1,
+      "visible": true,
+      "hidden": false,
+      "thumbnail": "assets/images/projects/8515/8515-thumb.webp",
+      "cover": "assets/images/projects/8515/8515-cover.jpg",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/8515/project-8515.mp4",
+        "poster": "assets/images/projects/8515/8515-video-poster.jpg"
+      },
+      "processMedia": [],
+      "coverPosition": {
+        "desktop": "center top"
+      }
+    },
+    {
+      "id": "6605",
+      "displayTitle": "Behasture",
+      "fullTitle": "Behasture",
+      "category": [
+        "vfx"
+      ],
+      "client": "United Studios of Israel",
+      "year": 2026,
+      "duration": "",
+      "description": "",
+      "role": [],
+      "tools": [],
+      "featured": true,
+      "featuredOrder": 4,
+      "projectsPageOrder": 2,
+      "visible": true,
+      "hidden": false,
+      "thumbnail": "assets/images/projects/6605/6605-thumb.webp",
+      "cover": "assets/images/projects/6605/6605-cover.jpg",
+      "heroMedia": {
+        "type": "video",
+        "src": "assets/videos/6605/project-6605.mp4",
+        "poster": "assets/images/projects/6605/6605-video-poster.jpg"
+      },
+      "processMedia": [],
+      "coverPosition": {
+        "desktop": "center top"
+      }
+    },
+    {
       "id": "1238",
       "displayTitle": "8200",
       "fullTitle": "רוח-צפונית | 8200",
@@ -27,7 +88,7 @@
       ],
       "featured": true,
       "featuredOrder": 1,
-      "projectsPageOrder": 1,
+      "projectsPageOrder": 3,
       "visible": true,
       "thumbnail": "assets/images/projects/1238/1238-thumb.webp",
       "cover": "assets/images/projects/1238/1238-cover.jpg",
@@ -69,8 +130,8 @@
         "Fusion"
       ],
       "featured": true,
-      "featuredOrder": 2,
-      "projectsPageOrder": 2,
+      "featuredOrder": 6,
+      "projectsPageOrder": 4,
       "visible": true,
       "thumbnail": "assets/images/projects/1699/1699-thumb.webp",
       "cover": "assets/images/projects/1699/1699-cover.jpg",
@@ -108,7 +169,7 @@
       ],
       "featured": true,
       "featuredOrder": 3,
-      "projectsPageOrder": 3,
+      "projectsPageOrder": 5,
       "visible": true,
       "thumbnail": "assets/images/projects/1270/1270-thumb.webp",
       "cover": "assets/images/projects/1270/1270-cover.jpg",
@@ -127,7 +188,10 @@
           "labelAfter": "After"
         }
       ],
-      "hidden": false
+      "hidden": false,
+      "coverPosition": {
+        "desktop": "center 70%"
+      }
     },
     {
       "id": "1537",
@@ -157,7 +221,7 @@
       ],
       "featured": true,
       "featuredOrder": 5,
-      "projectsPageOrder": 4,
+      "projectsPageOrder": 6,
       "visible": true,
       "thumbnail": "assets/images/projects/1537/1537-thumb.webp",
       "cover": "assets/images/projects/1537/1537-cover.jpg",
@@ -176,7 +240,10 @@
           "labelAfter": "After"
         }
       ],
-      "hidden": false
+      "hidden": false,
+      "coverPosition": {
+        "desktop": "center top"
+      }
     },
     {
       "id": "1798",
@@ -200,7 +267,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 5,
+      "projectsPageOrder": 7,
       "visible": true,
       "thumbnail": "assets/images/projects/1798/1798-thumb.webp",
       "cover": "assets/images/projects/1798/1798-cover.jpg",
@@ -233,7 +300,10 @@
           "labelAfter": "After"
         }
       ],
-      "hidden": false
+      "hidden": false,
+      "coverPosition": {
+        "desktop": "center 70%"
+      }
     },
     {
       "id": "1711",
@@ -256,9 +326,9 @@
         "Photoshop",
         "Mocha"
       ],
-      "featured": true,
-      "featuredOrder": 6,
-      "projectsPageOrder": 6,
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 8,
       "visible": true,
       "thumbnail": "assets/images/projects/1711/1711-thumb.webp",
       "cover": "assets/images/projects/1711/1711-cover.jpg",
@@ -300,9 +370,9 @@
         "Cinema 4D",
         "Redshift"
       ],
-      "featured": true,
-      "featuredOrder": 4,
-      "projectsPageOrder": 7,
+      "featured": false,
+      "featuredOrder": null,
+      "projectsPageOrder": 9,
       "visible": true,
       "thumbnail": "assets/images/projects/1654/1654-thumb.webp",
       "cover": "assets/images/projects/1654/1654-cover.jpg",
@@ -365,7 +435,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 8,
+      "projectsPageOrder": 10,
       "visible": true,
       "thumbnail": "assets/images/projects/1353/1353-thumb.webp",
       "cover": "assets/images/projects/1353/1353-cover.jpg",
@@ -399,7 +469,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 9,
+      "projectsPageOrder": 11,
       "visible": true,
       "thumbnail": "assets/images/projects/1661/1661-thumb.webp",
       "cover": "assets/images/projects/1661/1661-cover.jpg",
@@ -434,7 +504,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 10,
+      "projectsPageOrder": 12,
       "visible": true,
       "thumbnail": "assets/images/projects/1003/1003-thumb.webp",
       "cover": "assets/images/projects/1003/1003-cover.jpg",
@@ -467,7 +537,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 11,
+      "projectsPageOrder": 13,
       "visible": true,
       "thumbnail": "assets/images/projects/1004/1004-thumb.webp",
       "cover": "assets/images/projects/1004/1004-cover.jpg",
@@ -495,7 +565,7 @@
       "tools": [],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 12,
+      "projectsPageOrder": 14,
       "visible": true,
       "thumbnail": "assets/images/projects/1528/1528-thumb.webp",
       "cover": "assets/images/projects/1528/1528-cover.jpg",
@@ -530,7 +600,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 13,
+      "projectsPageOrder": 15,
       "visible": true,
       "thumbnail": "assets/images/projects/1470/1470-thumb.webp",
       "cover": "assets/images/projects/1470/1470-cover.jpg",
@@ -564,7 +634,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 14,
+      "projectsPageOrder": 16,
       "visible": true,
       "thumbnail": "assets/images/projects/1828/1828-thumb.webp",
       "cover": "assets/images/projects/1828/1828-cover.jpg",
@@ -598,7 +668,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 15,
+      "projectsPageOrder": 17,
       "visible": true,
       "thumbnail": "assets/images/projects/1160/1160-thumb.webp",
       "cover": "assets/images/projects/1160/1160-cover.jpg",
@@ -631,7 +701,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 16,
+      "projectsPageOrder": 18,
       "visible": true,
       "thumbnail": "assets/images/projects/1336/1336-thumb.webp",
       "cover": "assets/images/projects/1336/1336-cover.jpg",
@@ -663,7 +733,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 17,
+      "projectsPageOrder": 19,
       "visible": true,
       "thumbnail": "assets/images/projects/1092/1092-thumb.webp",
       "cover": "assets/images/projects/1092/1092-cover.jpg",
@@ -697,7 +767,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 18,
+      "projectsPageOrder": 20,
       "visible": true,
       "thumbnail": "assets/images/projects/1509/1509-thumb.webp",
       "cover": "assets/images/projects/1509/1509-cover.jpg",
@@ -731,7 +801,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 19,
+      "projectsPageOrder": 21,
       "visible": true,
       "thumbnail": "assets/images/projects/1029/1029-thumb.webp",
       "cover": "assets/images/projects/1029/1029-cover.jpg",
@@ -765,7 +835,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 20,
+      "projectsPageOrder": 22,
       "visible": true,
       "thumbnail": "assets/images/projects/1459/1459-thumb.webp",
       "cover": "assets/images/projects/1459/1459-cover.jpg",
@@ -799,7 +869,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 21,
+      "projectsPageOrder": 23,
       "visible": true,
       "thumbnail": "assets/images/projects/1584/1584-thumb.webp",
       "cover": "assets/images/projects/1584/1584-cover.jpg",
@@ -833,7 +903,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 22,
+      "projectsPageOrder": 24,
       "visible": true,
       "thumbnail": "assets/images/projects/1292/1292-thumb.webp",
       "cover": "assets/images/projects/1292/1292-cover.jpg",
@@ -867,7 +937,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 23,
+      "projectsPageOrder": 25,
       "visible": true,
       "thumbnail": "assets/images/projects/1626/1626-thumb.webp",
       "cover": "assets/images/projects/1626/1626-cover.jpg",
@@ -901,7 +971,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 24,
+      "projectsPageOrder": 26,
       "visible": true,
       "thumbnail": "assets/images/projects/1582/1582-thumb.webp",
       "cover": "assets/images/projects/1582/1582-cover.jpg",
@@ -935,7 +1005,7 @@
       ],
       "featured": false,
       "featuredOrder": null,
-      "projectsPageOrder": 25,
+      "projectsPageOrder": 27,
       "visible": true,
       "thumbnail": "assets/images/projects/1453/1453-thumb.webp",
       "cover": "assets/images/projects/1453/1453-cover.jpg",
@@ -949,8 +1019,8 @@
   ],
   "metadata": {
     "version": "3.0",
-    "lastUpdated": "2024-09-26",
-    "totalProjects": 25,
+    "lastUpdated": "2026-10-01",
+    "totalProjects": 27,
     "featuredCount": 6,
     "dataStructure": {
       "mediaTypes": [
