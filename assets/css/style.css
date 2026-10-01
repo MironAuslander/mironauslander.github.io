@@ -700,6 +700,33 @@ body.links-page {
     transform-origin: 50% 50%;
 }
 
+/* Keeps the scrolling line's height in the flow */
+.hero-subtitle .warp-band-slot {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+}
+
+/* First subtitle line as a ring of text around the sphere: letters are
+   positioned from the sphere's center by hero-orb.js each frame */
+.hero-subtitle.warp-band {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    margin: 0;
+    pointer-events: none;
+}
+
+.hero-subtitle.warp-band .warp-ch {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
 /* Short windows (phone landscape): let the hero grow instead of clipping name/orb/button */
 @media (max-height: 560px) {
     .hero {
