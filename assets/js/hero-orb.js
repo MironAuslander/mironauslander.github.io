@@ -361,6 +361,11 @@ export function warpTextOntoSphere(textEl, sphereEl, {
   const chars = [...textEl.querySelectorAll('.warp-ch')];
   const slot = textEl.querySelector('.warp-band-slot');
 
+  const smoothstep = (e0, e1, x) => {
+    const t = Math.max(0, Math.min(1, (x - e0) / (e1 - e0)));
+    return t * t * (3 - 2 * t);
+  };
+
   // Sphere point at (lon, lat) projected with perspective; returns [X, Y, facing]
   function projectLL(lon, lat, R) {
     const px = R * Math.cos(lat) * Math.sin(lon);
@@ -420,12 +425,12 @@ export function warpTextOntoSphere(textEl, sphereEl, {
       while (bandCopies.length < copies) addBandCopy();
       const gap = (C / copies - itemsW) / first.length;
       const letters = [];
+      // Start every letter hidden; drawBand shows the ones on the front face
+      bandCopies.forEach(copy => copy.forEach(w => [...w.chars, w.bullet].forEach(c => {
+        c.style.visibility = 'hidden';
+      })));
       bandCopies.forEach((copy, k) => {
-        if (k >= copies) {
-          // Spare copies from a larger layout stay hidden
-          copy.forEach(w => [...w.chars, w.bullet].forEach(c => { c.style.opacity = '0'; }));
-          return;
-        }
+        if (k >= copies) return; // spare copies from a larger layout stay hidden
         let arc = k * C / copies;
         copy.forEach(w => {
           w.chars.forEach(c => {
@@ -462,21 +467,31 @@ export function warpTextOntoSphere(textEl, sphereEl, {
       if (lon > Math.PI) lon -= TAU;
       if (lon < -Math.PI) lon += TAU;
       const front = Math.cos(lon);
-      if (front <= 0.02) {
-        L.el.style.opacity = '0';
+      // Strong, smooth fade toward the sphere's sides: full brightness only
+      // around the middle of the front face, gone well before the limb. This
+      // also keeps letters hidden while they're squeezed to near-zero width,
+      // which flickered on mobile.
+      let alpha = smoothstep(0.1, 0.9, front);
+      if (alpha > 0 && clip) {
+        // The printed sphere is larger than the visible orb: fade out well
+        // inside the ring, as if curving away behind its edge
+        const [X, Y] = projectLL(lon, lat, R);
+        alpha *= 1 - smoothstep(clip[0], clip[1], Math.hypot(X, Y));
+      }
+      if (alpha < 0.01) {
+        if (L.shown) {
+          L.el.style.visibility = 'hidden';
+          L.shown = false;
+        }
         continue;
       }
       const facing = place(L.el, lon, lat, R, ringR, L.w / 2, L.h / 2);
-      // Fade in/out near the limb so letters don't pop
-      let alpha = Math.min(1, front / 0.3) * (minAlpha + (1 - minAlpha) * facing);
-      if (clip) {
-        // The printed sphere is larger than the visible orb: fade letters out
-        // as they pass through the ring's glow, as if curving behind its edge
-        const [X, Y] = projectLL(lon, lat, R);
-        const dist = Math.hypot(X, Y);
-        alpha *= Math.max(0, Math.min(1, (clip[1] - dist) / (clip[1] - clip[0])));
+      alpha *= minAlpha + (1 - minAlpha) * facing;
+      L.el.style.opacity = alpha.toFixed(2);
+      if (!L.shown) {
+        L.el.style.visibility = 'visible';
+        L.shown = true;
       }
-      L.el.style.opacity = alpha.toFixed(3);
     }
   }
 
@@ -541,10 +556,10 @@ if (subtitle && eclipse) {
     bandLine: 0,
     // Reduced motion: slower, not frozen
     bandSpeed: reduceMotion ? 25 : 50,
-    // Fade the band out across the ring's glow (inner to outer edge)
+    // Fade the band out gradually from about a third of the way to the ring
     bandClip: () => {
       const orbR = eclipse.getBoundingClientRect().width * 1.4 / 2;
-      return [0.61 * orbR, 0.74 * orbR];
+      return [0.35 * orbR, 0.72 * orbR];
     }
   }));
 }

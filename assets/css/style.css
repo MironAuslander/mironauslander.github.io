@@ -723,8 +723,7 @@ body.links-page {
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
-    will-change: transform, opacity;
+    visibility: hidden;
 }
 
 /* Short windows (phone landscape): let the hero grow instead of clipping name/orb/button */
