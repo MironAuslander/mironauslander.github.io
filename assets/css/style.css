@@ -289,6 +289,25 @@ ul {
    SECTION 5: HEADER & NAVIGATION
    ======================================== */
 
+/* Menu bar divider color follows each page's accent (RGB triplet):
+   home/404 purple, projects grid coral, project pages orange, skills/links cyan */
+body {
+    --nav-accent: 118, 75, 162;
+}
+
+body:has(.projects-page) {
+    --nav-accent: 255, 107, 107;
+}
+
+body:has(.project-hero-v2) {
+    --nav-accent: 255, 94, 20;
+}
+
+body.skills-page,
+body.links-page {
+    --nav-accent: 79, 172, 254;
+}
+
 .header {
     background-color: var(--dark-bg);
     padding: 1rem 0;
@@ -298,6 +317,28 @@ ul {
     z-index: var(--z-header);
     backdrop-filter: blur(10px);
     height: var(--header-height);
+}
+
+/* Bottom divider line, fading at both ends (same style as the project cover meta bar) */
+.header::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(var(--nav-accent), 0.5) 15%,
+        rgba(var(--nav-accent), 0.5) 85%,
+        transparent 100%);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Hide it over the open mobile menu */
+.header:has(.nav-menu.active)::after {
+    opacity: 0;
 }
 
 /* Navigation Container - CSS Grid for 3 elements */
@@ -428,14 +469,20 @@ ul {
         height: auto;
         background: none;
         flex-direction: row;
-        gap: 2rem;
+        gap: 0;
         justify-self: center;
         align-self: end; /* Position at bottom of header */
         margin-bottom: 0.5rem;
     }
 
+    /* Same spacing as the old 2rem gap, with a divider line in the middle */
     .nav-menu li {
         margin: 0;
+        padding: 0 1rem;
+    }
+
+    .nav-menu li + li {
+        border-left: 1px solid rgba(var(--nav-accent), 0.5);
     }
 
     .nav-menu a {
