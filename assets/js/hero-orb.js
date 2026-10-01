@@ -266,7 +266,110 @@ export function createGradientOrb(container, {
   };
 }
 
+/**
+ * Warp text as if printed on the front of a glass sphere.
+ * Each letter becomes an inline-block span. Its flat position is mapped onto a
+ * sphere (longitude = x / R, latitude = y / R) and projected with a slight
+ * perspective, then the span gets the local affine transform of that mapping:
+ * letters narrow toward the edges and the outer lines arch. Static, so it only
+ * re-runs on resize and font load. Screen readers get the original text.
+ */
+export function warpTextOntoSphere(textEl, sphereEl, {
+  radius = () => sphereEl.getBoundingClientRect().width / 2,
+  distance = 4,        // camera distance in sphere radii (lower = more perspective)
+  minAlpha = 0.65      // brightness at the sphere's limb, for depth
+} = {}) {
+  if (!textEl.dataset.warped) {
+    // Lines split at <br>, read as text (so entities like &amp; come out as "&")
+    const lines = [''];
+    textEl.childNodes.forEach(node => {
+      if (node.nodeName === 'BR') lines.push('');
+      else lines[lines.length - 1] += node.textContent;
+    });
+    for (let i = 0; i < lines.length; i++) lines[i] = lines[i].replace(/\s+/g, ' ').trim();
+    for (let i = lines.length - 1; i >= 0; i--) if (!lines[i]) lines.splice(i, 1);
+
+    const srText = document.createElement('span');
+    srText.className = 'sr-only';
+    srText.textContent = lines.join(' ');
+
+    const visual = document.createElement('span');
+    visual.setAttribute('aria-hidden', 'true');
+    lines.forEach((line, i) => {
+      if (i) visual.appendChild(document.createElement('br'));
+      for (const ch of line) {
+        const span = document.createElement('span');
+        span.className = 'warp-ch';
+        span.textContent = ch === ' ' ? ' ' : ch;
+        visual.appendChild(span);
+      }
+    });
+
+    textEl.replaceChildren(srText, visual);
+    textEl.dataset.warped = '1';
+  }
+
+  const chars = [...textEl.querySelectorAll('.warp-ch')];
+
+  function project(x, y, R) {
+    const lon = x / R;
+    const lat = y / R;
+    const px = R * Math.cos(lat) * Math.sin(lon);
+    const py = R * Math.sin(lat);
+    const pz = R * Math.cos(lat) * Math.cos(lon);
+    const s = (distance * R - R) / (distance * R - pz); // 1 at the front point
+    return [px * s, py * s, Math.cos(lat) * Math.cos(lon)];
+  }
+
+  function layout() {
+    // Measure the flat layout first (reads), then apply transforms (writes)
+    chars.forEach(c => { c.style.transform = ''; c.style.opacity = ''; });
+    const box = sphereEl.getBoundingClientRect();
+    const cx = box.left + box.width / 2;
+    const cy = box.top + box.height / 2;
+    const R = radius();
+    if (!R) return;
+    const centers = chars.map(c => {
+      const r = c.getBoundingClientRect();
+      return [r.left + r.width / 2 - cx, r.top + r.height / 2 - cy];
+    });
+
+    const h = 1;
+    centers.forEach(([x, y], i) => {
+      const [X, Y, facing] = project(x, y, R);
+      const [Xx, Yx] = project(x + h, y, R);
+      const [Xy, Yy] = project(x, y + h, R);
+      // Local Jacobian of the mapping, used as the letter's affine transform
+      const a = (Xx - X) / h, b = (Yx - Y) / h;
+      const c = (Xy - X) / h, d = (Yy - Y) / h;
+      chars[i].style.transform =
+        `matrix(${a.toFixed(4)}, ${b.toFixed(4)}, ${c.toFixed(4)}, ${d.toFixed(4)}, ${(X - x).toFixed(2)}, ${(Y - y).toFixed(2)})`;
+      chars[i].style.opacity = (minAlpha + (1 - minAlpha) * facing).toFixed(3);
+    });
+  }
+
+  let raf = null;
+  const schedule = () => {
+    if (raf) cancelAnimationFrame(raf);
+    raf = requestAnimationFrame(layout);
+  };
+  new ResizeObserver(schedule).observe(sphereEl);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+  layout();
+}
+
 // Homepage hero bootstrap
+const subtitle = document.querySelector('.hero-eclipse .hero-subtitle');
+const eclipse = document.querySelector('.hero-eclipse');
+if (subtitle && eclipse) {
+  // Mapping radius: 1.35x the orb ring's inner edge (orb canvas is 1.4x the
+  // eclipse box, ring starts at ~0.61 of the orb radius). Medium curve: edge
+  // letters about 70% width, still readable.
+  warpTextOntoSphere(subtitle, eclipse, {
+    radius: () => eclipse.getBoundingClientRect().width * 1.4 / 2 * 0.61 * 1.35
+  });
+}
+
 const container = document.getElementById('hero-orb');
 
 if (container) {
