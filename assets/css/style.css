@@ -684,6 +684,15 @@ body.links-page {
     margin-top: 1.5rem;
 }
 
+/* Desktop: larger text printed on a bigger sphere (see hero-orb.js); it may
+   reach onto the ring. nowrap keeps each line whole when wider than the orb. */
+@media (min-width: 601px) {
+    .hero-subtitle {
+        font-size: calc(var(--eclipse) * 0.056);
+        white-space: nowrap;
+    }
+}
+
 /* Subtitle warped onto the orb sphere (letters split by hero-orb.js) */
 .hero-subtitle .warp-ch {
     display: inline-block;

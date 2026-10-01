@@ -339,11 +339,13 @@ export function warpTextOntoSphere(textEl, sphereEl, {
       const [X, Y, facing] = project(x, y, R);
       const [Xx, Yx] = project(x + h, y, R);
       const [Xy, Yy] = project(x, y + h, R);
-      // Local Jacobian of the mapping, used as the letter's affine transform
-      const a = (Xx - X) / h, b = (Yx - Y) / h;
-      const c = (Xy - X) / h, d = (Yy - Y) / h;
+      // Local scale of the mapping. The shear/rotation terms are left out on
+      // purpose: slanted glyphs render with jagged edges, upright ones stay
+      // crisp, and the curve still reads from the positions and narrowing.
+      const a = (Xx - X) / h;
+      const d = (Yy - Y) / h;
       chars[i].style.transform =
-        `matrix(${a.toFixed(4)}, ${b.toFixed(4)}, ${c.toFixed(4)}, ${d.toFixed(4)}, ${(X - x).toFixed(2)}, ${(Y - y).toFixed(2)})`;
+        `matrix(${a.toFixed(4)}, 0, 0, ${d.toFixed(4)}, ${(X - x).toFixed(2)}, ${(Y - y).toFixed(2)})`;
       chars[i].style.opacity = (minAlpha + (1 - minAlpha) * facing).toFixed(3);
     });
   }
@@ -362,11 +364,14 @@ export function warpTextOntoSphere(textEl, sphereEl, {
 const subtitle = document.querySelector('.hero-eclipse .hero-subtitle');
 const eclipse = document.querySelector('.hero-eclipse');
 if (subtitle && eclipse) {
-  // Mapping radius: 1.35x the orb ring's inner edge (orb canvas is 1.4x the
-  // eclipse box, ring starts at ~0.61 of the orb radius). Medium curve: edge
-  // letters about 70% width, still readable.
+  // Mapping radius relative to the orb ring's inner edge (orb canvas is 1.4x
+  // the eclipse box, ring starts at ~0.61 of the orb radius). Phones: 1.35x,
+  // edge letters about 70% width. Desktop text is ~20% larger, so its sphere
+  // is ~20% bigger too: same gentle curve over a larger printed area.
+  const desktop = window.matchMedia('(min-width: 601px)');
   warpTextOntoSphere(subtitle, eclipse, {
-    radius: () => eclipse.getBoundingClientRect().width * 1.4 / 2 * 0.61 * 1.35
+    radius: () => eclipse.getBoundingClientRect().width * 1.4 / 2 * 0.61 *
+      (desktop.matches ? 1.62 : 1.35)
   });
 }
 
