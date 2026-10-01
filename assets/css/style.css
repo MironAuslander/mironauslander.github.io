@@ -808,6 +808,905 @@ body.links-page {
     overflow: visible;
 }
 
+/* Sparkle: a white comet that sweeps once around the border at full speed,
+   then hides for a few seconds. --cta-alpha fades only the comet, so the
+   gradient border stays. Browsers without @property show the static border. */
+@property --cta-spin {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@property --cta-alpha {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
+
+.hero .cta-button::after {
+    background:
+        conic-gradient(from var(--cta-spin),
+            rgba(255, 255, 255, 0) 0deg,
+            rgba(255, 255, 255, 0) 270deg,
+            rgba(220, 210, 255, calc(0.35 * var(--cta-alpha))) 320deg,
+            rgba(255, 255, 255, calc(0.95 * var(--cta-alpha))) 352deg,
+            rgba(255, 255, 255, 0) 360deg),
+        linear-gradient(90deg,
+            rgba(102, 126, 234, 0.5) 0%,
+            rgba(118, 75, 162, 0.5) 100%);
+    animation: cta-sweep 5s linear infinite;
+}
+
+/* Each cycle has two runs. Run 1 starts top center (appears top right), run 2
+   starts bottom center (appears bottom left); each is one clockwise lap, then
+   hidden for 1.6s. Desktop lap 0.9s (5s cycle), phones 1.4s (6s cycle).
+   Keyframes are generated with equal distance between steps along the
+   185x62 pill, so speed is constant on straight edges and rounded ends. */
+@keyframes cta-sweep {
+    0% {
+        --cta-spin: -352deg;
+        --cta-alpha: 0;
+    }
+    0.38% {
+        --cta-spin: -335.8deg;
+        --cta-alpha: 0.17;
+    }
+    0.75% {
+        --cta-spin: -321.8deg;
+        --cta-alpha: 0.35;
+    }
+    1.13% {
+        --cta-spin: -310.9deg;
+        --cta-alpha: 0.52;
+    }
+    1.5% {
+        --cta-spin: -302.7deg;
+        --cta-alpha: 0.69;
+    }
+    1.88% {
+        --cta-spin: -296.5deg;
+        --cta-alpha: 0.87;
+    }
+    2.25% {
+        --cta-spin: -291.8deg;
+        --cta-alpha: 1;
+    }
+    2.63% {
+        --cta-spin: -288deg;
+        --cta-alpha: 1;
+    }
+    3% {
+        --cta-spin: -283.6deg;
+        --cta-alpha: 1;
+    }
+    3.38% {
+        --cta-spin: -278.6deg;
+        --cta-alpha: 1;
+    }
+    3.75% {
+        --cta-spin: -273.3deg;
+        --cta-alpha: 1;
+    }
+    4.12% {
+        --cta-spin: -267.7deg;
+        --cta-alpha: 1;
+    }
+    4.5% {
+        --cta-spin: -262deg;
+        --cta-alpha: 1;
+    }
+    4.88% {
+        --cta-spin: -256.3deg;
+        --cta-alpha: 1;
+    }
+    5.25% {
+        --cta-spin: -250.7deg;
+        --cta-alpha: 1;
+    }
+    5.63% {
+        --cta-spin: -245.4deg;
+        --cta-alpha: 1;
+    }
+    6% {
+        --cta-spin: -240.4deg;
+        --cta-alpha: 1;
+    }
+    6.38% {
+        --cta-spin: -236deg;
+        --cta-alpha: 1;
+    }
+    6.75% {
+        --cta-spin: -232.2deg;
+        --cta-alpha: 1;
+    }
+    7.13% {
+        --cta-spin: -227.5deg;
+        --cta-alpha: 1;
+    }
+    7.5% {
+        --cta-spin: -221.3deg;
+        --cta-alpha: 1;
+    }
+    7.88% {
+        --cta-spin: -213.1deg;
+        --cta-alpha: 1;
+    }
+    8.25% {
+        --cta-spin: -202.2deg;
+        --cta-alpha: 1;
+    }
+    8.63% {
+        --cta-spin: -188.2deg;
+        --cta-alpha: 1;
+    }
+    9% {
+        --cta-spin: -172deg;
+        --cta-alpha: 1;
+    }
+    9.38% {
+        --cta-spin: -155.8deg;
+        --cta-alpha: 1;
+    }
+    9.75% {
+        --cta-spin: -141.8deg;
+        --cta-alpha: 1;
+    }
+    10.13% {
+        --cta-spin: -130.9deg;
+        --cta-alpha: 1;
+    }
+    10.5% {
+        --cta-spin: -122.7deg;
+        --cta-alpha: 1;
+    }
+    10.87% {
+        --cta-spin: -116.5deg;
+        --cta-alpha: 1;
+    }
+    11.25% {
+        --cta-spin: -111.8deg;
+        --cta-alpha: 1;
+    }
+    11.63% {
+        --cta-spin: -108deg;
+        --cta-alpha: 1;
+    }
+    12% {
+        --cta-spin: -103.6deg;
+        --cta-alpha: 1;
+    }
+    12.38% {
+        --cta-spin: -98.6deg;
+        --cta-alpha: 1;
+    }
+    12.75% {
+        --cta-spin: -93.3deg;
+        --cta-alpha: 1;
+    }
+    13.13% {
+        --cta-spin: -87.7deg;
+        --cta-alpha: 1;
+    }
+    13.5% {
+        --cta-spin: -82deg;
+        --cta-alpha: 1;
+    }
+    13.88% {
+        --cta-spin: -76.3deg;
+        --cta-alpha: 1;
+    }
+    14.25% {
+        --cta-spin: -70.7deg;
+        --cta-alpha: 1;
+    }
+    14.63% {
+        --cta-spin: -65.4deg;
+        --cta-alpha: 1;
+    }
+    15% {
+        --cta-spin: -60.4deg;
+        --cta-alpha: 1;
+    }
+    15.38% {
+        --cta-spin: -56deg;
+        --cta-alpha: 0.97;
+    }
+    15.75% {
+        --cta-spin: -52.2deg;
+        --cta-alpha: 0.83;
+    }
+    16.13% {
+        --cta-spin: -47.5deg;
+        --cta-alpha: 0.69;
+    }
+    16.5% {
+        --cta-spin: -41.3deg;
+        --cta-alpha: 0.56;
+    }
+    16.88% {
+        --cta-spin: -33.1deg;
+        --cta-alpha: 0.42;
+    }
+    17.25% {
+        --cta-spin: -22.2deg;
+        --cta-alpha: 0.28;
+    }
+    17.63% {
+        --cta-spin: -8.2deg;
+        --cta-alpha: 0.14;
+    }
+    18% {
+        --cta-spin: 8deg;
+        --cta-alpha: 0;
+    }
+    49.99% {
+        --cta-spin: 8deg;
+        --cta-alpha: 0;
+    }
+    50% {
+        --cta-spin: -172deg;
+        --cta-alpha: 0;
+    }
+    50.37% {
+        --cta-spin: -155.8deg;
+        --cta-alpha: 0.17;
+    }
+    50.75% {
+        --cta-spin: -141.8deg;
+        --cta-alpha: 0.35;
+    }
+    51.13% {
+        --cta-spin: -130.9deg;
+        --cta-alpha: 0.52;
+    }
+    51.5% {
+        --cta-spin: -122.7deg;
+        --cta-alpha: 0.69;
+    }
+    51.88% {
+        --cta-spin: -116.5deg;
+        --cta-alpha: 0.87;
+    }
+    52.25% {
+        --cta-spin: -111.8deg;
+        --cta-alpha: 1;
+    }
+    52.63% {
+        --cta-spin: -108deg;
+        --cta-alpha: 1;
+    }
+    53% {
+        --cta-spin: -103.6deg;
+        --cta-alpha: 1;
+    }
+    53.38% {
+        --cta-spin: -98.6deg;
+        --cta-alpha: 1;
+    }
+    53.75% {
+        --cta-spin: -93.3deg;
+        --cta-alpha: 1;
+    }
+    54.13% {
+        --cta-spin: -87.7deg;
+        --cta-alpha: 1;
+    }
+    54.5% {
+        --cta-spin: -82deg;
+        --cta-alpha: 1;
+    }
+    54.87% {
+        --cta-spin: -76.3deg;
+        --cta-alpha: 1;
+    }
+    55.25% {
+        --cta-spin: -70.7deg;
+        --cta-alpha: 1;
+    }
+    55.63% {
+        --cta-spin: -65.4deg;
+        --cta-alpha: 1;
+    }
+    56% {
+        --cta-spin: -60.4deg;
+        --cta-alpha: 1;
+    }
+    56.38% {
+        --cta-spin: -56deg;
+        --cta-alpha: 1;
+    }
+    56.75% {
+        --cta-spin: -52.2deg;
+        --cta-alpha: 1;
+    }
+    57.13% {
+        --cta-spin: -47.5deg;
+        --cta-alpha: 1;
+    }
+    57.5% {
+        --cta-spin: -41.3deg;
+        --cta-alpha: 1;
+    }
+    57.88% {
+        --cta-spin: -33.1deg;
+        --cta-alpha: 1;
+    }
+    58.25% {
+        --cta-spin: -22.2deg;
+        --cta-alpha: 1;
+    }
+    58.62% {
+        --cta-spin: -8.2deg;
+        --cta-alpha: 1;
+    }
+    59% {
+        --cta-spin: 8deg;
+        --cta-alpha: 1;
+    }
+    59.38% {
+        --cta-spin: 24.2deg;
+        --cta-alpha: 1;
+    }
+    59.75% {
+        --cta-spin: 38.2deg;
+        --cta-alpha: 1;
+    }
+    60.13% {
+        --cta-spin: 49.1deg;
+        --cta-alpha: 1;
+    }
+    60.5% {
+        --cta-spin: 57.3deg;
+        --cta-alpha: 1;
+    }
+    60.88% {
+        --cta-spin: 63.5deg;
+        --cta-alpha: 1;
+    }
+    61.25% {
+        --cta-spin: 68.2deg;
+        --cta-alpha: 1;
+    }
+    61.63% {
+        --cta-spin: 72deg;
+        --cta-alpha: 1;
+    }
+    62% {
+        --cta-spin: 76.4deg;
+        --cta-alpha: 1;
+    }
+    62.38% {
+        --cta-spin: 81.4deg;
+        --cta-alpha: 1;
+    }
+    62.75% {
+        --cta-spin: 86.7deg;
+        --cta-alpha: 1;
+    }
+    63.13% {
+        --cta-spin: 92.3deg;
+        --cta-alpha: 1;
+    }
+    63.5% {
+        --cta-spin: 98deg;
+        --cta-alpha: 1;
+    }
+    63.88% {
+        --cta-spin: 103.7deg;
+        --cta-alpha: 1;
+    }
+    64.25% {
+        --cta-spin: 109.3deg;
+        --cta-alpha: 1;
+    }
+    64.63% {
+        --cta-spin: 114.6deg;
+        --cta-alpha: 1;
+    }
+    65% {
+        --cta-spin: 119.6deg;
+        --cta-alpha: 1;
+    }
+    65.38% {
+        --cta-spin: 124deg;
+        --cta-alpha: 0.97;
+    }
+    65.75% {
+        --cta-spin: 127.8deg;
+        --cta-alpha: 0.83;
+    }
+    66.13% {
+        --cta-spin: 132.5deg;
+        --cta-alpha: 0.69;
+    }
+    66.5% {
+        --cta-spin: 138.7deg;
+        --cta-alpha: 0.56;
+    }
+    66.88% {
+        --cta-spin: 146.9deg;
+        --cta-alpha: 0.42;
+    }
+    67.25% {
+        --cta-spin: 157.8deg;
+        --cta-alpha: 0.28;
+    }
+    67.63% {
+        --cta-spin: 171.8deg;
+        --cta-alpha: 0.14;
+    }
+    68% {
+        --cta-spin: 188deg;
+        --cta-alpha: 0;
+    }
+    100% {
+        --cta-spin: 188deg;
+        --cta-alpha: 0;
+    }
+}
+
+@keyframes cta-sweep-mobile {
+    0% {
+        --cta-spin: -352deg;
+        --cta-alpha: 0;
+    }
+    0.49% {
+        --cta-spin: -335.8deg;
+        --cta-alpha: 0.17;
+    }
+    0.97% {
+        --cta-spin: -321.8deg;
+        --cta-alpha: 0.35;
+    }
+    1.46% {
+        --cta-spin: -310.9deg;
+        --cta-alpha: 0.52;
+    }
+    1.94% {
+        --cta-spin: -302.7deg;
+        --cta-alpha: 0.69;
+    }
+    2.43% {
+        --cta-spin: -296.5deg;
+        --cta-alpha: 0.87;
+    }
+    2.92% {
+        --cta-spin: -291.8deg;
+        --cta-alpha: 1;
+    }
+    3.4% {
+        --cta-spin: -288deg;
+        --cta-alpha: 1;
+    }
+    3.89% {
+        --cta-spin: -283.6deg;
+        --cta-alpha: 1;
+    }
+    4.37% {
+        --cta-spin: -278.6deg;
+        --cta-alpha: 1;
+    }
+    4.86% {
+        --cta-spin: -273.3deg;
+        --cta-alpha: 1;
+    }
+    5.35% {
+        --cta-spin: -267.7deg;
+        --cta-alpha: 1;
+    }
+    5.83% {
+        --cta-spin: -262deg;
+        --cta-alpha: 1;
+    }
+    6.32% {
+        --cta-spin: -256.3deg;
+        --cta-alpha: 1;
+    }
+    6.81% {
+        --cta-spin: -250.7deg;
+        --cta-alpha: 1;
+    }
+    7.29% {
+        --cta-spin: -245.4deg;
+        --cta-alpha: 1;
+    }
+    7.78% {
+        --cta-spin: -240.4deg;
+        --cta-alpha: 1;
+    }
+    8.26% {
+        --cta-spin: -236deg;
+        --cta-alpha: 1;
+    }
+    8.75% {
+        --cta-spin: -232.2deg;
+        --cta-alpha: 1;
+    }
+    9.24% {
+        --cta-spin: -227.5deg;
+        --cta-alpha: 1;
+    }
+    9.72% {
+        --cta-spin: -221.3deg;
+        --cta-alpha: 1;
+    }
+    10.21% {
+        --cta-spin: -213.1deg;
+        --cta-alpha: 1;
+    }
+    10.69% {
+        --cta-spin: -202.2deg;
+        --cta-alpha: 1;
+    }
+    11.18% {
+        --cta-spin: -188.2deg;
+        --cta-alpha: 1;
+    }
+    11.67% {
+        --cta-spin: -172deg;
+        --cta-alpha: 1;
+    }
+    12.15% {
+        --cta-spin: -155.8deg;
+        --cta-alpha: 1;
+    }
+    12.64% {
+        --cta-spin: -141.8deg;
+        --cta-alpha: 1;
+    }
+    13.13% {
+        --cta-spin: -130.9deg;
+        --cta-alpha: 1;
+    }
+    13.61% {
+        --cta-spin: -122.7deg;
+        --cta-alpha: 1;
+    }
+    14.1% {
+        --cta-spin: -116.5deg;
+        --cta-alpha: 1;
+    }
+    14.58% {
+        --cta-spin: -111.8deg;
+        --cta-alpha: 1;
+    }
+    15.07% {
+        --cta-spin: -108deg;
+        --cta-alpha: 1;
+    }
+    15.56% {
+        --cta-spin: -103.6deg;
+        --cta-alpha: 1;
+    }
+    16.04% {
+        --cta-spin: -98.6deg;
+        --cta-alpha: 1;
+    }
+    16.53% {
+        --cta-spin: -93.3deg;
+        --cta-alpha: 1;
+    }
+    17.01% {
+        --cta-spin: -87.7deg;
+        --cta-alpha: 1;
+    }
+    17.5% {
+        --cta-spin: -82deg;
+        --cta-alpha: 1;
+    }
+    17.99% {
+        --cta-spin: -76.3deg;
+        --cta-alpha: 1;
+    }
+    18.47% {
+        --cta-spin: -70.7deg;
+        --cta-alpha: 1;
+    }
+    18.96% {
+        --cta-spin: -65.4deg;
+        --cta-alpha: 1;
+    }
+    19.44% {
+        --cta-spin: -60.4deg;
+        --cta-alpha: 1;
+    }
+    19.93% {
+        --cta-spin: -56deg;
+        --cta-alpha: 0.97;
+    }
+    20.42% {
+        --cta-spin: -52.2deg;
+        --cta-alpha: 0.83;
+    }
+    20.9% {
+        --cta-spin: -47.5deg;
+        --cta-alpha: 0.69;
+    }
+    21.39% {
+        --cta-spin: -41.3deg;
+        --cta-alpha: 0.56;
+    }
+    21.88% {
+        --cta-spin: -33.1deg;
+        --cta-alpha: 0.42;
+    }
+    22.36% {
+        --cta-spin: -22.2deg;
+        --cta-alpha: 0.28;
+    }
+    22.85% {
+        --cta-spin: -8.2deg;
+        --cta-alpha: 0.14;
+    }
+    23.33% {
+        --cta-spin: 8deg;
+        --cta-alpha: 0;
+    }
+    49.99% {
+        --cta-spin: 8deg;
+        --cta-alpha: 0;
+    }
+    50% {
+        --cta-spin: -172deg;
+        --cta-alpha: 0;
+    }
+    50.49% {
+        --cta-spin: -155.8deg;
+        --cta-alpha: 0.17;
+    }
+    50.97% {
+        --cta-spin: -141.8deg;
+        --cta-alpha: 0.35;
+    }
+    51.46% {
+        --cta-spin: -130.9deg;
+        --cta-alpha: 0.52;
+    }
+    51.94% {
+        --cta-spin: -122.7deg;
+        --cta-alpha: 0.69;
+    }
+    52.43% {
+        --cta-spin: -116.5deg;
+        --cta-alpha: 0.87;
+    }
+    52.92% {
+        --cta-spin: -111.8deg;
+        --cta-alpha: 1;
+    }
+    53.4% {
+        --cta-spin: -108deg;
+        --cta-alpha: 1;
+    }
+    53.89% {
+        --cta-spin: -103.6deg;
+        --cta-alpha: 1;
+    }
+    54.38% {
+        --cta-spin: -98.6deg;
+        --cta-alpha: 1;
+    }
+    54.86% {
+        --cta-spin: -93.3deg;
+        --cta-alpha: 1;
+    }
+    55.35% {
+        --cta-spin: -87.7deg;
+        --cta-alpha: 1;
+    }
+    55.83% {
+        --cta-spin: -82deg;
+        --cta-alpha: 1;
+    }
+    56.32% {
+        --cta-spin: -76.3deg;
+        --cta-alpha: 1;
+    }
+    56.81% {
+        --cta-spin: -70.7deg;
+        --cta-alpha: 1;
+    }
+    57.29% {
+        --cta-spin: -65.4deg;
+        --cta-alpha: 1;
+    }
+    57.78% {
+        --cta-spin: -60.4deg;
+        --cta-alpha: 1;
+    }
+    58.26% {
+        --cta-spin: -56deg;
+        --cta-alpha: 1;
+    }
+    58.75% {
+        --cta-spin: -52.2deg;
+        --cta-alpha: 1;
+    }
+    59.24% {
+        --cta-spin: -47.5deg;
+        --cta-alpha: 1;
+    }
+    59.72% {
+        --cta-spin: -41.3deg;
+        --cta-alpha: 1;
+    }
+    60.21% {
+        --cta-spin: -33.1deg;
+        --cta-alpha: 1;
+    }
+    60.69% {
+        --cta-spin: -22.2deg;
+        --cta-alpha: 1;
+    }
+    61.18% {
+        --cta-spin: -8.2deg;
+        --cta-alpha: 1;
+    }
+    61.67% {
+        --cta-spin: 8deg;
+        --cta-alpha: 1;
+    }
+    62.15% {
+        --cta-spin: 24.2deg;
+        --cta-alpha: 1;
+    }
+    62.64% {
+        --cta-spin: 38.2deg;
+        --cta-alpha: 1;
+    }
+    63.13% {
+        --cta-spin: 49.1deg;
+        --cta-alpha: 1;
+    }
+    63.61% {
+        --cta-spin: 57.3deg;
+        --cta-alpha: 1;
+    }
+    64.1% {
+        --cta-spin: 63.5deg;
+        --cta-alpha: 1;
+    }
+    64.58% {
+        --cta-spin: 68.2deg;
+        --cta-alpha: 1;
+    }
+    65.07% {
+        --cta-spin: 72deg;
+        --cta-alpha: 1;
+    }
+    65.56% {
+        --cta-spin: 76.4deg;
+        --cta-alpha: 1;
+    }
+    66.04% {
+        --cta-spin: 81.4deg;
+        --cta-alpha: 1;
+    }
+    66.53% {
+        --cta-spin: 86.7deg;
+        --cta-alpha: 1;
+    }
+    67.01% {
+        --cta-spin: 92.3deg;
+        --cta-alpha: 1;
+    }
+    67.5% {
+        --cta-spin: 98deg;
+        --cta-alpha: 1;
+    }
+    67.99% {
+        --cta-spin: 103.7deg;
+        --cta-alpha: 1;
+    }
+    68.47% {
+        --cta-spin: 109.3deg;
+        --cta-alpha: 1;
+    }
+    68.96% {
+        --cta-spin: 114.6deg;
+        --cta-alpha: 1;
+    }
+    69.44% {
+        --cta-spin: 119.6deg;
+        --cta-alpha: 1;
+    }
+    69.93% {
+        --cta-spin: 124deg;
+        --cta-alpha: 0.97;
+    }
+    70.42% {
+        --cta-spin: 127.8deg;
+        --cta-alpha: 0.83;
+    }
+    70.9% {
+        --cta-spin: 132.5deg;
+        --cta-alpha: 0.69;
+    }
+    71.39% {
+        --cta-spin: 138.7deg;
+        --cta-alpha: 0.56;
+    }
+    71.88% {
+        --cta-spin: 146.9deg;
+        --cta-alpha: 0.42;
+    }
+    72.36% {
+        --cta-spin: 157.8deg;
+        --cta-alpha: 0.28;
+    }
+    72.85% {
+        --cta-spin: 171.8deg;
+        --cta-alpha: 0.14;
+    }
+    73.33% {
+        --cta-spin: 188deg;
+        --cta-alpha: 0;
+    }
+    100% {
+        --cta-spin: 188deg;
+        --cta-alpha: 0;
+    }
+}
+
+/* Soft bloom around the comet: a blurred copy of the same highlight.
+   The blur sits on the wrapper so it applies after the ring mask. */
+.cta-glow {
+    position: absolute;
+    inset: -3px;
+    border-radius: 53px;
+    filter: blur(4px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.cta-glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 3px;
+    background: conic-gradient(from var(--cta-spin),
+        rgba(255, 255, 255, 0) 0deg,
+        rgba(255, 255, 255, 0) 300deg,
+        rgba(200, 185, 255, calc(0.5 * var(--cta-alpha))) 335deg,
+        rgba(255, 255, 255, var(--cta-alpha)) 352deg,
+        rgba(255, 255, 255, 0) 360deg);
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: cta-sweep 5s linear infinite;
+}
+
+/* Phones: slower lap, the comet raced on a small screen */
+@media (max-width: 600px) {
+    .hero .cta-button::after,
+    .cta-glow::before {
+        animation-name: cta-sweep-mobile;
+        animation-duration: 6s;
+    }
+}
+
+/* Reduced motion: half speed, not removed
+   (many visitors are on "best performance" desktops) */
+@media (prefers-reduced-motion: reduce) {
+    .hero .cta-button::after,
+    .cta-glow::before {
+        animation-duration: 10s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 600px) {
+    .hero .cta-button::after,
+    .cta-glow::before {
+        animation-duration: 12s;
+    }
+}
+
 /* Hero section button specific hover - purple/blue glow */
 .hero .cta-button:hover,
 .hero .cta-button:focus-visible {
