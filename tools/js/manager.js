@@ -13,7 +13,6 @@ class ProjectManager {
 
         // Load projects data
         this.projectsData = await Utils.loadProjectsData();
-        this.originalData = Utils.deepClone(this.projectsData);
 
         // Setup containers
         this.setupContainers();
@@ -23,6 +22,9 @@ class ProjectManager {
 
         // Render projects
         this.renderProjects();
+
+        // Baseline after render: renderProjects() sorts the projects array in place
+        this.originalData = Utils.deepClone(this.projectsData);
 
         document.body.classList.remove('loading');
     }
@@ -136,7 +138,92 @@ class ProjectManager {
             card.querySelector('.badge-order').textContent = `#${order}`;
         }
 
+        this.setupAssetControls(cardEl, project);
+
         return cardEl;
+    }
+
+    // ==================== IMAGE ASSETS ====================
+
+    setupAssetControls(cardEl, project) {
+        const panel = cardEl.querySelector('.card-assets-panel');
+        const images = Utils.getProjectImages(project);
+        const hasVideoHero = project.heroMedia && project.heroMedia.type === 'video';
+
+        cardEl.querySelector('.asset-toggle').addEventListener('click', () => {
+            panel.hidden = !panel.hidden;
+        });
+
+        const refreshImages = Utils.debounce(() => {
+            cardEl.querySelector('.card-thumbnail img').src = Utils.getProjectThumbnail(project);
+            this.updateAssetBadges(cardEl, project);
+        }, 400);
+
+        panel.querySelectorAll('input[data-field]').forEach(input => {
+            const field = input.dataset.field;
+            input.value = images[field];
+
+            // Video poster only applies to video heroes
+            if (field === 'poster' && !hasVideoHero) {
+                input.disabled = true;
+                input.placeholder = 'No video hero - edit hero type in Project Studio';
+            }
+
+            // Apply edits to the data right away so Save never misses them;
+            // only the image probes (network) are debounced
+            input.addEventListener('input', () => {
+                this.setImageField(project, field, input.value.trim());
+                this.checkForChanges();
+                refreshImages();
+            });
+        });
+
+        this.updateAssetBadges(cardEl, project);
+    }
+
+    setImageField(project, field, value) {
+        if (field === 'poster') {
+            if (!project.heroMedia) return;
+            if (value) project.heroMedia.poster = value;
+            else delete project.heroMedia.poster;
+            return;
+        }
+        if (value) project[field] = value;
+        else delete project[field];
+    }
+
+    // Probe each served image and mark its badge ✓ (loads), ✗ (missing) or – (not set)
+    async updateAssetBadges(cardEl, project) {
+        const images = Utils.getProjectImages(project);
+        const badges = cardEl.querySelectorAll('.asset-badge');
+
+        await Promise.all(Array.from(badges).map(async badge => {
+            const asset = badge.dataset.asset;
+            const path = images[asset];
+            // Tag this probe so a slower, older probe can't overwrite a newer result
+            const probeId = (Number(badge.dataset.probeId) || 0) + 1;
+            badge.dataset.probeId = probeId;
+
+            const setState = (state, title) => {
+                if (Number(badge.dataset.probeId) !== probeId) return;
+                badge.classList.remove('ok', 'missing', 'unset', 'fallback');
+                badge.classList.add(state);
+                badge.title = title;
+            };
+
+            if (!path) {
+                // No cover: page falls back to the hero image / video poster
+                const fallback = asset === 'cover' && Utils.getCoverFallback(project.heroMedia);
+                const source = project.heroMedia && project.heroMedia.type === 'image' ? 'hero image' : 'video poster';
+                setState(fallback ? 'fallback' : 'unset',
+                    fallback ? `Cover not set - uses ${source}` : `${badge.textContent} not set`);
+                return;
+            }
+
+            const url = Utils.getServedImage(path);
+            const ok = await Utils.probeImage(url);
+            setState(ok ? 'ok' : 'missing', `${ok ? '✓' : '✗ Missing:'} ${url.replace('../', '')}`);
+        }));
     }
 
     handleDragEnd(evt, containerId) {
@@ -236,8 +323,17 @@ class ProjectManager {
         });
     }
 
+    // Compare with sorted object keys, so removing and re-adding a field is not a change
+    hasUnsavedChanges() {
+        const stable = value => JSON.stringify(value, (key, val) =>
+            val && typeof val === 'object' && !Array.isArray(val)
+                ? Object.keys(val).sort().reduce((out, k) => { out[k] = val[k]; return out; }, {})
+                : val);
+        return stable(this.projectsData) !== stable(this.originalData);
+    }
+
     checkForChanges() {
-        const hasChanges = JSON.stringify(this.projectsData) !== JSON.stringify(this.originalData);
+        const hasChanges = this.hasUnsavedChanges();
         const saveBtn = document.getElementById('saveBtn');
 
         if (hasChanges) {
@@ -262,7 +358,7 @@ class ProjectManager {
     }
 
     async applyToSite() {
-        const hasChanges = JSON.stringify(this.projectsData) !== JSON.stringify(this.originalData);
+        const hasChanges = this.hasUnsavedChanges();
 
         if (hasChanges) {
             Utils.showStatus('⚠️ Please save changes first!', 'warning');
@@ -273,7 +369,7 @@ class ProjectManager {
     }
 
     async reloadData() {
-        const hasChanges = JSON.stringify(this.projectsData) !== JSON.stringify(this.originalData);
+        const hasChanges = this.hasUnsavedChanges();
 
         if (hasChanges) {
             const confirm = window.confirm('You have unsaved changes. Are you sure you want to reload?');
@@ -323,6 +419,90 @@ const additionalStyles = `
 
 .hidden-container:empty::after {
     content: '👁️ Drag projects here to hide from public view';
+}
+
+/* Image asset badges + edit panel */
+.project-card {
+    flex-wrap: wrap;
+}
+
+.card-assets {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.5rem;
+}
+
+.asset-badge {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.45rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    cursor: default;
+}
+
+.asset-badge.ok::before { content: '✓ '; }
+.asset-badge.missing::before { content: '✗ '; }
+.asset-badge.unset::before { content: '– '; }
+.asset-badge.fallback::before { content: '↪ '; }
+
+.asset-badge.ok {
+    border-color: var(--success-color);
+    color: var(--success-color);
+}
+
+.asset-badge.missing {
+    border-color: var(--error-color);
+    color: var(--error-color);
+}
+
+.asset-badge.fallback {
+    border-color: var(--warning-color);
+    color: var(--warning-color);
+}
+
+.asset-toggle {
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+}
+
+.card-assets-panel {
+    flex-basis: 100%;
+    display: grid;
+    gap: 0.5rem;
+    cursor: default;
+}
+
+.card-assets-panel[hidden] {
+    display: none;
+}
+
+.card-assets-panel label {
+    display: grid;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.card-assets-panel input {
+    width: 100%;
+    padding: 0.4rem 0.5rem;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.8rem;
+}
+
+.card-assets-panel input:disabled {
+    opacity: 0.5;
 }
 </style>
 `;

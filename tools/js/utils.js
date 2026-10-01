@@ -108,22 +108,115 @@ const Utils = {
         }, 3000);
     },
 
+    // URL the site actually serves for an image path from projects-data.json.
+    // Mirrors scripts/lib/media-rules.js: .jpg paths are served as their .webp twin.
+    getServedImage(imagePath) {
+        if (!imagePath) return '';
+        return `../${imagePath.replace(/\.jpg$/i, '.webp')}`;
+    },
+
+    // Image the page uses as cover when no cover is set (mirrors scripts/lib/media-rules.js):
+    // the hero image for image heroes, the video poster for video heroes
+    getCoverFallback(heroMedia) {
+        if (!heroMedia) return '';
+        return (heroMedia.type === 'image' ? heroMedia.src : heroMedia.poster) || '';
+    },
+
+    // The three project image roles: card thumbnail, hero cover, video poster
+    getProjectImages(project) {
+        const poster = (project.heroMedia && project.heroMedia.type === 'video' && project.heroMedia.poster) || '';
+        return {
+            thumbnail: project.thumbnail || '',
+            cover: project.cover || '',
+            poster
+        };
+    },
+
+    // Default file paths for a project's images (see docs/ASSET-GUIDE.md)
+    getDefaultImagePaths(projectId) {
+        const dir = `assets/images/projects/${projectId}`;
+        return {
+            thumbnail: `${dir}/${projectId}-thumb.webp`,
+            cover: `${dir}/${projectId}-cover.jpg`,
+            poster: `${dir}/${projectId}-video-poster.jpg`
+        };
+    },
+
+    // Random unused 4-digit project ID (1000-9999), or '' if none found
+    suggestProjectId(takenIds) {
+        for (let i = 0; i < 1000; i++) {
+            const id = String(1000 + Math.floor(Math.random() * 9000));
+            if (!takenIds.has(id)) return id;
+        }
+        return '';
+    },
+
+    // Error message for an invalid new project ID, '' if valid
+    validateNewProjectId(id, takenIds) {
+        if (!/^\d{4}$/.test(id)) return 'ID must be exactly 4 digits';
+        if (id < '1000') return 'ID must be between 1000 and 9999';
+        if (takenIds.has(id)) return `ID ${id} is already used`;
+        return '';
+    },
+
+    // Full project object for a new project, hidden until media is ready.
+    // Image/video paths use the standard file names (see docs/ASSET-GUIDE.md).
+    createProjectSkeleton({ id, displayTitle, fullTitle, category, year, client }) {
+        const images = this.getDefaultImagePaths(id);
+        return {
+            id,
+            displayTitle,
+            fullTitle,
+            category,
+            client,
+            year,
+            duration: '',
+            description: '',
+            role: [],
+            tools: [],
+            featured: false,
+            featuredOrder: null,
+            projectsPageOrder: null,
+            visible: false,
+            hidden: true,
+            thumbnail: images.thumbnail,
+            cover: images.cover,
+            heroMedia: {
+                type: 'video',
+                src: `assets/videos/${id}/project-${id}.mp4`,
+                poster: images.poster
+            },
+            processMedia: []
+        };
+    },
+
+    // Resolve true if the image loads, false otherwise
+    probeImage(url) {
+        return new Promise(resolve => {
+            if (!url) return resolve(false);
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
+    },
+
     // Get project thumbnail URL
     getProjectThumbnail(project) {
-        // Try to get thumbnail from various sources
         if (project.thumbnail) {
-            return `../${project.thumbnail}`;
+            return this.getServedImage(project.thumbnail);
         }
-        if (project.videoPoster) {
-            return `../${project.videoPoster}`;
+        if (project.cover) {
+            return this.getServedImage(project.cover);
         }
         // Default thumbnail path based on ID
-        return `../assets/images/projects/${project.id}/${project.id}.webp`;
+        return `../assets/images/projects/${project.id}/${project.id}-thumb.webp`;
     },
 
     // Get category display name
     getCategoryDisplay(category) {
         const categories = {
+            'ai': 'AI',
             'vfx': 'Visual Effects',
             'motion': 'Motion Graphics',
             'editing': 'Video Editing',

@@ -78,15 +78,18 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-light-center"></div>
-            <canvas class="hero-canvas" id="hero-canvas"></canvas>
+            <div class="hero-liquid" id="hero-liquid" aria-hidden="true"></div>
             <div class="hero-content">
                 <h1>Hi, I'm Miron Auslander</h1>
-                <p class="hero-subtitle">
-                    • Visual Effects • Motion Graphics • 3D • Ai<br>
-                    specializing in Post-Production<br>
-                    TV, Films, & Digital Media
-                </p>
-                <button type="button" class="cta-button" id="showreel-btn" aria-label="Play showreel video">SHOWREEL</button>
+                <div class="hero-eclipse">
+                    <div class="hero-orb" id="hero-orb" aria-hidden="true"></div>
+                    <p class="hero-subtitle">
+                        • AI • Visual Effects • Motion Graphics<br>
+                        specializing in Post Production<br>
+                        TV, Films, & Digital Media
+                    </p>
+                </div>
+                <button type="button" class="cta-button" id="showreel-btn" aria-label="Play showreel video"><span class="cta-glow" aria-hidden="true"></span>SHOWREEL</button>
             </div>
         </section>
 
@@ -251,7 +254,8 @@
 
     <!-- Load main JavaScript -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/particles.js"></script>
+    <script type="module" src="assets/js/liquid-ether.js"></script>
+    <script type="module" src="assets/js/hero-orb.js"></script>
 
 
 

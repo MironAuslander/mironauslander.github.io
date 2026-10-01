@@ -10,6 +10,15 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+    LEGACY_FIELDS,
+    servedImage,
+    imageTwins,
+    getCoverPath,
+    missingCoverMessage,
+    isBeforeAfter,
+    hasBeforeAfter: projectHasBeforeAfter
+} = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
@@ -94,6 +103,11 @@ function checkMediaFile(mediaPath) {
     };
 }
 
+// Check an image and, for .jpg paths, its .webp twin
+function checkImageTwins(imagePath) {
+    return imageTwins(imagePath).map(checkMediaFile);
+}
+
 // Validate HTML structure
 function validateHTMLStructure(htmlContent, project) {
     const issues = [];
@@ -106,10 +120,7 @@ function validateHTMLStructure(htmlContent, project) {
     ];
 
     // Add before-after.js if project has before/after media
-    const hasBeforeAfter = (project.beforeAfterMedia && project.beforeAfterMedia.length > 0) ||
-                           (project.processMedia && project.processMedia.some(item =>
-                               item.type === 'before-after-video' || item.type === 'before-after-image'
-                           ));
+    const hasBeforeAfter = projectHasBeforeAfter(project);
 
     if (hasBeforeAfter) {
         requiredScripts.push({ name: 'before-after.js', path: '../assets/js/before-after.js' });
@@ -136,7 +147,6 @@ function validateHTMLStructure(htmlContent, project) {
     });
 
     // Check for template markers (for updatable sections)
-    // Support both old (BEFORE_AFTER_SECTION) and new (PROCESS_MEDIA) markers
     const markers = [
         { start: 'PROJECT_INFO_START', end: 'PROJECT_INFO_END', required: false }
     ];
@@ -152,25 +162,20 @@ function validateHTMLStructure(htmlContent, project) {
         }
     });
 
-    // Check for either old or new markers for media sections
+    // Check for media section markers
     if (hasBeforeAfter) {
-        const hasOldMarkers = htmlContent.includes('BEFORE_AFTER_SECTION_START') &&
-                             htmlContent.includes('BEFORE_AFTER_SECTION_END');
-        const hasNewMarkers = htmlContent.includes('PROCESS_MEDIA_START') &&
-                             htmlContent.includes('PROCESS_MEDIA_END');
+        const hasMarkers = htmlContent.includes('PROCESS_MEDIA_START') &&
+                           htmlContent.includes('PROCESS_MEDIA_END');
 
-        if (!hasOldMarkers && !hasNewMarkers) {
-            warnings.push('Missing media section markers (BEFORE_AFTER_SECTION or PROCESS_MEDIA)');
+        if (!hasMarkers) {
+            warnings.push('Missing media section markers (PROCESS_MEDIA)');
         }
     }
 
     // Check for before-after containers if project has them
     if (hasBeforeAfter) {
         const containerCount = (htmlContent.match(/before-after-container/g) || []).length;
-        const expectedCount = project.beforeAfterMedia ? project.beforeAfterMedia.length :
-                             project.processMedia ? project.processMedia.filter(item =>
-                                 item.type === 'before-after-video' || item.type === 'before-after-image'
-                             ).length : 0;
+        const expectedCount = project.processMedia.filter(isBeforeAfter).length;
 
         if (containerCount !== expectedCount) {
             warnings.push(`Expected ${expectedCount} before-after containers, found ${containerCount}`);
@@ -181,6 +186,12 @@ function validateHTMLStructure(htmlContent, project) {
     if (htmlContent.includes('project-hero-v2')) {
         if (!htmlContent.includes('hero-cover')) {
             warnings.push('V2 hero section missing hero-cover image');
+        } else {
+            // Cover falls back to the hero image / video poster when no cover is set
+            const coverPath = getCoverPath(project);
+            if (coverPath && !htmlContent.includes(`class="hero-cover" src="../${servedImage(coverPath)}"`)) {
+                warnings.push(`hero-cover does not match cover in JSON (${servedImage(coverPath)}) - regenerate the page`);
+            }
         }
         if (!htmlContent.includes('hero-meta-bar')) {
             warnings.push('V2 hero section missing meta bar');
@@ -199,6 +210,9 @@ function validateHTMLStructure(htmlContent, project) {
     // Check for SEO meta tags
     if (!htmlContent.includes('meta name="description"')) {
         warnings.push('Missing meta description tag for SEO');
+    }
+    if (!htmlContent.includes('property="og:image"')) {
+        warnings.push('Missing og:image meta tag for social sharing');
     }
 
     return { issues, warnings, suggestions };
@@ -239,78 +253,83 @@ function validateProject(project, index, total) {
     }
 
     // Validate media assets
-    const mediaFields = [
-        { field: 'thumbnail', type: 'image', required: true },
-        { field: 'heroImage', type: 'image', required: false },
-        { field: 'mainVideo', type: 'video', required: false },
-        { field: 'videoPoster', type: 'image', required: false }
-    ];
-
-    mediaFields.forEach(({ field, type, required }) => {
-        if (project[field]) {
-            const result = checkMediaFile(project[field]);
-            if (!result.exists) {
-                if (required) {
-                    issues.push(`Missing required ${type}: ${result.path}`);
-                } else {
-                    warnings.push(`Missing optional ${type}: ${result.path}`);
-                }
-            } else {
-                mediaInfo.push(`${field}: ${result.size}`);
-            }
-        } else if (required) {
-            issues.push(`Missing required field: ${field}`);
+    LEGACY_FIELDS.forEach(field => {
+        if (project[field] !== undefined) {
+            warnings.push(`Legacy field "${field}" is no longer used - remove it from projects-data.json`);
         }
     });
 
-    // Check before/after media (old format)
-    if (project.beforeAfterMedia) {
-        project.beforeAfterMedia.forEach((item, idx) => {
-            const beforeResult = checkMediaFile(item.before);
-            const afterResult = checkMediaFile(item.after);
+    const imageFields = [
+        { field: 'thumbnail', required: true },
+        { field: 'cover', required: false }
+    ];
 
-            if (!beforeResult.exists) {
-                issues.push(`Missing before ${item.type} #${idx + 1}: ${item.before}`);
-            }
-            if (!afterResult.exists) {
-                issues.push(`Missing after ${item.type} #${idx + 1}: ${item.after}`);
-            }
-        });
-    }
+    imageFields.forEach(({ field, required }) => {
+        if (project[field]) {
+            checkImageTwins(project[field]).forEach(result => {
+                if (!result.exists) {
+                    issues.push(`Missing ${field}: ${result.path}`);
+                } else {
+                    mediaInfo.push(`${field}: ${result.path.split('/').pop()} ${result.size}`);
+                }
+            });
+        } else if (required) {
+            issues.push(`Missing required field: ${field}`);
+        } else if (field === 'cover') {
+            warnings.push(missingCoverMessage(project));
+        }
+    });
 
-    // Check process media (new format)
+    // Check process media
     if (project.processMedia) {
         project.processMedia.forEach((item, idx) => {
-            if (item.type === 'before-after-video' || item.type === 'before-after-image') {
-                const beforeResult = checkMediaFile(item.before);
-                const afterResult = checkMediaFile(item.after);
-
-                if (!beforeResult.exists) {
-                    issues.push(`Missing process media before #${idx + 1}: ${item.before}`);
-                }
-                if (!afterResult.exists) {
-                    issues.push(`Missing process media after #${idx + 1}: ${item.after}`);
-                }
+            if (isBeforeAfter(item)) {
+                ['before', 'after'].forEach(key => {
+                    if (!item[key]) {
+                        issues.push(`Process media #${idx + 1} has no ${key}`);
+                    } else if (!checkMediaFile(item[key]).exists) {
+                        issues.push(`Missing process media ${key} #${idx + 1}: ${item[key]}`);
+                    }
+                });
             } else if (item.type === 'video' || item.type === 'image') {
-                const result = checkMediaFile(item.src);
-                if (!result.exists) {
+                if (!item.src) {
+                    issues.push(`Process media #${idx + 1} has no src`);
+                } else if (!checkMediaFile(item.src).exists) {
                     issues.push(`Missing process media #${idx + 1}: ${item.src}`);
+                }
+                // Video posters are served as their .webp twin
+                if (item.type === 'video' && item.poster) {
+                    checkImageTwins(item.poster).forEach(result => {
+                        if (!result.exists) {
+                            warnings.push(`Missing process media poster #${idx + 1}: ${result.path}`);
+                        }
+                    });
                 }
             }
         });
     }
 
-    // Check hero media (new format)
+    // Check hero media
     if (project.heroMedia) {
-        const result = checkMediaFile(project.heroMedia.src);
-        if (!result.exists) {
-            issues.push(`Missing hero media: ${project.heroMedia.src}`);
+        if (!project.heroMedia.src) {
+            issues.push(`Hero ${project.heroMedia.type} has no src`);
+        } else {
+            // Image heroes are served as their .webp twin, so check both files
+            const heroResults = project.heroMedia.type === 'image'
+                ? checkImageTwins(project.heroMedia.src)
+                : [checkMediaFile(project.heroMedia.src)];
+            heroResults.forEach(result => {
+                if (!result.exists) {
+                    issues.push(`Missing hero media: ${result.path}`);
+                }
+            });
         }
         if (project.heroMedia.poster) {
-            const posterResult = checkMediaFile(project.heroMedia.poster);
-            if (!posterResult.exists) {
-                warnings.push(`Missing hero media poster: ${project.heroMedia.poster}`);
-            }
+            checkImageTwins(project.heroMedia.poster).forEach(posterResult => {
+                if (!posterResult.exists) {
+                    warnings.push(`Missing video poster: ${posterResult.path}`);
+                }
+            });
         }
     }
 

@@ -11,45 +11,67 @@ The portfolio uses a unified template-based generation system to create and main
 mironauslander.github.io/
 ├── projects-data.json          # Single source of truth for all project data
 ├── templates/
-│   ├── project-page.html       # Basic template (legacy)
-│   └── project-page-advanced.html # Advanced template with flexible media
+│   └── project-page-advanced.html # Project page template
 ├── scripts/
 │   ├── generate-project-unified.js  # Main generation script (USE THIS)
 │   ├── validate-enhanced.js    # Comprehensive validation
-│   └── run-all-updates.js      # One-command update everything
-└── projects/                   # Generated HTML files
+│   ├── run-all-updates.js      # One-command update everything
+│   └── archive-deleted.js      # Move pages/media of deleted projects to archive/
+├── projects/                   # Generated HTML files
+└── archive/                    # Deleted projects (git-ignored, local only)
 ```
 
 ## Quick Start Guide
 
 ### Adding a New Project
 
-1. **Edit `projects-data.json`** to add your project:
+**With Project Studio (recommended):**
+
+1. Open `http://localhost:8000/tools/project-studio.html` and click **➕ New project**.
+2. Keep the suggested ID (a random unused 4-digit number, 🎲 for another) or type your own. Fill in the display title, full title, category, year and client.
+3. The project is created in **Hidden** with the standard media paths for its ID and opens in the editor. Add the description and media blocks.
+4. Add the media files under `assets/images/projects/[ID]/` and `assets/videos/[ID]/`.
+5. Drag the project to **All Projects** when it is ready to show, then **Save All Changes**.
+6. Replace `projects-data.json` with the download and run `node scripts/run-all-updates.js`.
+
+**By hand:** add an entry to `projects-data.json`. The IDs are 4-digit strings and must be unique:
 ```json
 {
   "id": "1234",
   "displayTitle": "Project Name",
   "fullTitle": "Project Name - Full Description",
-  "category": "vfx",
+  "category": ["vfx"],
+  "client": "Client Name",
+  "year": 2026,
+  "duration": "",
   "description": "Detailed project description...",
+  "role": [],
+  "tools": [],
+  "featured": false,
+  "featuredOrder": null,
+  "projectsPageOrder": null,
+  "visible": false,
+  "hidden": true,
   "thumbnail": "assets/images/projects/1234/1234-thumb.webp",
+  "cover": "assets/images/projects/1234/1234-cover.jpg",
   "heroMedia": {
     "type": "video",
     "src": "assets/videos/1234/project-1234.mp4",
-    "poster": "assets/images/projects/1234/1234-poster.jpg"
+    "poster": "assets/images/projects/1234/1234-video-poster.jpg"
   },
   "processMedia": [
     {
       "type": "before-after-video",
-      "before": "assets/videos/1234/1234-before.mp4",
-      "after": "assets/videos/1234/1234-after.mp4",
+      "before": "assets/videos/1234/1234-before-1.mp4",
+      "after": "assets/videos/1234/1234-after-1.mp4",
       "label": "VFX Breakdown"
     }
-  ],
-  "featured": true,
-  "visible": true
+  ]
 }
 ```
+`displayTitle` and at least one category are required: the generator fails without them. Set `visible: true` and `hidden: false` to show the project on `projects.html`.
+
+Then:
 
 2. **Generate the project page**:
 ```bash
@@ -65,7 +87,47 @@ node scripts/generate-project-unified.js
 node scripts/validate-enhanced.js --verbose
 ```
 
+### Hiding vs Deleting a Project
+
+- **Hidden:** the project stays in `projects-data.json` and its page is still generated (reachable by URL), but it is left out of the homepage, `projects.html` and related projects. Drag it to **Hidden** in Project Studio.
+- **Deleted:** the project is removed from the data and its page and media are moved out of the site.
+
+### Deleting a Project
+
+1. In Project Studio, open the project in the Edit view and click **🗑️ Delete project**, then confirm. The project is struck through; **↩️ Undo delete** works until you save. A new project that was never saved is discarded right away.
+2. **Save All Changes**. The project moves from `projects` to a top-level `deletedProjects` list (with a `deletedAt` date), and the `metadata` counts are updated.
+3. Replace `projects-data.json` with the download and run `node scripts/run-all-updates.js`. The pages are regenerated without the project, and a warning lists deleted projects that still have files.
+4. Review what will be archived, then archive it:
+```bash
+node scripts/archive-deleted.js         # dry run: lists pages and media folders with no live project
+node scripts/archive-deleted.js --yes   # moves them to archive/
+```
+   Each project goes to `archive/[ID]/`: `Project-[ID].html`, `images/`, `videos/` and `project.json` (its `deletedProjects` entry). If `archive/[ID]` already exists, `archive/[ID]-<timestamp>/` is used. Archived entries are removed from `deletedProjects`.
+5. Commit. Git shows the page and media as deleted; `archive/` is git-ignored, so the files stay only on your machine (and in git history).
+
+**Restoring:** move `archive/[ID]/project.json` back into `projects` in `projects-data.json` (drop `deletedAt`), move `images/` and `videos/` back to `assets/images/projects/[ID]/` and `assets/videos/[ID]/`, then run `node scripts/run-all-updates.js`.
+
 ## Media Configuration Options
+
+### Project Images
+
+Each project has three separate images, one per role. Sizes, crops and safe areas are in `docs/ASSET-GUIDE.md`.
+
+| Role | JSON field | Where it shows |
+|---|---|---|
+| Thumbnail | `thumbnail` | Project cards (homepage, projects page, related projects) |
+| Cover | `cover` | Hero background, cropped, with the title on top; also the og:image |
+| Video poster | `heroMedia.poster` | Full frame in the video player before playback |
+
+- JSON stores `.jpg` paths. The generator serves the `.webp` twin, so both files must exist.
+- If `cover` is missing, the hero image (image hero) or video poster (video hero) is used as cover and validation warns.
+- Optional `coverPosition` adjusts the crop with CSS `object-position` values:
+
+```json
+"coverPosition": { "desktop": "center 30%", "mobile": "40% center" }
+```
+
+Defaults: `center 50%` on desktop, `center center` on mobile.
 
 ### Hero Media Types
 
@@ -73,16 +135,16 @@ node scripts/validate-enhanced.js --verbose
 ```json
 "heroMedia": {
   "type": "video",
-  "src": "assets/videos/1234/main.mp4",
-  "poster": "assets/images/1234/poster.jpg"
+  "src": "assets/videos/1234/project-1234.mp4",
+  "poster": "assets/images/projects/1234/1234-video-poster.jpg"
 }
 ```
 
-**Image Hero:**
+**Image Hero** (shown uncropped below the cover, in place of the video):
 ```json
 "heroMedia": {
   "type": "image",
-  "src": "assets/images/1234/hero.jpg",
+  "src": "assets/images/projects/1234/1234-hero.jpg",
   "alt": "Description for accessibility"
 }
 ```
@@ -131,19 +193,13 @@ node scripts/validate-enhanced.js --verbose
 }
 ```
 
-## Data Format Migration
+## Data Format
 
-The system supports both legacy and advanced formats:
+Projects use `thumbnail`, `cover`, `heroMedia` and `processMedia`.
 
-### Legacy Format (still supported):
-- Uses `beforeAfterMedia` array
-- Simple `mainVideo` and `heroImage` fields
-- Automatically converted when using unified generator
+`category` is an array with one or more of `ai`, `vfx`, `motion`, `editing` and `personal`. Each value has a filter button on `projects.html` (filter buttons are hand-written in that file, outside the generated grid). The first category sets the accent in the page hero, for example "| VFX BREAKDOWN". To add a category, update `CATEGORY_DISPLAY` and `CATEGORY_ACCENT` in `scripts/generate-project-unified.js`, `validCategories` in `scripts/update-projects-page.js`, `availableCategories` in `tools/js/project-studio.js`, `getCategoryDisplay` in `tools/js/utils.js`, and add a filter button to `projects.html`.
 
-### Advanced Format (recommended):
-- Uses `heroMedia` object
-- Flexible `processMedia` array
-- Supports mixed media types
+The legacy fields `videoPoster`, `heroImage`, `mainVideo` and `beforeAfterMedia` are no longer supported. The validators warn if any of them appears in `projects-data.json`.
 
 ## Workflow Commands
 
@@ -172,6 +228,9 @@ node scripts/update-projects-page.js
 
 # Validate everything
 node scripts/validate-enhanced.js --verbose
+
+# Archive pages and media of deleted projects (dry run without --yes)
+node scripts/archive-deleted.js --yes
 ```
 
 ## Validation and Testing
@@ -194,9 +253,10 @@ node scripts/validate-enhanced.js --fix
 - ✅ Required scripts (main.js, before-after.js when needed)
 - ✅ CSS inclusion
 - ✅ Font declarations
-- ✅ Media file existence
+- ✅ Media file existence (including `.jpg` + `.webp` twins for cover and video poster)
+- ✅ Hero cover on the page matches `cover` in the JSON
 - ✅ Template markers
-- ✅ SEO meta tags
+- ✅ SEO meta tags (description, og:image)
 - ✅ Data consistency
 
 ### Local Testing
@@ -228,8 +288,9 @@ node scripts/generate-project-unified.js PROJECT_ID
 ```
 assets/
 ├── images/projects/1234/
-│   ├── 1234-thumb.webp
-│   └── 1234-poster.jpg
+│   ├── 1234-thumb.webp / .jpg
+│   ├── 1234-cover.webp / .jpg
+│   └── 1234-video-poster.webp / .jpg
 └── videos/1234/
     ├── project-1234.mp4
     ├── 1234-before.mp4
@@ -243,18 +304,9 @@ assets/
 
 ## Template System Details
 
-### How Templates Are Selected
+### Template
 
-The unified generator automatically selects the appropriate template:
-
-1. **Advanced Template Used When:**
-   - Project has `processMedia` field
-   - Project has `heroMedia` field
-   - Project needs flexible media layouts
-
-2. **Basic Template Used When:**
-   - Simple projects with standard layout
-   - Legacy data format without advanced features
+All pages are generated from `templates/project-page-advanced.html`. `scripts/generate-project-unified.js` is the only generator; `quick-update.js` and `run-update.bat/.ps1` call it.
 
 ### Template Markers
 
@@ -264,9 +316,9 @@ Templates include markers for partial updates:
   (updatable project information)
 <!-- PROJECT_INFO_END -->
 
-<!-- BEFORE_AFTER_SECTION_START -->
-  (before/after comparisons)
-<!-- BEFORE_AFTER_SECTION_END -->
+<!-- PROCESS_MEDIA_START -->
+  (process & variations media)
+<!-- PROCESS_MEDIA_END -->
 ```
 
 ## Best Practices
@@ -287,8 +339,8 @@ Templates include markers for partial updates:
 
 4. **Optimize media files:**
    - Videos: MP4 format, reasonable compression
-   - Images: WebP with JPG fallbacks
-   - Thumbnails: Under 50KB when possible
+   - Images: WebP with JPG twins
+   - Sizes and targets: see `docs/ASSET-GUIDE.md`
 
 5. **Test locally before deploying:**
    - Check all before/after widgets
@@ -299,15 +351,16 @@ Templates include markers for partial updates:
 
 For non-technical management, use the visual tools:
 
-1. **Project Manager** (`tools/project-manager.html`)
-   - Drag-and-drop project ordering
-   - Visual project selection for homepage
-   - Export updated JSON
+1. **Project Studio** (`tools/project-studio.html`)
+   - Create projects (random unused 4-digit ID) and delete them (archived by `scripts/archive-deleted.js`)
+   - Edit project details, images (thumbnail, cover, cover crop, video poster) and media
+   - Desktop and mobile cover crop previews
+   - Multi-project editing with a single JSON export
 
-2. **Media Configurator** (`tools/media-configurator.html`)
-   - Visual media layout design
-   - Preview before/after setups
-   - Generate media configurations
+2. **Layout & Assets Manager** (`tools/project-manager.html`)
+   - Drag-and-drop project ordering and homepage featuring
+   - Asset badges showing whether each project's thumbnail, cover and video poster exist
+   - Inline editing of the three image paths
 
 ## Deployment
 

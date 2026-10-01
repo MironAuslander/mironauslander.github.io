@@ -11,7 +11,12 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const {
+    ADVANCED_TEMPLATE,
+    loadTemplate,
+    generateProjectPage,
+    saveProjectFile
+} = require('./generate-project-unified');
 
 // ANSI color codes
 const colors = {
@@ -167,16 +172,20 @@ function updateProjects() {
     let errorCount = 0;
     const errors = [];
 
+    // Generate in-process with the already-parsed data and one template read
+    const template = loadTemplate(ADVANCED_TEMPLATE);
+    const projectsById = new Map(projectsData.projects.map(p => [p.id, p]));
+
     // Update each project
     projectsToUpdate.forEach((project, index) => {
         const progress = `[${index + 1}/${projectsToUpdate.length}]`;
         process.stdout.write(`${progress} Updating ${project.id}... `);
 
         try {
-            // Run the single project generator
-            execSync(`node scripts/generate-single-project.js ${project.id}`, {
-                stdio: 'pipe' // Suppress output
-            });
+            const html = generateProjectPage(projectsById.get(project.id), projectsData.projects, template);
+            if (!saveProjectFile(project.id, html)) {
+                throw new Error(`Could not write Project-${project.id}.html`);
+            }
 
             // Update cache
             cache[`project_${project.id}`] = project.hash;

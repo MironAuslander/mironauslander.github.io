@@ -256,61 +256,23 @@
                 </a>
             </div>
 
-            <!-- Legacy Tools Section -->
-            <details style="margin-bottom: 2rem;">
-                <summary style="cursor: pointer; padding: 1rem; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 8px; font-size: 1.1rem; color: var(--text-secondary);">
-                    📁 Legacy Tools (Individual Editors)
-                </summary>
-                <div class="tools-grid" style="margin-top: 1rem;">
-                    <a href="project-manager.html" class="tool-card" style="opacity: 0.8;">
-                        <div class="tool-icon">🎯</div>
-                        <h2 class="tool-title">Layout Manager</h2>
-                        <p class="tool-description">
-                            Visual control center for project placement. Drag projects to featured section,
-                            reorder them, or hide from public view.
-                        </p>
-                        <ul class="tool-features">
-                            <li>Drag-and-drop interface</li>
-                            <li>Homepage featuring control</li>
-                            <li>Project ordering</li>
-                            <li>Visibility management</li>
-                        </ul>
-                        <span class="tool-tag tag-primary" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
-                    </a>
-
-                    <a href="project-editor.html" class="tool-card" style="opacity: 0.8;">
-                        <div class="tool-icon">✏️</div>
-                        <h2 class="tool-title">Content Editor</h2>
-                        <p class="tool-description">
-                            Edit project text content and metadata. Update titles, descriptions,
-                            categories, roles, and tools used.
-                        </p>
-                        <ul class="tool-features">
-                            <li>Text content editing</li>
-                            <li>Category & metadata</li>
-                            <li>Roles & tools tags</li>
-                            <li>Live preview</li>
-                        </ul>
-                        <span class="tool-tag tag-updated" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
-                    </a>
-
-                    <a href="media-configurator.html" class="tool-card" style="opacity: 0.8;">
-                        <div class="tool-icon">🎬</div>
-                        <h2 class="tool-title">Media Configurator</h2>
-                        <p class="tool-description">
-                            Visual layout designer for project media. Configure hero sections
-                            and process variations with drag-and-drop simplicity.
-                        </p>
-                        <ul class="tool-features">
-                            <li>Hero section customization</li>
-                            <li>1-6 media blocks per project</li>
-                            <li>Before/after comparisons</li>
-                            <li>Visual grid preview</li>
-                        </ul>
-                        <span class="tool-tag tag-new" style="position: absolute; top: 1rem; right: 1rem; background: gray; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.85rem;">Legacy</span>
-                    </a>
-                </div>
-            </details>
+            <!-- Secondary Tool - Project Manager -->
+            <div class="tools-grid" style="margin-bottom: 2rem;">
+                <a href="project-manager.html" class="tool-card">
+                    <div class="tool-icon">🎯</div>
+                    <h2 class="tool-title">Layout &amp; Assets Manager</h2>
+                    <p class="tool-description">
+                        Quick overview of every project. Drag projects to reorder, feature or hide them,
+                        and check or edit each project's thumbnail, cover and video poster.
+                    </p>
+                    <ul class="tool-features">
+                        <li>Drag-and-drop interface</li>
+                        <li>Homepage featuring control</li>
+                        <li>Asset status badges (thumb / cover / poster)</li>
+                        <li>Inline image path editing</li>
+                    </ul>
+                </a>
+            </div>
 
             <!-- Quick Actions -->
             <div class="quick-actions">
@@ -326,9 +288,8 @@
             <div class="instructions">
                 <h2>📋 How to Use</h2>
                 <ol>
-                    <li><strong>Layout Manager:</strong> Control homepage featuring and project visibility</li>
-                    <li><strong>Content Editor:</strong> Edit project text, categories, and metadata</li>
-                    <li><strong>Media Configurator:</strong> Design hero sections and process media layouts</li>
+                    <li><strong>Project Studio:</strong> Edit project details, images (thumbnail, cover, video poster) and media</li>
+                    <li><strong>Layout &amp; Assets Manager:</strong> Control featuring and visibility, check image assets at a glance</li>
                     <li><strong>Save Changes:</strong> Tools will download a backup JSON file</li>
                     <li><strong>Apply to Site:</strong> Replace <code>projects-data.json</code> with your backup</li>
                     <li><strong>Run Updates:</strong> Execute <code>node scripts/run-all-updates.js</code> from project root</li>
@@ -340,7 +301,7 @@
         <div id="statusMessage" class="status-message"></div>
     </div>
 
-    <script src="js/utils.js"></script>
+    <script src="js/utils.js?v=3"></script>
     <script>
         // Load and display statistics
         async function loadStatistics() {

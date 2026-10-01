@@ -11,6 +11,8 @@ class ProjectStudio {
 
         // Multi-project editing support
         this.modifiedProjects = new Set(); // Track which projects have been edited
+        this.newProjects = new Set(); // Created in this session, not saved yet
+        this.deletedProjects = new Set(); // Marked for deletion, removed on save
 
         // Project organization
         this.featuredProjects = [];
@@ -20,8 +22,9 @@ class ProjectStudio {
         // Media configuration
         this.processMediaBlocks = [];
 
-        // Available options (from editor.js)
+        // Available options
         this.availableCategories = [
+            { value: 'ai', label: 'AI' },
             { value: 'vfx', label: 'Visual Effects' },
             { value: 'motion', label: 'Motion Graphics' },
             { value: 'editing', label: 'Video Editing' },
@@ -67,6 +70,7 @@ class ProjectStudio {
             this.setupMediaConfig();
             this.setupEventListeners();
             this.setupTagSelectors();
+            this.setupNewProjectDialog();
 
             // Load initial view
             this.loadProjectLists();
@@ -118,6 +122,177 @@ class ProjectStudio {
         if (view === 'edit') {
             this.loadEditList();
         }
+    }
+
+    // ==================== CREATE PROJECT ====================
+
+    // IDs that a new project must not reuse: live projects and deleted ones awaiting archive
+    getTakenProjectIds() {
+        const ids = this.projectsData.projects.map(p => p.id);
+        (this.projectsData.deletedProjects || []).forEach(p => ids.push(p.id));
+        return new Set(ids);
+    }
+
+    setupNewProjectDialog() {
+        const dialog = document.getElementById('newProjectDialog');
+        const form = document.getElementById('newProjectForm');
+        const idInput = document.getElementById('newProjectId');
+        const idError = document.getElementById('newProjectIdError');
+        if (!dialog || !form) return;
+
+        // Category checkboxes, same options as the details form
+        document.getElementById('newCategoryList').innerHTML = this.availableCategories
+            .map(c => `<label class="checkbox-label"><input type="checkbox" value="${c.value}"> ${c.label}</label>`)
+            .join('');
+
+        const checkId = () => {
+            idError.textContent = Utils.validateNewProjectId(idInput.value.trim(), this.getTakenProjectIds());
+        };
+
+        document.getElementById('newProjectBtn').addEventListener('click', () => {
+            form.reset();
+            idInput.value = Utils.suggestProjectId(this.getTakenProjectIds());
+            document.getElementById('newYear').value = new Date().getFullYear();
+            idError.textContent = '';
+            document.getElementById('newProjectFormError').textContent = '';
+            dialog.showModal();
+            document.getElementById('newDisplayTitle').focus();
+        });
+
+        document.getElementById('rerollProjectIdBtn').addEventListener('click', () => {
+            idInput.value = Utils.suggestProjectId(this.getTakenProjectIds());
+            checkId();
+        });
+
+        idInput.addEventListener('input', checkId);
+        document.getElementById('cancelNewProjectBtn').addEventListener('click', () => dialog.close());
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.createProjectFromDialog();
+        });
+    }
+
+    createProjectFromDialog() {
+        const id = document.getElementById('newProjectId').value.trim();
+        const displayTitle = document.getElementById('newDisplayTitle').value.trim();
+        const fullTitle = document.getElementById('newFullTitle').value.trim() || displayTitle;
+        const category = Array.from(document.querySelectorAll('#newCategoryList input:checked')).map(cb => cb.value);
+        const year = parseInt(document.getElementById('newYear').value, 10) || new Date().getFullYear();
+        const client = document.getElementById('newClient').value.trim();
+
+        const idError = Utils.validateNewProjectId(id, this.getTakenProjectIds());
+        document.getElementById('newProjectIdError').textContent = idError;
+
+        // The generator needs a title and at least one category
+        const formError = !displayTitle ? 'Display title is required'
+            : !category.length ? 'Pick at least one category'
+            : '';
+        document.getElementById('newProjectFormError').textContent = formError;
+        if (idError || formError) return;
+
+        const project = Utils.createProjectSkeleton({ id, displayTitle, fullTitle, category, year, client });
+        this.projectsData.projects.push(project);
+        this.newProjects.add(id);
+        this.modifiedProjects.add(id);
+        this.hasChanges = true;
+
+        document.getElementById('newProjectDialog').close();
+
+        this.loadProjectLists();
+        this.updateAllCounts();
+        this.updateChangeIndicator();
+        this.switchSidebarView('edit');
+        this.selectProjectForEdit(id);
+        this.showStatus(`✓ Project ${id} created (hidden). Save to keep it.`, 'success');
+    }
+
+    // ==================== DELETE PROJECT ====================
+
+    // Mark the current project for deletion, or undo that. Applied on save.
+    toggleDeleteCurrentProject() {
+        const project = this.currentProject;
+        if (!project) return;
+        const id = project.id;
+
+        if (this.deletedProjects.has(id)) {
+            this.deletedProjects.delete(id);
+            this.markProjectDeleted(id, false);
+            this.showStatus(`↩️ Project ${id} restored`, 'success');
+        } else if (this.newProjects.has(id)) {
+            // Never saved: drop it outright, nothing to archive
+            if (!confirm(`Discard new project ${id} "${project.displayTitle}"? It was never saved.`)) return;
+            this.projectsData.projects = this.projectsData.projects.filter(p => p.id !== id);
+            this.newProjects.delete(id);
+            this.modifiedProjects.delete(id);
+            this.clearEditor();
+            this.loadProjectLists();
+            this.loadEditList();
+            this.showStatus(`🗑️ New project ${id} discarded`, 'success');
+        } else {
+            if (!confirm(`Delete project ${id} "${project.displayTitle}"?\n\nIt is removed when you click Save All Changes. Until then you can undo.\nAfter saving, run scripts/archive-deleted.js to move its page and media to archive/.`)) return;
+            this.deletedProjects.add(id);
+            this.markProjectDeleted(id, true);
+            this.showStatus(`🗑️ Project ${id} marked for deletion. Save to apply.`, 'warning');
+        }
+
+        this.hasChanges = true;
+        this.updateChangeIndicator();
+        this.updateAllCounts();
+        this.updateDeleteButton();
+    }
+
+    // Strike through the project's card and edit-list item
+    markProjectDeleted(id, isDeleted) {
+        document.querySelectorAll(`.project-card[data-id="${id}"], .project-item[data-id="${id}"]`)
+            .forEach(el => el.classList.toggle('deleted', isDeleted));
+    }
+
+    updateDeleteButton() {
+        const btn = document.getElementById('deleteProjectBtn');
+        if (!btn) return;
+        const id = this.currentProject && this.currentProject.id;
+        btn.disabled = !id;
+        const marked = id && this.deletedProjects.has(id);
+        btn.textContent = marked ? '↩️ Undo delete' : '🗑️ Delete project';
+        btn.classList.toggle('btn-danger', !marked);
+        btn.classList.toggle('btn-secondary', !!marked);
+    }
+
+    clearEditor() {
+        this.currentProject = null;
+        document.getElementById('currentProjectName').textContent = 'Select a project';
+        document.getElementById('currentProjectId').textContent = '-';
+        this.updateDeleteButton();
+        this.switchTab('organize');
+    }
+
+    // Move marked projects into deletedProjects so the archive script can find and restore them
+    applyDeletions() {
+        if (!this.deletedProjects.size) return 0;
+        const deletedAt = new Date().toISOString();
+        const removed = this.projectsData.projects.filter(p => this.deletedProjects.has(p.id));
+
+        this.projectsData.projects = this.projectsData.projects.filter(p => !this.deletedProjects.has(p.id));
+        this.projectsData.deletedProjects = [
+            ...(this.projectsData.deletedProjects || []),
+            ...removed.map(p => ({ ...p, deletedAt }))
+        ];
+
+        removed.forEach(p => this.modifiedProjects.delete(p.id));
+        if (this.currentProject && this.deletedProjects.has(this.currentProject.id)) {
+            this.clearEditor();
+        }
+        this.deletedProjects.clear();
+        return removed.length;
+    }
+
+    updateMetadata() {
+        const meta = this.projectsData.metadata;
+        if (!meta) return;
+        meta.totalProjects = this.projectsData.projects.length;
+        meta.featuredCount = this.projectsData.projects.filter(p => p.featured).length;
+        meta.lastUpdated = new Date().toISOString().slice(0, 10);
     }
 
     // ==================== TAB MANAGEMENT ====================
@@ -172,6 +347,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'featured')
                 })
             );
@@ -185,6 +361,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'visible')
                 })
             );
@@ -198,6 +375,7 @@ class ProjectStudio {
                     group: 'projects',
                     animation: 150,
                     handle: '.card-handle',
+                    filter: '.deleted',
                     onEnd: (evt) => this.handleProjectDrop(evt, 'hidden')
                 })
             );
@@ -351,6 +529,8 @@ class ProjectStudio {
             cardInfo.appendChild(featuredBadge);
         }
 
+        card.querySelector('.project-card').classList.toggle('deleted', this.deletedProjects.has(project.id));
+
         document.getElementById(containerId).appendChild(card);
     }
 
@@ -436,12 +616,21 @@ class ProjectStudio {
             } else {
                 statusBadge.textContent = '✓ Visible';
             }
+            if (this.newProjects.has(project.id)) {
+                statusBadge.textContent = '🆕 New';
+            }
+            item.querySelector('.project-item').classList.toggle('deleted', this.deletedProjects.has(project.id));
 
             item.querySelector('.project-item').addEventListener('click', () => {
                 this.selectProjectForEdit(project.id);
             });
 
             container.appendChild(item);
+
+            // Keep unsaved-change markers when the list is rebuilt
+            if (this.modifiedProjects.has(project.id)) {
+                this.updateProjectModifiedIndicator(project.id, true);
+            }
         });
     }
 
@@ -463,6 +652,12 @@ class ProjectStudio {
 
             // Skip undefined values
             if (newVal === undefined) continue;
+
+            // null means "field removed": only a change if the field currently has a value
+            if (newVal === null) {
+                if (origVal !== undefined && origVal !== null) return true;
+                continue;
+            }
 
             // Special handling for category field - normalize to array for comparison
             if (key === 'category') {
@@ -529,7 +724,13 @@ class ProjectStudio {
 
                 if (hasFormChanges || hasMediaChanges) {
                     // Only update and mark as modified if there are actual changes
-                    Object.assign(this.projectsData.projects[projectIndex], formData, mediaConfig);
+                    const project = this.projectsData.projects[projectIndex];
+                    Object.assign(project, formData, mediaConfig);
+
+                    // Remove fields cleared in the form (e.g. cover, coverPosition)
+                    Object.keys(mediaConfig).forEach(key => {
+                        if (mediaConfig[key] === null) delete project[key];
+                    });
 
                     // Track that this project has been modified
                     this.modifiedProjects.add(this.currentProject.id);
@@ -566,6 +767,7 @@ class ProjectStudio {
         // Update header
         document.getElementById('currentProjectName').textContent = this.currentProject.displayTitle;
         document.getElementById('currentProjectId').textContent = this.currentProject.id;
+        this.updateDeleteButton();
     }
 
     loadProjectDetails() {
@@ -782,14 +984,94 @@ class ProjectStudio {
                 const isVideo = e.target.value === 'video';
                 document.getElementById('heroVideoConfig').style.display = isVideo ? 'block' : 'none';
                 document.getElementById('heroImageConfig').style.display = isVideo ? 'none' : 'block';
+                this.updateImagePreviews();
                 this.hasChanges = true;
                 this.updateChangeIndicator();
             });
         });
 
+        // Project image inputs: live previews + change tracking
+        ['projectThumbnail', 'projectCover', 'coverPositionDesktop', 'coverPositionMobile', 'heroVideoPoster', 'heroImageSrc'].forEach(id => {
+            document.getElementById(id)?.addEventListener('input', () => {
+                this.updateImagePreviews();
+                this.hasChanges = true;
+                this.updateChangeIndicator();
+            });
+        });
+
+        // Cover crop presets: fill the input and reuse its input handler
+        document.querySelectorAll('.crop-presets').forEach(group => {
+            const input = document.getElementById(group.dataset.target);
+            group.addEventListener('click', (e) => {
+                const btn = e.target.closest('button[data-value]');
+                if (!btn || !input) return;
+                input.value = btn.dataset.value;
+                input.dispatchEvent(new Event('input'));
+            });
+        });
+
+        // Fill empty image fields with the standard file names for this project
+        document.getElementById('fillDefaultImagesBtn')?.addEventListener('click', () => {
+            if (!this.currentProject) return;
+            const defaults = Utils.getDefaultImagePaths(this.currentProject.id);
+            const fields = {
+                projectThumbnail: defaults.thumbnail,
+                projectCover: defaults.cover,
+                heroVideoPoster: defaults.poster
+            };
+            Object.entries(fields).forEach(([id, value]) => {
+                const input = document.getElementById(id);
+                if (input && !input.value.trim()) input.value = value;
+            });
+            this.updateImagePreviews();
+            this.hasChanges = true;
+            this.updateChangeIndicator();
+        });
+
         // Media type cards
         this.setupMediaTypeCards();
         this.setupProcessMediaBlocks();
+    }
+
+    // Refresh thumbnail / cover / video poster previews from the current input values
+    updateImagePreviews() {
+        const desktopPos = document.getElementById('coverPositionDesktop').value.trim();
+        const mobilePos = document.getElementById('coverPositionMobile').value.trim();
+
+        // Highlight the preset matching the current value (empty = default preset)
+        const activeValues = {
+            coverPositionDesktop: desktopPos || 'center 50%',
+            coverPositionMobile: mobilePos || 'center center'
+        };
+        document.querySelectorAll('.crop-presets').forEach(group => {
+            group.querySelectorAll('button[data-value]').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.value === activeValues[group.dataset.target]);
+            });
+        });
+
+        document.querySelectorAll('[data-preview-for]').forEach(preview => {
+            const input = document.getElementById(preview.dataset.previewFor);
+            let path = input ? input.value.trim() : '';
+
+            // Cover falls back to the hero image / video poster, same as the generator
+            if (!path && preview.dataset.previewFor === 'projectCover') {
+                path = Utils.getCoverFallback(this.getHeroMediaConfiguration());
+            }
+
+            const img = preview.querySelector('img');
+            preview.classList.remove('missing');
+            preview.classList.toggle('empty', !path);
+            preview.style.setProperty('--cover-pos', desktopPos || 'center 50%');
+            preview.style.setProperty('--cover-pos-mobile', mobilePos || 'center center');
+
+            if (!path) {
+                img.removeAttribute('src');
+                return;
+            }
+            img.onerror = () => preview.classList.add('missing');
+            img.onload = () => preview.classList.remove('missing');
+            img.src = Utils.getServedImage(path);
+        });
     }
 
     setupMediaTypeCards() {
@@ -859,40 +1141,30 @@ class ProjectStudio {
         const project = this.currentProject;
         if (!project) return;
 
-        // Load hero configuration
-        let heroType = 'video';
-        let heroSrc = '';
-        let heroPoster = '';
-        let heroAlt = '';
+        // Load project images
+        const coverPosition = project.coverPosition || {};
+        document.getElementById('projectThumbnail').value = project.thumbnail || '';
+        document.getElementById('projectCover').value = project.cover || '';
+        document.getElementById('coverPositionDesktop').value = coverPosition.desktop || '';
+        document.getElementById('coverPositionMobile').value = coverPosition.mobile || '';
 
-        if (project.heroMedia) {
-            heroType = project.heroMedia.type;
-            heroSrc = project.heroMedia.src || '';
-            heroPoster = project.heroMedia.poster || '';
-            heroAlt = project.heroMedia.alt || '';
-        } else if (project.mainVideo) {
-            heroType = 'video';
-            heroSrc = project.mainVideo;
-            heroPoster = project.videoPoster || '';
-        } else if (project.heroImage) {
-            heroType = 'image';
-            heroSrc = project.heroImage;
-            heroAlt = project.fullTitle;
-        }
+        // Load hero configuration
+        const heroMedia = project.heroMedia || { type: 'video' };
+        const heroType = heroMedia.type === 'image' ? 'image' : 'video';
 
         // Set hero type
         document.querySelector(`input[name="heroType"][value="${heroType}"]`).checked = true;
         document.getElementById('heroVideoConfig').style.display = heroType === 'video' ? 'block' : 'none';
         document.getElementById('heroImageConfig').style.display = heroType === 'image' ? 'block' : 'none';
 
-        // Set hero fields
-        if (heroType === 'video') {
-            document.getElementById('heroVideoSrc').value = heroSrc;
-            document.getElementById('heroVideoPoster').value = heroPoster;
-        } else {
-            document.getElementById('heroImageSrc').value = heroSrc;
-            document.getElementById('heroImageAlt').value = heroAlt;
-        }
+        // Set hero fields (clear the other type so values don't leak between projects)
+        const isVideo = heroType === 'video';
+        document.getElementById('heroVideoSrc').value = isVideo ? (heroMedia.src || '') : '';
+        document.getElementById('heroVideoPoster').value = isVideo ? (heroMedia.poster || '') : '';
+        document.getElementById('heroImageSrc').value = isVideo ? '' : (heroMedia.src || '');
+        document.getElementById('heroImageAlt').value = isVideo ? '' : (heroMedia.alt || '');
+
+        this.updateImagePreviews();
 
         // Load process media
         this.loadProcessMedia();
@@ -907,20 +1179,7 @@ class ProjectStudio {
         this.processMediaBlocks = [];
 
         // Load media items
-        let mediaItems = [];
-        if (project.processMedia?.length > 0) {
-            mediaItems = project.processMedia;
-        } else if (project.beforeAfterMedia?.length > 0) {
-            // Convert old format
-            mediaItems = project.beforeAfterMedia.map((item, index) => ({
-                type: item.type === 'video' ? 'before-after-video' : 'before-after-image',
-                before: item.before,
-                after: item.after,
-                label: item.label || `Comparison ${index + 1}`,
-                labelBefore: item.labelBefore || 'Before',
-                labelAfter: item.labelAfter || 'After'
-            }));
-        }
+        const mediaItems = project.processMedia || [];
 
         if (mediaItems.length > 0) {
             mediaItems.forEach(item => {
@@ -1243,6 +1502,10 @@ class ProjectStudio {
         });
 
         // Reload button
+        document.getElementById('deleteProjectBtn')?.addEventListener('click', () => {
+            this.toggleDeleteCurrentProject();
+        });
+
         document.getElementById('reloadBtn')?.addEventListener('click', () => {
             if (this.hasChanges) {
                 if (!confirm('You have unsaved changes. Reload anyway?')) return;
@@ -1269,8 +1532,8 @@ class ProjectStudio {
             });
         });
 
-        // Hero config inputs
-        ['heroVideoSrc', 'heroVideoPoster', 'heroImageSrc', 'heroImageAlt'].forEach(id => {
+        // Hero config inputs (heroVideoPoster is tracked in setupMediaConfig)
+        ['heroVideoSrc', 'heroImageSrc', 'heroImageAlt'].forEach(id => {
             document.getElementById(id)?.addEventListener('input', () => {
                 this.hasChanges = true;
                 this.updateChangeIndicator();
@@ -1307,17 +1570,7 @@ class ProjectStudio {
     }
 
     getMediaConfiguration() {
-        // Get hero configuration
-        const heroType = document.querySelector('input[name="heroType"]:checked').value;
-        const heroMedia = { type: heroType };
-
-        if (heroType === 'video') {
-            heroMedia.src = document.getElementById('heroVideoSrc').value;
-            heroMedia.poster = document.getElementById('heroVideoPoster').value;
-        } else {
-            heroMedia.src = document.getElementById('heroImageSrc').value;
-            heroMedia.alt = document.getElementById('heroImageAlt').value;
-        }
+        const heroMedia = this.getHeroMediaConfiguration();
 
         // Get process media
         const processMedia = this.processMediaBlocks.map(block => {
@@ -1328,6 +1581,11 @@ class ProjectStudio {
                 data.type = block.type;
             }
 
+            // Trim paths so the generator's .jpg -> .webp rewrite and the validators match
+            ['src', 'poster', 'before', 'after'].forEach(key => {
+                if (typeof data[key] === 'string') data[key] = data[key].trim();
+            });
+
             // Clean empty fields (except type)
             Object.keys(data).forEach(key => {
                 if (key !== 'type' && !data[key]) delete data[key];
@@ -1335,15 +1593,49 @@ class ProjectStudio {
             return data;
         });
 
-        return { heroMedia, processMedia };
+        // Project images. Empty values are null so they are removed on merge.
+        const coverPosition = {};
+        const desktopPos = document.getElementById('coverPositionDesktop').value.trim();
+        const mobilePos = document.getElementById('coverPositionMobile').value.trim();
+        if (desktopPos) coverPosition.desktop = desktopPos;
+        if (mobilePos) coverPosition.mobile = mobilePos;
+
+        return {
+            thumbnail: document.getElementById('projectThumbnail').value.trim() || null,
+            cover: document.getElementById('projectCover').value.trim() || null,
+            coverPosition: Object.keys(coverPosition).length ? coverPosition : null,
+            heroMedia,
+            processMedia
+        };
+    }
+
+    getHeroMediaConfiguration() {
+        const heroType = document.querySelector('input[name="heroType"]:checked').value;
+        const heroMedia = { type: heroType };
+
+        // Trim paths so the generator's .jpg -> .webp rewrite matches; drop an empty poster
+        if (heroType === 'video') {
+            heroMedia.src = document.getElementById('heroVideoSrc').value.trim();
+            const poster = document.getElementById('heroVideoPoster').value.trim();
+            if (poster) heroMedia.poster = poster;
+        } else {
+            heroMedia.src = document.getElementById('heroImageSrc').value.trim();
+            heroMedia.alt = document.getElementById('heroImageAlt').value;
+        }
+
+        return heroMedia;
     }
 
     async saveAllChanges() {
-        // Update organization data (always runs)
-        this.updateProjectOrganization();
-
         // Save any pending changes from currently editing project
         this.savePendingProjectChanges();
+
+        // Move projects marked for deletion to deletedProjects (archived later by scripts/archive-deleted.js)
+        const deletedCount = this.applyDeletions();
+
+        // Update organization data (always runs)
+        this.updateProjectOrganization();
+        this.updateMetadata();
 
         // Save to file (includes all organization + all edited projects)
         const saved = await Utils.saveProjectsData(this.projectsData);
@@ -1355,6 +1647,7 @@ class ProjectStudio {
             // Clear all change tracking
             this.hasChanges = false;
             this.modifiedProjects.clear();
+            this.newProjects.clear();
             this.updateChangeIndicator();
 
             // Clear all modified indicators in UI
@@ -1362,9 +1655,19 @@ class ProjectStudio {
                 this.updateProjectModifiedIndicator(item.dataset.id, false);
             });
 
+            // Deleted projects are gone from the data now: rebuild the lists without them
+            if (deletedCount > 0) {
+                this.loadProjectLists();
+                this.loadEditList();
+                this.updateAllCounts();
+            }
+
             // Show success message with count
-            const message = modifiedCount > 0
-                ? `✅ All changes saved! (${modifiedCount} project${modifiedCount !== 1 ? 's' : ''} edited) Download started.`
+            const parts = [];
+            if (modifiedCount > 0) parts.push(`${modifiedCount} project${modifiedCount !== 1 ? 's' : ''} edited`);
+            if (deletedCount > 0) parts.push(`${deletedCount} deleted`);
+            const message = parts.length
+                ? `✅ All changes saved! (${parts.join(', ')}) Download started.`
                 : '✅ All changes saved! Download started.';
 
             this.showStatus(message, 'success');

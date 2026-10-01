@@ -107,7 +107,7 @@ function updateProjectsFile(htmlContent) {
 
 // Validate categories
 function validateCategories(projects) {
-    const validCategories = ['vfx', 'motion', 'editing', 'personal'];
+    const validCategories = ['ai', 'vfx', 'motion', 'editing', 'personal'];
     const invalidProjects = [];
 
     projects.forEach(p => {
@@ -127,7 +127,7 @@ function validateCategories(projects) {
         invalidProjects.forEach(p => {
             console.warn(`   - Project ${p.id}: "${p.invalid.join(', ')}"`);
         });
-        console.log('   Valid categories are: vfx, motion, editing, personal');
+        console.log('   Valid categories are: ai, vfx, motion, editing, personal');
     }
 }
 

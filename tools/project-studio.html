@@ -8,7 +8,7 @@
     <meta http-equiv="Expires" content="0">
     <title>Project Studio - Unified Management System</title>
     <link rel="stylesheet" href="css/tools.css?v=4">
-    <link rel="stylesheet" href="css/project-studio.css?v=1">
+    <link rel="stylesheet" href="css/project-studio.css?v=4">
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 </head>
 <body>
@@ -16,7 +16,10 @@
         <!-- Left Sidebar: Project List & Organization -->
         <aside class="project-sidebar">
             <div class="sidebar-header">
-                <h2>Projects</h2>
+                <div class="sidebar-title-row">
+                    <h2>Projects</h2>
+                    <button type="button" id="newProjectBtn" class="btn btn-primary btn-small">➕ New project</button>
+                </div>
                 <div class="sidebar-tabs">
                     <button class="sidebar-tab active" data-view="organize">📊 Organize</button>
                     <button class="sidebar-tab" data-view="edit">✏️ Edit</button>
@@ -139,7 +142,10 @@
                 <div class="tab-panel" id="details-tab">
                     <div class="edit-header">
                         <h2>Editing: <span id="currentProjectName">Select a project</span></h2>
-                        <div class="project-id-badge">ID: <span id="currentProjectId">-</span></div>
+                        <div class="edit-header-actions">
+                            <div class="project-id-badge">ID: <span id="currentProjectId">-</span></div>
+                            <button type="button" id="deleteProjectBtn" class="btn btn-danger btn-small" disabled>🗑️ Delete project</button>
+                        </div>
                     </div>
 
                     <form id="projectForm" class="project-form">
@@ -232,6 +238,79 @@
                 <!-- Tab 3: Media Configuration -->
                 <div class="tab-panel" id="media-tab">
                     <div class="media-config-container">
+                        <!-- Project Images: thumbnail, cover (see docs/ASSET-GUIDE.md) -->
+                        <div class="config-section images-section">
+                            <div class="images-section-header">
+                                <h3>🖼️ Project Images</h3>
+                                <button type="button" id="fillDefaultImagesBtn" class="btn btn-secondary btn-small">Fill default paths</button>
+                            </div>
+
+                            <div class="image-field">
+                                <div class="form-group">
+                                    <label for="projectThumbnail">Thumbnail <small class="inline-hint">16:9 · 1280×720 · project cards</small></label>
+                                    <input type="text" id="projectThumbnail" placeholder="assets/images/projects/[id]/[id]-thumb.webp">
+                                </div>
+                                <div class="image-preview thumb-preview" data-preview-for="projectThumbnail">
+                                    <img alt="Thumbnail preview">
+                                    <span class="image-missing">✗ Not found</span>
+                                </div>
+                            </div>
+
+                            <div class="image-field">
+                                <div class="form-group">
+                                    <label for="projectCover">Cover <small class="inline-hint">2560×1440 · cropped hero behind the title</small></label>
+                                    <input type="text" id="projectCover" placeholder="assets/images/projects/[id]/[id]-cover.jpg">
+                                    <small>Empty = the hero image (image hero) or video poster (video hero) is used as cover.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="coverPositionDesktop">Cover crop · desktop</label>
+                                    <input type="text" id="coverPositionDesktop" placeholder="center 50% (default)">
+                                    <div class="crop-presets" data-target="coverPositionDesktop">
+                                        <button type="button" data-value="center top">center top</button>
+                                        <button type="button" data-value="center 30%">center 30%</button>
+                                        <button type="button" data-value="center 50%">center 50%</button>
+                                        <button type="button" data-value="center 70%">center 70%</button>
+                                        <button type="button" data-value="center bottom">center bottom</button>
+                                    </div>
+                                    <small>Wide frame: the vertical value (2nd) matters. 0%/top shows the top of the image, 100%/bottom the bottom.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="coverPositionMobile">Cover crop · mobile</label>
+                                    <input type="text" id="coverPositionMobile" placeholder="center center (default)">
+                                    <div class="crop-presets" data-target="coverPositionMobile">
+                                        <button type="button" data-value="left center">left center</button>
+                                        <button type="button" data-value="30% center">30% center</button>
+                                        <button type="button" data-value="center center">center center</button>
+                                        <button type="button" data-value="70% center">70% center</button>
+                                        <button type="button" data-value="right center">right center</button>
+                                    </div>
+                                    <small>Portrait frame: the horizontal value (1st) matters. 0%/left shows the left side, 100%/right the right.</small>
+                                </div>
+                            </div>
+                            <small class="section-info">Values are CSS <code>object-position</code>: <em>horizontal vertical</em>. Click a preset or type your own. Empty = default. Misspelled values are ignored.</small>
+
+                            <div class="cover-crop-previews">
+                                <div class="cover-crop">
+                                    <span class="cover-crop-label">Desktop crop</span>
+                                    <div class="image-preview cover-frame-desktop" data-preview-for="projectCover">
+                                        <img alt="Cover desktop crop preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
+                                </div>
+                                <div class="cover-crop">
+                                    <span class="cover-crop-label">Mobile crop</span>
+                                    <div class="image-preview cover-frame-mobile" data-preview-for="projectCover">
+                                        <img alt="Cover mobile crop preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <small class="section-info">Frames approximate the live hero crop. The HTML title covers the bottom ~25% of each frame.</small>
+                        </div>
+
                         <!-- Hero Section -->
                         <div class="config-section hero-section">
                             <h3>📸 Hero Section</h3>
@@ -257,16 +336,22 @@
                                     <label>Video Path</label>
                                     <input type="text" id="heroVideoSrc" placeholder="assets/videos/[id]/project-[id].mp4">
                                 </div>
-                                <div class="form-group">
-                                    <label>Poster Image</label>
-                                    <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/poster.jpg">
+                                <div class="image-field">
+                                    <div class="form-group">
+                                        <label for="heroVideoPoster">Video Poster <small class="inline-hint">16:9 · 1920×1080 · full frame in the player</small></label>
+                                        <input type="text" id="heroVideoPoster" placeholder="assets/images/projects/[id]/[id]-video-poster.jpg">
+                                    </div>
+                                    <div class="image-preview thumb-preview" data-preview-for="heroVideoPoster">
+                                        <img alt="Video poster preview">
+                                        <span class="image-missing">✗ Not found</span>
+                                    </div>
                                 </div>
                             </div>
 
                             <div id="heroImageConfig" class="hero-config" style="display: none;">
                                 <div class="form-group">
-                                    <label>Image Path</label>
-                                    <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/hero.jpg">
+                                    <label for="heroImageSrc">Image Path <small class="inline-hint">shown uncropped below the cover</small></label>
+                                    <input type="text" id="heroImageSrc" placeholder="assets/images/projects/[id]/[id]-hero.jpg">
                                 </div>
                                 <div class="form-group">
                                     <label>Alt Text</label>
@@ -356,6 +441,59 @@
     <!-- Status Messages -->
     <div id="statusMessage" class="status-message"></div>
 
+    <!-- New Project Dialog -->
+    <dialog id="newProjectDialog" class="studio-dialog">
+        <form id="newProjectForm" method="dialog" novalidate>
+            <h2>➕ New project</h2>
+
+            <div class="form-group">
+                <label for="newProjectId">Project ID</label>
+                <div class="id-input-row">
+                    <input type="text" id="newProjectId" inputmode="numeric" maxlength="4" autocomplete="off">
+                    <button type="button" id="rerollProjectIdBtn" class="btn btn-secondary btn-small" title="Suggest another random ID">🎲</button>
+                </div>
+                <small>Random unused 4-digit ID. Type your own if you prefer.</small>
+                <small class="field-error" id="newProjectIdError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="newDisplayTitle">Display title</label>
+                <input type="text" id="newDisplayTitle" maxlength="50">
+                <small>Short title for cards and lists</small>
+            </div>
+
+            <div class="form-group">
+                <label for="newFullTitle">Full title</label>
+                <input type="text" id="newFullTitle" maxlength="100">
+                <small>Empty = same as display title</small>
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <div id="newCategoryList" class="new-category-list"></div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="newYear">Year</label>
+                    <input type="number" id="newYear" min="2000" max="2100">
+                </div>
+                <div class="form-group">
+                    <label for="newClient">Client</label>
+                    <input type="text" id="newClient">
+                </div>
+            </div>
+
+            <small class="field-error" id="newProjectFormError"></small>
+            <p class="dialog-note">The project starts in <strong>Hidden</strong> with standard image and video paths. Add media, then drag it to All Projects.</p>
+
+            <div class="dialog-actions">
+                <button type="button" id="cancelNewProjectBtn" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </dialog>
+
     <!-- Templates -->
     <!-- Project Card Template for Organize View -->
     <template id="projectCardTemplate">
@@ -394,7 +532,7 @@
         </div>
     </template>
 
-    <script src="js/utils.js?v=2"></script>
-    <script src="js/project-studio.js?v=1"></script>
+    <script src="js/utils.js?v=5"></script>
+    <script src="js/project-studio.js?v=5"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { LEGACY_FIELDS, imageTwins, missingCoverMessage, hasBeforeAfter: projectHasBeforeAfter } = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
@@ -35,10 +36,18 @@ function fileExists(filePath) {
     }
 }
 
+// Images stored as .jpg are served as their .webp twin, so both must exist
+function missingImageFiles(imagePath) {
+    return imageTwins(imagePath).filter(file => !fileExists(path.join(ASSETS_DIR, file)));
+}
+
 // Validate a single project
 function validateProject(project) {
     const issues = [];
     const warnings = [];
+
+    const processMedia = project.processMedia || [];
+    const hasBeforeAfter = projectHasBeforeAfter(project);
 
     // Check project HTML file exists
     const projectFile = path.join(PROJECTS_DIR, `Project-${project.id}.html`);
@@ -48,7 +57,7 @@ function validateProject(project) {
         // Check if HTML file has required scripts
         const htmlContent = fs.readFileSync(projectFile, 'utf8');
 
-        if (!htmlContent.includes('before-after.js') && project.beforeAfterMedia && project.beforeAfterMedia.length > 0) {
+        if (!htmlContent.includes('before-after.js') && hasBeforeAfter) {
             issues.push(`Missing before-after.js script in Project-${project.id}.html (has before/after media)`);
         }
 
@@ -61,59 +70,66 @@ function validateProject(project) {
             warnings.push(`Missing PROJECT_INFO markers in Project-${project.id}.html`);
         }
 
-        if (project.beforeAfterMedia && project.beforeAfterMedia.length > 0) {
-            if (!htmlContent.includes('BEFORE_AFTER_SECTION_START') || !htmlContent.includes('BEFORE_AFTER_SECTION_END')) {
-                warnings.push(`Missing BEFORE_AFTER_SECTION markers in Project-${project.id}.html`);
+        if (processMedia.length > 0) {
+            if (!htmlContent.includes('PROCESS_MEDIA_START') || !htmlContent.includes('PROCESS_MEDIA_END')) {
+                warnings.push(`Missing PROCESS_MEDIA markers in Project-${project.id}.html`);
             }
         }
     }
+
+    // Legacy fields replaced by cover / heroMedia / processMedia
+    LEGACY_FIELDS.forEach(field => {
+        if (project[field] !== undefined) {
+            warnings.push(`Legacy field "${field}" is no longer used - remove it from projects-data.json`);
+        }
+    });
 
     // Check thumbnail
-    if (project.thumbnail) {
-        const thumbnailPath = path.join(ASSETS_DIR, project.thumbnail);
-        if (!fileExists(thumbnailPath)) {
-            issues.push(`Missing thumbnail: ${project.thumbnail}`);
-        }
+    if (!project.thumbnail) {
+        issues.push('Missing thumbnail field');
+    } else {
+        missingImageFiles(project.thumbnail).forEach(file => issues.push(`Missing thumbnail: ${file}`));
     }
 
-    // Check hero image
-    if (project.heroImage) {
-        const heroPath = path.join(ASSETS_DIR, project.heroImage);
-        if (!fileExists(heroPath)) {
-            warnings.push(`Missing hero image: ${project.heroImage}`);
-        }
+    // Check cover (falls back to hero image / video poster when missing)
+    if (!project.cover) {
+        warnings.push(missingCoverMessage(project));
+    } else {
+        missingImageFiles(project.cover).forEach(file => issues.push(`Missing cover: ${file}`));
     }
 
-    // Check main video
-    if (project.mainVideo) {
-        const videoPath = path.join(ASSETS_DIR, project.mainVideo);
-        if (!fileExists(videoPath)) {
-            issues.push(`Missing main video: ${project.mainVideo}`);
+    // Check hero media
+    if (project.heroMedia) {
+        const hero = project.heroMedia;
+        if (!hero.src) {
+            issues.push(`Hero ${hero.type} has no src`);
+        } else if (hero.type === 'image') {
+            // Image heroes are served as their .webp twin
+            missingImageFiles(hero.src).forEach(file => issues.push(`Missing hero image: ${file}`));
+        } else if (!fileExists(path.join(ASSETS_DIR, hero.src))) {
+            issues.push(`Missing hero ${hero.type}: ${hero.src}`);
         }
-    }
-
-    // Check video poster
-    if (project.videoPoster) {
-        const posterPath = path.join(ASSETS_DIR, project.videoPoster);
-        if (!fileExists(posterPath)) {
-            warnings.push(`Missing video poster: ${project.videoPoster}`);
-        }
-    }
-
-    // Check before/after media
-    if (project.beforeAfterMedia) {
-        project.beforeAfterMedia.forEach((media, index) => {
-            const beforePath = path.join(ASSETS_DIR, media.before);
-            const afterPath = path.join(ASSETS_DIR, media.after);
-
-            if (!fileExists(beforePath)) {
-                issues.push(`Missing before media [${index}]: ${media.before}`);
+        if (hero.type === 'video') {
+            if (!hero.poster) {
+                warnings.push('Hero video has no poster');
+            } else {
+                missingImageFiles(hero.poster).forEach(file => warnings.push(`Missing video poster: ${file}`));
             }
-            if (!fileExists(afterPath)) {
-                issues.push(`Missing after media [${index}]: ${media.after}`);
+        }
+    }
+
+    // Check process media files
+    processMedia.forEach((item, index) => {
+        ['src', 'before', 'after'].forEach(key => {
+            if (item[key] && !fileExists(path.join(ASSETS_DIR, item[key]))) {
+                issues.push(`Missing process media [${index}] ${key}: ${item[key]}`);
             }
         });
-    }
+        // Video posters are served as their .webp twin
+        if (item.type === 'video' && item.poster) {
+            missingImageFiles(item.poster).forEach(file => warnings.push(`Missing process media [${index}] poster: ${file}`));
+        }
+    });
 
     // Validate data fields
     if (!project.displayTitle) {
@@ -192,7 +208,7 @@ function main() {
 
         console.log(`\n${colors.cyan}💡 Suggestions:${colors.reset}`);
         if (totalIssues > 0) {
-            console.log(`   1. Run: ${colors.green}node scripts/generate-project-pages.js${colors.reset} to regenerate all project pages`);
+            console.log(`   1. Run: ${colors.green}node scripts/generate-project-unified.js${colors.reset} to regenerate all project pages`);
             console.log(`   2. Check that all media files are in the correct directories`);
         }
         if (totalWarnings > 0) {

@@ -1,7 +1,7 @@
 /**
  * Unified Project Page Generator
- * Intelligently generates project pages using the appropriate template
- * based on media complexity and project requirements
+ * Generates project pages from projects-data.json using
+ * templates/project-page-advanced.html
  *
  * Usage:
  * - Generate all projects: node scripts/generate-project-unified.js
@@ -10,15 +10,22 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+    servedImage: preferWebP,
+    getCoverPath,
+    missingCoverMessage,
+    hasBeforeAfter: hasBeforeAfterMedia
+} = require('./lib/media-rules');
 
 // File paths
 const DATA_FILE = path.join(__dirname, '..', 'projects-data.json');
-const BASIC_TEMPLATE = path.join(__dirname, '..', 'templates', 'project-page.html');
 const ADVANCED_TEMPLATE = path.join(__dirname, '..', 'templates', 'project-page-advanced.html');
 const PROJECTS_DIR = path.join(__dirname, '..', 'projects');
+const SITE_URL = 'https://mironauslander.com';
 
 // Category display mapping
 const CATEGORY_DISPLAY = {
+    'ai': 'AI',
     'vfx': 'Visual Effects',
     'motion': 'Motion Graphics',
     'editing': 'Video Editing',
@@ -27,46 +34,51 @@ const CATEGORY_DISPLAY = {
 
 // Category accent mapping for V2 hero overlay
 const CATEGORY_ACCENT = {
+    'ai': 'AI',
     'vfx': 'VFX BREAKDOWN',
     'motion': 'MOTION GRAPHICS',
     'editing': 'VIDEO EDITING',
     'personal': 'PERSONAL PROJECT'
 };
 
-// Helper function to prefer WebP over JPG for better performance
-function preferWebP(imagePath) {
-    if (!imagePath) return imagePath;
-    // Replace .jpg with .webp (case insensitive)
-    return imagePath.replace(/\.jpg$/i, '.webp');
+// Escape a value for use inside an HTML attribute
+function escapeAttr(value) {
+    return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
 }
 
 // Media type generators (from advanced generator)
 const MediaGenerators = {
-    generateHeroCover(heroData) {
-        if (!heroData) return '';
-        if (heroData.type === 'video') {
-            const posterPath = preferWebP(heroData.poster) || '';
-            return `<img class="hero-cover" src="../${posterPath}" alt="">`;
-        } else if (heroData.type === 'image') {
-            return `<img class="hero-cover" src="../${heroData.src}" alt="">`;
-        }
-        return '';
+    generateHeroCover(project) {
+        const coverPath = preferWebP(getCoverPath(project));
+        if (!coverPath) return '';
+
+        // Optional per-project crop: { desktop: "center 30%", mobile: "40% center" }
+        const pos = project.coverPosition || {};
+        const styles = [];
+        if (pos.desktop) styles.push(`--cover-pos: ${pos.desktop}`);
+        if (pos.mobile) styles.push(`--cover-pos-mobile: ${pos.mobile}`);
+        const styleAttr = styles.length ? ` style="${escapeAttr(styles.join('; '))}"` : '';
+
+        return `<img class="hero-cover" src="../${coverPath}" alt="" fetchpriority="high"${styleAttr}>`;
     },
 
     generateHeroMedia(heroData) {
         if (!heroData) return '';
 
         if (heroData.type === 'video') {
-            // Use WebP poster if available
-            const posterPath = preferWebP(heroData.poster) || '';
-            return `
-                    <video controls loop disablePictureInPicture controlsList="nodownload" poster="../${posterPath}">
-                        <source src="../${heroData.src}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>`;
+            // Video poster (served as WebP), separate from the hero cover
+            const posterAttr = heroData.poster ? ` poster="../${preferWebP(heroData.poster)}"` : '';
+            return `<video controls loop disablePictureInPicture controlsList="nodownload"${posterAttr}>
+                <source src="../${heroData.src}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>`;
         } else if (heroData.type === 'image') {
-            return `
-                    <img src="../${heroData.src}" alt="${heroData.alt || ''}" loading="lazy">`;
+            // Full, uncropped image in the player slot (the cover above is cropped)
+            return `<img src="../${preferWebP(heroData.src)}" alt="${escapeAttr(heroData.alt || '')}" loading="lazy">`;
         }
         return '';
     },
@@ -189,81 +201,6 @@ function renderTemplate(template, data) {
     return rendered;
 }
 
-// Convert old format to advanced format if needed
-function convertToAdvancedFormat(project) {
-    const converted = { ...project };
-
-    // Convert hero media if not already in advanced format
-    if (!converted.heroMedia) {
-        if (project.mainVideo) {
-            converted.heroMedia = {
-                type: 'video',
-                src: project.mainVideo,
-                poster: project.videoPoster || null  // Keep original, will be converted to WebP during rendering
-            };
-        } else if (project.heroImage) {
-            converted.heroMedia = {
-                type: 'image',
-                src: project.heroImage,
-                alt: project.fullTitle
-            };
-        }
-    }
-
-    // Convert process media if not already in advanced format
-    if (!converted.processMedia && project.beforeAfterMedia && project.beforeAfterMedia.length > 0) {
-        converted.processMedia = project.beforeAfterMedia.map((item, index) => {
-            if (item.type === 'video') {
-                return {
-                    type: 'before-after-video',
-                    before: item.before,
-                    after: item.after,
-                    label: item.label || `Comparison ${index + 1}`,
-                    labelBefore: item.labelBefore || 'Before',
-                    labelAfter: item.labelAfter || 'After'
-                };
-            } else {
-                return {
-                    type: 'before-after-image',
-                    before: item.before,
-                    after: item.after,
-                    label: item.label || `Comparison ${index + 1}`,
-                    labelBefore: item.labelBefore || 'Before',
-                    labelAfter: item.labelAfter || 'After'
-                };
-            }
-        });
-    }
-
-    return converted;
-}
-
-// Determine if project needs advanced template
-function needsAdvancedTemplate(project) {
-    // Use advanced template if:
-    // 1. Project has processMedia field (new format)
-    // 2. Project has complex media configurations
-    return !!(project.processMedia || project.heroMedia);
-}
-
-// Check if project has before-after media
-function hasBeforeAfterMedia(project) {
-    // Check old format
-    if (project.beforeAfterMedia && project.beforeAfterMedia.length > 0) {
-        return true;
-    }
-
-    // Check new format
-    if (project.processMedia) {
-        return project.processMedia.some(item =>
-            item.type === 'before-after-video' ||
-            item.type === 'before-after-image'
-        );
-    }
-
-    return false;
-}
-
 // Load projects data
 function loadProjectsData() {
     try {
@@ -301,60 +238,57 @@ function findRelatedProjects(currentProject, allProjects) {
     return related;
 }
 
-// Generate a single project page
-function generateProjectPage(project, allProjects) {
-    const useAdvanced = needsAdvancedTemplate(project);
-    const templatePath = useAdvanced ? ADVANCED_TEMPLATE : BASIC_TEMPLATE;
-    const template = loadTemplate(templatePath);
-
-    // Convert to advanced format if using advanced template
-    const processedProject = useAdvanced ? convertToAdvancedFormat(project) : project;
-
+// Generate a single project page (pass the template to avoid re-reading it per project)
+function generateProjectPage(project, allProjects, template = loadTemplate(ADVANCED_TEMPLATE)) {
     // Prepare template data
     const templateData = {
-        ...processedProject,
-        metaDescription: processedProject.description ?
-            processedProject.description.substring(0, 150) + '...' :
-            `${processedProject.fullTitle} - ${CATEGORY_DISPLAY[processedProject.category] || processedProject.category} project by Miron Auslander`,
-        hasVideo: !!processedProject.mainVideo,
-        hasBeforeAfter: hasBeforeAfterMedia(processedProject),
+        ...project,
+        metaDescription: project.description ?
+            project.description.substring(0, 150) + '...' :
+            `${project.fullTitle} - ${CATEGORY_DISPLAY[project.category] || project.category} project by Miron Auslander`,
+        hasBeforeAfter: hasBeforeAfterMedia(project),
         // Handle both single category (string) and multiple categories (array)
-        categoryDisplay: Array.isArray(processedProject.category)
-            ? processedProject.category.map(cat => CATEGORY_DISPLAY[cat] || cat).join(' & ')
-            : (CATEGORY_DISPLAY[processedProject.category] || processedProject.category),
-        relatedProjects: findRelatedProjects(processedProject, allProjects),
+        categoryDisplay: Array.isArray(project.category)
+            ? project.category.map(cat => CATEGORY_DISPLAY[cat] || cat).join(' & ')
+            : (CATEGORY_DISPLAY[project.category] || project.category),
+        relatedProjects: findRelatedProjects(project, allProjects),
 
         // Conditional field helpers for hiding empty sections
-        hasDescription: processedProject.description && processedProject.description.trim() !== '',
-        hasRole: Array.isArray(processedProject.role) && processedProject.role.length > 0,
-        hasTools: Array.isArray(processedProject.tools) && processedProject.tools.length > 0
+        hasDescription: project.description && project.description.trim() !== '',
+        hasRole: Array.isArray(project.role) && project.role.length > 0,
+        hasTools: Array.isArray(project.tools) && project.tools.length > 0
     };
 
-    // Add advanced template-specific data
-    if (useAdvanced) {
-        templateData.heroMediaContent = MediaGenerators.generateHeroMedia(processedProject.heroMedia);
-        templateData.hasProcessMedia = processedProject.processMedia && processedProject.processMedia.length > 0;
-        templateData.processMediaCount = processedProject.processMedia ? processedProject.processMedia.length : 0;
+    // Media data
+    templateData.heroMediaContent = MediaGenerators.generateHeroMedia(project.heroMedia);
+    templateData.hasProcessMedia = project.processMedia && project.processMedia.length > 0;
+    templateData.processMediaCount = project.processMedia ? project.processMedia.length : 0;
 
-        if (processedProject.processMedia && processedProject.processMedia.length > 0) {
-            templateData.processMediaContent = processedProject.processMedia
-                .map((item, index) => MediaGenerators.generateProcessMediaItem(item, index))
-                .join('\n');
-        }
-
-        // V2 Hero data
-        const categories = Array.isArray(processedProject.category)
-            ? processedProject.category
-            : [processedProject.category];
-        const primaryCategory = categories[0];
-
-        templateData.heroCoverContent = MediaGenerators.generateHeroCover(processedProject.heroMedia);
-        templateData.heroTitleUpper = processedProject.displayTitle.toUpperCase();
-        templateData.heroAccent = CATEGORY_ACCENT[primaryCategory] || primaryCategory.toUpperCase();
-        templateData.hasHeroVideo = !!(processedProject.heroMedia && processedProject.heroMedia.type === 'video');
-        templateData.heroVideoSrc = (processedProject.heroMedia && processedProject.heroMedia.src) || '';
-        templateData.heroPosterWebP = preferWebP((processedProject.heroMedia && processedProject.heroMedia.poster) || '') || '';
+    if (project.processMedia && project.processMedia.length > 0) {
+        templateData.processMediaContent = project.processMedia
+            .map((item, index) => MediaGenerators.generateProcessMediaItem(item, index))
+            .join('\n');
     }
+
+    // V2 Hero data
+    const categories = Array.isArray(project.category)
+        ? project.category
+        : [project.category];
+    const primaryCategory = categories[0];
+
+    templateData.heroCoverContent = MediaGenerators.generateHeroCover(project);
+    templateData.heroTitleUpper = project.displayTitle.toUpperCase();
+    templateData.heroAccent = CATEGORY_ACCENT[primaryCategory] || primaryCategory.toUpperCase();
+    templateData.hasHeroMedia = !!(project.heroMedia && project.heroMedia.src);
+
+    // Cover preload + social share (og:image uses the JPG twin for crawler compatibility)
+    const coverPath = getCoverPath(project);
+    templateData.hasCover = !!coverPath;
+    templateData.coverWebP = preferWebP(coverPath);
+    templateData.coverOgUrl = coverPath ? `${SITE_URL}/${coverPath}` : '';
+    templateData.pageUrl = `${SITE_URL}/projects/Project-${project.id}.html`;
+    templateData.ogTitle = escapeAttr(`${project.fullTitle} - Miron Auslander Portfolio`);
+    templateData.ogDescription = escapeAttr(templateData.metaDescription);
 
     // Render template
     return renderTemplate(template, templateData);
@@ -391,6 +325,7 @@ function main(projectIds = null) {
         console.log(`Generating all ${projectsToGenerate.length} projects\n`);
     }
 
+    const template = loadTemplate(ADVANCED_TEMPLATE);
     let successCount = 0;
     let errorCount = 0;
     const errors = [];
@@ -398,19 +333,14 @@ function main(projectIds = null) {
     // Generate each project
     projectsToGenerate.forEach(project => {
         try {
-            const useAdvanced = needsAdvancedTemplate(project);
-            const templateType = useAdvanced ? 'advanced' : 'basic';
+            console.log(`📝 Generating Project-${project.id}.html (${project.displayTitle})`);
 
-            console.log(`📝 Generating Project-${project.id}.html (${project.displayTitle}) [${templateType} template]`);
-
-            const html = generateProjectPage(project, projectsData.projects);
+            const html = generateProjectPage(project, projectsData.projects, template);
 
             if (saveProjectFile(project.id, html)) {
                 console.log(`   ✓ Successfully generated Project-${project.id}.html`);
-
-                // Show warnings if applicable
-                if (hasBeforeAfterMedia(project) && !useAdvanced) {
-                    console.log(`   ⚠️  Project has before/after media - consider using advanced template`);
+                if (!project.cover) {
+                    console.log(`   ⚠️  ${missingCoverMessage(project)}`);
                 }
 
                 successCount++;
@@ -447,10 +377,15 @@ function main(projectIds = null) {
     }
 }
 
+module.exports = {
+    ADVANCED_TEMPLATE,
+    loadTemplate,
+    generateProjectPage,
+    saveProjectFile
+};
+
 // Process command line arguments
-const args = process.argv.slice(2);
-if (args.length > 0) {
-    main(args);
-} else {
-    main();
+if (require.main === module) {
+    const args = process.argv.slice(2);
+    main(args.length > 0 ? args : null);
 }

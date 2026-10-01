@@ -1,0 +1,5 @@
+# Pages and media of deleted projects (scripts/archive-deleted.js)
+archive/
+
+# JetBrains IDE settings
+.idea/
